@@ -5,9 +5,20 @@
     xmlns:local="using:Geomystery"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    xmlns:canvas="using:Microsoft.Graphics.Canvas.UI.Xaml"
+    mc:Ignorable="d" Loaded="Page_Loaded">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Unloaded="Grid_Unloaded">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
 
+        <StackPanel Orientation="Horizontal">
+            <Button Name="back" Click="back_Click">return mainpage</Button>
+            <TextBlock Name="text1"></TextBlock>
+        </StackPanel>
+        
+        <canvas:CanvasAnimatedControl x:Name="canvas1" Grid.Row="1" Draw="canvas1_Draw" CreateResources="canvas1_CreateResources" PointerPressed="canvas1_PointerPressed"></canvas:CanvasAnimatedControl>
     </Grid>
 </Page>

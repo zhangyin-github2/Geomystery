@@ -26,5 +26,10 @@ namespace Geomystery
         {
             this.InitializeComponent();
         }
+
+        private void NavToFreestyle_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(Freestyle));
+        }
     }
 }

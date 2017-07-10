@@ -8,6 +8,9 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+        <StackPanel>
+            <Button Name="NavToFreestyle" Click="NavToFreestyle_Click">nav to freestyle</Button>
+            
+        </StackPanel>
     </Grid>
 </Page>
