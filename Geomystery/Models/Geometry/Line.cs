@@ -22,18 +22,28 @@ namespace Geomystery.Models.Geometry
         Line = 2
     }
 
-    public class Line : IGeometry
+    public class Line : Geometry, IPointSet
     {
         //第一个点
-        Point2 p1;
+        public Point2 p1 { get; set; }
 
         //第二个点
-        Point2 p2;
+        public Point2 p2 { get; set; }
 
         //线型（直线，射线，线段）
-        LineType type;
+        public LineType type { get; set; }
 
         //线上的点
-        List<Point2> online;
+        public List<Point2> online { get; set; }
+
+        //直线与什么东西相交
+        List<Point2> IPointSet.intersection(IPointSet another)
+        {
+            Point2 pc = new Point2();
+            List<Point2> pcl = new List<Point2>();
+
+
+            return pcl;
+        }
     }
 }

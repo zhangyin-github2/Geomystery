@@ -96,8 +96,10 @@
     <Compile Include="Models\Geometry\Circle.cs" />
     <Compile Include="Models\Geometry\IGeometry.cs" />
     <Compile Include="Models\Geometry\Coordinate.cs" />
+    <Compile Include="Models\Geometry\IPointSet.cs" />
     <Compile Include="Models\Geometry\Line.cs" />
     <Compile Include="Models\Geometry\Point2.cs" />
+    <Compile Include="Models\Geometry\Polygon.cs" />
     <Compile Include="Pages\Achievement.xaml.cs">
       <DependentUpon>Achievement.xaml</DependentUpon>
     </Compile>

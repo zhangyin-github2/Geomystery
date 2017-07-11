@@ -6,14 +6,19 @@ using System.Threading.Tasks;
 
 namespace Geomystery.Models.Geometry
 {
-    public class Circle : IGeometry
+    public class Circle : Geometry, IPointSet
     {
         //圆心
-        Point2 center;
+        public Point2 center;
 
         //半径
-        Point2 radius;
+        public Point2 radius;
 
-        List<Point2> onCircle;
+        public List<Point2> onCircle;
+
+        List<Point2> IPointSet.intersection(IPointSet another)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
