@@ -117,6 +117,7 @@ namespace Geomystery
         {
             canvas1.RemoveFromVisualTree();
             canvas1 = null;
+            canvas1.Visibility = Visibility.Collapsed;
         }
     }
 }
