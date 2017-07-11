@@ -39,10 +39,15 @@ namespace Geomystery.Models.Geometry
         //直线与什么东西相交
         List<Point2> IPointSet.intersection(IPointSet another)
         {
-            Point2 pc = new Point2();
             List<Point2> pcl = new List<Point2>();
+            if(another is Line)
+            {
 
+            }
+            else if(another is Circle)
+            {
 
+            }
             return pcl;
         }
     }

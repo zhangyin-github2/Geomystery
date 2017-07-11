@@ -8,7 +8,7 @@ namespace Geomystery.Models.Geometry
 {
     public interface IPointSet
     {
-        /*
+        /**
          * 计算两个点集的交集
          * 常见的可能是直线与直线相交
          */

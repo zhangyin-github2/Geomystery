@@ -125,6 +125,11 @@
     <Compile Include="Pages\SelectGame.xaml.cs">
       <DependentUpon>SelectGame.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Geometry\OutputCircle.cs" />
+    <Compile Include="Views\Geometry\OutputCoordinate.cs" />
+    <Compile Include="Views\Geometry\OutputGeometry.cs" />
+    <Compile Include="Views\Geometry\OutputLine.cs" />
+    <Compile Include="Views\Geometry\OutputPoint.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -175,6 +180,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controllers\Geometry\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

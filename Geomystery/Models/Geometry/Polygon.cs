@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace Geomystery.Models.Geometry
 {
-    public class Polygon : IGeometry
+    //多边形
+    public class Polygon : Geometry
     {
+        public List<Point2> PointList { get; set; }
 
+        public List<Line> LineList { get; set; }
     }
 }
