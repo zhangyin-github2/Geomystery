@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Geomystery.Models.Geometry
 {
-    public class Geometry
+    public abstract class Geometry
     {
         //所在坐标系
         public Coordinate coord { get; set; }

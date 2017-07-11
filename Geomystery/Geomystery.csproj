@@ -94,7 +94,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Geometry\Circle.cs" />
-    <Compile Include="Models\Geometry\IGeometry.cs" />
+    <Compile Include="Models\Geometry\Geometry.cs" />
     <Compile Include="Models\Geometry\Coordinate.cs" />
     <Compile Include="Models\Geometry\IPointSet.cs" />
     <Compile Include="Models\Geometry\Line.cs" />
