@@ -13,6 +13,9 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
+using Windows.UI.ViewManagement;
+
+
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
 namespace Geomystery
@@ -25,6 +28,7 @@ namespace Geomystery
         public MainPage()
         {
             this.InitializeComponent();
+            ApplicationView.PreferredLaunchWindowingMode =ApplicationViewWindowingMode.FullScreen;    //启动设置全屏
         }
 
         private void NavToFreestyle_Click(object sender, RoutedEventArgs e)
