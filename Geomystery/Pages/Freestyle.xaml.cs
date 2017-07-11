@@ -113,11 +113,10 @@ namespace Geomystery
             text1.Text = center.X.ToString() + " | " + center.Y.ToString(); ;
         }
 
-        private void Grid_Unloaded(object sender, RoutedEventArgs e)
+        private void Page_Unloaded(object sender, RoutedEventArgs e)
         {
             canvas1.RemoveFromVisualTree();
             canvas1 = null;
-            canvas1.Visibility = Visibility.Collapsed;
         }
     }
 }
