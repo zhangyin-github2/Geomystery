@@ -44,5 +44,17 @@ namespace Geomystery.Views.Geometry
         {
             this.coordinate = coordinate;
         }
+
+        public static Vector2 ToVector2(Point2 p2)
+        {
+            Vector2 v2 = new Vector2() { X = 1, Y = 1 };
+            return v2;
+        }
+
+        public static Point2 ToPoint2(Vector2 v2)
+        {
+            Point2 p2 = new Point2() { X = 1, Y = 1 };
+            return p2;
+        }
     }
 }
