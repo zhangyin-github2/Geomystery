@@ -45,15 +45,19 @@ namespace Geomystery.Views.Geometry
             this.coordinate = coordinate;
         }
 
-        public static Vector2 ToVector2(Point2 p2)
+        public  Vector2 ToVector2(Point2 p2)//logi-screen
         {
-            Vector2 v2 = new Vector2() { X = 1, Y = 1 };
+            float x = p2.X - vector.X;
+            float y = p2.Y - vector.Y;
+            x = x / UnitLength;
+            y = -y / UnitLength;
+            Vector2 v2 = new Vector2(x,y);
             return v2;
         }
 
-        public static Point2 ToPoint2(Vector2 v2)
-        {
-            Point2 p2 = new Point2() { X = 1, Y = 1 };
+        public Point2 ToPoint2(Vector2 v2)//screen-logi
+        { 
+            Point2 p2 = new Point2() { X = (v2.X*UnitLength+vector.X), Y = -(v2.Y*UnitLength+vector.Y) };
             return p2;
         }
     }
