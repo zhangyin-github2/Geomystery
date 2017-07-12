@@ -15,6 +15,8 @@ using Windows.UI.Xaml.Navigation;
 
 using Windows.UI.ViewManagement;
 
+using Geomystery.Pages;
+
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -25,15 +27,41 @@ namespace Geomystery
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        public static Frame MainFrame=new Frame();
+        public static MediaPlayerElement BgmP=new MediaPlayerElement(), BgaP=new MediaPlayerElement();
+        bool isMute=false;
         public MainPage()
         {
             this.InitializeComponent();
-            ApplicationView.PreferredLaunchWindowingMode =ApplicationViewWindowingMode.FullScreen;    //启动设置全屏
+            init();
+            
         }
-
-        private void NavToFreestyle_Click(object sender, RoutedEventArgs e)
+        public void init()
         {
-            Frame.Navigate(typeof(Freestyle));
+            MainFrame = this.myFrame;
+            BgmP = bgmPlayer;
+            BgaP = bgaPlayer;
+            isMute = false;
+            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.FullScreen;    //启动设置全屏
+            MainFrame.Navigate(typeof(HomePage));
+        }
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (myFrame.CanGoBack)
+            {
+                myFrame.GoBack();
+            }
+        }
+        private void MuteButton_Click(object sender, RoutedEventArgs e)
+        {
+            isMute = !isMute;
+            //BgmP.MediaPlayer.IsMuted = BgaP.MediaPlayer.IsMuted = isMute;
+            if(isMute)
+            {
+                MuteButton.Content = CONST.mute;
+            }
+            else MuteButton.Content = CONST.volume2;
+
         }
     }
 }

@@ -6,11 +6,23 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <StackPanel>
-            <Button Name="NavToFreestyle" Click="NavToFreestyle_Click">nav to freestyle</Button>
-
-        </StackPanel>
+    <Grid x:Name="Back" Background="WhiteSmoke">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="37" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Frame x:Name="myFrame" Grid.Row="0" Grid.ColumnSpan="2"></Frame>
+        <MediaPlayerElement Name="bgmPlayer" Height="0" Width="0"/>
+        <MediaPlayerElement Name="bgaPlayer" Height="0" Width="0"/>
+        <RelativePanel x:Name="mytitle" Grid.Row="0" HorizontalAlignment="Left">
+            <Button Name="BackButton" RelativePanel.AlignLeftWithPanel="True" Foreground="{ThemeResource fg}" Background="{x:Null}"
+                    FontFamily="Segoe MDl2 Assets"  FontSize="24"
+                    Width="80" Content="&#xE0C4;" 
+                    Click="BackButton_Click" />
+            <Button Name="MuteButton" RelativePanel.RightOf="BackButton"  Foreground="{ThemeResource fg}" Background="{x:Null}"
+                    FontFamily="Segoe MDl2 Assets"  FontSize="24"
+                    Width="80" Content="&#xE74F;" 
+                    Click="MuteButton_Click" />
+        </RelativePanel>
     </Grid>
 </Page>

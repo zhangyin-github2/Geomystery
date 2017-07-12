@@ -93,6 +93,7 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CONST.cs" />
     <Compile Include="Controllers\Geometry\controllers.cs" />
     <Compile Include="Models\Geometry\Circle.cs" />
     <Compile Include="Models\Geometry\Geometry.cs" />
@@ -142,6 +143,7 @@
     <None Include="Geomystery_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Picture\coin.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
