@@ -8,6 +8,50 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+        <GridView HorizontalAlignment="Center"
+                  VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <GridViewItem Name="Chapter1"
+                              FontFamily="Microsoft YaHei UI"
+                              FontSize="64"
+                              Foreground="MediumPurple"
+                              Background="LightGoldenrodYellow"
+                              BorderBrush="LightBlue"
+                              BorderThickness="10"
+                              Width="400"
+                              Height="600"
+                              Margin="64,64,64,64"
+                              HorizontalAlignment="Center"
+                              VerticalContentAlignment="Center"
+                              Content="Chapter1">
+                </GridViewItem>
+                <GridViewItem Name="Chapter2"
+                              FontFamily="Microsoft YaHei UI"
+                              FontSize="64"
+                              Foreground="MediumPurple"
+                              Background="LightGoldenrodYellow"
+                              BorderBrush="LightBlue"
+                              BorderThickness="10"                              Width="400"
+                              Height="600"
+                              Margin="64,64,64,64"
+                              HorizontalAlignment="Center"
+                              VerticalContentAlignment="Center"
+                              Content="Chapter2">
+                </GridViewItem>
+                <GridViewItem Name="Chapter3"
+                              FontFamily="Microsoft YaHei UI"
+                              FontSize="64"
+                              Foreground="MediumPurple"
+                              Background="LightGoldenrodYellow"
+                              BorderBrush="LightBlue"
+                              BorderThickness="10"                              Width="400"
+                              Height="600"
+                              Margin="64,64,64,64"
+                              HorizontalAlignment="Center"
+                              VerticalContentAlignment="Center"
+                              Content="Chapter3">
+                </GridViewItem>
+            </StackPanel>
+        </GridView>
     </Grid>
 </Page>

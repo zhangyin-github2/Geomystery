@@ -13,7 +13,7 @@
             <ColumnDefinition Width="4*"/>
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0"
-              Margin="48,48,48,48">
+              Margin="24,24,24,24">
             <Ellipse Height="600"
                      Width="600"
                      Stroke="DarkOrange"
@@ -26,20 +26,22 @@
                      Width="500"/>
         </Grid>
         <Grid Grid.Column="1"
-              Margin="48,48,48,48">
+              Margin="24,24,24,24">
             <Grid.RowDefinitions>
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="3*"/>
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0"
-                       Text="Geomystery"
-                       FontSize="120"
                        FontFamily="Microsoft YaHei UI"
+                       FontSize="120"
                        Foreground="MediumPurple"
+                       Margin="24,128,24,24"
                        HorizontalAlignment="Center"
-                       VerticalAlignment="Center"/>
+                       VerticalAlignment="Center"
+                       Text="Geomystery"/>
             <StackPanel Orientation="Vertical"
                         Grid.Row="1"
+                        Margin="24,24,24,64"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center">
                 <Button Name="Game"
@@ -64,6 +66,26 @@
                         Background="AliceBlue"
                         Content="Option"/> 
             </StackPanel>
+            <Button Grid.Row="0"
+                    Name="Achievement"
+                    Height="36"
+                    Width="96"
+                    FontFamily="Microsoft YaHei UI"
+                    FontSize="12"
+                    Background="LightYellow"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Content="Achievement"/>
+            <Button Grid.Row="1"
+                    Name="About"
+                    Height="64"
+                    Width="72"
+                    FontFamily="Microsoft YaHei UI"
+                    FontSize="16"
+                    Background="WhiteSmoke"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    Content="About"/>
         </Grid>
     </Grid>
 </Page>
