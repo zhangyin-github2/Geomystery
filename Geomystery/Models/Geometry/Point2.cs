@@ -12,7 +12,6 @@ namespace Geomystery.Models.Geometry
     public class Point2 : Geometry
     {
         public float X { get; set; }
-
         public float Y { get; set; }
 
         
