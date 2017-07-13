@@ -45,15 +45,28 @@ namespace Geomystery.Views.Geometry
             this.coordinate = coordinate;
         }
 
-        public static Vector2 ToVector2(Point2 p2)
+        /// <summary>
+        /// 逻辑坐标系到屏幕显示坐标系的转换
+        /// </summary>
+        /// <param name="p2"></param>
+        /// <returns>v2</returns>
+        public  Vector2 ToVector2(Point2 p2)
         {
-            Vector2 v2 = new Vector2() { X = 1, Y = 1 };
+            float x = p2.X - vector.X;
+            float y = p2.Y - vector.Y;
+            x = x / UnitLength;
+            y = -y / UnitLength;
+            Vector2 v2 = new Vector2(x,y);
             return v2;
         }
-
-        public static Point2 ToPoint2(Vector2 v2)
-        {
-            Point2 p2 = new Point2() { X = 1, Y = 1 };
+        /// <summary>
+        /// 屏幕显示坐标系到逻辑坐标的转换
+        /// </summary>
+        /// <param name="v2"></param>
+        /// <returns>Point2 p2</returns>
+        public Point2 ToPoint2(Vector2 v2)
+        { 
+            Point2 p2 = new Point2() { X = (v2.X*UnitLength+vector.X), Y = -(v2.Y*UnitLength+vector.Y) };
             return p2;
         }
     }

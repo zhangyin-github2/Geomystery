@@ -8,6 +8,74 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0"
+              Margin="24,24,24,24">
+            <Ellipse Height="600"
+                     Width="600"
+                     Stroke="DarkOrange"
+                     StrokeThickness="6"/>
+            <Polygon Points="0,100 0,200 135,125"
+                     Stroke="Blue"
+                     StrokeThickness="6"
+                     Stretch="Fill"
+                     Height="500"
+                     Width="500"/>
+        </Grid>
+        <Grid Grid.Column="1"
+              Margin="24,24,24,24">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="3*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0"
+                       FontFamily="Microsoft YaHei UI"
+                       FontSize="120"
+                       Foreground="MediumPurple"
+                       Margin="24,128,24,24"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Text="Geomystery"/>
+            <StackPanel Orientation="Vertical"
+                        Grid.Row="1"
+                        Margin="24,24,24,64"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                <Button Name="Game"
+                        Width="400"
+                        FontFamily="Microsoft YaHei UI"
+                        FontSize="48"
+                        Margin="0,24,0,24"
+                        Background="AliceBlue"
+                        Content="Game"/>
+                <Button Name="Freestyle"
+                        Width="400"
+                        FontFamily="Microsoft YaHei UI"
+                        FontSize="48"
+                        Margin="0,24,0,24"
+                        Background="AliceBlue"
+                        Content="Freestyle"/>
+                <Button Name="Option"
+                        Width="400"
+                        FontFamily="Microsoft YaHei UI"
+                        FontSize="48"
+                        Margin="0,24,0,24"
+                        Background="AliceBlue"
+                        Content="Option"/> 
+            </StackPanel>
+            <Button Grid.Row="0"
+                    Name="Achievement"
+                    Height="36"
+                    Width="96"
+                    FontFamily="Microsoft YaHei UI"
+                    FontSize="12"
+                    Background="LightYellow"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Content="Achievement"/>
+        </Grid>
     </Grid>
 </Page>
