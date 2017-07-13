@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Geomystery.Models.Geometry
 {
-    //多边形
+    /// <summary>
+    /// 多边形
+    /// </summary>
     public class Polygon : Geometry
     {
         public List<Point2> PointList { get; set; }
