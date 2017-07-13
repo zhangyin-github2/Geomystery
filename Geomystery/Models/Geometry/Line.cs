@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Geomystery.Models.Geometry
 {
+    /// <summary>
+    /// 线型有直线Straight射线Ray线段Line，射线和线段有延长线，所以其实还是直线
+    /// </summary>
     public enum LineType
     {
         //
@@ -23,24 +26,41 @@ namespace Geomystery.Models.Geometry
         Line = 2
     }
 
+    /// <summary>
+    /// 逻辑坐标系中，我们自己定义的“直线”，射线与线段有延长线，所以其实还是直线
+    /// </summary>
     public class Line : Geometry, IPointSet
     {
-        //第一个点
+        /// <summary>
+        /// 第一个点，如果是射线则为射线的起点
+        /// </summary>
         public Point2 p1 { get; set; }
 
-        //第二个点
+        /// <summary>
+        /// 第二个点，如果是射线则为射线的方向
+        /// </summary>
         public Point2 p2 { get; set; }
 
-        //线型（直线，射线，线段）
+        /// <summary>
+        /// 线型（直线Straight，射线Ray，线段Line）
+        /// </summary>
         public LineType type { get; set; }
 
-        //线上的点
+        /// <summary>
+        /// 线上的点，这些点依赖于这条线，直线平移或者控制点（p1、p2）旋转删除时会受影响
+        /// </summary>
         public List<Point2> online { get; set; }
 
-        //绑定输出结果线
+        /// <summary>
+        /// 记录了这条线在屏幕上的投影直线是一个绑定，理论上来说，如果一个模型M有多个实现V，这个变量就会变成List<OutputLine>
+        /// </summary>
         public OutputLine resultLine { get; set; }
 
-        //直线与什么东西相交
+        /// <summary>
+        /// 直线可能与另一条直线相交，交点有0,、1个，也可能与一个圆相交，交点有0、1、2个
+        /// </summary>
+        /// <param name="another">another可能是一个Circle或者Line</param>
+        /// <returns>交点是一个Point2的数组</returns>
         List<Point2> IPointSet.intersection(IPointSet another)
         {
             List<Point2> pcl = new List<Point2>();

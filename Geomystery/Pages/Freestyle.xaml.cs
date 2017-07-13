@@ -1,5 +1,6 @@
 ﻿using Microsoft.Graphics.Canvas;
 using Microsoft.Graphics.Canvas.Text;
+using Microsoft.Graphics.Canvas.UI.Xaml;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -87,7 +88,7 @@ namespace Geomystery
 
         private void canvas1_PointerPressed(object sender, PointerRoutedEventArgs e)
         {
-            Point pxy = e.GetCurrentPoint(canvas1).Position;
+            Point pxy = e.GetCurrentPoint((CanvasAnimatedControl)sender).Position;
             Vector2 p = pxy.ToVector2();
             bool flag1 = true;
             for (int i = 0; i <plist.Count; i++)
@@ -106,10 +107,15 @@ namespace Geomystery
             text1.Text = p.X.ToString() + " | " + p.Y.ToString(); ;
         }
 
+        private void canvas1_PointerReleased(object sender, PointerRoutedEventArgs e)
+        {
+            ;
+        }
+
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             plist = new List<Vector2>();
-            center = new Vector2(200, 200);
+            center = new Vector2((float)canvas1.ActualWidth / 2, (float)canvas1.ActualHeight / 2);
             text1.Text = center.X.ToString() + " | " + center.Y.ToString(); ;
         }
 
