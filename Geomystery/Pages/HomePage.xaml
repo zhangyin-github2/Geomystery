@@ -8,6 +8,62 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0"
+              Margin="48,48,48,48">
+            <Ellipse Height="600"
+                     Width="600"
+                     Stroke="DarkOrange"
+                     StrokeThickness="6"/>
+            <Polygon Points="0,100 0,200 135,125"
+                     Stroke="Blue"
+                     StrokeThickness="6"
+                     Stretch="Fill"
+                     Height="500"
+                     Width="500"/>
+        </Grid>
+        <Grid Grid.Column="1"
+              Margin="48,48,48,48">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="3*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0"
+                       Text="Geomystery"
+                       FontSize="120"
+                       FontFamily="Microsoft YaHei UI"
+                       Foreground="MediumPurple"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"/>
+            <StackPanel Orientation="Vertical"
+                        Grid.Row="1"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                <Button Name="Game"
+                        Width="400"
+                        FontFamily="Microsoft YaHei UI"
+                        FontSize="48"
+                        Margin="0,24,0,24"
+                        Background="AliceBlue"
+                        Content="Game"/>
+                <Button Name="Freestyle"
+                        Width="400"
+                        FontFamily="Microsoft YaHei UI"
+                        FontSize="48"
+                        Margin="0,24,0,24"
+                        Background="AliceBlue"
+                        Content="Freestyle"/>
+                <Button Name="Option"
+                        Width="400"
+                        FontFamily="Microsoft YaHei UI"
+                        FontSize="48"
+                        Margin="0,24,0,24"
+                        Background="AliceBlue"
+                        Content="Option"/> 
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>
