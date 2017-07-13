@@ -93,6 +93,7 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Award\Geo_Coin.cs" />
     <Compile Include="Controllers\Geometry\controllers.cs" />
     <Compile Include="Models\Geometry\Circle.cs" />
     <Compile Include="Models\Geometry\Geometry.cs" />
@@ -101,6 +102,9 @@
     <Compile Include="Models\Geometry\Line.cs" />
     <Compile Include="Models\Geometry\Point2.cs" />
     <Compile Include="Models\Geometry\Polygon.cs" />
+    <Compile Include="Pages\About.xaml.cs">
+      <DependentUpon>About.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Achievement.xaml.cs">
       <DependentUpon>Achievement.xaml</DependentUpon>
     </Compile>
@@ -156,6 +160,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Pages\About.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Achievement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
