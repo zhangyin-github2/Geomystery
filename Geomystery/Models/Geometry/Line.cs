@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Geomystery.Views.Geometry;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -35,6 +36,9 @@ namespace Geomystery.Models.Geometry
 
         //线上的点
         public List<Point2> online { get; set; }
+
+        //绑定输出结果线
+        public OutputLine resultLine { get; set; }
 
         //直线与什么东西相交
         List<Point2> IPointSet.intersection(IPointSet another)

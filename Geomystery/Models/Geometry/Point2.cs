@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Geomystery.Views.Geometry;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
@@ -21,6 +22,8 @@ namespace Geomystery.Models.Geometry
         //影响
         public List<IPointSet> influence { get; set; }
 
+        //绑定输出结果点
+        public OutputPoint resultPoint { get; set; }
 
         public Vector2 ToVector2()
         {
