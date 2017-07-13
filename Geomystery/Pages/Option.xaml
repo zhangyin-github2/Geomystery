@@ -14,7 +14,9 @@
         </Grid.ColumnDefinitions>
         <StackPanel Orientation="Vertical"
                     Grid.Column="0"
-                    Margin="12,128,12,128">
+                    Margin="0,0,12,0"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center">
             <TextBlock FontFamily="Microsoft YaHei UI"
                        FontSize="48"
                        Foreground="MediumPurple"
@@ -26,46 +28,117 @@
                        Foreground="MediumPurple"
                        Margin="12,24,12,24"
                        HorizontalAlignment="Right"
-                       Text="Language"/>
+                       Text="Music Volume"/>
             <TextBlock FontFamily="Microsoft YaHei UI"
                        FontSize="48"
                        Foreground="MediumPurple"
                        Margin="12,24,12,24"
                        HorizontalAlignment="Right"
-                       Text="Language"/>
+                       Text="SFX Volume"/>
             <TextBlock FontFamily="Microsoft YaHei UI"
                        FontSize="48"
                        Foreground="MediumPurple"
                        Margin="12,24,12,24"
                        HorizontalAlignment="Right"
-                       Text="Language"/>
+                       Text="Fullscreen"/>
             <TextBlock FontFamily="Microsoft YaHei UI"
                        FontSize="48"
                        Foreground="MediumPurple"
                        Margin="12,24,12,24"
                        HorizontalAlignment="Right"
-                       Text="Language"/>
+                       Text="Night Mode"/>
             <TextBlock FontFamily="Microsoft YaHei UI"
                        FontSize="48"
                        Foreground="MediumPurple"
                        Margin="12,24,12,24"
                        HorizontalAlignment="Right"
-                       Text="Language"/>
+                       Text="Reset Progress"/>
             <TextBlock FontFamily="Microsoft YaHei UI"
                        FontSize="48"
                        Foreground="MediumPurple"
                        Margin="12,24,12,24"
                        HorizontalAlignment="Right"
-                       Text="Language"/>
+                       Text="About Us"/>
         </StackPanel>
         <StackPanel Orientation="Vertical"
                     Grid.Column="1"
-                    Margin="12,128,12,128">
+                    Margin="12,0,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center">
             <StackPanel Orientation="Horizontal"
-                        Margin="24,24,24,24">
-                <Button Content="←"/>
-                <TextBlock Text="English"/>
-                <Button Content="→"/>
+                        Height="110">
+                <Button Name="LanLeft"
+                        FontSize="36"
+                        VerticalAlignment="Center"
+                        Content="◀"/>
+                <TextBlock Name="Language"
+                           FontFamily="Microsoft YaHei UI"
+                           FontSize="48"
+                           Foreground="MediumSlateBlue"
+                           Margin="12,0,12,0"
+                           VerticalAlignment="Center"
+                           Text="English"/>
+                <Button Name="LanRight"
+                        FontSize="36"
+                        VerticalAlignment="Center"
+                        Content="▶"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"
+                        Height="110">
+                <Slider Name="MusicVolSlider"
+                        Width="400"
+                        VerticalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"
+                        Height="110">
+                <Slider Name="SFXVolSlider"
+                        Width="400"
+                        VerticalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"
+                        Height="110">
+                <ToggleButton Name="Fullscreen"
+                              FontSize="36"
+                              Margin="8,0,0,0"
+                              VerticalAlignment="Center"
+                              Content="✔"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"
+                        Height="110">
+                <ToggleButton Name="NightMode"
+                              FontSize="36"
+                              Margin="8,0,0,0"
+                              VerticalAlignment="Center"
+                              Content="✔"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"
+                        Height="110">
+                <Button Name="ResetProgress"
+                        FontSize="36"
+                        Margin="12,0,36,0"
+                        VerticalAlignment="Center"
+                        Content="⚪"/>
+                <StackPanel Orientation="Horizontal"
+                            VerticalAlignment="Center"
+                            Visibility="Visible">
+                    <Button Name="ResetYes"
+                            FontFamily="Microsoft YaHei UI"
+                            FontSize="36"
+                            Margin="12,12,12,12"
+                            Content="确定"/>
+                    <Button Name="ResetNo"
+                            FontFamily="Microsoft YaHei UI"
+                            FontSize="36"
+                            Margin="12,12,12,12"
+                            Content="取消"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"
+                        Height="110">
+                <Button Name="AboutUs"
+                        FontSize="36"
+                        VerticalAlignment="Center"
+                        Content="Geomystery"/>
             </StackPanel>
         </StackPanel>
     </Grid>

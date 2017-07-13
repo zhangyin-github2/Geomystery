@@ -8,6 +8,27 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+        <StackPanel Orientation="Vertical"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+            <TextBlock FontFamily="Microsoft YaHei UI"
+                       FontSize="120"
+                       Foreground="MediumPurple"
+                       Margin="24,24,24,24"
+                       HorizontalAlignment="Center"
+                       Text="Geomystery"/>
+            <TextBlock FontFamily="Microsoft YaHei UI"
+                       FontSize="64"
+                       Foreground="Gray"
+                       Margin="24,24,24,24"
+                       HorizontalAlignment="Center"
+                       Text="XXXXXXXXXXXXX"/>
+            <TextBlock FontFamily="Microsoft YaHei UI"
+                       FontSize="48"
+                       Foreground="Gray"
+                       Margin="24,24,24,24"
+                       HorizontalAlignment="Center"
+                       Text="Version alpha 0.1"/>
+        </StackPanel>
     </Grid>
 </Page>

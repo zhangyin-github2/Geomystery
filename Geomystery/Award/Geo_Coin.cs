@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace Geomystery.Award
 {
-    class Geo_Coin
+    /// <summary>
+    /// 几何币
+    /// </summary>
+    public class Geo_Coin
     {
-        public Geo_Coin
+        public Geo_Coin coin;
 
     }
 }

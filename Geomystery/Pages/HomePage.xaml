@@ -76,16 +76,6 @@
                     HorizontalAlignment="Right"
                     VerticalAlignment="Top"
                     Content="Achievement"/>
-            <Button Grid.Row="1"
-                    Name="About"
-                    Height="64"
-                    Width="72"
-                    FontFamily="Microsoft YaHei UI"
-                    FontSize="16"
-                    Background="WhiteSmoke"
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Bottom"
-                    Content="About"/>
         </Grid>
     </Grid>
 </Page>
