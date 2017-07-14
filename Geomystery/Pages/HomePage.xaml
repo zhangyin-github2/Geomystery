@@ -14,10 +14,6 @@
             <ColumnDefinition Width="8*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-        <Rectangle Grid.Column="0"
-                   Height="1"
-                   Width="1"
-                   HorizontalAlignment="Left"/>
         <Grid Grid.Column="1">
             <Ellipse Height="400"
                      Width="400"
@@ -55,7 +51,8 @@
                         Foreground="{ThemeResource fg}"
                         Margin="0,24,0,24"
                         Background="Tomato"
-                        Content="Game" Click="Game_Click"/>
+                        Content="Game"
+                        Click="Game_Click"/>
                 <Button Name="Freestyle"
                         Width="400"
                         FontFamily="Microsoft YaHei UI"
@@ -72,18 +69,23 @@
                         Foreground="{ThemeResource fg}"
                         Margin="0,24,0,24"
                         Background="Tomato"
-                        Content="Option" Click="Option_Click"/>
+                        Content="Option"
+                        Click="Option_Click"/>
             </StackPanel>
         </Grid>
-        <Button Grid.Column="3"
+        <Button Grid.Column="2"
+                Grid.ColumnSpan="2"
                 Name="Achievement"
                 Height="40"
                 Width="Auto"
                 FontFamily="Microsoft YaHei UI"
                 FontSize="12"
+                Foreground="{ThemeResource fg}"
+                FontWeight="Bold"
                 Background="{x:Null}"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Top"
-                Content="Achievement" Click="Achievement_Click"/>
+                Content="Achievement"
+                Click="Achievement_Click"/>
     </Grid>
 </Page>

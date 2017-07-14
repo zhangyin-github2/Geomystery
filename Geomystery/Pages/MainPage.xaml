@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-    
+
     <Grid x:Name="Back" Background="{x:Null}">
         <Grid.RowDefinitions>
             <RowDefinition Height="40" />
@@ -43,7 +43,16 @@
                     FontSize="24"
                     Height="40"
                     Width="64"
-                    Content="&#xE74F;" />
+                    Content="&#xE74F;"
+                    Click="MuteButton_Click"/>
         </RelativePanel>
     </Grid>
+    
+    <VisualStateManager.VisualStateGroups>
+        <VisualStateGroup>
+            <VisualState>
+            </VisualState>
+        </VisualStateGroup>
+    </VisualStateManager.VisualStateGroups>
+    
 </Page>

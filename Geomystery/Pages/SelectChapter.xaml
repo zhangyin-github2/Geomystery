@@ -8,50 +8,54 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource bg}">
-        <GridView HorizontalAlignment="Center"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="8*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <FlipView Grid.Row="1"
+                  Grid.Column="1"
+                  Background="{x:Null}"
+                  HorizontalAlignment="Center"
                   VerticalAlignment="Center">
-            <StackPanel Orientation="Horizontal">
-                <GridViewItem Name="Chapter1"
-                              FontFamily="Microsoft YaHei UI"
-                              FontSize="64"
-                              Foreground="MediumPurple"
-                              Background="LightGoldenrodYellow"
-                              BorderBrush="LightBlue"
-                              BorderThickness="10"
-                              Width="400"
-                              Height="600"
-                              Margin="64,64,64,64"
-                              HorizontalAlignment="Center"
-                              VerticalContentAlignment="Center"
-                              Content="Chapter1">
-                </GridViewItem>
-                <GridViewItem Name="Chapter2"
-                              FontFamily="Microsoft YaHei UI"
-                              FontSize="64"
-                              Foreground="MediumPurple"
-                              Background="LightGoldenrodYellow"
-                              BorderBrush="LightBlue"
-                              BorderThickness="10"                              Width="400"
-                              Height="600"
-                              Margin="64,64,64,64"
-                              HorizontalAlignment="Center"
-                              VerticalContentAlignment="Center"
-                              Content="Chapter2">
-                </GridViewItem>
-                <GridViewItem Name="Chapter3"
-                              FontFamily="Microsoft YaHei UI"
-                              FontSize="64"
-                              Foreground="MediumPurple"
-                              Background="LightGoldenrodYellow"
-                              BorderBrush="LightBlue"
-                              BorderThickness="10"                              Width="400"
-                              Height="600"
-                              Margin="64,64,64,64"
-                              HorizontalAlignment="Center"
-                              VerticalContentAlignment="Center"
-                              Content="Chapter3">
-                </GridViewItem>
-            </StackPanel>
-        </GridView>
+            <GridViewItem Name="Chapter1"
+                          FontFamily="Microsoft YaHei UI"
+                          FontSize="48"
+                          Foreground="{ThemeResource fg}"
+                          Background="LightGoldenrodYellow"
+                          BorderBrush="LightBlue"
+                          BorderThickness="10"
+                          Margin="48,48,48,48"
+                          HorizontalContentAlignment="Center"
+                          VerticalContentAlignment="Center"
+                          Content="Chapter1"/>
+            <GridViewItem Name="Chapter2"
+                          FontFamily="Microsoft YaHei UI"
+                          FontSize="48"
+                          Foreground="{ThemeResource fg}"
+                          Background="LightGoldenrodYellow"
+                          BorderBrush="LightBlue"
+                          BorderThickness="10"
+                          Margin="48,48,48,48"
+                          HorizontalContentAlignment="Center"
+                          VerticalContentAlignment="Center"
+                          Content="Chapter2"/>
+            <GridViewItem Name="Chapter3"
+                          FontFamily="Microsoft YaHei UI"
+                          FontSize="48"
+                          Foreground="{ThemeResource fg}"
+                          Background="LightGoldenrodYellow"
+                          BorderBrush="LightBlue"
+                          BorderThickness="10"
+                          Margin="48,48,48,48"
+                          HorizontalContentAlignment="Center"
+                          VerticalContentAlignment="Center"
+                          Content="Chapter3"/>
+        </FlipView>
     </Grid>
 </Page>

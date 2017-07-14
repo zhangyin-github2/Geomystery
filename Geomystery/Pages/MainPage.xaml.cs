@@ -35,6 +35,7 @@ namespace Geomystery
             init();
             
         }
+
         public void init()
         {
             MainFrame = this.myFrame;
@@ -44,6 +45,7 @@ namespace Geomystery
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.FullScreen;    //启动设置全屏
             myFrame.Navigate(typeof(HomePage));
         }
+
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             if (myFrame.CanGoBack)
@@ -51,8 +53,9 @@ namespace Geomystery
                 myFrame.GoBack();
             }
         }
-        //private void MuteButton_Click(object sender, RoutedEventArgs e)
-        //{
+
+        private void MuteButton_Click(object sender, RoutedEventArgs e)
+        {
         //    isMute = !isMute;
         //    BgmP.MediaPlayer.IsMuted = BgaP.MediaPlayer.IsMuted = isMute;
         //    if (isMute)
@@ -63,6 +66,7 @@ namespace Geomystery
         //    {
         //        MuteButton.Content = CONST.volume2;
         //    }
-        //}
+        }
+
     }
 }
