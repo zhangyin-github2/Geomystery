@@ -8,16 +8,24 @@ using System.Threading.Tasks;
 
 namespace Geomystery.Views.Geometry
 {
-    //用来显示的圆
+    /// <summary>
+    /// 用来显示在屏幕上的圆
+    /// </summary>
     public class OutputCircle : OutputGeometry
     {
-        //被显示的圆
+        /// <summary>
+        /// 被显示的逻辑坐标系的圆
+        /// </summary>
         public Circle circle { get; set; }
 
-        //圆心坐标
+        /// <summary>
+        /// 圆心坐标
+        /// </summary>
         public Vector2 center { get; set; }
 
-        //半径
+        /// <summary>
+        /// 半径
+        /// </summary>
         public float radius { get; set; }
     }
 }

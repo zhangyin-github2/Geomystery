@@ -8,13 +8,19 @@ using System.Threading.Tasks;
 
 namespace Geomystery.Views.Geometry
 {
-    //用来显示的点
+    /// <summary>
+    /// 用来显示的屏幕上的点
+    /// </summary>
     public class OutputPoint : OutputGeometry
     {
-        //逻辑坐标系中的点
+        /// <summary>
+        /// 逻辑坐标系中的点
+        /// </summary>
         public Point2 point { get; set; }
 
-        //窗体（canva）中的点
+        /// <summary>
+        /// 屏幕上的窗体（canva）中的点
+        /// </summary>
         public Vector2 ViewPoint { get; set; }
     }
 }

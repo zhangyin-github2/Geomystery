@@ -14,18 +14,19 @@ namespace Geomystery.Views.Geometry
         //被显示的坐标系
         public Coordinate coordinate { get; set; }
 
-
-        /*
-         * 单位长度unit length
-         * 逻辑坐标系的1单位长度相当于多少 DIP
-         * DIP代表“器件独立像素”。这是可以与物理像素相同，大于或小于的虚拟化单元。
-         * 像素和DIP之间的比例由DPI决定：pixels = dips * dpi / 96
-         */
+        /// <summary>
+        /// 单位长度unit length，
+        /// 逻辑坐标系的1单位长度相当于多少 DIP,
+        /// DIP代表“器件独立像素”。这是可以与物理像素相同，大于或小于的虚拟化单元。
+        /// 像素和DIP之间的比例由DPI决定：pixels = dips* dpi / 96
+        /// </summary>
         public float UnitLength { get; set; }
 
-
+        /// <summary>
+        /// 平移屏幕坐标系（在逻辑坐标系中）的向量
+        /// </summary>
         /*
-         * 从逻辑坐标系到显示器坐标系的变换，可以想象：
+         * 从逻辑坐标系到显示器坐标系的变换向量vector，可以想象：
          * 逻辑坐标系第四象限有一个矩形框，这个矩形框就是要显示在显示器上的部分
          * vector(v1, v2)即是逻辑坐标系原点指向显示器矩形框左上角的向量
          * 假设单位长度UL(unit length) = 10 dip，可以想象矩形框可以覆盖第四象限
@@ -36,10 +37,15 @@ namespace Geomystery.Views.Geometry
         public Vector2 vector { get; set; }
 
 
-        //被显示的几何实体列表
+        /// <summary>
+        /// 被显示的几何实体列表
+        /// </summary>
         public List<OutputGeometry> GeometryList { get; set; }
 
-        //（视图，显示，展示）坐标系构造函数
+        /// <summary>
+        /// （视图，显示，展示）坐标系构造函数
+        /// </summary>
+        /// <param name="coordinate">coordinate是逻辑坐标系</param>
         public OutputCoordinate(Coordinate coordinate)
         {
             this.coordinate = coordinate;

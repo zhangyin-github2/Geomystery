@@ -7,7 +7,9 @@ using Windows.UI;
 
 namespace Geomystery.Views.Geometry
 {
-    //实线或者虚线
+    /// <summary>
+    /// 显示线型分为实线Solid或者虚线Dotted
+    /// </summary>
     public enum ViewType
     {
 
@@ -18,19 +20,29 @@ namespace Geomystery.Views.Geometry
         Dotted = 1,
     }
 
-    //（显示）（抽象）几何实体（父）类
+    /// <summary>
+    /// （显示）（抽象）几何实体（父）类
+    /// </summary>
     public abstract class OutputGeometry
     {
-        //可见性
+        /// <summary>
+        /// 可见性
+        /// </summary>
         public bool Visible { get; set; }
 
-        //颜色
+        /// <summary>
+        /// 颜色
+        /// </summary>
         public Color color { get; set; }
 
-        //（直、曲）线的粗细
+        /// <summary>
+        /// （直、曲）线的粗细
+        /// </summary>
         public float Thickness { get; set; }
 
-        //（直、曲线的）线型——（实线虚线）
+        /// <summary>
+        /// （直、曲线的）线型——（实线虚线）
+        /// </summary>
         public ViewType Type { get; set; }
     }
 }
