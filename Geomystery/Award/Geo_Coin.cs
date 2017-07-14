@@ -11,7 +11,62 @@ namespace Geomystery.Award
     /// </summary>
     public class Geo_Coin
     {
-        public Geo_Coin coin;
+        /// <summary>
+        /// 金币量
+        /// </summary>
+        public int Coins;
+        /// <summary>
+        /// 通过关卡获得几何币
+        /// </summary>
+        public void GetGeo_Coins(int Flag)
+        {
+            if (Flag == 1)
+            {
+                Coins += 200;
+            }
+            else if (Flag == 2)
+            {
+                Coins += 50;
+            }
+        }
 
+        /// <summary>
+        /// 将几何币显示在金币栏中
+        /// </summary>
+        /// <returns>Coins</returns>
+        public int ShowGeo_Coins()
+        {
+
+            return Coins;
+        }
+
+        /// <summary>
+        /// 检查当前金币余量是否足够解锁新关卡
+        /// </summary>
+        /// <returns>Flag</returns>
+        private bool CheckGeo_Coins()
+        {
+            bool Flag;
+            if (Coins>=500)
+                Flag = true;
+            else Flag = false;
+            return Flag;
+        }
+
+        /// <summary>
+        /// 如果金币余量足够，则返回TRUE，并消耗金币解锁关卡；反之，则返回FALSE。
+        /// </summary>
+        /// <returns></returns>
+        public bool PayGeo_Coins()
+        {
+            bool Flag;
+            if (CheckGeo_Coins() == true)
+            {
+                Coins -= 500;
+                Flag = true;
+            }
+            else Flag = false;
+                return Flag;
+        } 
     }
 }
