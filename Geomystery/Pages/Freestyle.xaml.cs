@@ -81,11 +81,6 @@ namespace Geomystery
             }
         }
 
-        private void back_Click(object sender, RoutedEventArgs e)
-        {
-            if (Frame.CanGoBack) Frame.GoBack();
-        }
-
         private void canvas1_PointerPressed(object sender, PointerRoutedEventArgs e)
         {
             Point pxy = e.GetCurrentPoint((CanvasAnimatedControl)sender).Position;

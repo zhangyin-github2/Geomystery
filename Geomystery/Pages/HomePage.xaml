@@ -55,7 +55,7 @@
                         Foreground="{ThemeResource fg}"
                         Margin="0,24,0,24"
                         Background="Tomato"
-                        Content="Game"/>
+                        Content="Game" Click="Game_Click"/>
                 <Button Name="Freestyle"
                         Width="400"
                         FontFamily="Microsoft YaHei UI"
@@ -63,7 +63,8 @@
                         Foreground="{ThemeResource fg}"
                         Margin="0,24,0,24"
                         Background="Tomato"
-                        Content="Freestyle"/>
+                        Content="Freestyle"
+                        Click="Freestyle_Click"/>
                 <Button Name="Option"
                         Width="400"
                         FontFamily="Microsoft YaHei UI"
@@ -71,7 +72,7 @@
                         Foreground="{ThemeResource fg}"
                         Margin="0,24,0,24"
                         Background="Tomato"
-                        Content="Option"/>
+                        Content="Option" Click="Option_Click"/>
             </StackPanel>
         </Grid>
         <Button Grid.Column="3"
@@ -83,6 +84,6 @@
                 Background="{x:Null}"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Top"
-                Content="Achievement"/>
+                Content="Achievement" Click="Achievement_Click"/>
     </Grid>
 </Page>
