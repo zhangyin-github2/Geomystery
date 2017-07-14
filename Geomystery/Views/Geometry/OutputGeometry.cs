@@ -28,21 +28,26 @@ namespace Geomystery.Views.Geometry
         /// <summary>
         /// 可见性
         /// </summary>
-        public bool Visible { get; set; }
+        public bool isVisible { get; set; }
 
         /// <summary>
-        /// 颜色
+        /// 填充颜色
         /// </summary>
-        public Color color { get; set; }
+        public Color fillColor { get; set; }
+
+        /// <summary>
+        /// 边界线颜色
+        /// </summary>
+        public Color lineColor { get; set; }
 
         /// <summary>
         /// （直、曲）线的粗细
         /// </summary>
-        public float Thickness { get; set; }
+        public float thickness { get; set; }
 
         /// <summary>
         /// （直、曲线的）线型——（实线虚线）
         /// </summary>
-        public ViewType Type { get; set; }
+        public ViewType type { get; set; }
     }
 }
