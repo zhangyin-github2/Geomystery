@@ -30,6 +30,7 @@ namespace Geomystery
         public static Frame MainFrame=new Frame();
         public static MediaPlayerElement BgmP=new MediaPlayerElement(), BgaP=new MediaPlayerElement();
         bool isMute=false;
+
         public MainPage()
         {
             this.InitializeComponent();
@@ -43,7 +44,7 @@ namespace Geomystery
             BgaP = bgaPlayer;
             isMute = false;
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.FullScreen;    //启动设置全屏
-            MainFrame.Navigate(typeof(HomePage));
+            myFrame.Navigate(typeof(HomePage));
         }
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
@@ -52,16 +53,18 @@ namespace Geomystery
                 myFrame.GoBack();
             }
         }
-        private void MuteButton_Click(object sender, RoutedEventArgs e)
-        {
-            isMute = !isMute;
-            //BgmP.MediaPlayer.IsMuted = BgaP.MediaPlayer.IsMuted = isMute;
-            if(isMute)
-            {
-                MuteButton.Content = CONST.mute;
-            }
-            else MuteButton.Content = CONST.volume2;
-
-        }
+        //private void MuteButton_Click(object sender, RoutedEventArgs e)
+        //{
+        //    isMute = !isMute;
+        //    BgmP.MediaPlayer.IsMuted = BgaP.MediaPlayer.IsMuted = isMute;
+        //    if (isMute)
+        //    {
+        //        MuteButton.Content = CONST.mute;
+        //    }
+        //    else
+        //    {
+        //        MuteButton.Content = CONST.volume2;
+        //    }
+        //}
     }
 }
