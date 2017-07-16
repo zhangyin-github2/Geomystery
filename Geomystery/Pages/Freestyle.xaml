@@ -9,11 +9,36 @@
     mc:Ignorable="d" Loaded="Page_Loaded" Unloaded="Page_Unloaded">
 
     <Grid Background="{ThemeResource bg}">
-        <StackPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="2">
             <TextBlock Name="text1"
                        Margin="48,48,48,48"/>
         </StackPanel>
+        <ListView Grid.Row="1">
+            <ListViewItem>
+                <TextBlock>选择工具</TextBlock>
+            </ListViewItem>
+            <ListViewItem>
+                <TextBlock>点工具</TextBlock>
+            </ListViewItem>
+            <ListViewItem>
+                <TextBlock>直线工具</TextBlock>
+            </ListViewItem>
+            <ListViewItem>
+                <TextBlock>圆工具</TextBlock>
+            </ListViewItem>
+        </ListView>
         <canvas:CanvasAnimatedControl x:Name="canvas1"
+                                      Grid.Column="1"
                                       Grid.Row="1"
                                       Draw="canvas1_Draw"
                                       CreateResources="canvas1_CreateResources"

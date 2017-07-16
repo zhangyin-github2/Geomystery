@@ -95,6 +95,7 @@
   <ItemGroup>
     <Compile Include="Award\Geo_Coin.cs" />
     <Compile Include="Controllers\Geometry\Controllers.cs" />
+    <Compile Include="Controllers\Geometry\UserTool.cs" />
     <Compile Include="Models\Geometry\Circle.cs" />
     <Compile Include="Models\Geometry\Geometry.cs" />
     <Compile Include="Models\Geometry\Coordinate.cs" />

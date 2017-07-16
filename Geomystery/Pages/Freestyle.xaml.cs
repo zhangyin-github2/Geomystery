@@ -119,5 +119,10 @@ namespace Geomystery
             canvas1.RemoveFromVisualTree();
             canvas1 = null;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            text1.Text = "helloWorld";
+        }
     }
 }
