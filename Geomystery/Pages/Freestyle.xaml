@@ -6,8 +6,18 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:canvas="using:Microsoft.Graphics.Canvas.UI.Xaml"
+    xmlns:toolData="using:Geomystery.Controllers.Geometry"
     mc:Ignorable="d" Loaded="Page_Loaded" Unloaded="Page_Unloaded">
 
+    <Page.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:DataType="toolData:UserTool"
+                          x:Key="listViewItemTempelate">
+                <TextBlock Text="{x:Bind toolName}"/>
+            </DataTemplate>
+        </ResourceDictionary>
+    </Page.Resources>
+    
     <Grid Background="{ThemeResource bg}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -23,20 +33,13 @@
             <TextBlock Name="text1"
                        Margin="48,48,48,48"/>
         </StackPanel>
-        <ListView Grid.Row="1">
-            <ListViewItem>
-                <TextBlock>选择工具</TextBlock>
-            </ListViewItem>
-            <ListViewItem>
-                <TextBlock>点工具</TextBlock>
-            </ListViewItem>
-            <ListViewItem>
-                <TextBlock>直线工具</TextBlock>
-            </ListViewItem>
-            <ListViewItem>
-                <TextBlock>圆工具</TextBlock>
-            </ListViewItem>
+        <ListView Grid.Row="1"
+                  ItemsSource="{x:Bind userTools}"
+                  ItemTemplate="{StaticResource listViewItemTempelate}"
+                  >
+
         </ListView>
+        
         <canvas:CanvasAnimatedControl x:Name="canvas1"
                                       Grid.Column="1"
                                       Grid.Row="1"

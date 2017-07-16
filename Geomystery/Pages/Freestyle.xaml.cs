@@ -1,4 +1,5 @@
-﻿using Microsoft.Graphics.Canvas;
+﻿using Geomystery.Controllers.Geometry;
+using Microsoft.Graphics.Canvas;
 using Microsoft.Graphics.Canvas.Text;
 using Microsoft.Graphics.Canvas.UI.Xaml;
 using System;
@@ -35,9 +36,12 @@ namespace Geomystery
 
         List<Vector2> plist;
 
+        List<UserTool> userTools;
+
         public Freestyle()
         {
             this.InitializeComponent();
+            userTools = UserToolsManager.GetInstance().GetTools();
         }
 
         private Vector2 RndPosition()
