@@ -21,7 +21,7 @@ namespace Geomystery.Views.Geometry
     }
 
     /// <summary>
-    /// （显示）（抽象）几何实体（父）类
+    /// （显示）几何实体（抽象、父）类
     /// </summary>
     public abstract class OutputGeometry
     {
@@ -36,6 +36,16 @@ namespace Geomystery.Views.Geometry
         public Color fillColor { get; set; }
 
         /// <summary>
+        /// 被选中时候的边界线颜色
+        /// </summary>
+        public Color selectedLineColor { get; set; }
+
+        /// <summary>
+        /// 被选中时的填充颜色
+        /// </summary>
+        public Color selectedFillColor { get; set; }
+
+        /// <summary>
         /// 边界线颜色
         /// </summary>
         public Color lineColor { get; set; }
@@ -46,8 +56,8 @@ namespace Geomystery.Views.Geometry
         public float thickness { get; set; }
 
         /// <summary>
-        /// （直、曲线的）线型——（实线虚线）
+        /// 边界线（直、曲线的）线型——（实线虚线）
         /// </summary>
-        public ViewType type { get; set; }
+        public ViewType borderType { get; set; }
     }
 }

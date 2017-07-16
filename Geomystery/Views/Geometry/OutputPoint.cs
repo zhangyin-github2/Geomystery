@@ -21,6 +21,6 @@ namespace Geomystery.Views.Geometry
         /// <summary>
         /// 屏幕上的窗体（canva）中的点
         /// </summary>
-        public Vector2 ViewPoint { get; set; }
+        public Vector2 viewPoint { get; set; }
     }
 }

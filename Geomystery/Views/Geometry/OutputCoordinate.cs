@@ -20,7 +20,7 @@ namespace Geomystery.Views.Geometry
         /// DIP代表“器件独立像素”。这是可以与物理像素相同，大于或小于的虚拟化单元。
         /// 像素和DIP之间的比例由DPI决定：pixels = dips* dpi / 96
         /// </summary>
-        public float UnitLength { get; set; }
+        public float unitLength { get; set; }
 
         /// <summary>
         /// 平移屏幕坐标系（在逻辑坐标系中）的向量
@@ -60,8 +60,8 @@ namespace Geomystery.Views.Geometry
         {
             float x = p2.X - vector.X;
             float y = p2.Y - vector.Y;
-            x = x / UnitLength;
-            y = -y / UnitLength;
+            x = x / unitLength;
+            y = -y / unitLength;
             Vector2 v2 = new Vector2(x,y);
             return v2;
         }
@@ -72,7 +72,7 @@ namespace Geomystery.Views.Geometry
         /// <returns>Point2 p2</returns>
         public Point2 ToPoint2(Vector2 v2)
         { 
-            Point2 p2 = new Point2() { X = (v2.X*UnitLength+vector.X), Y = -(v2.Y*UnitLength+vector.Y) };
+            Point2 p2 = new Point2() { X = (v2.X*unitLength+vector.X), Y = -(v2.Y*unitLength+vector.Y) };
             return p2;
         }
     }

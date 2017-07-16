@@ -37,7 +37,7 @@ namespace Geomystery.Models.Geometry
         /// </summary>
         /// <param name="another">another可能是一个Circle或者Line</param>
         /// <returns>交点是一个Point2的数组</returns>
-        List<Point2> IPointSet.intersection(IPointSet another)
+        List<Point2> IPointSet.Intersection(IPointSet another)
         {
             List<Point2> pcl = new List<Point2>();
             if (another is Line)

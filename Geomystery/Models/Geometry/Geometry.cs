@@ -13,5 +13,10 @@ namespace Geomystery.Models.Geometry
         /// 实体所在坐标系，实体与坐标系绑定
         /// </summary>
         public Coordinate coord { get; set; }
+
+        /// <summary>
+        /// 这个元素是否被选中
+        /// </summary>
+        public bool isSelected { get; set; }
     }
 }

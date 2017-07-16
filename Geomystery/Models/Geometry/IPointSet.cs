@@ -17,6 +17,6 @@ namespace Geomystery.Models.Geometry
         /// </summary>
         /// <param name="another">another可能是一个Circle或者Line</param>
         /// <returns>交点是一个Point2的数组</returns>
-        List<Point2> intersection(IPointSet another);
+        List<Point2> Intersection(IPointSet another);
     }
 }

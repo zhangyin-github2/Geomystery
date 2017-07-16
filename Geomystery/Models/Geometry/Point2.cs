@@ -31,7 +31,7 @@ namespace Geomystery.Models.Geometry
         public List<IPointSet> rely { get; set; }
 
         /// <summary>
-        /// 那些点集受此点影响，此点一定是受影响直线或圆的定义点(p1, p2, center, radius)
+        /// 哪些点集受此点影响，此点一定是受影响直线或圆的定义点(p1, p2, center, radius)
         /// </summary>
         public List<IPointSet> influence { get; set; }
 

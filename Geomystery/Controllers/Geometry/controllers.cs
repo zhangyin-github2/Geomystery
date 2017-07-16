@@ -14,7 +14,7 @@ namespace Geomystery.Controllers.Geometry
     /// <summary>
     /// 模型控制器，提供点击pointer_pressed与释放pointer_released接口
     /// </summary>
-    public class controllers
+    public class Controllers
     {
         /// <summary>
         /// 受控制的逻辑坐标系
