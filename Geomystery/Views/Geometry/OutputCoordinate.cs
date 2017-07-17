@@ -50,6 +50,7 @@ namespace Geomystery.Views.Geometry
         public OutputCoordinate(Coordinate coordinate)
         {
             this.coordinate = coordinate;
+            GeometryList = new List<OutputGeometry>();
         }
 
         /// <summary>

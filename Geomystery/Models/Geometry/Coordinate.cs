@@ -68,7 +68,10 @@ namespace Geomystery.Models.Geometry
         public int AddPoint(Point2 point)
         {
             pointList.Add(point);
-            
+            for(int i = 0; i < outputCoordinates.Count;i++)
+            {
+                outputCoordinates[i].AddPoint(point);
+            }
             return 0;
         }
 
