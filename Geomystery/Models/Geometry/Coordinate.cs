@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Geomystery.Views.Geometry;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,6 +33,20 @@ namespace Geomystery.Models.Geometry
         /// </summary>
         public List<Geometry> selectedGeometrys { get; set; }
 
+
+        /// <summary>
+        /// 显示坐标系序列用来记录有多少个显示坐标系依赖于此坐标系
+        /// </summary>
+        public List<OutputCoordinate> outputCoordinates { get; set; }
+
+        /// <summary>
+        /// 逻辑坐标系构造函数
+        /// </summary>
+        public Coordinate()
+        {
+            init();
+        }
+
         /// <summary>
         /// 初始化函数，关于使用构造函数还是额外的初始化函数有待于探讨
         /// </summary>
@@ -52,7 +67,8 @@ namespace Geomystery.Models.Geometry
         /// <returns></returns>
         public int AddPoint(Point2 point)
         {
-
+            pointList.Add(point);
+            
             return 0;
         }
 
@@ -92,5 +108,6 @@ namespace Geomystery.Models.Geometry
 
             return 0;
         }
+
     }
 }

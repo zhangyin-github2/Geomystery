@@ -1,4 +1,5 @@
 ﻿using Geomystery.Controllers.Geometry;
+using Geomystery.Views.Geometry;
 using Microsoft.Graphics.Canvas;
 using Microsoft.Graphics.Canvas.Text;
 using Microsoft.Graphics.Canvas.UI.Xaml;
@@ -34,14 +35,17 @@ namespace Geomystery
 
         Random rnd = new Random();
 
-        List<Vector2> plist;
+        //List<Vector2> plist;
 
         List<UserTool> userTools;
+
+        Geomystery.Controllers.Geometry.Controllers controller;
 
         public Freestyle()
         {
             this.InitializeComponent();
             userTools = UserToolsManager.GetInstance().GetTools();
+            controller = new Controllers.Geometry.Controllers(1);
         }
 
         private Vector2 RndPosition()
@@ -64,10 +68,24 @@ namespace Geomystery
         private void canvas1_Draw(Microsoft.Graphics.Canvas.UI.Xaml.ICanvasAnimatedControl sender, Microsoft.Graphics.Canvas.UI.Xaml.CanvasAnimatedDrawEventArgs args)
         {
             var draw = args.DrawingSession;
+            /*
             args.DrawingSession.DrawText("click me", center, Colors.Red);
             for (int i = 0; i < plist.Count; i++)
             {
                 args.DrawingSession.DrawCircle(plist[i], 5, Color.FromArgb(255, 0, 0, 0));
+            }
+            */
+            var geoList = controller.outputCoordinates[0].GeometryList;
+            if(geoList != null)
+            {
+                for (int i = 0; i < geoList.Count; i++)
+                {
+                    if (geoList[i] is OutputPoint)
+                    {
+                        var realPoint = geoList[i] as OutputPoint;
+                        args.DrawingSession.DrawCircle(realPoint.viewPoint, OutputPoint.scopeLength, realPoint.lineColor);
+                    }
+                }
             }
         }
 
@@ -87,6 +105,7 @@ namespace Geomystery
 
         private void canvas1_PointerPressed(object sender, PointerRoutedEventArgs e)
         {
+            /*
             Point pxy = e.GetCurrentPoint((CanvasAnimatedControl)sender).Position;
             Vector2 p = pxy.ToVector2();
             bool flag1 = true;
@@ -103,7 +122,10 @@ namespace Geomystery
             {
                 plist.Add(p);
             }
-            text1.Text = p.X.ToString() + " | " + p.Y.ToString(); ;
+            text1.Text = p.X.ToString() + " | " + p.Y.ToString();
+            */
+
+            controller.PointerPressed((UserTool)listView1.SelectedItem, sender, e);
         }
 
         private void canvas1_PointerReleased(object sender, PointerRoutedEventArgs e)
@@ -111,11 +133,17 @@ namespace Geomystery
             ;
         }
 
+        private void canvas1_PointerMoved(object sender, PointerRoutedEventArgs e)
+        {
+
+        }
+
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            plist = new List<Vector2>();
+            //plist = new List<Vector2>();
             center = new Vector2((float)canvas1.ActualWidth / 2, (float)canvas1.ActualHeight / 2);
-            text1.Text = center.X.ToString() + " | " + center.Y.ToString(); ;
+            text1.Text = center.X.ToString() + " | " + center.Y.ToString();
+            listView1.SelectedIndex = 2;
         }
 
         private void Page_Unloaded(object sender, RoutedEventArgs e)
@@ -128,5 +156,7 @@ namespace Geomystery
         {
             text1.Text = "helloWorld";
         }
+
+        
     }
 }

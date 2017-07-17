@@ -5,6 +5,7 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI;
 
 namespace Geomystery.Views.Geometry
 {
@@ -74,6 +75,71 @@ namespace Geomystery.Views.Geometry
         { 
             Point2 p2 = new Point2() { X = (v2.X*unitLength+vector.X), Y = -(v2.Y*unitLength+vector.Y) };
             return p2;
+        }
+
+        /// <summary>
+        /// 屏幕上某一点到某条直线的垂足
+        /// </summary>
+        /// <param name="lpo">屏幕上的一点</param>
+        /// <param name="lv">屏幕上直线方向向量</param>
+        /// <param name="outerPoint">直线上或者直线外的一点</param>
+        /// <returns></returns>
+        public static float DistanceOfPointAndLine(Vector2 lpo, Vector2 lv, Vector2 outerPoint, ref Vector2 result)
+        {
+            if (lv.Length() <= 0) return -1;
+            if(lv.X == 0)
+            {
+                result.Y = outerPoint.Y;
+                result.X = lpo.X;
+
+                return Math.Abs(lpo.X - outerPoint.X);
+            }
+            else if(lv.Y == 0)
+            {
+                result.X = outerPoint.X;
+                result.Y = lpo.Y;
+
+                return Math.Abs(lpo.Y - outerPoint.Y);
+            }
+            else
+            {
+                float A = -(lv.X / lv.Y);
+                float B = 1;
+                float C = lv.X / lv.Y * lpo.Y - lpo.X;
+                float distance = Math.Abs(A * outerPoint.Y + B * outerPoint.X + C) / (float)Math.Sqrt(Math.Pow(A, 2) + Math.Pow(B, 2));
+                //result.X = ?;
+                //result.Y = ?;
+                return distance;
+            }
+            return -1; ;
+        }
+
+        public void AddPoint(Point2 point)
+        {
+            GeometryList.Add(new OutputPoint()
+            {
+                borderType = ViewType.Solid,
+                fillColor = Color.FromArgb(0, 0, 0, 0),
+                isVisible = true,
+                lineColor = Color.FromArgb(255, 0, 0, 0),
+                point = point,
+                selectedFillColor = Color.FromArgb(0, 128, 128, 128),
+                selectedLineColor = Color.FromArgb(255, 128, 128, 128),
+                thickness = 2,
+                viewPoint = ToVector2(point),
+            });
+        }
+
+        public int AddLine(Line line)
+        {
+
+            return 0;
+        }
+
+        public int AddCircle(Circle circle)
+        {
+
+            return 0;
         }
     }
 }

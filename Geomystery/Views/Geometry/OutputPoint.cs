@@ -22,5 +22,10 @@ namespace Geomystery.Views.Geometry
         /// 屏幕上的窗体（canva）中的点
         /// </summary>
         public Vector2 viewPoint { get; set; }
+
+        /// <summary>
+        /// 这个点的范围（在屏幕上一个圆表示一个点）
+        /// </summary>
+        public static float scopeLength { get; set; }
     }
 }
