@@ -94,6 +94,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Award\Geo_Coin.cs" />
+    <Compile Include="CONST.cs" />
     <Compile Include="Controllers\Geometry\Controllers.cs" />
     <Compile Include="Controllers\Geometry\UserTool.cs" />
     <Compile Include="Models\Geometry\Circle.cs" />
@@ -134,6 +135,8 @@
     <Compile Include="Pages\SelectGame.xaml.cs">
       <DependentUpon>SelectGame.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\NotifyProperty.cs" />
+    <Compile Include="ViewModel\ViewModel.cs" />
     <Compile Include="Views\Geometry\OutputCircle.cs" />
     <Compile Include="Views\Geometry\OutputCoordinate.cs" />
     <Compile Include="Views\Geometry\OutputGeometry.cs" />
@@ -169,6 +172,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\DarkThemeDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
     <Page Include="Pages\Freestyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -180,6 +188,11 @@
     <Page Include="Pages\HomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\LightThemeDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
     <Page Include="Pages\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
