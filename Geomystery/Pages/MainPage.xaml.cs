@@ -15,18 +15,18 @@ using Windows.UI.Xaml.Navigation;
 using Windows.UI.ViewManagement;
 using Geomystery.Pages;
 
-
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
+// “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上有介绍
 
 namespace Geomystery
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
     public sealed partial class MainPage : Page
     {
         public static Frame MainFrame=new Frame();
-        public static MediaPlayerElement BgmP=new MediaPlayerElement(), BgaP=new MediaPlayerElement();
+        public static MediaPlayerElement BgmP = new MediaPlayerElement();
+        public static MediaPlayerElement BgaP =new MediaPlayerElement();
         bool isMute=false;
 
         public MainPage()
@@ -56,16 +56,17 @@ namespace Geomystery
 
         private void MuteButton_Click(object sender, RoutedEventArgs e)
         {
-        //    isMute = !isMute;
-        //    BgmP.MediaPlayer.IsMuted = BgaP.MediaPlayer.IsMuted = isMute;
-        //    if (isMute)
-        //    {
-        //        MuteButton.Content = CONST.mute;
-        //    }
-        //    else
-        //    {
-        //        MuteButton.Content = CONST.volume2;
-        //    }
+            isMute = !isMute;
+            BgmP.MediaPlayer.IsMuted = BgaP.MediaPlayer.IsMuted = isMute;
+
+            if (isMute)
+            {
+                MuteButton.Content = CONST.mute;
+            }
+            else
+            {
+                MuteButton.Content = CONST.volume2;
+            }
         }
 
     }
