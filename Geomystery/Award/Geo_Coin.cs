@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace Geomystery.Award
 {
+    
     /// <summary>
     /// 几何币
     /// </summary>
-    public class Geo_Coin
+    class Geo_Coin
     {
+        public static Geo_Coin Geo = new Geo_Coin();
         /// <summary>
         /// 金币量
         /// </summary>
@@ -28,6 +30,7 @@ namespace Geomystery.Award
             {
                 Coins += 50;
             }
+            else Coins += 0;
         }
 
         /// <summary>
@@ -36,7 +39,6 @@ namespace Geomystery.Award
         /// <returns>Coins</returns>
         public int ShowGeo_Coins()
         {
-
             return Coins;
         }
 
