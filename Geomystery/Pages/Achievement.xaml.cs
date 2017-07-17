@@ -24,7 +24,11 @@ namespace Geomystery
     {
         public Achievement()
         {
+            View = new ViewModel.ViewModel();
             this.InitializeComponent();
         }
+
+        private ViewModel.ViewModel View { set; get; } = new ViewModel.ViewModel();
+
     }
 }

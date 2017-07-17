@@ -24,8 +24,12 @@ namespace Geomystery
     {
         public SelectChapter()
         {
+            View = new ViewModel.ViewModel();
             this.InitializeComponent();
         }
+
+        private ViewModel.ViewModel View { set; get; } = new ViewModel.ViewModel();
+
 
         private void Chapter1_Click(object sender, RoutedEventArgs e)
         {
