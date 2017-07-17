@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -33,8 +34,18 @@ namespace Geomystery
         private void NightMode_Click(object sender, RoutedEventArgs e)
         {
             if (NightMode.IsChecked == true)
+            {
                 View.Theme = ElementTheme.Dark;
-            else View.Theme = ElementTheme.Light;
+                //(Application.Current.Resources["fg"] as SolidColorBrush).Color = Color.FromArgb(255, r, g, b);
+                //(Application.Current.Resources["bg"] as SolidColorBrush).Color = Color.FromArgb(255, r, g, b);
+            } 
+            else
+            {
+                View.Theme = ElementTheme.Light;
+                //(Application.Current.Resources["fg"] as SolidColorBrush).Color = Color.FromArgb(255, r, g, b);
+                //(Application.Current.Resources["bg"] as SolidColorBrush).Color = Color.FromArgb(255, r, g, b);
+            }
+                
         }
 
         private void AboutUs_Click(object sender, RoutedEventArgs e)
