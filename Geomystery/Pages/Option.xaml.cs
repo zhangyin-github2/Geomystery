@@ -36,5 +36,10 @@ namespace Geomystery
                 View.Theme = ElementTheme.Dark;
             else View.Theme = ElementTheme.Light;
         }
+
+        private void AboutUs_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(About));
+        }
     }
 }

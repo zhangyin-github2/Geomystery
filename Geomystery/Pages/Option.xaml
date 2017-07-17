@@ -153,7 +153,8 @@
                         Foreground="{ThemeResource fg}"
                         Background="{x:Null}"
                         VerticalAlignment="Center"
-                        Content="Geomystery"/>
+                        Content="Geomystery"
+                        Click="AboutUs_Click"/>
             </StackPanel>
         </StackPanel>
     </Grid>
