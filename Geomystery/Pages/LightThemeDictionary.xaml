@@ -2,7 +2,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Geomystery.Pages">
-    <SolidColorBrush x:Key="SystemBackgroundAltHighBrush" Color="#FF1A1C37"/>
+    <SolidColorBrush x:Key="SystemBackgroundAltHighBrush" Color="#FEF2DA"/>
     <SolidColorBrush x:Key="SystemBackgroundBaseHighBrush" Color="#FFDFDFDF"/>
     <Color x:Key="SystemTranslucentBaseHighColor">#FFFFFFFF</Color>
     <Color x:Key="SystemThemeMainColor">#FF0074CE</Color>

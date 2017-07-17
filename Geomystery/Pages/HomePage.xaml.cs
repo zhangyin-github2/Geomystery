@@ -25,8 +25,14 @@ namespace Geomystery.Pages
     {
         public HomePage()
         {
+            View = new ViewModel.ViewModel();
+            //if (NightModeIsChecked == true)
+                
+            //else
             this.InitializeComponent();
         }
+
+        private ViewModel.ViewModel View { set; get; } = new ViewModel.ViewModel();
 
         private void Game_Click(object sender, RoutedEventArgs e)
         {
