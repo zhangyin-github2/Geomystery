@@ -27,13 +27,12 @@ namespace Geomystery
         public static Frame MainFrame=new Frame();
         public static MediaPlayerElement BgmP = new MediaPlayerElement();
         public static MediaPlayerElement BgaP =new MediaPlayerElement();
-        bool isMute=false;
 
         public MainPage()
         {
             this.InitializeComponent();
+            Application.Current.Suspending += new SuspendingEventHandler(App_Suspending);
             init();
-            
         }
 
         public void init()
@@ -41,7 +40,7 @@ namespace Geomystery
             MainFrame = this.myFrame;
             BgmP = bgmPlayer;
             BgaP = bgaPlayer;
-            isMute = false;
+            OPTION.LOAD();
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.FullScreen;    //启动设置全屏
             myFrame.Navigate(typeof(HomePage));
         }
@@ -56,10 +55,10 @@ namespace Geomystery
 
         private void MuteButton_Click(object sender, RoutedEventArgs e)
         {
-            isMute = !isMute;
+            OPTION.ISMUTE = !OPTION.ISMUTE;
             //BgmP.MediaPlayer.IsMuted = BgaP.MediaPlayer.IsMuted = isMute;
 
-            if (isMute)
+            if (OPTION.ISMUTE)
             {
                 MuteButton.Content = CONST.mute;
             }
@@ -69,5 +68,13 @@ namespace Geomystery
             }
         }
 
+        /// <summary>
+        /// 在程序关闭时保存一些内容
+        /// </summary>
+        async void App_Suspending(Object sender, Windows.ApplicationModel.SuspendingEventArgs e)
+        {
+            // TODO: This is the time to save app data in case the process is terminated
+            OPTION.SAVE();
+        }
     }
 }

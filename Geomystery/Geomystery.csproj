@@ -106,6 +106,7 @@
     <Compile Include="Models\Geometry\Line.cs" />
     <Compile Include="Models\Geometry\Point2.cs" />
     <Compile Include="Models\Geometry\Polygon.cs" />
+    <Compile Include="OPTION.cs" />
     <Compile Include="Pages\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>
@@ -215,6 +216,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pictures\Tool\" />
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="SQLite.UWP.2015, Version=3.18.0">
+      <Name>SQLite for Universal Windows Platform</Name>
+    </SDKReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

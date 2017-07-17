@@ -26,9 +26,6 @@ namespace Geomystery.Pages
         public HomePage()
         {
             View = new ViewModel.ViewModel();
-            //if (NightModeIsChecked == true)
-                
-            //else
             this.InitializeComponent();
         }
 
