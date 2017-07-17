@@ -83,7 +83,15 @@ namespace Geomystery
                     if (geoList[i] is OutputPoint)
                     {
                         var realPoint = geoList[i] as OutputPoint;
-                        args.DrawingSession.DrawCircle(realPoint.viewPoint, OutputPoint.scopeLength, realPoint.lineColor);
+                        if(realPoint.point.isSelected)
+                        {
+                            args.DrawingSession.DrawCircle(realPoint.viewPoint, OutputPoint.scopeLength, realPoint.selectedLineColor);
+                        }
+                        else
+                        {
+                            args.DrawingSession.DrawCircle(realPoint.viewPoint, OutputPoint.scopeLength, realPoint.lineColor);
+                        }
+                        
                     }
                 }
             }
