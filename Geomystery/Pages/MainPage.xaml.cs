@@ -57,7 +57,7 @@ namespace Geomystery
         private void MuteButton_Click(object sender, RoutedEventArgs e)
         {
             isMute = !isMute;
-            BgmP.MediaPlayer.IsMuted = BgaP.MediaPlayer.IsMuted = isMute;
+            //BgmP.MediaPlayer.IsMuted = BgaP.MediaPlayer.IsMuted = isMute;
 
             if (isMute)
             {
