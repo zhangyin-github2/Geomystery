@@ -12,8 +12,9 @@ namespace Geomystery
 {
     public static class APPDATA
     {
-        public static bool ISMUTE=false;
-        public static bool ISNIGHT=false;
+        public static bool ISMUTE = false;
+        public static bool ISNIGHT = false;
+        public static bool ISFULLSCREEN;
         public static void SAVE()
         {
             string DbPath = Path.Combine(ApplicationData.Current.LocalFolder.Path, "APPDATA.db");

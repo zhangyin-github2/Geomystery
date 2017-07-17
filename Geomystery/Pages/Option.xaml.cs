@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.UI.ViewManagement;
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上有介绍
 
@@ -23,11 +24,13 @@ namespace Geomystery
     /// </summary>
     public sealed partial class Option : Page
     {
+
         public Option()
         {
             this.InitializeComponent();
             View = new ViewModel.ViewModel();
             NightMode.IsChecked = APPDATA.ISNIGHT;
+            Fullscreen.IsChecked = !APPDATA.ISFULLSCREEN;
         }
 
         private ViewModel.ViewModel View { set; get; } = new ViewModel.ViewModel();
@@ -41,6 +44,21 @@ namespace Geomystery
         private void AboutUs_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(About));
+        }
+
+        private void Fullscreen_Click(object sender, RoutedEventArgs e)
+        {
+            ApplicationView view = ApplicationView.GetForCurrentView();
+            bool isInFullScreenMode = view.IsFullScreenMode;
+            APPDATA.ISFULLSCREEN = isInFullScreenMode;
+            if (isInFullScreenMode)
+            {
+                view.ExitFullScreenMode();
+            }
+            else
+            {
+                view.TryEnterFullScreenMode();
+            }
         }
     }
 }

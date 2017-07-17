@@ -19,7 +19,7 @@
 
     <Grid x:Name="Back" Background="{x:Null}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="40" />
+            <RowDefinition Height="44" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Frame x:Name="myFrame"
@@ -40,8 +40,8 @@
                     Foreground="{ThemeResource SystemBackgroundBaseHighBrush}"
                     Background="{x:Null}"
                     FontFamily="Segoe MDl2 Assets"
-                    FontSize="24"
-                    Height="40"
+                    FontSize="28"
+                    Height="44"
                     Width="64"
                     Content="&#xE0C4;" 
                     Click="BackButton_Click" />
@@ -50,10 +50,9 @@
                     Foreground="{ThemeResource SystemBackgroundBaseHighBrush}"
                     Background="{x:Null}"
                     FontFamily="Segoe MDl2 Assets"
-                    FontSize="24"
-                    Height="40"
+                    FontSize="28"
+                    Height="44"
                     Width="64"
-                    Content="&#xE74F;"
                     Click="MuteButton_Click"/>
         </RelativePanel>
     </Grid>

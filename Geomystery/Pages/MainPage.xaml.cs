@@ -24,6 +24,8 @@ namespace Geomystery
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        double ScreenHeight;
+        double ScreenWidth;
         public static Frame MainFrame=new Frame();
         public static MediaPlayerElement BgmP = new MediaPlayerElement();
         public static MediaPlayerElement BgaP =new MediaPlayerElement();
@@ -31,22 +33,23 @@ namespace Geomystery
         public MainPage()
         {
             this.InitializeComponent();
-            View = new ViewModel.ViewModel();
             Application.Current.Suspending += new SuspendingEventHandler(App_Suspending);
             init();
         }
-
-        private ViewModel.ViewModel View { set; get; } = new ViewModel.ViewModel();
 
         public void init()
         {
             MainFrame = this.myFrame;
             BgmP = bgmPlayer;
             BgaP = bgaPlayer;
+            View = new ViewModel.ViewModel();   //未找到刷新解决办法
             APPDATA.LOAD();
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.FullScreen;    //启动设置全屏
             myFrame.Navigate(typeof(HomePage));
+            MuteButton.Content = CONST.volume2;
         }
+
+        private ViewModel.ViewModel View { set; get; } = new ViewModel.ViewModel();
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
@@ -69,6 +72,18 @@ namespace Geomystery
             {
                 MuteButton.Content = CONST.volume2;
             }
+        }
+
+        /// <summary>
+        /// 获取窗口实际长宽
+        /// </summary>
+        /// <param name="e"></param>
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            ScreenHeight = Window.Current.Bounds.Height;
+            ScreenWidth = Window.Current.Bounds.Width;
+
         }
 
         /// <summary>
