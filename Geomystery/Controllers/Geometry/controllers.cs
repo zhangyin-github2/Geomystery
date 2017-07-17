@@ -168,7 +168,17 @@ namespace Geomystery.Controllers.Geometry
 
             var surroundinsGeometryList = GetSurroundings(vector2);
 
-            if (userTool.toolName == "点工具")
+            if(userTool.toolName == "选择工具")
+            {
+                if (surroundinsGeometryList != null && surroundinsGeometryList.Count == 1)
+                {
+                    if(surroundinsGeometryList[0] is Point2)
+                    {
+                        surroundinsGeometryList[0].isSelected = true;
+                    }
+                }
+            }
+            else if (userTool.toolName == "点工具")
             {
                 if(surroundinsGeometryList == null || surroundinsGeometryList.Count == 0)
                 {
@@ -176,7 +186,11 @@ namespace Geomystery.Controllers.Geometry
                 }
                 else
                 {
-                    //surroundinsGeometryList[0].
+                    if(surroundinsGeometryList[0] is Point2)
+                    {
+                        surroundinsGeometryList[0].isSelected = true;
+                        //coordinate.selectedGeometrys.Add(surroundinsGeometryList[0]);
+                    }
                 }
             }
             else if(userTool.toolName == "直线工具")
