@@ -172,7 +172,7 @@ namespace Geomystery.Controllers.Geometry
             {
                 if(surroundinsGeometryList == null || surroundinsGeometryList.Count == 0)
                 {
-                    coordinate.AddPoint(new Point2() { X = vector2.X, Y = vector2.Y });
+                    coordinate.AddPoint(outputCoordinates[0].ToPoint2(vector2));
                 }
                 else
                 {

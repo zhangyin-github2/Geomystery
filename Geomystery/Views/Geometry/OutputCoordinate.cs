@@ -51,6 +51,7 @@ namespace Geomystery.Views.Geometry
         {
             this.coordinate = coordinate;
             GeometryList = new List<OutputGeometry>();
+            unitLength = 100;
         }
 
         /// <summary>
@@ -58,7 +59,7 @@ namespace Geomystery.Views.Geometry
         /// </summary>
         /// <param name="p2"></param>
         /// <returns>v2</returns>
-        public  Vector2 ToVector2(Point2 p2)
+        public Vector2 ToVector2(Point2 p2)
         {
             float x = p2.X - vector.X;
             float y = p2.Y - vector.Y;
