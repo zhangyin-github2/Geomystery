@@ -24,7 +24,22 @@ namespace Geomystery
     {
         public Option()
         {
+            View = new ViewModel.ViewModel();
             this.InitializeComponent();
+        }
+
+        private ViewModel.ViewModel View { set; get; } = new ViewModel.ViewModel();
+
+        private void NightMode_Click(object sender, RoutedEventArgs e)
+        {
+            if (NightMode.IsChecked == true)
+                View.Theme = ElementTheme.Dark;
+            else View.Theme = ElementTheme.Light;
+        }
+
+        private void AboutUs_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(About));
         }
     }
 }

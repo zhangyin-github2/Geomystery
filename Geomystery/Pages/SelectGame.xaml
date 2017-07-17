@@ -8,6 +8,27 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource bg}">
-
+        <StackPanel Orientation="Vertical"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+            <TextBlock FontFamily="Microsoft YaHei UI"
+                   FontSize="128"
+                   Text="Level 1"/>
+            <TextBlock FontFamily="Microsoft YaHei UI"
+                   FontSize="96"
+                   Text="Level 2"/>
+            <TextBlock FontFamily="Microsoft YaHei UI"
+                   FontSize="72"
+                   Text="Level 3"/>
+            <TextBlock FontFamily="Microsoft YaHei UI"
+                   FontSize="56"
+                   Text="Level 4"/>
+            <TextBlock FontFamily="Microsoft YaHei UI"
+                   FontSize="48"
+                   Text="Level 5"/>
+            <TextBlock FontFamily="Microsoft YaHei UI"
+                   FontSize="36"
+                   Text="Level 6"/>
+        </StackPanel>
     </Grid>
 </Page>

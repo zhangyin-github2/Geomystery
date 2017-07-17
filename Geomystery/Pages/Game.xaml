@@ -8,11 +8,12 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource bg}">
-        <TextBlock FontFamily="Microsoft YaHei UI"
+        <StackPanel Orientation="Vertical"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+            <TextBlock FontFamily="Microsoft YaHei UI"
                    FontSize="128"
-                   Foreground="{ThemeResource fg}"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   Text="???"/>
+                   Text="? ? ?"/>
+        </StackPanel>
     </Grid>
 </Page>

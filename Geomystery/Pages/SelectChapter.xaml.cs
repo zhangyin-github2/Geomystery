@@ -26,5 +26,10 @@ namespace Geomystery
         {
             this.InitializeComponent();
         }
+
+        private void Chapter1_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(SelectGame));
+        }
     }
 }
