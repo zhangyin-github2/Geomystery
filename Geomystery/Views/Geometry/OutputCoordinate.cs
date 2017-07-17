@@ -113,7 +113,6 @@ namespace Geomystery.Views.Geometry
                 //result.Y = ?;
                 return distance;
             }
-            return -1; ;
         }
 
         public void AddPoint(Point2 point)

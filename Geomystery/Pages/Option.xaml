@@ -81,7 +81,7 @@
                         FontSize="36"
                         VerticalAlignment="Center"
                         Content="◀"/>
-                <TextBlock Name="Language"
+                <TextBlock Name="LanguageNow"
                            FontFamily="Microsoft YaHei UI"
                            FontSize="44"
                            Foreground="MediumSlateBlue"
