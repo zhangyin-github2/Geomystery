@@ -25,17 +25,17 @@ namespace Geomystery
     {
         public Option()
         {
-            View = new ViewModel.ViewModel();
             this.InitializeComponent();
-            NightMode.IsChecked = OPTION.ISNIGHT;
+            View = new ViewModel.ViewModel();
+            NightMode.IsChecked = APPDATA.ISNIGHT;
         }
 
         private ViewModel.ViewModel View { set; get; } = new ViewModel.ViewModel();
 
         private void NightMode_Click(object sender, RoutedEventArgs e)
         {
-            OPTION.ISNIGHT = !OPTION.ISNIGHT;
-            View.Theme = !OPTION.ISNIGHT ? ElementTheme.Light : ElementTheme.Dark;
+            APPDATA.ISNIGHT = !APPDATA.ISNIGHT;
+            View.Theme = !APPDATA.ISNIGHT ? ElementTheme.Light : ElementTheme.Dark;
         }
 
         private void AboutUs_Click(object sender, RoutedEventArgs e)

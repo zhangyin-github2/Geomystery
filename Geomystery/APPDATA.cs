@@ -10,13 +10,13 @@ using Windows.Storage;
 
 namespace Geomystery
 {
-    public static class OPTION
+    public static class APPDATA
     {
         public static bool ISMUTE=false;
         public static bool ISNIGHT=false;
         public static void SAVE()
         {
-            string DbPath = Path.Combine(ApplicationData.Current.LocalFolder.Path, "OPTION.db");
+            string DbPath = Path.Combine(ApplicationData.Current.LocalFolder.Path, "APPDATA.db");
             var conn = new SQLiteConnection(new SQLitePlatformWinRT(), DbPath);
             conn.CreateTable<option_data>();// 创建 option_data 模型对应的表，如果已存在，则忽略该操作。
             var db = conn.Table<option_data>();
@@ -30,7 +30,7 @@ namespace Geomystery
         }
         public static void LOAD()
         {
-            string DbPath = Path.Combine(ApplicationData.Current.LocalFolder.Path, "OPTION.db");
+            string DbPath = Path.Combine(ApplicationData.Current.LocalFolder.Path, "APPDATA.db");
             var conn = new SQLiteConnection(new SQLitePlatformWinRT(), DbPath);
             conn.CreateTable<option_data>();// 创建 option_data 模型对应的表，如果已存在，则忽略该操作。
             var db = conn.Table<option_data>();
@@ -50,8 +50,8 @@ namespace Geomystery
         public  bool ISNIGHT { set; get; }
         public option_data()
         {
-            ISMUTE = OPTION.ISMUTE;
-            ISNIGHT = OPTION.ISNIGHT;
+            ISMUTE = APPDATA.ISMUTE;
+            ISNIGHT = APPDATA.ISNIGHT;
         }
     }
 }

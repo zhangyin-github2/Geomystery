@@ -106,7 +106,7 @@
     <Compile Include="Models\Geometry\Line.cs" />
     <Compile Include="Models\Geometry\Point2.cs" />
     <Compile Include="Models\Geometry\Polygon.cs" />
-    <Compile Include="OPTION.cs" />
+    <Compile Include="APPDATA.cs" />
     <Compile Include="Pages\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>

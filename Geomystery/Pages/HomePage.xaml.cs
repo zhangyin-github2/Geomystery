@@ -25,8 +25,8 @@ namespace Geomystery.Pages
     {
         public HomePage()
         {
-            View = new ViewModel.ViewModel();
             this.InitializeComponent();
+            View = new ViewModel.ViewModel();
         }
 
         private ViewModel.ViewModel View { set; get; } = new ViewModel.ViewModel();

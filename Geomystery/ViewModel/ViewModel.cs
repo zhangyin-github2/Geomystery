@@ -11,7 +11,7 @@ namespace Geomystery.ViewModel
     {
         public ViewModel()
         {
-            this.Theme= !OPTION.ISNIGHT ? ElementTheme.Light : ElementTheme.Dark;
+            this.Theme= !APPDATA.ISNIGHT ? ElementTheme.Light : ElementTheme.Dark;
         }
 
         public ElementTheme Theme

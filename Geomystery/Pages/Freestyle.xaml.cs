@@ -44,9 +44,9 @@ namespace Geomystery
         public Freestyle()
         {
             this.InitializeComponent();
+            View = new ViewModel.ViewModel();
             userTools = UserToolsManager.GetInstance().GetTools();
             controller = new Controllers.Geometry.Controllers(1);
-            View = new ViewModel.ViewModel();
         }
 
         private ViewModel.ViewModel View { set; get; } = new ViewModel.ViewModel();

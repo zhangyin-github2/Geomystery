@@ -150,7 +150,7 @@
                 <Button Name="AboutUs"
                         FontFamily="Microsoft YaHei UI"
                         FontSize="48"
-                        Foreground="{ThemeResource fg}"
+                        Foreground="{ThemeResource SystemBackgroundBaseHighBrush}"
                         Background="{x:Null}"
                         VerticalAlignment="Center"
                         Content="Geomystery"

@@ -29,7 +29,7 @@
                        Text="Geomystery"/>
             <TextBlock FontFamily="Microsoft YaHei UI"
                        FontSize="64"
-                       Foreground="{ThemeResource fg}"
+                       Foreground="{ThemeResource SystemBackgroundBaseHighBrush}"
                        Margin="24,24,24,24"
                        HorizontalAlignment="Center"
                        Text="XXXXXXXXXXXXX"/>
