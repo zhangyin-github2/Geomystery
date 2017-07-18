@@ -30,7 +30,7 @@ namespace Geomystery
         {
             this.InitializeComponent();
             View = new ViewModel.ViewModel();
-            //ach= new 
+            ach = Achievements.GetAch();
         }
     }
 }
