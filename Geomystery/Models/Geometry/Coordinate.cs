@@ -61,6 +61,8 @@ namespace Geomystery.Models.Geometry
             pointSetList = new List<IPointSet>();
             polygonList = new List<Polygon>();
 
+            selectedGeometrys = new List<Geometry>();
+
             GeometryCount = 1;
         }
 

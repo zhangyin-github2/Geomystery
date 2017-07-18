@@ -172,9 +172,23 @@ namespace Geomystery.Controllers.Geometry
             {
                 if (surroundinsGeometryList != null && surroundinsGeometryList.Count == 1)
                 {
-                    if(surroundinsGeometryList[0] is Point2)
+
+                    int currentPointId = surroundinsGeometryList[0].id;
+                    surroundinsGeometryList[0].isSelected = !surroundinsGeometryList[0].isSelected;
+
+                    foreach (Models.Geometry.Geometry selectedGeometry in coordinate.selectedGeometrys)
                     {
-                        surroundinsGeometryList[0].isSelected = true;
+                        if (selectedGeometry.id != currentPointId)
+                        {
+                            selectedGeometry.isSelected = false;
+                            //coordinate.selectedGeometrys.Remove(selectedGeometry);
+                        }
+                    }
+
+                    coordinate.selectedGeometrys.Clear();
+                    if (surroundinsGeometryList[0].isSelected)
+                    {
+                        coordinate.selectedGeometrys.Add(surroundinsGeometryList[0]);
                     }
                 }
             }
@@ -188,8 +202,23 @@ namespace Geomystery.Controllers.Geometry
                 {
                     if(surroundinsGeometryList[0] is Point2)
                     {
-                        surroundinsGeometryList[0].isSelected = true;
-                        //coordinate.selectedGeometrys.Add(surroundinsGeometryList[0]);
+                        int currentPointId = surroundinsGeometryList[0].id;
+                        surroundinsGeometryList[0].isSelected = !surroundinsGeometryList[0].isSelected;
+
+                        foreach (Models.Geometry.Geometry selectedGeometry in coordinate.selectedGeometrys)
+                        {
+                            if (selectedGeometry.id != currentPointId)
+                            {
+                                selectedGeometry.isSelected = false;
+                                //coordinate.selectedGeometrys.Remove(selectedGeometry);
+                            }
+                        }
+
+                        coordinate.selectedGeometrys.Clear();
+                        if (surroundinsGeometryList[0].isSelected)
+                        {
+                            coordinate.selectedGeometrys.Add(surroundinsGeometryList[0]);
+                        }
                     }
                 }
             }
