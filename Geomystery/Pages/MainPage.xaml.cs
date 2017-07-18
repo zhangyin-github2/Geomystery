@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Navigation;
 using Windows.UI.ViewManagement;
 using Geomystery.Pages;
 using Geomystery.ViewModel;
-using Geomystery.Assets.music;
+
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上有介绍
 
@@ -111,15 +111,7 @@ namespace Geomystery
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            BgmPlayer.getInstance();
-            BgmPlayer.MusicPlayer.Name = "MusicPlayer";
-            Music.Children.Add(BgmPlayer.MusicPlayer);
-            BgmPlayer.MusicPlayer.Visibility = Visibility.Collapsed;
-            BgmPlayer.MusicPlayer.IsLooping = true;
-            BgmPlayer.MusicPlayer.AutoPlay = true;
-            BgmPlayer.MusicPlayer.Source = new Uri("ms-appx:///Assets/bgm.mp3");
-            BgmPlayer.MusicPlayer.Play();
-            BgmPlayer.MusicPlayer.Volume = 1;
+
         }
     }
 }
