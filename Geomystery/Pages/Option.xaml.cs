@@ -31,8 +31,8 @@ namespace Geomystery
             View = new ViewModel.ViewModel();
             NightMode.IsChecked = APPDATA.ISNIGHT;
             Fullscreen.IsChecked = APPDATA.ISFULLSCREEN;
-            Fullscreen.Content = APPDATA.ISFULLSCREEN ? "✔" : "";
-            NightMode.Content = APPDATA.ISNIGHT ? "✔" : "";
+            Fullscreen.Content = APPDATA.ISFULLSCREEN ? "\x2714" : "\x2716";
+            NightMode.Content = APPDATA.ISNIGHT ? "\x2714" : "\x2716";
         }
 
         private ViewModel.ViewModel View { set; get; } = new ViewModel.ViewModel();
@@ -41,7 +41,7 @@ namespace Geomystery
         {
             APPDATA.ISNIGHT = !APPDATA.ISNIGHT;
             View.Theme = !APPDATA.ISNIGHT ? ElementTheme.Light : ElementTheme.Dark;
-            NightMode.Content = APPDATA.ISNIGHT ? "✔" : "";
+            NightMode.Content = APPDATA.ISNIGHT ? "\x2714" : "\x2716";
         }
 
         private void Fullscreen_Click(object sender, RoutedEventArgs e)
@@ -58,7 +58,7 @@ namespace Geomystery
                 current_window.TryEnterFullScreenMode();
             }
             APPDATA.ISFULLSCREEN = current_window.IsFullScreenMode;
-            Fullscreen.Content = APPDATA.ISFULLSCREEN ? "✔" : "";
+            Fullscreen.Content = APPDATA.ISFULLSCREEN ? "\x2714" : "\x2716";
         }
 
         private void AboutUs_Click(object sender, RoutedEventArgs e)
