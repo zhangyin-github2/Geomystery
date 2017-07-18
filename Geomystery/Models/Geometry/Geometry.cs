@@ -15,6 +15,13 @@ namespace Geomystery.Models.Geometry
         public Coordinate coord { get; set; }
 
         /// <summary>
+        /// 几何体的ID号，
+        /// 屏幕上首先有一个点，后来构造的点与刚才的点重合，很可能两个点的属性完全相同，此时需要一个ID来区分不同的（长得差不多的）元素，
+        /// 鼠标点击只能选择存在的点，但是用户的构造操作可能会创建新的与旧的几何元素重合的几何元素，不能把二者视为同一个元素。
+        /// </summary>
+        public int id { get; set; }
+
+        /// <summary>
         /// 这个元素是否被选中
         /// </summary>
         public bool isSelected { get; set; }

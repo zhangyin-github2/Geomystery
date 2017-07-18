@@ -24,7 +24,7 @@
         </Grid.RowDefinitions>
         <Frame x:Name="myFrame"
                Grid.Row="0"
-               Grid.RowSpan="2"/>
+               Grid.RowSpan="2" Tapped="myFrame_Tapped"/>
         <MediaPlayerElement Name="bgmPlayer"
                             Height="0"
                             Width="0"/>
@@ -54,6 +54,7 @@
                     Height="44"
                     Width="64"
                     Click="MuteButton_Click"/>
+            <TextBlock x:Name="debugT" RelativePanel.RightOf="MuteButton"></TextBlock>
         </RelativePanel>
 
         <Grid x:Name="Music">
