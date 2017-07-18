@@ -30,7 +30,7 @@ namespace Geomystery
             this.InitializeComponent();
             View = new ViewModel.ViewModel();
             NightMode.IsChecked = APPDATA.ISNIGHT;
-            Fullscreen.IsChecked = !APPDATA.ISFULLSCREEN;
+            Fullscreen.IsChecked = APPDATA.ISFULLSCREEN;
         }
 
         private ViewModel.ViewModel View { set; get; } = new ViewModel.ViewModel();
@@ -48,17 +48,18 @@ namespace Geomystery
 
         private void Fullscreen_Click(object sender, RoutedEventArgs e)
         {
-            ApplicationView view = ApplicationView.GetForCurrentView();
-            bool isInFullScreenMode = view.IsFullScreenMode;
-            APPDATA.ISFULLSCREEN = isInFullScreenMode;
-            if (isInFullScreenMode)
+            ApplicationView current_window = ApplicationView.GetForCurrentView();
+            //bool isInFullScreenMode = current_window.IsFullScreenMode;
+            APPDATA.ISFULLSCREEN = current_window.IsFullScreenMode;
+            if (APPDATA.ISFULLSCREEN)
             {
-                view.ExitFullScreenMode();
+                current_window.ExitFullScreenMode();
             }
             else
             {
-                view.TryEnterFullScreenMode();
+                current_window.TryEnterFullScreenMode();
             }
+            APPDATA.ISFULLSCREEN = current_window.IsFullScreenMode;
         }
     }
 }

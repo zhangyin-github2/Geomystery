@@ -14,6 +14,8 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.ViewManagement;
 using Geomystery.Pages;
+using Geomystery.ViewModel;
+using Geomystery.Assets.music;
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上有介绍
 
@@ -29,6 +31,7 @@ namespace Geomystery
         public static Frame MainFrame=new Frame();
         public static MediaPlayerElement BgmP = new MediaPlayerElement();
         public static MediaPlayerElement BgaP =new MediaPlayerElement();
+        public ViewModel.ViewModel View;
 
         public MainPage()
         {
@@ -42,14 +45,20 @@ namespace Geomystery
             MainFrame = this.myFrame;
             BgmP = bgmPlayer;
             BgaP = bgaPlayer;
-            View = new ViewModel.ViewModel();   //未找到刷新解决办法
             APPDATA.LOAD();
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.FullScreen;    //启动设置全屏
+            if (!APPDATA.ISFULLSCREEN)
+                ApplicationView.GetForCurrentView().ExitFullScreenMode();
+            if (APPDATA.ISMUTE)
+                MuteButton.Content = CONST.mute;
+            else
+                MuteButton.Content = CONST.volume2;
+            debugT.Text = APPDATA.show();
+            View = new ViewModel.ViewModel();
             myFrame.Navigate(typeof(HomePage));
-            MuteButton.Content = CONST.volume2;
         }
 
-        private ViewModel.ViewModel View { set; get; } = new ViewModel.ViewModel();
+        
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
@@ -93,6 +102,24 @@ namespace Geomystery
         {
             // TODO: This is the time to save app data in case the process is terminated
             APPDATA.SAVE();
+        }
+
+        private void myFrame_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            View.Theme = !APPDATA.ISNIGHT ? ElementTheme.Light : ElementTheme.Dark;
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            BgmPlayer.getInstance();
+            BgmPlayer.MusicPlayer.Name = "MusicPlayer";
+            Music.Children.Add(BgmPlayer.MusicPlayer);
+            BgmPlayer.MusicPlayer.Visibility = Visibility.Collapsed;
+            BgmPlayer.MusicPlayer.IsLooping = true;
+            BgmPlayer.MusicPlayer.AutoPlay = true;
+            BgmPlayer.MusicPlayer.Source = new Uri("ms-appx:///Assets/bgm.mp3");
+            BgmPlayer.MusicPlayer.Play();
+            BgmPlayer.MusicPlayer.Volume = 1;
         }
     }
 }

@@ -93,6 +93,7 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\BgmPlayer.cs" />
     <Compile Include="Award\Achievement.cs" />
     <Compile Include="Award\Level.cs" />
     <Compile Include="Award\Geo_Coin.cs" />
@@ -153,6 +154,7 @@
     <None Include="Geomystery_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\bgm.mp3" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
