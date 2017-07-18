@@ -31,7 +31,7 @@ namespace Geomystery
         public static Frame MainFrame=new Frame();
         public static MediaPlayerElement BgmP = new MediaPlayerElement();
         public static MediaPlayerElement BgaP =new MediaPlayerElement();
-        public ViewModel.ViewModel View;
+        private ViewModel.ViewModel View;
 
         public MainPage()
         {
