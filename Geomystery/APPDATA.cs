@@ -14,7 +14,7 @@ namespace Geomystery
     {
         public static bool ISMUTE = false;
         public static bool ISNIGHT = false;
-        public static bool ISFULLSCREEN;
+        public static bool ISFULLSCREEN=true;
         public static void SAVE()
         {
             string DbPath = Path.Combine(ApplicationData.Current.LocalFolder.Path, "APPDATA.db");
@@ -42,17 +42,26 @@ namespace Geomystery
                 k = db.First();
                 ISMUTE = k.ISMUTE;
                 ISNIGHT = k.ISNIGHT;
+                ISFULLSCREEN = k.ISFULLSCREEN;
             }
+        }
+        public static string show()
+        {
+            var ss = "";
+            ss = ISMUTE.ToString() + " " + ISNIGHT.ToString() + " " + ISFULLSCREEN;
+            return ss;
         }
     }
     public class option_data
     {
         public  bool ISMUTE { set; get; }
         public  bool ISNIGHT { set; get; }
+        public bool ISFULLSCREEN { set; get; }
         public option_data()
         {
             ISMUTE = APPDATA.ISMUTE;
             ISNIGHT = APPDATA.ISNIGHT;
+            ISFULLSCREEN = APPDATA.ISFULLSCREEN;
         }
     }
 }

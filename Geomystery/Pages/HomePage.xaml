@@ -41,6 +41,11 @@
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="3*"/>
             </Grid.RowDefinitions>
+            <Grid.Transitions>
+                <TransitionCollection>
+                    <EntranceThemeTransition IsStaggeringEnabled="True" FromVerticalOffset="280"/>
+                </TransitionCollection>
+            </Grid.Transitions>
             <TextBlock Grid.Row="0"
                        FontFamily="Microsoft YaHei UI"
                        FontSize="96"

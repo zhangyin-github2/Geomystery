@@ -54,6 +54,7 @@
                     Height="44"
                     Width="64"
                     Click="MuteButton_Click"/>
+            <TextBlock x:Name="debugT" RelativePanel.RightOf="MuteButton"></TextBlock>
         </RelativePanel>
     </Grid>
     

@@ -46,9 +46,15 @@ namespace Geomystery
             BgaP = bgaPlayer;
             APPDATA.LOAD();
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.FullScreen;    //启动设置全屏
+            if (!APPDATA.ISFULLSCREEN)
+                ApplicationView.GetForCurrentView().ExitFullScreenMode();
+            if (APPDATA.ISMUTE)
+                MuteButton.Content = CONST.mute;
+            else
+                MuteButton.Content = CONST.volume2;
+            debugT.Text = APPDATA.show();
             View = new ViewModel.ViewModel();
             myFrame.Navigate(typeof(HomePage));
-            MuteButton.Content = CONST.volume2;
         }
 
         
