@@ -111,6 +111,7 @@
                               Click="Fullscreen_Click"
                               FontSize="36"
                               Margin="8,0,0,0"
+                              Height="60" Width="76"
                               VerticalAlignment="Center"
                               Content="✔"/>
             </StackPanel>
@@ -120,6 +121,7 @@
                               Click="NightMode_Click"
                               FontSize="36"
                               Margin="8,0,0,0"
+                              Height="60" Width="76"
                               VerticalAlignment="Center"
                               Content="✔"/>
             </StackPanel>
