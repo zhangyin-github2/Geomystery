@@ -48,13 +48,13 @@ namespace Geomystery
             APPDATA.LOAD();
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.FullScreen;    //启动设置全屏
             if (!APPDATA.ISFULLSCREEN)
-                ApplicationView.GetForCurrentView().ExitFullScreenMode();
+                ApplicationView.GetForCurrentView().ExitFullScreenMode();       //退出全屏
             if (APPDATA.ISMUTE)
                 MuteButton.Content = CONST.mute;
             else
                 MuteButton.Content = CONST.volume2;
             debugT.Text = APPDATA.show();
-            View = new ViewModel.ViewModel();
+            View = new ViewModel.ViewModel();       //是否夜间模式
             myFrame.Navigate(typeof(HomePage));
         }
 

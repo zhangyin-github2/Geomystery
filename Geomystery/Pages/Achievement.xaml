@@ -109,8 +109,7 @@
                 <GridView x:Name="musicBord"  
                       HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
                       ItemsSource="{x:Bind ach}"
-                      ItemTemplate="{StaticResource MusicDataTemplate}"                                             
-                 />
+                      ItemTemplate="{StaticResource MusicDataTemplate}"/>
             </ScrollViewer>
         </Grid>
     </Grid>
