@@ -1,7 +1,5 @@
-﻿using Geomystery.Award;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -24,17 +22,9 @@ namespace Geomystery
     /// </summary>
     public sealed partial class Achievement : Page
     {
-        private ViewModel.ViewModel View { set; get; } = new ViewModel.ViewModel();
-        public ObservableCollection<Achievements> ach;
         public Achievement()
         {
             this.InitializeComponent();
-            View = new ViewModel.ViewModel();
-            if (!APPDATA.app_data.Views.Contains(View))
-            {
-                APPDATA.app_data.Views.Add(View);
-            }
-            ach = Achievements.GetAch();
         }
     }
 }

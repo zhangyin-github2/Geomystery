@@ -25,14 +25,6 @@ namespace Geomystery
         public Game()
         {
             this.InitializeComponent();
-            View = new ViewModel.ViewModel();
-            if (!APPDATA.app_data.Views.Contains(View))
-            {
-                APPDATA.app_data.Views.Add(View);
-            }
         }
-
-        private ViewModel.ViewModel View { set; get; } = new ViewModel.ViewModel();
-
     }
 }

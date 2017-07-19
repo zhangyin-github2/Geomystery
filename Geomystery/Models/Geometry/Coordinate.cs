@@ -13,11 +13,6 @@ namespace Geomystery.Models.Geometry
     public class Coordinate
     {
         /// <summary>
-        /// 曾经创建的几何体计数，用来给新创建的几何体分配ID.
-        /// </summary>
-        public int GeometryCount { get; set; }
-
-        /// <summary>
         /// 坐标系中所有的点
         /// </summary>
         public List<Point2> pointList { get; set; }
@@ -60,10 +55,6 @@ namespace Geomystery.Models.Geometry
             pointList = new List<Point2>();
             pointSetList = new List<IPointSet>();
             polygonList = new List<Polygon>();
-
-            selectedGeometrys = new List<Geometry>();
-
-            GeometryCount = 1;
         }
 
         /// <summary>
@@ -76,9 +67,6 @@ namespace Geomystery.Models.Geometry
         /// <returns></returns>
         public int AddPoint(Point2 point)
         {
-            point.id = GeometryCount;
-            GeometryCount++;
-
             pointList.Add(point);
             for(int i = 0; i < outputCoordinates.Count;i++)
             {

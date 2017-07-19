@@ -79,10 +79,9 @@
                         Height="104">
                 <Button Name="LanLeft"
                         FontSize="36"
-                        Background="{x:Null}"
                         VerticalAlignment="Center"
                         Content="◀"/>
-                <TextBlock Name="LanguageNow"
+                <TextBlock Name="Language"
                            FontFamily="Microsoft YaHei UI"
                            FontSize="44"
                            Foreground="MediumSlateBlue"
@@ -91,7 +90,6 @@
                            Text="English"/>
                 <Button Name="LanRight"
                         FontSize="36"
-                        Background="{x:Null}"
                         VerticalAlignment="Center"
                         Content="▶"/>
             </StackPanel>
@@ -110,47 +108,39 @@
             <StackPanel Orientation="Horizontal"
                         Height="104">
                 <ToggleButton Name="Fullscreen"
-                              Click="Fullscreen_Click"
-                              FontFamily="Segoe UI Emoji"
                               FontSize="36"
-                              Background="{x:Null}"
                               Margin="8,0,0,0"
-                              Height="60" Width="76"
-                              VerticalAlignment="Center"/>
+                              VerticalAlignment="Center"
+                              Content="✔"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal"
                         Height="104">
                 <ToggleButton Name="NightMode"
+                              IsChecked="False"
                               Click="NightMode_Click"
-                              FontFamily="Segoe UI Emoji"
                               FontSize="36"
-                              Background="{x:Null}"
                               Margin="8,0,0,0"
-                              Height="60" Width="76"
-                              VerticalAlignment="Center"/>
+                              VerticalAlignment="Center"
+                              Content="✔"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal"
                         Height="104">
                 <Button Name="ResetProgress"
-                        FontFamily="Segoe UI Emoji"
                         FontSize="36"
-                        Background="{x:Null}"
                         Margin="12,0,36,0"
                         VerticalAlignment="Center"
-                        Content="&#x1F534;"/>
+                        Content="⚪"/>
                 <StackPanel Orientation="Horizontal"
                             VerticalAlignment="Center"
                             Visibility="Visible">
                     <Button Name="ResetYes"
                             FontFamily="Microsoft YaHei UI"
                             FontSize="36"
-                            Background="{x:Null}"
                             Margin="12,12,12,12"
                             Content="确定"/>
                     <Button Name="ResetNo"
                             FontFamily="Microsoft YaHei UI"
                             FontSize="36"
-                            Background="{x:Null}"
                             Margin="12,12,12,12"
                             Content="取消"/>
                 </StackPanel>
@@ -160,7 +150,7 @@
                 <Button Name="AboutUs"
                         FontFamily="Microsoft YaHei UI"
                         FontSize="48"
-                        Foreground="{ThemeResource SystemBackgroundBaseHighBrush}"
+                        Foreground="{ThemeResource fg}"
                         Background="{x:Null}"
                         VerticalAlignment="Center"
                         Content="Geomystery"

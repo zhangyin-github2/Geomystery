@@ -5,9 +5,11 @@
     xmlns:local="using:Geomystery"
     RequestedTheme="Light">
     <Application.Resources>
-        <!--colors:   FEF2DA
+        <SolidColorBrush x:Key="fg" Color="#352D3A"/>
+        <SolidColorBrush x:Key="bg" Color="#FEF2DA"/>
+    <!--colors: FEF2DA
                 F9F7F6
-                  352D3A
+                352D3A
                 233333 -->
     </Application.Resources>
 </Application>

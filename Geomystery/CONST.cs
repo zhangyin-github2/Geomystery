@@ -12,7 +12,5 @@ namespace Geomystery
         public static string volume2 = "\xE994";
         public static string volume3 = "\xE995";
         public static string mute = "\xE74F";
-        public static string yes = "\x2714";
-        public static string no = "\x2716";
     }
 }

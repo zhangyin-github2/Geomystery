@@ -14,8 +14,6 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.ViewManagement;
 using Geomystery.Pages;
-using Geomystery.ViewModel;
-
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上有介绍
 
@@ -26,18 +24,16 @@ namespace Geomystery
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        double ScreenHeight;
-        double ScreenWidth;
         public static Frame MainFrame=new Frame();
         public static MediaPlayerElement BgmP = new MediaPlayerElement();
         public static MediaPlayerElement BgaP =new MediaPlayerElement();
-        private ViewModel.ViewModel View;
+        bool isMute=false;
 
         public MainPage()
         {
             this.InitializeComponent();
-            Application.Current.Suspending += new SuspendingEventHandler(App_Suspending);
             init();
+            
         }
 
         public void init()
@@ -45,25 +41,10 @@ namespace Geomystery
             MainFrame = this.myFrame;
             BgmP = bgmPlayer;
             BgaP = bgaPlayer;
-            APPDATA.app_data = new APPDATA();
-            APPDATA.LOAD();
-            View = new ViewModel.ViewModel();
-            if(!APPDATA.app_data.Views.Contains(View))
-            {
-                APPDATA.app_data.Views.Add(View);
-            }
+            isMute = false;
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.FullScreen;    //启动设置全屏
-            if (!APPDATA.app_data.ISFULLSCREEN)
-                ApplicationView.GetForCurrentView().ExitFullScreenMode();       //退出全屏
-            if (APPDATA.app_data.ISMUTE)
-                MuteButton.Content = CONST.mute;
-            else
-                MuteButton.Content = CONST.volume2;
-            debugT.Text = APPDATA.app_data.show();
             myFrame.Navigate(typeof(HomePage));
         }
-
-        
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
@@ -75,9 +56,10 @@ namespace Geomystery
 
         private void MuteButton_Click(object sender, RoutedEventArgs e)
         {
-            APPDATA.app_data.setMute();
+            isMute = !isMute;
+            //BgmP.MediaPlayer.IsMuted = BgaP.MediaPlayer.IsMuted = isMute;
 
-            if (APPDATA.app_data.ISMUTE)
+            if (isMute)
             {
                 MuteButton.Content = CONST.mute;
             }
@@ -87,30 +69,5 @@ namespace Geomystery
             }
         }
 
-        /// <summary>
-        /// 获取窗口实际长宽
-        /// </summary>
-        /// <param name="e"></param>
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
-            ScreenHeight = Window.Current.Bounds.Height;
-            ScreenWidth = Window.Current.Bounds.Width;
-
-        }
-
-        /// <summary>
-        /// 在程序关闭时保存一些内容
-        /// </summary>
-        async void App_Suspending(Object sender, Windows.ApplicationModel.SuspendingEventArgs e)
-        {
-            // TODO: This is the time to save app data in case the process is terminated
-            APPDATA.SAVE();
-        }
-
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-            
-        }
     }
 }

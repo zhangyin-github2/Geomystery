@@ -7,8 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:canvas="using:Microsoft.Graphics.Canvas.UI.Xaml"
     xmlns:toolData="using:Geomystery.Controllers.Geometry"
-    mc:Ignorable="d" Loaded="Page_Loaded" Unloaded="Page_Unloaded"
-    RequestedTheme="{x:Bind View.Theme,Mode=OneWay}">
+    mc:Ignorable="d" Loaded="Page_Loaded" Unloaded="Page_Unloaded">
 
     <Page.Resources>
         <ResourceDictionary>
@@ -16,14 +15,10 @@
                           x:Key="listViewItemTempelate">
                 <TextBlock Text="{x:Bind toolName}"/>
             </DataTemplate>
-            <ResourceDictionary.ThemeDictionaries>
-                <ResourceDictionary x:Key="Light" Source="DarkThemeDictionary.xaml"></ResourceDictionary>
-                <ResourceDictionary x:Key="Dark" Source="LightThemeDictionary.xaml"></ResourceDictionary>
-            </ResourceDictionary.ThemeDictionaries>
         </ResourceDictionary>
     </Page.Resources>
-
-    <Grid Background="{ThemeResource SystemBackgroundAltHighBrush}">
+    
+    <Grid Background="{ThemeResource bg}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>

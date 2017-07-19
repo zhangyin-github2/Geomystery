@@ -10,91 +10,6 @@
 
     <Page.Resources>
         <ResourceDictionary>
-            <!--自定义button-->
-            <Style x:Key="ButtonStyle1"  
-                   TargetType="Button">
-                <Setter Property="Background" Value="{ThemeResource ButtonBackground}" />
-                <Setter Property="Foreground" Value="{ThemeResource ButtonForeground}" />
-                <Setter Property="BorderBrush" Value="{ThemeResource ButtonBorderBrush}" />
-                <Setter Property="BorderThickness" Value="{ThemeResource ButtonBorderThemeThickness}" />
-                <Setter Property="Padding" Value="8,4,8,4" />
-                <Setter Property="HorizontalAlignment" Value="Left" />
-                <Setter Property="VerticalAlignment" Value="Center" />
-                <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
-                <Setter Property="FontWeight" Value="Normal" />
-                <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}" />
-                <Setter Property="UseSystemFocusVisuals" Value="True" />
-                <Setter Property="FocusVisualMargin" Value="-3" />
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="Button">
-                            <Grid x:Name="RootGrid" CornerRadius="8" Background="{TemplateBinding Background}">
-                                <VisualStateManager.VisualStateGroups>
-                                    <VisualStateGroup x:Name="CommonStates">
-                                        <VisualState x:Name="Normal">
-                                            <Storyboard>
-                                                <PointerUpThemeAnimation Storyboard.TargetName="RootGrid" />
-                                            </Storyboard>
-                                        </VisualState>
-                                        <VisualState x:Name="PointerOver">
-                                            <Storyboard>
-                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="RootGrid">
-                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBackgroundPointerOver}" />
-                                                </ObjectAnimationUsingKeyFrames>
-                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="ContentPresenter">
-                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBorderBrushPointerOver}" />
-                                                </ObjectAnimationUsingKeyFrames>
-                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentPresenter">
-                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonForegroundPointerOver}" />
-                                                </ObjectAnimationUsingKeyFrames>
-                                                <PointerUpThemeAnimation Storyboard.TargetName="RootGrid" />
-                                            </Storyboard>
-                                        </VisualState>
-                                        <VisualState x:Name="Pressed">
-                                            <Storyboard>
-                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="RootGrid">
-                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBackgroundPressed}" />
-                                                </ObjectAnimationUsingKeyFrames>
-                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="ContentPresenter">
-                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBorderBrushPressed}" />
-                                                </ObjectAnimationUsingKeyFrames>
-                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentPresenter">
-                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonForegroundPressed}" />
-                                                </ObjectAnimationUsingKeyFrames>
-                                                <PointerDownThemeAnimation Storyboard.TargetName="RootGrid" />
-                                            </Storyboard>
-                                        </VisualState>
-                                        <VisualState x:Name="Disabled">
-                                            <Storyboard>
-                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="RootGrid">
-                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBackgroundDisabled}" />
-                                                </ObjectAnimationUsingKeyFrames>
-                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="ContentPresenter">
-                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBorderBrushDisabled}" />
-                                                </ObjectAnimationUsingKeyFrames>
-                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentPresenter">
-                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonForegroundDisabled}" />
-                                                </ObjectAnimationUsingKeyFrames>
-                                            </Storyboard>
-                                        </VisualState>
-                                    </VisualStateGroup>
-                                </VisualStateManager.VisualStateGroups>
-                                <ContentPresenter x:Name="ContentPresenter" CornerRadius="8" 
-                                                  AutomationProperties.AccessibilityView="Raw" 
-                                                  BorderBrush="{TemplateBinding BorderBrush}" 
-                                                  BorderThickness="{TemplateBinding BorderThickness}" 
-                                                  ContentTemplate="{TemplateBinding ContentTemplate}" 
-                                                  ContentTransitions="{TemplateBinding ContentTransitions}" 
-                                                  Content="{TemplateBinding Content}" 
-                                                  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                                                  Padding="{TemplateBinding Padding}" 
-                                                  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
-                            </Grid>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-            
             <ResourceDictionary.ThemeDictionaries>
                 <ResourceDictionary x:Key="Light" Source="DarkThemeDictionary.xaml"></ResourceDictionary>
                 <ResourceDictionary x:Key="Dark" Source="LightThemeDictionary.xaml"></ResourceDictionary>
@@ -102,39 +17,7 @@
         </ResourceDictionary>
     </Page.Resources>
 
-    
-    <Grid Background="{ThemeResource SystemBackgroundAltHighBrush}">
-        <!--三种UI尺寸-->
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup >
-                <VisualState x:Name="microView" >
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="0"
-                                         MinWindowHeight="0"/>
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="miniView">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="960"
-                                         MinWindowHeight="600"/>
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="fullView">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="1280"
-                                         MinWindowHeight="800"/>
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                    </VisualState.Setters>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
-        
-        
+    <Grid Background="{ThemeResource bg}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="6*"/>
@@ -158,11 +41,6 @@
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="3*"/>
             </Grid.RowDefinitions>
-            <Grid.Transitions>
-                <TransitionCollection>
-                    <EntranceThemeTransition IsStaggeringEnabled="True" FromVerticalOffset="280"/>
-                </TransitionCollection>
-            </Grid.Transitions>
             <TextBlock Grid.Row="0"
                        FontFamily="Microsoft YaHei UI"
                        FontSize="96"
@@ -180,7 +58,7 @@
                         Width="400"
                         FontFamily="Microsoft YaHei UI"
                         FontSize="36"
-                        Foreground="{ThemeResource SystemBackgroundBaseHighBrush}"
+                        Foreground="{ThemeResource fg}"
                         Margin="0,24,0,24"
                         Background="Tomato"
                         Content="Game"
@@ -189,7 +67,7 @@
                         Width="400"
                         FontFamily="Microsoft YaHei UI"
                         FontSize="36"
-                        Foreground="{ThemeResource SystemBackgroundBaseHighBrush}"
+                        Foreground="{ThemeResource fg}"
                         Margin="0,24,0,24"
                         Background="Tomato"
                         Content="Freestyle"
@@ -198,25 +76,21 @@
                         Width="400"
                         FontFamily="Microsoft YaHei UI"
                         FontSize="36"
-                        Foreground="{ThemeResource SystemBackgroundBaseHighBrush}"
+                        Foreground="{ThemeResource fg}"
                         Margin="0,24,0,24"
                         Background="Tomato"
                         Content="Option"
                         Click="Option_Click"/>
-                <Button Style="{StaticResource ButtonStyle1}"
-                        Width="400"
-                        Height="60"
-                        Content="233"/>
             </StackPanel>
         </Grid>
         <Button Grid.Column="2"
                 Grid.ColumnSpan="2"
                 Name="Achievement"
-                Height="44"
+                Height="40"
                 Width="Auto"
                 FontFamily="Microsoft YaHei UI"
-                FontSize="22"
-                Foreground="{ThemeResource SystemBackgroundBaseHighBrush}"
+                FontSize="12"
+                Foreground="{ThemeResource fg}"
                 FontWeight="Bold"
                 Background="{x:Null}"
                 HorizontalAlignment="Right"
