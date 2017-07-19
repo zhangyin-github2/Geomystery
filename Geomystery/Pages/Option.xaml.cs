@@ -29,36 +29,28 @@ namespace Geomystery
         {
             this.InitializeComponent();
             View = new ViewModel.ViewModel();
-            NightMode.IsChecked = APPDATA.ISNIGHT;
-            Fullscreen.IsChecked = APPDATA.ISFULLSCREEN;
-            Fullscreen.Content = APPDATA.ISFULLSCREEN ? "\x2714" : "\x2716";
-            NightMode.Content = APPDATA.ISNIGHT ? "\x2714" : "\x2716";
+            if (!APPDATA.app_data.Views.Contains(View))
+            {
+                APPDATA.app_data.Views.Add(View);
+            }
+            NightMode.IsChecked = APPDATA.app_data.ISNIGHT;
+            Fullscreen.IsChecked = APPDATA.app_data.ISFULLSCREEN;
+            Fullscreen.Content = APPDATA.app_data.ISFULLSCREEN ? CONST.yes : CONST.no;
+            NightMode.Content = APPDATA.app_data.ISNIGHT ? CONST.yes : CONST.no;
         }
 
         private ViewModel.ViewModel View { set; get; } = new ViewModel.ViewModel();
 
         private void NightMode_Click(object sender, RoutedEventArgs e)
         {
-            APPDATA.ISNIGHT = !APPDATA.ISNIGHT;
-            View.Theme = !APPDATA.ISNIGHT ? ElementTheme.Light : ElementTheme.Dark;
-            NightMode.Content = APPDATA.ISNIGHT ? "\x2714" : "\x2716";
+            APPDATA.app_data.setNight();
+            NightMode.Content = APPDATA.app_data.ISNIGHT ? CONST.yes : CONST.no;
         }
 
         private void Fullscreen_Click(object sender, RoutedEventArgs e)
         {
-            ApplicationView current_window = ApplicationView.GetForCurrentView();
-            //bool isInFullScreenMode = current_window.IsFullScreenMode;
-            APPDATA.ISFULLSCREEN = current_window.IsFullScreenMode;
-            if (APPDATA.ISFULLSCREEN)
-            {
-                current_window.ExitFullScreenMode();
-            }
-            else
-            {
-                current_window.TryEnterFullScreenMode();
-            }
-            APPDATA.ISFULLSCREEN = current_window.IsFullScreenMode;
-            Fullscreen.Content = APPDATA.ISFULLSCREEN ? "\x2714" : "\x2716";
+            APPDATA.app_data.setFullScreen();
+            Fullscreen.Content = APPDATA.app_data.ISFULLSCREEN ? CONST.yes : CONST.no;
         }
 
         private void AboutUs_Click(object sender, RoutedEventArgs e)

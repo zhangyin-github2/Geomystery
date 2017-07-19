@@ -45,16 +45,21 @@ namespace Geomystery
             MainFrame = this.myFrame;
             BgmP = bgmPlayer;
             BgaP = bgaPlayer;
+            APPDATA.app_data = new APPDATA();
             APPDATA.LOAD();
+            View = new ViewModel.ViewModel();
+            if(!APPDATA.app_data.Views.Contains(View))
+            {
+                APPDATA.app_data.Views.Add(View);
+            }
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.FullScreen;    //启动设置全屏
-            if (!APPDATA.ISFULLSCREEN)
+            if (!APPDATA.app_data.ISFULLSCREEN)
                 ApplicationView.GetForCurrentView().ExitFullScreenMode();       //退出全屏
-            if (APPDATA.ISMUTE)
+            if (APPDATA.app_data.ISMUTE)
                 MuteButton.Content = CONST.mute;
             else
                 MuteButton.Content = CONST.volume2;
-            debugT.Text = APPDATA.show();
-            View = new ViewModel.ViewModel();       //是否夜间模式
+            debugT.Text = APPDATA.app_data.show();
             myFrame.Navigate(typeof(HomePage));
         }
 
@@ -70,10 +75,9 @@ namespace Geomystery
 
         private void MuteButton_Click(object sender, RoutedEventArgs e)
         {
-            APPDATA.ISMUTE = !APPDATA.ISMUTE;
-            //BgmP.MediaPlayer.IsMuted = BgaP.MediaPlayer.IsMuted = isMute;
+            APPDATA.app_data.setMute();
 
-            if (APPDATA.ISMUTE)
+            if (APPDATA.app_data.ISMUTE)
             {
                 MuteButton.Content = CONST.mute;
             }

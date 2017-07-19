@@ -45,6 +45,10 @@ namespace Geomystery
         {
             this.InitializeComponent();
             View = new ViewModel.ViewModel();
+            if (!APPDATA.app_data.Views.Contains(View))
+            {
+                APPDATA.app_data.Views.Add(View);
+            }
             userTools = UserToolsManager.GetInstance().GetTools();
             controller = new Controllers.Geometry.Controllers(1);
         }
