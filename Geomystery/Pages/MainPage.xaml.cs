@@ -104,16 +104,6 @@ namespace Geomystery
             APPDATA.SAVE();
         }
 
-        private void myFrame_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            View.Theme = !APPDATA.ISNIGHT ? ElementTheme.Light : ElementTheme.Dark;
-            debugT.Text = "Tap!    " + APPDATA.ISNIGHT.ToString();
-        }
-        private void myFrame_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
-        {
-            View.Theme = !APPDATA.ISNIGHT ? ElementTheme.Light : ElementTheme.Dark;
-            debugT.Text = "DoubleTap!    " + APPDATA.ISNIGHT.ToString();
-        }
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             

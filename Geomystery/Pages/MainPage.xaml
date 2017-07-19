@@ -25,7 +25,7 @@
         </Grid.RowDefinitions>
         <Frame x:Name="myFrame"
                Grid.Row="0"
-               Grid.RowSpan="2" Tapped="myFrame_Tapped" DoubleTapped="myFrame_DoubleTapped"/>
+               Grid.RowSpan="2"/>
         <MediaPlayerElement Name="bgmPlayer"
                             Height="0"
                             Width="0"/>
