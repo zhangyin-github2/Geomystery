@@ -5,11 +5,22 @@
     xmlns:local="using:Geomystery"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    RequestedTheme="{x:Bind View.Theme,Mode=OneWay}"
+    Loaded="Page_Loaded">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Light" Source="DarkThemeDictionary.xaml"></ResourceDictionary>
+                <ResourceDictionary x:Key="Dark" Source="LightThemeDictionary.xaml"></ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
 
     <Grid x:Name="Back" Background="{x:Null}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="40" />
+            <RowDefinition Height="44" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Frame x:Name="myFrame"
@@ -27,25 +38,28 @@
                        VerticalAlignment="Center">
             <Button Name="BackButton"
                     RelativePanel.AlignLeftWithPanel="True"
-                    Foreground="{ThemeResource fg}"
+                    Foreground="{ThemeResource SystemBackgroundBaseHighBrush}"
                     Background="{x:Null}"
                     FontFamily="Segoe MDl2 Assets"
-                    FontSize="24"
-                    Height="40"
+                    FontSize="28"
+                    Height="44"
                     Width="64"
                     Content="&#xE0C4;" 
                     Click="BackButton_Click" />
             <Button Name="MuteButton"
                     RelativePanel.RightOf="BackButton"
-                    Foreground="{ThemeResource fg}"
+                    Foreground="{ThemeResource SystemBackgroundBaseHighBrush}"
                     Background="{x:Null}"
                     FontFamily="Segoe MDl2 Assets"
-                    FontSize="24"
-                    Height="40"
+                    FontSize="28"
+                    Height="44"
                     Width="64"
-                    Content="&#xE74F;"
                     Click="MuteButton_Click"/>
+            <TextBlock x:Name="debugT" RelativePanel.RightOf="MuteButton"></TextBlock>
         </RelativePanel>
+
+        <Grid x:Name="Music">
+        </Grid>
     </Grid>
     
     <VisualStateManager.VisualStateGroups>

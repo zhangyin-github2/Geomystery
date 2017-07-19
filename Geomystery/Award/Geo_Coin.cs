@@ -10,7 +10,7 @@ namespace Geomystery.Award
     /// <summary>
     /// 几何币
     /// </summary>
-    class Geo_Coin
+     class Geo_Coin
     {
         public static Geo_Coin Geo = new Geo_Coin();
         /// <summary>
