@@ -29,13 +29,13 @@ namespace Geomystery.Award
             if (Passed == false)
             {
                 Passed = true;
-                Geo_Coin.GetGeo_Coins(1);
+                Geo_Coin.Geo.GetGeo_Coins(1);
             }
             if (NewStars > stars)
             {
                 for (int i = 0; i < (NewStars - stars); i++)
                 {
-                    Geo_Coin.GetGeo_Coins(2);
+                    Geo_Coin.Geo.GetGeo_Coins(2);
                 }
                 stars = NewStars;
             }     
