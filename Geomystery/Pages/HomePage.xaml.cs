@@ -46,11 +46,13 @@ namespace Geomystery.Pages
 
         private void Freestyle_Click(object sender, RoutedEventArgs e)
         {
+            BGMPlayer.MusicPlayer.Play();
             Frame.Navigate(typeof(Freestyle));
         }
 
         private void Option_Click(object sender, RoutedEventArgs e)
         {
+            BGMPlayer.MusicPlayer.Play();
             Frame.Navigate(typeof(Option));
         }
 

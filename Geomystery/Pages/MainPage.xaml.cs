@@ -41,9 +41,9 @@ namespace Geomystery
             BGMPlayer.MusicPlayer.Name = "MusicPlayer";
             Music.Children.Add(BGMPlayer.MusicPlayer);
             BGMPlayer.MusicPlayer.Visibility = Visibility.Collapsed;
-            BGMPlayer.MusicPlayer.IsLooping = true;
+            BGMPlayer.MusicPlayer.IsLooping = false;
             BGMPlayer.MusicPlayer.AutoPlay = true;
-            BGMPlayer.MusicPlayer.Source = new Uri("ms-appx://Assets/buttonmusic.mp3");
+            BGMPlayer.MusicPlayer.Source = new Uri("ms-appx:///Assets/buttonmusic.mp3");
             BGMPlayer.MusicPlayer.Volume = 100;
             Application.Current.Suspending += new SuspendingEventHandler(App_Suspending);
             init();
