@@ -155,6 +155,7 @@
     <None Include="Geomystery_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\buttonmusic.mp3" />
     <Content Include="Pictures\AchievementBord.png" />
     <Content Include="Pictures\coin.png" />
     <Content Include="Properties\Default.rd.xml" />
