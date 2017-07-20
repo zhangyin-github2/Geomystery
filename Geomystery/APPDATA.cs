@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 
 namespace Geomystery
 {
@@ -17,6 +18,8 @@ namespace Geomystery
         public bool ISMUTE { get; set; }
         public bool ISNIGHT { get; set; }
         public bool ISFULLSCREEN { get; set; }
+        public int GAMEMODE { get; set; }
+        public int HAVEDONE { get; set; }
         public List<ViewModel.ViewModel> Views;
         public static APPDATA app_data;
 
@@ -26,6 +29,8 @@ namespace Geomystery
             ISMUTE = false;
             ISNIGHT = false;
             ISFULLSCREEN=true;
+            HAVEDONE = 0;
+            GAMEMODE = -1;
         }
         public static void SAVE()
         {
@@ -54,6 +59,7 @@ namespace Geomystery
                 app_data.ISFULLSCREEN = k.ISFULLSCREEN;
                 app_data.ISMUTE = k.ISMUTE;
                 app_data.ISNIGHT = k.ISNIGHT;
+                app_data.HAVEDONE = k.HAVEDONE;
             }
         }
         public void setFullScreen()
@@ -87,6 +93,26 @@ namespace Geomystery
                 View.Theme = !app_data.ISNIGHT ? ElementTheme.Light : ElementTheme.Dark;
             }
         }
+        async public Task<int> Reset()
+        {
+            var dialog = new ContentDialog()
+            {
+                Title = "警告",
+                Content = "请确认您是否要重置游戏的所有进程？",
+                PrimaryButtonText = "确定",
+                SecondaryButtonText = "取消",
+                FullSizeDesired = false,
+            };
+            dialog.PrimaryButtonClick += (_s, _e) => { };
+            var res = await dialog.ShowAsync();
+            if (res.ToString() != "Primary") return 0;
+            var k =  new List<ViewModel.ViewModel>(app_data.Views);
+            APPDATA.app_data = new APPDATA();
+            ApplicationView.GetForCurrentView().TryEnterFullScreenMode();
+            APPDATA.app_data.Views = k;
+            update_views();
+            return 0;
+        }
         public string show()
         {
             var ss = "";
@@ -99,11 +125,13 @@ namespace Geomystery
         public bool ISMUTE { get; set; }
         public bool ISNIGHT { get; set; }
         public bool ISFULLSCREEN { get; set; }
+        public int HAVEDONE { get; set; }
         public option_data()
         {
             ISMUTE = APPDATA.app_data.ISMUTE;
             ISNIGHT = APPDATA.app_data.ISNIGHT;
             ISFULLSCREEN = APPDATA.app_data.ISFULLSCREEN;
+            HAVEDONE = APPDATA.app_data.HAVEDONE;
         }
     }
 }
