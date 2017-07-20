@@ -24,10 +24,15 @@ namespace Geomystery
     /// </summary>
     public sealed partial class Option : Page
     {
-
+        private ViewModel.ViewModel View { set; get; } = new ViewModel.ViewModel();
         public Option()
         {
             this.InitializeComponent();
+            init();
+        }
+
+        void init()
+        {
             View = new ViewModel.ViewModel();
             if (!APPDATA.app_data.Views.Contains(View))
             {
@@ -38,8 +43,6 @@ namespace Geomystery
             Fullscreen.Content = APPDATA.app_data.ISFULLSCREEN ? CONST.yes : CONST.no;
             NightMode.Content = APPDATA.app_data.ISNIGHT ? CONST.yes : CONST.no;
         }
-
-        private ViewModel.ViewModel View { set; get; } = new ViewModel.ViewModel();
 
         private void NightMode_Click(object sender, RoutedEventArgs e)
         {
@@ -56,6 +59,12 @@ namespace Geomystery
         private void AboutUs_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(About));
+        }
+
+        private async void ResetProgress_Click(object sender, RoutedEventArgs e)
+        {
+            await APPDATA.app_data.Reset();
+            init();
         }
     }
 }
