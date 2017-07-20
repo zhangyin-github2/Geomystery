@@ -83,7 +83,7 @@ namespace Geomystery
                 args.DrawingSession.DrawCircle(plist[i], 5, Color.FromArgb(255, 0, 0, 0));
             }
             */
-            var geoList = controller.outputCoordinates[0].GeometryList;
+            var geoList = controller.outputCoordinates[0].geometryList;
             if(geoList != null)
             {
                 for (int i = 0; i < geoList.Count; i++)

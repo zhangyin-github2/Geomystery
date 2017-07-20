@@ -84,7 +84,7 @@ namespace Geomystery.Controllers.Geometry
         public List<Models.Geometry.Geometry> GetSurroundings(Vector2 point)
         {
             List<Models.Geometry.Geometry> result = null;
-            List<OutputGeometry> outGeometry = outputCoordinates[0].GeometryList;
+            List<OutputGeometry> outGeometry = outputCoordinates[0].geometryList;
             result = new List<Models.Geometry.Geometry>();
             float minLength = -1;
             float currentLength = 0;

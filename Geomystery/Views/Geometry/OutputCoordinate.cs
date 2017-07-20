@@ -41,7 +41,12 @@ namespace Geomystery.Views.Geometry
         /// <summary>
         /// 被显示的几何实体列表
         /// </summary>
-        public List<OutputGeometry> GeometryList { get; set; }
+        public List<OutputGeometry> geometryList { get; set; }
+
+        /// <summary>
+        /// 被显示的文本列表，这个文本可能是孤立文本，也可能是一个几何体的名字（需要附着在这个几何体的周围）
+        /// </summary>
+        public List<OutputText> textList { get; set; }
 
         /// <summary>
         /// （视图，显示，展示）坐标系构造函数
@@ -50,7 +55,7 @@ namespace Geomystery.Views.Geometry
         public OutputCoordinate(Coordinate coordinate)
         {
             this.coordinate = coordinate;
-            GeometryList = new List<OutputGeometry>();
+            geometryList = new List<OutputGeometry>();
             unitLength = 100;
         }
 
@@ -117,7 +122,7 @@ namespace Geomystery.Views.Geometry
 
         public void AddPoint(Point2 point)
         {
-            GeometryList.Add(new OutputPoint()
+            geometryList.Add(new OutputPoint()
             {
                 borderType = ViewType.Solid,
                 fillColor = Color.FromArgb(0, 0, 0, 0),

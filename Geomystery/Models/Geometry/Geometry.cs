@@ -24,8 +24,12 @@ namespace Geomystery.Models.Geometry
         /// <summary>
         /// 平面几何体可以有一个名字，对于一个人来说，身份证号是唯一的，但是重名的人有很多
         /// </summary>
-        public int MyProperty { get; set; }
+        public string name { get; set; }
 
+        /// <summary>
+        /// 可能被显示的提示文本，这个文本可能是几何体的名字，且这个文本一定与此几何体相关联
+        /// </summary>
+        public Views.Geometry.OutputText outputText { get; set; }
 
         /// <summary>
         /// 这个元素是否被选中
