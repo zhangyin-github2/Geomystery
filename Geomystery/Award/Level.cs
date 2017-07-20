@@ -13,6 +13,10 @@ namespace Geomystery.Award
     class Level
     {
         /// <summary>
+        /// 关卡编号
+        /// </summary>
+        public int Level_ID;
+        /// <summary>
         /// 是否已通过
         /// </summary>
        private bool Passed;
@@ -20,6 +24,8 @@ namespace Geomystery.Award
         /// 获得星星数
         /// </summary>
         private Stars stars;
+         void LevelStart()
+        { }
         /// <summary>
         /// 关卡通过后，修改关卡状态，修改星星数
         /// </summary>
