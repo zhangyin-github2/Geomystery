@@ -23,7 +23,7 @@ namespace Geomystery.Views.Geometry
     /// <summary>
     /// （显示）几何实体（抽象、父）类
     /// </summary>
-    public abstract class OutputGeometry
+    public abstract class OutputGeometry : ICanOutput
     {
         /// <summary>
         /// 可见性

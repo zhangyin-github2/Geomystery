@@ -22,6 +22,12 @@ namespace Geomystery.Models.Geometry
         public int id { get; set; }
 
         /// <summary>
+        /// 平面几何体可以有一个名字，对于一个人来说，身份证号是唯一的，但是重名的人有很多
+        /// </summary>
+        public int MyProperty { get; set; }
+
+
+        /// <summary>
         /// 这个元素是否被选中
         /// </summary>
         public bool isSelected { get; set; }

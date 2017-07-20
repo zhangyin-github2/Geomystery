@@ -142,11 +142,13 @@
     </Compile>
     <Compile Include="ViewModel\NotifyProperty.cs" />
     <Compile Include="ViewModel\ViewModel.cs" />
+    <Compile Include="Views\Geometry\ICanOutput.cs" />
     <Compile Include="Views\Geometry\OutputCircle.cs" />
     <Compile Include="Views\Geometry\OutputCoordinate.cs" />
     <Compile Include="Views\Geometry\OutputGeometry.cs" />
     <Compile Include="Views\Geometry\OutputLine.cs" />
     <Compile Include="Views\Geometry\OutputPoint.cs" />
+    <Compile Include="Views\Geometry\OutputText.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
