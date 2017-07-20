@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Geomystery.Models.Geometry
 {
-    //“几何实体”，是点线圆的抽象基类
+    /// <summary>
+    /// “几何实体”，是点线圆的抽象基类
+    /// </summary>
     public abstract class Geometry
     {
         /// <summary>
