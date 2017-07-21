@@ -77,13 +77,16 @@ namespace Geomystery.Models.Geometry
         public int AddPoint(Point2 point)
         {
             point.id = GeometryCount;
+            point.coord = this;                     //点在坐标系中
             GeometryCount++;
 
-            pointList.Add(point);
+            pointList.Add(point);                   //坐标系中有一个点
             for(int i = 0; i < outputCoordinates.Count;i++)
             {
                 outputCoordinates[i].AddPoint(point);
             }
+            this.ClearSelectedGeometry();
+            this.ToSelectGeometry(point);
             return 0;
         }
 
@@ -124,5 +127,129 @@ namespace Geomystery.Models.Geometry
             return 0;
         }
 
+        /// <summary>
+        /// 取消所有选中
+        /// </summary>
+        public void ClearSelectedGeometry()
+        {
+            foreach (Models.Geometry.Geometry selectedGeometry in this.selectedGeometrys)
+            {
+                    selectedGeometry.isSelected = false;
+            }
+            this.selectedGeometrys.Clear();
+        }
+
+        /// <summary>
+        /// 该几何元素未被选中，选中它并取消选中其他的，或者仅有该元素被选中时取消选中此几何元素
+        /// </summary>
+        /// <param name="geometry">坐标系中的几何元素的引用</param>
+        public void ToSelectGeometry(Geometry geometry)
+        {
+            if(geometry.coord == this)              //坐标系中的元素
+            {
+                if (!geometry.isSelected)           //元素未被选中
+                {
+                    ClearSelectedGeometry();                //取消选中其他任何元素
+                    this.selectedGeometrys.Add(geometry);
+                    geometry.isSelected = true;             //选中当前元素
+                }
+                else
+                {
+                    if(this.selectedGeometrys.Count == 1)       //只有当全元素被选中
+                    {
+                        ClearSelectedGeometry();                //取消选中其他任何元素
+                    }
+                    else if(this.selectedGeometrys.Count > 1)
+                    {
+                        ClearSelectedGeometry();                //取消选中其他任何元素
+                        this.selectedGeometrys.Add(geometry);
+                        geometry.isSelected = true;             //只选中当前元素
+                    }
+                }
+            }
+            
+        }
+
+        /// <summary>
+        /// （通过坐标系中元素的id号来选择和取消选择）该几何元素未被选中，选中它并取消选中其他的，或者仅有该元素被选中时取消选中此几何元素
+        /// </summary>
+        /// <param name="id"></param>
+        public void ToSelectGeometry(int id)
+        {
+            foreach (Models.Geometry.Geometry selectedPoint in this.pointList)
+            {
+                if(selectedPoint.id == id)
+                {
+                    ToSelectGeometry(selectedPoint);
+                    return;
+                }
+            }
+            foreach (Models.Geometry.Geometry selectedPointSet in this.pointSetList)
+            {
+                if (selectedPointSet.id == id)
+                {
+                    ToSelectGeometry(selectedPointSet);
+                    return;
+                }
+            }
+            foreach (Models.Geometry.Geometry selectedPolygon in this.polygonList)
+            {
+                if (selectedPolygon.id == id)
+                {
+                    ToSelectGeometry(selectedPolygon);
+                    return;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 增加选择某个元素，或者取消选择某个几何元素，保持其他元素的选择状态
+        /// </summary>
+        /// <param name="geometry">几何元素引用</param>
+        public void ToMultiSelectGeometry(Geometry geometry)
+        {
+            if(!geometry.isSelected)
+            {
+                geometry.isSelected = true;
+                this.selectedGeometrys.Add(geometry);
+            }
+            else
+            {
+                geometry.isSelected = false;
+                this.selectedGeometrys.Remove(geometry);
+            }
+        }
+
+        /// <summary>
+        /// （按照ID）增加选择某个元素，或者取消选择某个几何元素，保持其他元素的选择状态
+        /// </summary>
+        /// <param name="id">元素的id</param>
+        public void ToMultiSelectGeometry(int id)
+        {
+            foreach (Models.Geometry.Geometry selectedPoint in this.pointList)
+            {
+                if (selectedPoint.id == id)
+                {
+                    ToMultiSelectGeometry(selectedPoint);
+                    return;
+                }
+            }
+            foreach (Models.Geometry.Geometry selectedPointSet in this.pointSetList)
+            {
+                if (selectedPointSet.id == id)
+                {
+                    ToMultiSelectGeometry(selectedPointSet);
+                    return;
+                }
+            }
+            foreach (Models.Geometry.Geometry selectedPolygon in this.polygonList)
+            {
+                if (selectedPolygon.id == id)
+                {
+                    ToMultiSelectGeometry(selectedPolygon);
+                    return;
+                }
+            }
+        }
     }
 }

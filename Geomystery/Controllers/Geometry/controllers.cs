@@ -172,7 +172,8 @@ namespace Geomystery.Controllers.Geometry
             {
                 if (surroundinsGeometryList != null && surroundinsGeometryList.Count == 1)
                 {
-
+                    coordinate.ToSelectGeometry(surroundinsGeometryList[0]);
+                    /*
                     int currentPointId = surroundinsGeometryList[0].id;
                     surroundinsGeometryList[0].isSelected = !surroundinsGeometryList[0].isSelected;
 
@@ -190,36 +191,19 @@ namespace Geomystery.Controllers.Geometry
                     {
                         coordinate.selectedGeometrys.Add(surroundinsGeometryList[0]);
                     }
+                    */
                 }
             }
             else if (userTool.toolName == "点工具")
             {
                 if(surroundinsGeometryList == null || surroundinsGeometryList.Count == 0)
                 {
-                    coordinate.AddPoint(outputCoordinates[0].ToPoint2(vector2));
+                    Point2 newPoint = outputCoordinates[0].ToPoint2(vector2);
+                    coordinate.AddPoint(newPoint);
                 }
                 else
                 {
-                    if(surroundinsGeometryList[0] is Point2)
-                    {
-                        int currentPointId = surroundinsGeometryList[0].id;
-                        surroundinsGeometryList[0].isSelected = !surroundinsGeometryList[0].isSelected;
-
-                        foreach (Models.Geometry.Geometry selectedGeometry in coordinate.selectedGeometrys)
-                        {
-                            if (selectedGeometry.id != currentPointId)
-                            {
-                                selectedGeometry.isSelected = false;
-                                //coordinate.selectedGeometrys.Remove(selectedGeometry);
-                            }
-                        }
-
-                        coordinate.selectedGeometrys.Clear();
-                        if (surroundinsGeometryList[0].isSelected)
-                        {
-                            coordinate.selectedGeometrys.Add(surroundinsGeometryList[0]);
-                        }
-                    }
+                    coordinate.ToSelectGeometry(surroundinsGeometryList[0]);
                 }
             }
             else if(userTool.toolName == "直线工具")
