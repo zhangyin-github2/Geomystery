@@ -4,6 +4,7 @@
     xmlns:local="using:Geomystery.Pages">
     <SolidColorBrush x:Key="SystemBackgroundAltHighBrush" Color="#FFFEF2DA"/>
     <SolidColorBrush x:Key="SystemBackgroundBaseHighBrush" Color="#FF352D3A"/>
+    <SolidColorBrush x:Key="TextColorPurple" Color="#ff3b0056"/>
     <Color x:Key="SystemTranslucentBaseHighColor">#FF000000</Color>
     <Color x:Key="SystemThemeMainColor">#FF0074CE</Color>
 

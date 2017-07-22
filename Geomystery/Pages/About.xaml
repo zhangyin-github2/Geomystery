@@ -23,7 +23,7 @@
                     VerticalAlignment="Center">
             <TextBlock FontFamily="Microsoft YaHei UI"
                        FontSize="120"
-                       Foreground="MediumPurple"
+                       Foreground="{ThemeResource TextColorPurple}"
                        Margin="24,24,24,24"
                        HorizontalAlignment="Center"
                        Text="Geomystery"/>
