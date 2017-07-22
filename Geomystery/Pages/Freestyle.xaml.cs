@@ -106,6 +106,11 @@ namespace Geomystery
                         var realLine = geoList[i] as OutputLine;
                         args.DrawingSession.DrawLine(realLine.p1, realLine.p2, realLine.lineColor);
                     }
+                    else if (geoList[i] is OutputLine)
+                    {
+                        var realCircle = geoList[i] as OutputCircle;
+                        args.DrawingSession.DrawCircle(realCircle.center, realCircle.radius, realCircle.lineColor);
+                    }
                 }
             }
         }
