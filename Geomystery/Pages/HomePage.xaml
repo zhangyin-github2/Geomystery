@@ -104,7 +104,7 @@
 
     
     <Grid Background="{ThemeResource SystemBackgroundAltHighBrush}">
-        <!--三种UI尺寸-->
+        <!--四种UI尺寸-->
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup >
                 <VisualState x:Name="microView" >
@@ -113,28 +113,128 @@
                                          MinWindowHeight="0"/>
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
+                        <!--最小大小 0.338倍-->
+                        <Setter Target="GeoTitle.FontSize" Value="40"/>
+                        <Setter Target="GeoTitle.Margin" Value="0,0,0,32"/>
+                        <Setter Target="Ellipse1.Height" Value="169"/>
+                        <Setter Target="Ellipse1.Width" Value="169"/>
+                        <Setter Target="Ellipse1.StrokeThickness" Value="3.5"/>
+                        <Setter Target="Polygon1.Height" Value="152"/>
+                        <Setter Target="Polygon1.Width" Value="152"/>
+                        <Setter Target="Polygon1.StrokeThickness" Value="3.5"/>
+                        <Setter Target="MainMenu.Margin" Value="0,20,0,0"/>
+                        <Setter Target="Game.Height" Value="28"/>
+                        <Setter Target="Game.Width" Value="138"/>
+                        <Setter Target="Game.FontSize" Value="12"/>
+                        <Setter Target="Blank1.Height" Value="16"/>
+                        <Setter Target="Freestyle.Height" Value="28"/>
+                        <Setter Target="Freestyle.Width" Value="138"/>
+                        <Setter Target="Freestyle.FontSize" Value="12"/>
+                        <Setter Target="Blank2.Height" Value="16"/>
+                        <Setter Target="Option.Height" Value="28"/>
+                        <Setter Target="Option.Width" Value="138"/>
+                        <Setter Target="Option.FontSize" Value="12"/>
+                        <Setter Target="Achievement.Height" Value="20"/>
+                        <Setter Target="Achievement.FontSize" Value="4"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="miniView">
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="960"
-                                         MinWindowHeight="600"/>
+                        <AdaptiveTrigger MinWindowWidth="800"
+                                         MinWindowHeight="500"/>
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
+                        <!--中等大小 0.55倍-->
+                        <Setter Target="GeoTitle.FontSize" Value="66"/>
+                        <Setter Target="GeoTitle.Margin" Value="0,0,0,52"/>
+                        <Setter Target="Ellipse1.Height" Value="275"/>
+                        <Setter Target="Ellipse1.Width" Value="275"/>
+                        <Setter Target="Ellipse1.StrokeThickness" Value="5.5"/>
+                        <Setter Target="Polygon1.Height" Value="248"/>
+                        <Setter Target="Polygon1.Width" Value="248"/>
+                        <Setter Target="Polygon1.StrokeThickness" Value="5.5"/>
+                        <Setter Target="MainMenu.Margin" Value="0,36,0,0"/>
+                        <Setter Target="Game.Height" Value="44"/>
+                        <Setter Target="Game.Width" Value="220"/>
+                        <Setter Target="Game.FontSize" Value="24"/>
+                        <Setter Target="Blank1.Height" Value="28"/>
+                        <Setter Target="Freestyle.Height" Value="44"/>
+                        <Setter Target="Freestyle.Width" Value="220"/>
+                        <Setter Target="Freestyle.FontSize" Value="24"/>
+                        <Setter Target="Blank2.Height" Value="28"/>
+                        <Setter Target="Option.Height" Value="44"/>
+                        <Setter Target="Option.Width" Value="220"/>
+                        <Setter Target="Option.FontSize" Value="24"/>
+                        <Setter Target="Achievement.Height" Value="24"/>
+                        <Setter Target="Achievement.FontSize" Value="10"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="normalView">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1168"
+                                         MinWindowHeight="657"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <!--标准大小 0.8倍-->
+                        <Setter Target="GeoTitle.FontSize" Value="96"/>
+                        <Setter Target="GeoTitle.Margin" Value="0,0,0,76"/>
+                        <Setter Target="Ellipse1.Height" Value="400"/>
+                        <Setter Target="Ellipse1.Width" Value="400"/>
+                        <Setter Target="Ellipse1.StrokeThickness" Value="8"/>
+                        <Setter Target="Polygon1.Height" Value="360"/>
+                        <Setter Target="Polygon1.Width" Value="360"/>
+                        <Setter Target="Polygon1.StrokeThickness" Value="8"/>
+                        <Setter Target="MainMenu.Margin" Value="0,52,0,0"/>
+                        <Setter Target="Game.Height" Value="64"/>
+                        <Setter Target="Game.Width" Value="320"/>
+                        <Setter Target="Game.FontSize" Value="36"/>
+                        <Setter Target="Blank1.Height" Value="40"/>
+                        <Setter Target="Freestyle.Height" Value="64"/>
+                        <Setter Target="Freestyle.Width" Value="320"/>
+                        <Setter Target="Freestyle.FontSize" Value="36"/>
+                        <Setter Target="Blank2.Height" Value="40"/>
+                        <Setter Target="Option.Height" Value="64"/>
+                        <Setter Target="Option.Width" Value="320"/>
+                        <Setter Target="Option.FontSize" Value="36"/>
+                        <Setter Target="Achievement.Height" Value="36"/>
+                        <Setter Target="Achievement.FontSize" Value="16"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="fullView">
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="1280"
-                                         MinWindowHeight="800"/>
+                        <AdaptiveTrigger MinWindowWidth="1920"
+                                         MinWindowHeight="1080"/>
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
+                        <!--1080P 1倍-->
+                        <Setter Target="GeoTitle.FontSize" Value="120"/>
+                        <Setter Target="GeoTitle.Margin" Value="0,0,0,96"/>
+                        <Setter Target="Ellipse1.Height" Value="500"/>
+                        <Setter Target="Ellipse1.Width" Value="500"/>
+                        <Setter Target="Ellipse1.StrokeThickness" Value="10"/>
+                        <Setter Target="Polygon1.Height" Value="450"/>
+                        <Setter Target="Polygon1.Width" Value="450"/>
+                        <Setter Target="Polygon1.StrokeThickness" Value="10"/>
+                        <Setter Target="MainMenu.Margin" Value="0,64,0,0"/>
+                        <Setter Target="Game.Height" Value="80"/>
+                        <Setter Target="Game.Width" Value="400"/>
+                        <Setter Target="Game.FontSize" Value="44"/>
+                        <Setter Target="Blank1.Height" Value="50"/>
+                        <Setter Target="Freestyle.Height" Value="80"/>
+                        <Setter Target="Freestyle.Width" Value="400"/>
+                        <Setter Target="Freestyle.FontSize" Value="44"/>
+                        <Setter Target="Blank2.Height" Value="50"/>
+                        <Setter Target="Option.Height" Value="80"/>
+                        <Setter Target="Option.Width" Value="400"/>
+                        <Setter Target="Option.FontSize" Value="44"/>
+                        <Setter Target="Achievement.Height" Value="44"/>
+                        <Setter Target="Achievement.FontSize" Value="22"/>
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-        
-        
+
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="6*"/>
@@ -142,11 +242,13 @@
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="1">
-            <Ellipse Height="400"
+            <Ellipse Name="Ellipse1"
+                     Height="400"
                      Width="400"
                      Stroke="DarkOrange"
                      StrokeThickness="8"/>
-            <Polygon Points="0,100 0,200 135,125"
+            <Polygon Name="Polygon1" 
+                     Points="0,100 0,200 135,125"
                      Stroke="Blue"
                      StrokeThickness="8"
                      Stretch="Fill"
@@ -164,49 +266,52 @@
                 </TransitionCollection>
             </Grid.Transitions>
             <TextBlock Grid.Row="0"
+                       Name="GeoTitle"
                        FontFamily="Microsoft YaHei UI"
                        FontSize="96"
                        Foreground="MediumPurple"
-                       Margin="0,128,0,0"
+                       Margin="0,0,0,96"
                        HorizontalAlignment="Center"
-                       VerticalAlignment="Center"
+                       VerticalAlignment="Bottom"
                        Text="Geomystery"/>
-            <StackPanel Orientation="Vertical"
+            <StackPanel Name="MainMenu"
                         Grid.Row="1"
-                        Margin="0,0,0,64"
+                        Margin="0,64,0,0"
                         HorizontalAlignment="Center"
-                        VerticalAlignment="Center">
+                        VerticalAlignment="Top">
                 <Button Name="Game"
+                        Style="{StaticResource ButtonStyle1}"
                         Width="400"
                         FontFamily="Microsoft YaHei UI"
-                        FontSize="36"
+                        FontSize="44"
                         Foreground="{ThemeResource SystemBackgroundBaseHighBrush}"
-                        Margin="0,24,0,24"
                         Background="Tomato"
                         Content="Game"
                         Click="Game_Click"/>
+                <Rectangle Name="Blank1"
+                           Height="50"
+                           Fill="{x:Null}"/>
                 <Button Name="Freestyle"
+                        Style="{StaticResource ButtonStyle1}"
                         Width="400"
                         FontFamily="Microsoft YaHei UI"
-                        FontSize="36"
+                        FontSize="44"
                         Foreground="{ThemeResource SystemBackgroundBaseHighBrush}"
-                        Margin="0,24,0,24"
                         Background="Tomato"
                         Content="Freestyle"
                         Click="Freestyle_Click"/>
+                <Rectangle Name="Blank2"
+                           Height="50"
+                           Fill="{x:Null}"/>
                 <Button Name="Option"
+                        Style="{StaticResource ButtonStyle1}"
                         Width="400"
                         FontFamily="Microsoft YaHei UI"
-                        FontSize="36"
+                        FontSize="44"
                         Foreground="{ThemeResource SystemBackgroundBaseHighBrush}"
-                        Margin="0,24,0,24"
                         Background="Tomato"
                         Content="Option"
                         Click="Option_Click"/>
-                <Button Style="{StaticResource ButtonStyle1}"
-                        Width="400"
-                        Height="60"
-                        Content="233"/>
             </StackPanel>
         </Grid>
         <Button Grid.Column="2"
@@ -214,10 +319,8 @@
                 Name="Achievement"
                 Height="44"
                 Width="Auto"
-                FontFamily="Microsoft YaHei UI"
                 FontSize="22"
                 Foreground="{ThemeResource SystemBackgroundBaseHighBrush}"
-                FontWeight="Bold"
                 Background="{x:Null}"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Top"
