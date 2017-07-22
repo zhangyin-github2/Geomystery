@@ -101,6 +101,11 @@ namespace Geomystery
                         }
                         
                     }
+                    else if(geoList[i] is OutputLine)
+                    {
+                        var realLine = geoList[i] as OutputLine;
+                        args.DrawingSession.DrawLine(realLine.p1, realLine.p2, realLine.lineColor);
+                    }
                 }
             }
         }
@@ -165,6 +170,8 @@ namespace Geomystery
         private void Page_Unloaded(object sender, RoutedEventArgs e)
         {
             canvas1.RemoveFromVisualTree();
+            controller.outputCoordinates[0].WindowHeight = (float)canvas1.ActualHeight;
+            controller.outputCoordinates[0].WindowWidth = (float)canvas1.ActualWidth;
             canvas1 = null;
         }
 

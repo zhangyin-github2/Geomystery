@@ -9,11 +9,25 @@ using Windows.UI;
 
 namespace Geomystery.Views.Geometry
 {
-    //显示坐标系
+    /// <summary>
+    /// 显示坐标系(窗体坐标系，是逻辑坐标系的投影)
+    /// </summary>
     public class OutputCoordinate
     {
-        //被显示的坐标系
+        /// <summary>
+        /// 被显示的坐标系
+        /// </summary>
         public Coordinate coordinate { get; set; }
+
+        /// <summary>
+        /// 窗口高度
+        /// </summary>
+        public float WindowHeight { get; set; }
+
+        /// <summary>
+        /// 窗口宽度
+        /// </summary>
+        public float WindowWidth { get; set; }
 
         /// <summary>
         /// 单位长度unit length，
@@ -120,9 +134,13 @@ namespace Geomystery.Views.Geometry
             }
         }
 
-        public void AddPoint(Point2 point)
+        /// <summary>
+        /// 增加某个点的投影
+        /// </summary>
+        /// <param name="point">被投影的点（逻辑坐标系中）</param>
+        public int AddPoint(Point2 point)
         {
-            geometryList.Add(new OutputPoint()
+            OutputPoint outputPoint = new OutputPoint()
             {
                 borderType = ViewType.Solid,
                 fillColor = Color.FromArgb(0, 0, 0, 0),
@@ -133,16 +151,95 @@ namespace Geomystery.Views.Geometry
                 selectedLineColor = Color.FromArgb(255, 128, 128, 128),
                 thickness = 2,
                 viewPoint = ToVector2(point),
-            });
+            };
+            point.resultPoint = outputPoint;
+            geometryList.Add(outputPoint);
+            return 1;
         }
 
+        /// <summary>
+        /// 移除某个点的投影
+        /// </summary>
+        /// <param name="point">待移除的点（逻辑坐标系中）</param>
+        public int RemovePoint(Point2 point)
+        {
+            foreach(OutputGeometry outputGeometry in geometryList)
+            {
+                if(outputGeometry is OutputPoint)
+                {
+                    OutputPoint outputPoint = outputGeometry as OutputPoint;
+                    if(outputPoint.point == point)
+                    {
+                        geometryList.Remove(outputGeometry);
+                        return 1;
+                    }
+                }
+            }
+            return 0;
+        }
+
+        /// <summary>
+        /// 增加某一条直线的投影
+        /// </summary>
+        /// <param name="line">被投影的直线</param>
+        /// <returns></returns>
         public int AddLine(Line line)
+        {
+            if(line.lineRely == LineRely.Normal)                    //两点生成
+            {
+                if(line.type == LineType.Straight)                      //直线
+                {
+                    Vector2 v1 = ToVector2(line.p1);
+                    Vector2 v2 = ToVector2(line.p2);
+                    Vector2 v3 = new Vector2();
+                    Vector2 v4 = new Vector2();
+
+                    float length12 = (v1 - v2).Length();
+
+
+                    OutputLine outputLine = new OutputLine()
+                    {
+                        borderType = ViewType.Solid,
+                        fillColor = Color.FromArgb(0, 0, 0, 0),
+                        isVisible = true,
+                        lineColor = Color.FromArgb(255, 0, 0, 0),
+                        line = line,
+                        selectedFillColor = Color.FromArgb(255, 128, 128, 128),
+                        selectedLineColor = Color.FromArgb(255, 128, 128, 128),
+                        thickness = 2,
+                        p1 = v1,
+                        p2 = v2,
+                    };
+
+                    if (line.resultLine == null) line.resultLine = new List<OutputLine>();
+                    line.resultLine.Add(outputLine);
+                    geometryList.Add(outputLine);
+                    return 1;
+                }
+            }
+            
+            
+            return 0;
+        }
+
+        /// <summary>
+        /// 移除某一条直线的投影
+        /// </summary>
+        /// <param name="line">被移除投影的直线</param>
+        /// <returns></returns>
+        public int RemoveLine(Line line)
         {
 
             return 0;
         }
 
         public int AddCircle(Circle circle)
+        {
+
+            return 0;
+        }
+
+        public int RemoveCircle(Circle circle)
         {
 
             return 0;

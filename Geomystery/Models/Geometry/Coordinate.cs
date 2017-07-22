@@ -91,6 +91,25 @@ namespace Geomystery.Models.Geometry
         }
 
         /// <summary>
+        /// 移除逻辑坐标系中的点
+        /// </summary>
+        /// <param name="point"></param>
+        /// <returns></returns>
+        public int RemovePoint(Point2 point)
+        {
+            if(point.coord == this)
+            {
+                foreach(OutputCoordinate outputCoordinate in this.outputCoordinates)
+                {
+                    outputCoordinate.RemovePoint(point);                //移除所有投影
+                }
+                pointList.Remove(point);                                //移除逻辑点
+            }
+
+            return 0;
+        }
+
+        /// <summary>
         /// 将一条线添加到List<IPointSet> pointSetList，
         /// 当用户定义line的两个点p1和p2都在已经定义的某条直线上时，pointSetList并不会真正Add这条直线
         /// 注：可以当前直线被选中，返回被选中直线的负数编号（例如已经存在直线在pointSetList中是【0】号，返回0，是【4】号，返回-1）
@@ -98,6 +117,29 @@ namespace Geomystery.Models.Geometry
         /// <param name="line">返回1，添加成功，返回非正整数，这个整数的绝对值是已经存在的“点集”在pointSetList中的编号</param>
         /// <returns></returns>
         public int AddLine(Line line)
+        {
+            line.coord = this;                     //线在坐标系中
+
+            line.id = GeometryCount;
+            GeometryCount++;
+
+            if (line.p1.influence == null) line.p1.influence = new List<Geometry>();
+            line.p1.influence.Add(line);            //写入依赖关系
+            if (line.p2.influence == null) line.p2.influence = new List<Geometry>();
+            line.p2.influence.Add(line);
+
+            pointSetList.Add(line);                   //坐标系中有一个条线
+
+            for (int i = 0; i < outputCoordinates.Count; i++)
+            {
+                outputCoordinates[i].AddLine(line);
+            }
+            this.ClearSelectedGeometry();
+            this.ToSelectGeometry(line);
+            return 0;
+        }
+
+        public int RemoveLine(Line line)
         {
 
             return 0;
@@ -116,6 +158,12 @@ namespace Geomystery.Models.Geometry
             return 0;
         }
 
+        public int RemoveCircle(Circle circle)
+        {
+
+            return 0;
+        }
+
         /// <summary>
         /// 添加多边形，等待后续操作
         /// </summary>
@@ -124,6 +172,47 @@ namespace Geomystery.Models.Geometry
         public int AddPolygon(Polygon polygon)
         {
 
+            return 0;
+        }
+
+        public int Remove(Geometry geometry)
+        {
+            if (geometry.coord == this)
+            {
+                if(geometry is Point2)
+                {
+                    if(pointList.Contains(geometry))
+                    {
+                        foreach (OutputCoordinate outputCoordinate in this.outputCoordinates)
+                        {
+                            outputCoordinate.RemovePoint(geometry as Point2);                //移除所有投影
+                        }
+                        pointList.Remove(geometry as Point2);                                //移除逻辑点
+                    }
+                }
+                else if (geometry is Line)
+                {
+                    if (pointSetList.Contains(geometry as Line))
+                    {
+                        foreach (OutputCoordinate outputCoordinate in this.outputCoordinates)
+                        {
+                            outputCoordinate.RemoveLine(geometry as Line);                //移除所有投影
+                        }
+                        pointSetList.Remove(geometry as Line);                                //移除线
+                    }
+                }
+                else if (geometry is Circle)
+                {
+                    if (pointSetList.Contains(geometry as Circle))
+                    {
+                        foreach (OutputCoordinate outputCoordinate in this.outputCoordinates)
+                        {
+                            outputCoordinate.RemoveCircle(geometry as Circle);                //移除所有投影
+                        }
+                        pointSetList.Remove(geometry as Circle);                                //移除圆
+                    }
+                }
+            }
             return 0;
         }
 

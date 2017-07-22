@@ -7,91 +7,243 @@ using System.Threading.Tasks;
 namespace Geomystery.Controllers.Geometry
 {
     /// <summary>
-    /// 用户操作的方式作为自动机状态转换的条件
+    /// 选中几何元素种类
     /// </summary>
-    public enum UserOperater
+    public enum NeedGeometryType
     {
-        //
-        // 摘要:
-        //     指针进入
-        PointerEntered = 0,
-        //
-        // 摘要:
-        //     指针离开
-        PointerExit = 1,
-        //
-        // 摘要:
-        //     指针按下
-        PointerPressed = 2,
-        //
-        // 摘要:
-        //     指针弹起
-        PointerReleased = 3,
-        //
-        // 摘要:
-        //     指针移动
-        PointerMoved = 4,
-        //
-        // 摘要:
-        //     指针弹起
-        KeyUp = 5,
-        //
-        // 摘要:
-        //     指针弹起
-        KeyDown = 6,
+        /// <summary>
+        /// 普通几何元素
+        /// </summary>
+        Geometry,
+
+        /// <summary>
+        /// 点
+        /// </summary>
+        Point,
+
+        /// <summary>
+        /// 线
+        /// </summary>
+        Line,
+
+        /// <summary>
+        /// 圆
+        /// </summary>
+        Cricle,
+
+        /// <summary>
+        /// 点集
+        /// </summary>
+        IPointSet,
     }
 
+    /// <summary>
+    /// 当前工具选择栈
+    /// </summary>
+    public class SelectedGeometryStackItem
+    {
+        /// <summary>
+        /// 被选择的几何元素
+        /// </summary>
+        public Models.Geometry.Geometry selectedGeometry { get; set; }
+
+        /// <summary>
+        /// 是否为新创建的，如果是新创建的则需要撤销
+        /// </summary>
+        public bool IsNew { get; set; }
+    }
+
+    /// <summary>
+    /// 被选中的几何元素的需求项
+    /// </summary>
+    public class NeedGeometrySetItem
+    {
+        /// <summary>
+        /// 需要的几何元素类型
+        /// </summary>
+        public Type type { get; set; }
+
+        /// <summary>
+        /// 需要的数量
+        /// </summary>
+        public int needNumber { get; set; }
+
+        /// <summary>
+        /// 实际选择栈
+        /// </summary>
+        public List<SelectedGeometryStackItem> selectStack;
+
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        public NeedGeometrySetItem()
+        {
+            selectStack = new List<SelectedGeometryStackItem>();
+        }
+    }
+
+    /// <summary>
+    /// 记录用户选择元素的自动机，可能不是确定的有限状态自动机（DFA），但是名字仍然是DFA
+    /// </summary>
     public class DFA
     {
         /// <summary>
-        /// 自动机类型名（“点”“直线”“圆”）
+        /// 工作模式：0 构造模式，不重复的确定数量的元素构造，1 可取消模式，可以取消上一次选择的点，2 增加模式，例如构造多边形时，重复选择将会封闭图形
         /// </summary>
-        public string name { get; set; }
+        public int workingMode { get; set; }
 
         /// <summary>
-        /// 自动机初始化
+        /// 需求序列
         /// </summary>
-        public bool IsInitialized { get; set; }
+        public List<NeedGeometrySetItem> needList { get; set; }
 
         /// <summary>
-        /// 自动机当前状态
+        /// 轮到哪个部分了
         /// </summary>
-        public int state { get;private set; }
+        public int turn { get; set; }
 
         /// <summary>
-        /// 终止状态集合
+        /// 自动机是否初始化
         /// </summary>
-        public List<int> endState { get; set; }
+        public bool isInitialized { get; set; }
 
         /// <summary>
-        /// 通过名字构建DFA
+        /// 自动机当前状态 0 初始状态 1 工作中 2 结束状态 负数 错误状态
         /// </summary>
-        public DFA(string name)
+        public int state { get; private set; }
+
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        public DFA()
         {
-            this.name = name;
-            this.IsInitialized = false;
+            isInitialized = false;
+            state = -1;
+            turn = -1;
+            //selectStack = new List<SelectedGeometryStackItem>();
         }
 
-        /// <summary>
-        /// 状态转换函数
-        /// </summary>
-        /// <param name="nowState">当前状态</param>
-        /// <param name="userOp">用户操作</param>
-        /// <returns></returns>
-        public static int stateChange(int nowState, UserOperater userOp)
+        public DFA(int workmode, List<NeedGeometrySetItem> needList)
         {
+            this.needList = needList;
+            if (needList != null)
+            {
+                isInitialized = true;
+                state = 1;
+                turn = 0;
+                this.workingMode = workmode;
+            }
+            else
+            {
+                turn = -1;
+                state = -1;
+            }
+            
+        }
+
+        public int Initialized(int workmode, List<NeedGeometrySetItem> needList)
+        {
+            if(isInitialized)
+            {
+                return 1;
+            }
+            else if(!isInitialized)
+            {
+                if(needList!=null)
+                {
+                    this.needList = needList;
+                    isInitialized = true;
+                    state = 1;
+                    turn = 0;
+                    this.workingMode = workmode;
+                    return 1;
+                }
+            }
             return 0;
         }
 
         /// <summary>
-        /// 触发当前这台自动机状态变化
+        /// 用户选择了一个元素
         /// </summary>
-        /// <param name="userOp"></param>
+        /// <param name="geometry">用户选择的元素</param>
+        /// <param name="newCreate">这个元素是否是新增的</param>
         /// <returns></returns>
-        public int realStateChangeFunction(UserOperater userOp)
+        public int UserSelectGeomerty(Models.Geometry.Geometry geometry, bool newCreate)
         {
-            //this.state = stateChange(0, UserOperater.PointerPressed);
-            return 0;
+            if(workingMode == 0)                //不可撤销模式
+            {
+                if(state == 1)                          //工作状态
+                {
+                    foreach (SelectedGeometryStackItem selectedItem in needList[turn].selectStack)
+                    {
+                        if (selectedItem.selectedGeometry == geometry)          //存在重复项
+                        {
+                            state = -2;              //需要撤销更改
+                            return -2;              //需要撤销
+                        }
+                    }
+
+                    if(geometry.GetType() == needList[turn].type)               //类型匹配检查
+                    {
+                        if (needList[turn].needNumber == needList[turn].selectStack.Count - 1) turn++;
+                        needList[turn].selectStack.Add(new SelectedGeometryStackItem() { IsNew = newCreate, selectedGeometry = geometry });
+                        if (turn == needList.Count - 1 && needList[turn].selectStack.Count == needList[turn].needNumber)
+                        {
+                            state = 2;                      //创作完成
+                            return 2;
+                        }
+                        //state = 1;
+                    }
+                    else
+                    {
+                        state = -2;              //需要撤销更改
+                        return -2;              //需要撤销
+                    }
+                    
+                }
+            }
+            else if(workingMode == 1)           //可以撤销模式
+            {
+                if (state == 1)                          //工作状态
+                {
+                    SelectedGeometryStackItem selectedItem = needList[turn].selectStack[needList[turn].selectStack.Count - 1];
+                    if (selectedItem.selectedGeometry == geometry)                  //重复选择上一个元素
+                    {
+                        if(selectedItem.IsNew)                                  //上一个元素是新建的
+                        {
+                            geometry.coord.Remove(geometry);
+                        }
+                        needList[turn].selectStack.Remove(selectedItem);                      //撤销选择
+                        if (needList[turn].selectStack.Count == 0) turn--;              //前一个
+                        //state = 1;
+                    }
+                    else
+                    {
+                        if (geometry.GetType() == needList[turn].type)
+                        {
+                            if (needList[turn].needNumber == needList[turn].selectStack.Count - 1) turn++;
+                            needList[turn].selectStack.Add(new SelectedGeometryStackItem() { IsNew = newCreate, selectedGeometry = geometry });
+                            if (turn == needList.Count - 1 && needList[turn].selectStack.Count == needList[turn].needNumber)
+                            {
+                                state = 2;                      //创作完成
+                                return 2;
+                            }
+
+                        }
+                        else
+                        {
+                            state = -2;              //需要撤销更改
+                            return -2;              //需要撤销
+                        }
+                            
+                    }
+                }
+            }
+            else if(workingMode ==2)            //多重选择自动封闭模式
+            {
+
+            }
+            return 1;
         }
     }
 }

@@ -18,6 +18,11 @@ namespace Geomystery.Controllers.Geometry
     public class Controllers
     {
         /// <summary>
+        /// 控制器状态
+        /// </summary>
+        public DFA dfa { get; set; }
+
+        /// <summary>
         /// 是否经过初始化
         /// </summary>
         public bool isIniialized { get; set; }
@@ -193,6 +198,10 @@ namespace Geomystery.Controllers.Geometry
                     }
                     */
                 }
+                else
+                {
+                    coordinate.ClearSelectedGeometry();
+                }
             }
             else if (userTool.toolName == "点工具")
             {
@@ -208,7 +217,41 @@ namespace Geomystery.Controllers.Geometry
             }
             else if(userTool.toolName == "直线工具")
             {
-                //if(surroundinsGeometryList.Count
+                if (dfa == null || dfa.state == 2)
+                {
+                    List<NeedGeometrySetItem> needList = new List<NeedGeometrySetItem>();
+                    needList.Add(new NeedGeometrySetItem() { type = typeof(Point2), needNumber = 2 });
+                    dfa = new DFA(0, needList);
+                }
+
+                if (surroundinsGeometryList != null && surroundinsGeometryList.Count == 1)
+                {
+                    coordinate.ToSelectGeometry(surroundinsGeometryList[0]);
+                    dfa.UserSelectGeomerty(surroundinsGeometryList[0], false);
+                }
+                else
+                {
+                    Point2 newPoint = outputCoordinates[0].ToPoint2(vector2);
+                    coordinate.AddPoint(newPoint);
+                    dfa.UserSelectGeomerty(newPoint, true);
+                }
+
+                if(dfa.state == 2)
+                {
+                    Line line = new Line();
+
+                    line.p1 = dfa.needList[0].selectStack[0].selectedGeometry as Point2;
+                    line.p2 = dfa.needList[0].selectStack[1].selectedGeometry as Point2;
+
+                    line.type = LineType.Straight;
+                    line.lineRely = LineRely.Normal;
+
+                    coordinate.AddLine(line);
+
+                    dfa.needList[0].selectStack.Clear();
+                    dfa.needList.Clear();
+                    dfa = null;
+                }
             }
             
         }
