@@ -46,7 +46,14 @@ namespace Geomystery
             BGMPlayer.MusicPlayer.Source = new Uri("ms-appx:///Assets/buttonmusic.mp3");
             BGMPlayer.MusicPlayer.Volume = 100;
             Application.Current.Suspending += new SuspendingEventHandler(App_Suspending);
+            Window.Current.SizeChanged += Current_SizeChanged;
             init();
+        }
+
+        public void Current_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
+        {
+            ApplicationView cview = ApplicationView.GetForCurrentView();
+            APPDATA.app_data.ISFULLSCREEN = cview.IsFullScreenMode;
         }
 
         public void init()
