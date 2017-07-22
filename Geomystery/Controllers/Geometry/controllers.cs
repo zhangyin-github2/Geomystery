@@ -252,6 +252,16 @@ namespace Geomystery.Controllers.Geometry
                     dfa.needList.Clear();
                     dfa = null;
                 }
+                else if(dfa.state == -2)
+                {
+                    if(dfa.needList[0].selectStack[0].IsNew)
+                    {
+                        coordinate.RemovePoint(dfa.needList[0].selectStack[0].selectedGeometry as Point2);
+                    }
+                    dfa.needList[0].selectStack.Clear();
+                    dfa.needList.Clear();
+                    dfa = null;
+                }
             }
             
         }
