@@ -97,6 +97,14 @@ namespace Geomystery.Models.Geometry
         public List<OutputLine> resultLine { get; set; }
 
         /// <summary>
+        /// 构造函数
+        /// </summary>
+        public Line()
+        {
+            resultLine = new List<OutputLine>();
+        }
+
+        /// <summary>
         /// 直线可能与另一条直线相交，交点有0,、1个，也可能与一个圆相交，交点有0、1、2个
         /// </summary>
         /// <param name="another">another可能是一个Circle或者Line</param>

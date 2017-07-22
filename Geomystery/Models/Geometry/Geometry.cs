@@ -48,5 +48,14 @@ namespace Geomystery.Models.Geometry
         /// 哪些点集受此点影响，此点一定是受影响直线或圆的定义点(p1, p2, center, radius)
         /// </summary>
         public List<Geometry> influence { get; set; }
+
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        public Geometry()
+        {
+            rely = new List<Geometry>();
+            influence = new List<Geometry>();
+        }
     }
 }

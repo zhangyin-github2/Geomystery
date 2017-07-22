@@ -123,9 +123,7 @@ namespace Geomystery.Models.Geometry
             line.id = GeometryCount;
             GeometryCount++;
 
-            if (line.p1.influence == null) line.p1.influence = new List<Geometry>();
             line.p1.influence.Add(line);            //写入依赖关系
-            if (line.p2.influence == null) line.p2.influence = new List<Geometry>();
             line.p2.influence.Add(line);
 
             pointSetList.Add(line);                   //坐标系中有一个条线
@@ -154,7 +152,22 @@ namespace Geomystery.Models.Geometry
         /// <returns></returns>
         public int AddCircle(Circle circle)
         {
+            circle.coord = this;                     //线在坐标系中
 
+            circle.id = GeometryCount;
+            GeometryCount++;
+
+            circle.center.influence.Add(circle);            //写入依赖关系
+            circle.radius.influence.Add(circle);
+
+            pointSetList.Add(circle);                   //坐标系中有一个条线
+
+            for (int i = 0; i < outputCoordinates.Count; i++)
+            {
+                outputCoordinates[i].AddCircle(circle);
+            }
+            this.ClearSelectedGeometry();
+            this.ToSelectGeometry(circle);
             return 0;
         }
 
