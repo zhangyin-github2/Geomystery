@@ -245,7 +245,7 @@ namespace Geomystery.Views.Geometry
                 selectedLineColor = Color.FromArgb(255, 128, 128, 128),
                 thickness = 2,
                 center = ToVector2(circle.center),
-                radius = (circle.center.ToVector2() - circle.radius.ToVector2()).Length(),
+                radius = (ToVector2(circle.center) - ToVector2(circle.radius)).Length(),
             };
             circle.resultCircle = outputCircle;
             geometryList.Add(outputCircle);
