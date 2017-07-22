@@ -24,7 +24,10 @@ namespace Geomystery.Award
         /// 获得星星数
         /// </summary>
         private Stars stars;
-         void LevelStart()
+        /// <summary>
+        /// 关卡初始化载入
+        /// </summary>
+        public void LevelStart()
         { }
         /// <summary>
         /// 关卡通过后，修改关卡状态，修改星星数
