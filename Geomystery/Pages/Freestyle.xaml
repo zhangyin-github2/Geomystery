@@ -14,7 +14,10 @@
         <ResourceDictionary>
             <DataTemplate x:DataType="toolData:UserTool"
                           x:Key="listViewItemTempelate">
-                <TextBlock Text="{x:Bind toolName}"/>
+                <StackPanel>
+                    <TextBlock Text="{x:Bind toolName}"/>
+                    <!--<Image Source="{x:Bind toolIcon}"/>-->
+                </StackPanel>
             </DataTemplate>
             <ResourceDictionary.ThemeDictionaries>
                 <ResourceDictionary x:Key="Light" Source="DarkThemeDictionary.xaml"></ResourceDictionary>
