@@ -57,5 +57,34 @@ namespace Geomystery.Models.Geometry
             rely = new List<Geometry>();
             influence = new List<Geometry>();
         }
+
+        public override string ToString()
+        {
+            string str = "";
+            str = "{ ";
+            if (this is Point2) str = str + "p ";
+            else if (this is Line) str = str + "l ";
+            else if (this is Circle) str = str + "c ";
+            str = str + "Id = " + id.ToString() + "; Rely = [ ";
+            for(int i = 0; i < rely.Count;i++)
+            {
+                str = str + rely[i].id.ToString();
+                if (i + 1 < rely.Count)
+                {
+                    str = str + ", ";
+                }
+            }
+            str = str + " ]; Influence = [ ";
+            for (int i = 0; i < influence.Count; i++)
+            {
+                str = str + influence[i].id.ToString();
+                if (i + 1 < influence.Count)
+                {
+                    str = str + ", ";
+                }
+            }
+            str = str + " ]; }";
+            return str;
+        }
     }
 }

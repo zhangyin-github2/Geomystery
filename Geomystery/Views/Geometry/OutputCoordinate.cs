@@ -107,7 +107,7 @@ namespace Geomystery.Views.Geometry
         /// <returns></returns>
         public static float DistanceOfPointAndLine(Vector2 lpo, Vector2 lv, Vector2 outerPoint, ref Vector2 result)
         {
-            if (lv.Length() <= 0) return -1;
+            if (lv.Length() <= 0) return float.NaN;
             if(lv.X == 0)
             {
                 result.Y = outerPoint.Y;
@@ -128,10 +128,27 @@ namespace Geomystery.Views.Geometry
                 float B = 1;
                 float C = lv.X / lv.Y * lpo.Y - lpo.X;
                 float distance = Math.Abs(A * outerPoint.Y + B * outerPoint.X + C) / (float)Math.Sqrt(Math.Pow(A, 2) + Math.Pow(B, 2));
-                //result.X = ?;
-                //result.Y = ?;
+                if(distance == 0)                           //点在直线上
+                {
+                    result.X = outerPoint.X;
+                    result.Y = outerPoint.Y;
+                }
+                else                                        //点在直线外
+                {
+                    float kk = Vector2.Dot(outerPoint - lpo, lv);                   //v1 .* v2 = |v1| cos θ
+                    result = lpo + kk * lv;
+                }
                 return distance;
             }
+        }
+
+        public static float DistanceOfPointAndCircle(Vector2 center, float radius, Vector2 outerPoint, ref Vector2 result)
+        {
+            if (radius <= 0) return float.NaN;               //圆的半径不可能为负值
+            Vector2 centerOuter = outerPoint - center;
+            float lengthToCenter = centerOuter.Length();
+            result = center + lengthToCenter / radius * centerOuter;
+            return Math.Abs(lengthToCenter - radius);
         }
 
         /// <summary>
@@ -242,9 +259,9 @@ namespace Geomystery.Views.Geometry
                 }
             }
             
-            
             return 0;
         }
+
 
         /// <summary>
         /// 移除某一条直线的投影
