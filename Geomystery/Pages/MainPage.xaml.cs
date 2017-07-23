@@ -50,6 +50,7 @@ namespace Geomystery
 
         public void init()
         {
+
             MainFrame = this.myFrame;
             APPDATA.app_data = new APPDATA();
             APPDATA.LOAD();
@@ -78,8 +79,18 @@ namespace Geomystery
             BGMPlayer.MusicPlayer.Visibility = Visibility.Collapsed;
             BGMPlayer.MusicPlayer.IsLooping = false;
             BGMPlayer.MusicPlayer.AutoPlay = false;
-            BGMPlayer.MusicPlayer.Source = new Uri("ms-appx:///Assets/buttonmusic.mp3");
+            BGMPlayer.MusicPlayer.Source = new Uri("ms-appx:///Assets/007.mp3");
             BGMPlayer.MusicPlayer.Volume = 100;
+
+            BGM_Player.getInstance();
+            BGM_Player.MusicPlayer.Name = "MusicPlayer";
+            Music.Children.Add(BGM_Player.MusicPlayer);
+            BGM_Player.MusicPlayer.Visibility = Visibility.Collapsed;
+            BGM_Player.MusicPlayer.IsLooping = true;
+            BGM_Player.MusicPlayer.AutoPlay = true;
+            BGM_Player.MusicPlayer.Source = new Uri("ms-appx:///Assets/bgm.mp3");
+            BGM_Player.MusicPlayer.Play();
+            BGM_Player.MusicPlayer.Volume = 100;
         }
         
 
