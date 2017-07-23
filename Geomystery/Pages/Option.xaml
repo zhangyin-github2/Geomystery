@@ -119,12 +119,17 @@
                                                 <PointerDownThemeAnimation Storyboard.TargetName="RootGrid" />
                                             </Storyboard>
                                         </VisualState>
-                                        <VisualState x:Name="p">
+                                        <VisualState x:Name="Checked">
                                             <Storyboard>
                                                 <PointerDownThemeAnimation Storyboard.TargetName="RootGrid" />
                                             </Storyboard>
                                         </VisualState>
-                                        <VisualState x:Name="Disabled">
+                                        <VisualState x:Name="CheckedPointerOver">
+                                            <Storyboard>
+                                                <PointerDownThemeAnimation Storyboard.TargetName="RootGrid" />
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="CheckedPressed">
                                             <Storyboard>
                                                 <PointerDownThemeAnimation Storyboard.TargetName="RootGrid" />
                                             </Storyboard>
@@ -293,6 +298,7 @@
                               Click="Fullscreen_Click"
                               FontFamily="Segoe UI Emoji"
                               FontSize="36"
+                              Background="{x:Null}"
                               Margin="8,0,0,0"
                               Height="60" Width="76"
                               VerticalAlignment="Center"/>
