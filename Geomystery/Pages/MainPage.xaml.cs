@@ -37,14 +37,7 @@ namespace Geomystery
         public MainPage()
         {
             this.InitializeComponent();
-            BGMPlayer.getInstance();
-            BGMPlayer.MusicPlayer.Name = "MusicPlayer";
-            Music.Children.Add(BGMPlayer.MusicPlayer);
-            BGMPlayer.MusicPlayer.Visibility = Visibility.Collapsed;
-            BGMPlayer.MusicPlayer.IsLooping = false;
-            BGMPlayer.MusicPlayer.AutoPlay = true;
-            BGMPlayer.MusicPlayer.Source = new Uri("ms-appx:///Assets/buttonmusic.mp3");
-            BGMPlayer.MusicPlayer.Volume = 100;
+            myFrame.Navigated += MyFrame_Navigated;
             Application.Current.Suspending += new SuspendingEventHandler(App_Suspending);
             Window.Current.SizeChanged += Current_SizeChanged;
             init();
@@ -59,8 +52,6 @@ namespace Geomystery
         public void init()
         {
             MainFrame = this.myFrame;
-            BgmP = bgmPlayer;
-            BgaP = bgaPlayer;
             APPDATA.app_data = new APPDATA();
             APPDATA.LOAD();
             View = new ViewModel.ViewModel();
@@ -76,9 +67,21 @@ namespace Geomystery
             else
                 MuteButton.Content = CONST.volume2;
             debugT.Text = APPDATA.app_data.show();
+            BackButton.Visibility = Visibility.Collapsed;
             myFrame.Navigate(typeof(HomePage));
+            init_music();
         }
-
+        public void init_music()
+        {
+            BGMPlayer.getInstance();
+            BGMPlayer.MusicPlayer.Name = "MusicPlayer";
+            Music.Children.Add(BGMPlayer.MusicPlayer);
+            BGMPlayer.MusicPlayer.Visibility = Visibility.Collapsed;
+            BGMPlayer.MusicPlayer.IsLooping = false;
+            BGMPlayer.MusicPlayer.AutoPlay = false;
+            BGMPlayer.MusicPlayer.Source = new Uri("ms-appx:///Assets/buttonmusic.mp3");
+            BGMPlayer.MusicPlayer.Volume = 100;
+        }
         
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
@@ -112,7 +115,15 @@ namespace Geomystery
             base.OnNavigatedTo(e);
             ScreenHeight = Window.Current.Bounds.Height;
             ScreenWidth = Window.Current.Bounds.Width;
+        }
 
+        private void MyFrame_Navigated(object sender, NavigationEventArgs e)
+        {
+            if (!myFrame.CanGoBack)
+            {
+                BackButton.Visibility = Visibility.Collapsed;
+            }
+            else BackButton.Visibility = Visibility.Visible;
         }
 
         /// <summary>

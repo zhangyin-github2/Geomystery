@@ -101,6 +101,7 @@
     <Compile Include="Controllers\Geometry\DFA.cs" />
     <Compile Include="Controllers\Geometry\UserTool.cs" />
     <Compile Include="Models\BGMPlayer.cs" />
+    <Compile Include="Models\BGM_Player.cs" />
     <Compile Include="Models\Geometry\Circle.cs" />
     <Compile Include="Models\Geometry\Geometry.cs" />
     <Compile Include="Models\Geometry\Coordinate.cs" />
@@ -149,6 +150,7 @@
     <Compile Include="Views\Geometry\OutputLine.cs" />
     <Compile Include="Views\Geometry\OutputPoint.cs" />
     <Compile Include="Views\Geometry\OutputText.cs" />
+    <Compile Include="Views\Geometry\Surroundings.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">

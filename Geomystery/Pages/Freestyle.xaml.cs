@@ -29,7 +29,7 @@ namespace Geomystery
     /// </summary>
     public sealed partial class Freestyle : Page
     {
-        Vector2 center;
+        Vector2 maxHeightWidth;
 
         CanvasCommandList cl = null;
 
@@ -83,6 +83,8 @@ namespace Geomystery
                 args.DrawingSession.DrawCircle(plist[i], 5, Color.FromArgb(255, 0, 0, 0));
             }
             */
+            Rect rect = new Rect(0, 0, maxHeightWidth.X, maxHeightWidth.Y);
+            args.DrawingSession.DrawRectangle(rect,Colors.Black);
             var geoList = controller.outputCoordinates[0].geometryList;
             if(geoList != null)
             {
@@ -167,8 +169,8 @@ namespace Geomystery
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             //plist = new List<Vector2>();
-            center = new Vector2((float)canvas1.ActualWidth / 2, (float)canvas1.ActualHeight / 2);
-            text1.Text = center.X.ToString() + " | " + center.Y.ToString();
+            maxHeightWidth = new Vector2((float)canvas1.ActualWidth, (float)canvas1.ActualHeight);
+            text1.Text = maxHeightWidth.X.ToString() + " | " + maxHeightWidth.Y.ToString();
             listView1.SelectedIndex = 2;
         }
 
