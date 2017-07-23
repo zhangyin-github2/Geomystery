@@ -476,7 +476,7 @@
                         <Setter Target="Option.Height" Value="28"/>
                         <Setter Target="Option.Width" Value="138"/>
                         <Setter Target="Option.FontSize" Value="12"/>
-                        <Setter Target="Achievement.Height" Value="24"/>
+                        <Setter Target="Achievement.Height" Value="22"/>
                         <Setter Target="Achievement.FontSize" Value="10"/>
                     </VisualState.Setters>
                 </VisualState>
@@ -511,7 +511,7 @@
                         <Setter Target="Option.Height" Value="44"/>
                         <Setter Target="Option.Width" Value="220"/>
                         <Setter Target="Option.FontSize" Value="24"/>
-                        <Setter Target="Achievement.Height" Value="31"/>
+                        <Setter Target="Achievement.Height" Value="30"/>
                         <Setter Target="Achievement.FontSize" Value="14"/>
                     </VisualState.Setters>
                 </VisualState>
@@ -581,8 +581,8 @@
                         <Setter Target="Option.Height" Value="80"/>
                         <Setter Target="Option.Width" Value="400"/>
                         <Setter Target="Option.FontSize" Value="44"/>
-                        <Setter Target="Achievement.Height" Value="44"/>
-                        <Setter Target="Achievement.FontSize" Value="22"/>
+                        <Setter Target="Achievement.Height" Value="48"/>
+                        <Setter Target="Achievement.FontSize" Value="24"/>
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
@@ -680,9 +680,9 @@
         <Button Grid.Column="2"
                 Grid.ColumnSpan="2"
                 Name="Achievement"
-                Height="44"
+                Height="48"
                 Width="Auto"
-                FontSize="22"
+                FontSize="24"
                 Foreground="{ThemeResource SystemBackgroundBaseHighBrush}"
                 Background="{x:Null}"
                 BorderThickness="0"

@@ -19,8 +19,77 @@
     </Page.Resources>
 
     <Grid x:Name="Back" Background="{x:Null}">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup >
+                <VisualState x:Name="microView" >
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"
+                                         MinWindowHeight="0"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <!--最小大小 0.338倍-->
+                        <Setter Target="mytitle.Height" Value="22"/>
+                        <Setter Target="BackButton.Height" Value="22"/>
+                        <Setter Target="BackButton.Width" Value="32"/>
+                        <Setter Target="BackButton.FontSize" Value="13"/>
+                        <Setter Target="MuteButton.Height" Value="22"/>
+                        <Setter Target="MuteButton.Width" Value="32"/>
+                        <Setter Target="MuteButton.FontSize" Value="13"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="miniView">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="800"
+                                         MinWindowHeight="500"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <!--中等大小 0.55倍-->
+                        <Setter Target="mytitle.Height" Value="30"/>
+                        <Setter Target="BackButton.Height" Value="30"/>
+                        <Setter Target="BackButton.Width" Value="42"/>
+                        <Setter Target="BackButton.FontSize" Value="18"/>
+                        <Setter Target="MuteButton.Height" Value="30"/>
+                        <Setter Target="MuteButton.Width" Value="42"/>
+                        <Setter Target="MuteButton.FontSize" Value="18"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="normalView">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1168"
+                                         MinWindowHeight="657"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <!--标准大小 0.8倍-->
+                        <Setter Target="mytitle.Height" Value="38"/>
+                        <Setter Target="BackButton.Height" Value="38"/>
+                        <Setter Target="BackButton.Width" Value="54"/>
+                        <Setter Target="BackButton.FontSize" Value="22"/>
+                        <Setter Target="MuteButton.Height" Value="38"/>
+                        <Setter Target="MuteButton.Width" Value="54"/>
+                        <Setter Target="MuteButton.FontSize" Value="22"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="fullView">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1920"
+                                         MinWindowHeight="1080"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <!--1080P 1倍-->
+                        <Setter Target="mytitle.Height" Value="48"/>
+                        <Setter Target="BackButton.Height" Value="48"/>
+                        <Setter Target="BackButton.Width" Value="68"/>
+                        <Setter Target="BackButton.FontSize" Value="28"/>
+                        <Setter Target="MuteButton.Height" Value="48"/>
+                        <Setter Target="MuteButton.Width" Value="68"/>
+                        <Setter Target="MuteButton.FontSize" Value="28"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        
         <Grid.RowDefinitions>
-            <RowDefinition Height="44" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Frame x:Name="myFrame"
@@ -35,15 +104,16 @@
         <RelativePanel x:Name="mytitle"
                        Grid.Row="0"
                        HorizontalAlignment="Left"
-                       VerticalAlignment="Center">
+                       VerticalAlignment="Top">
             <Button Name="BackButton"
                     RelativePanel.AlignLeftWithPanel="True"
                     Foreground="{ThemeResource SystemBackgroundBaseHighBrush}"
                     Background="{x:Null}"
                     FontFamily="Segoe MDl2 Assets"
                     FontSize="28"
-                    Height="44"
-                    Width="64"
+                    Height="48"
+                    Width="68"
+                    BorderThickness="0"
                     Content="&#xE0C4;" 
                     Click="BackButton_Click" />
             <Button Name="MuteButton"
@@ -52,21 +122,17 @@
                     Background="{x:Null}"
                     FontFamily="Segoe MDl2 Assets"
                     FontSize="28"
-                    Height="44"
-                    Width="64"
+                    Height="48"
+                    Width="68"
+                    BorderThickness="0"
                     Click="MuteButton_Click"/>
-            <TextBlock x:Name="debugT" RelativePanel.RightOf="MuteButton"></TextBlock>
+            <TextBlock x:Name="debugT"
+                       RelativePanel.RightOf="MuteButton"
+                       FontSize="10"/>
         </RelativePanel>
 
         <Grid x:Name="Music">
         </Grid>
+        
     </Grid>
-    
-    <VisualStateManager.VisualStateGroups>
-        <VisualStateGroup>
-            <VisualState>
-            </VisualState>
-        </VisualStateGroup>
-    </VisualStateManager.VisualStateGroups>
-    
 </Page>
