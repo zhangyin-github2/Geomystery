@@ -192,8 +192,33 @@ namespace Geomystery.Views.Geometry
                     Vector2 v1 = ToVector2(line.p1);
                     Vector2 v2 = ToVector2(line.p2);
                     Vector2 v3 = new Vector2();
-                    Vector2 v4 = new Vector2();
+                    Vector2 v4 = new Vector2(); 
 
+                    if(v1.X == v2.X)                //竖线
+                    {
+                        v3.X = v1.X;
+                        v3.Y = 0;
+                        v4.X = v1.X;
+                        v4.Y = WindowHeight;
+                    }
+                    else if( Math.Abs(v2.Y - v1.Y) > Math.Abs(v2.X-v1.X) )
+                    {
+                        v3.X = v1.X - v1.Y * (v1.X - v2.X) / (v1.Y - v2.Y);
+                        v3.Y = 0;
+                        v4.X = (WindowHeight - v1.Y) / (v2.Y - v1.Y) * v2.X + (v2.Y - WindowHeight) / (v2.Y - v1.Y) * v1.X;
+                        v4.Y = WindowHeight;
+                    }
+                    else if (Math.Abs(v2.Y - v1.Y) <= Math.Abs(v2.X - v1.X))
+                    {
+                        v3.X = WindowWidth;
+                        v3.Y = (WindowWidth - v1.X) / (v2.X - v1.X) * v2.Y + (v2.X - WindowWidth) / (v2.X - v1.X) * v1.Y;
+                        v4.X = 0;
+                        v4.Y = v1.Y - v1.X * (v1.Y - v2.Y) / (v1.X - v2.X);
+                    }
+                    else
+                    {
+                        throw new Exception();
+                    }
                     float length12 = (v1 - v2).Length();
 
 
@@ -207,8 +232,8 @@ namespace Geomystery.Views.Geometry
                         selectedFillColor = Color.FromArgb(255, 128, 128, 128),
                         selectedLineColor = Color.FromArgb(255, 128, 128, 128),
                         thickness = 2,
-                        p1 = v1,
-                        p2 = v2,
+                        p1 = v3,
+                        p2 = v4,
                     };
 
                     line.resultLine.Add(outputLine);
@@ -256,6 +281,50 @@ namespace Geomystery.Views.Geometry
         {
 
             return 0;
+        }
+
+        /// <summary>
+        /// 获取鼠标在屏幕当前点附近的逻辑坐标点
+        /// </summary>
+        /// <param name="point">屏幕上的点</param>
+        /// <returns>逻辑点列表</returns>
+        public Surroundings GetSurroundings(Vector2 point)
+        {
+            Surroundings result = new Surroundings() { screenPoint = point };
+            float currentLength = 0;
+            if (geometryList == null) return null;
+            for (int i = 0; i < geometryList.Count; i++)
+            {
+                if (geometryList[i].isVisible == true)
+                {
+                    if (geometryList[i] is OutputPoint)
+                    {
+                        var pCurrent = geometryList[i] as OutputPoint;
+                        if ((currentLength = (pCurrent.viewPoint - point).Length()) < OutputPoint.scopeLength)            //点击的点在屏幕上某个点的圆圈内
+                        {
+                            result.surroundingPoint.Add(new GeometryAndTheDistance() { geometry = pCurrent.point, distance = currentLength });
+                        }
+                    }
+                    else if (geometryList[i] is OutputLine)
+                    {
+                        var lCurrent = geometryList[i] as OutputLine;
+                        var perpendicularFoot = new Vector2();
+                        if ((currentLength = OutputCoordinate.DistanceOfPointAndLine(lCurrent.p1, lCurrent.p2 - lCurrent.p1, point, ref perpendicularFoot)) < OutputPoint.scopeLength)
+                        {
+                            result.surroundingLine.Add(new GeometryAndTheDistance() { geometry = lCurrent.line, distance = currentLength });
+                        }
+                    }
+                    else if (geometryList[i] is OutputCircle)
+                    {
+                        var cCurrent = geometryList[i] as OutputCircle;
+                        if ((currentLength = Math.Abs(cCurrent.radius - (point - cCurrent.center).Length())) < OutputPoint.scopeLength)
+                        {
+                            result.surroundingCircle.Add(new GeometryAndTheDistance() { geometry = cCurrent.circle, distance = currentLength });
+                        }
+                    }
+                }
+            }
+            return result;
         }
     }
 }
