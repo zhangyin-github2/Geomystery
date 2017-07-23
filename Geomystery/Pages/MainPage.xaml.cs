@@ -29,6 +29,7 @@ namespace Geomystery
     {
         double ScreenHeight;
         double ScreenWidth;
+        public static TextBlock debugTxt = new TextBlock();
         public static Frame MainFrame=new Frame();
         public static MediaPlayerElement BgmP = new MediaPlayerElement();
         public static MediaPlayerElement BgaP =new MediaPlayerElement();
@@ -52,6 +53,7 @@ namespace Geomystery
         public void init()
         {
             MainFrame = this.myFrame;
+            debugTxt = this.debugT;
             APPDATA.app_data = new APPDATA();
             APPDATA.LOAD();
             View = new ViewModel.ViewModel();
