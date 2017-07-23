@@ -149,6 +149,7 @@
     <Compile Include="Views\Geometry\OutputLine.cs" />
     <Compile Include="Views\Geometry\OutputPoint.cs" />
     <Compile Include="Views\Geometry\OutputText.cs" />
+    <Compile Include="Views\Geometry\Surroundings.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
