@@ -171,32 +171,13 @@ namespace Geomystery.Controllers.Geometry
             vector2.X = (float)pressedPoint.X;
             vector2.Y = (float)pressedPoint.Y;
 
-            var surroundinsGeometryList = GetSurroundings(vector2);
-
+            //var surroundinsGeometryList = GetSurroundings(vector2);
+            var surroundings = outputCoordinates[0].GetSurroundings(vector2);
             if(userTool.toolName == "选择工具")
             {
-                if (surroundinsGeometryList != null && surroundinsGeometryList.Count == 1)
+                if (surroundings.surroundingPoint.Count > 0)
                 {
-                    coordinate.ToSelectGeometry(surroundinsGeometryList[0]);
-                    /*
-                    int currentPointId = surroundinsGeometryList[0].id;
-                    surroundinsGeometryList[0].isSelected = !surroundinsGeometryList[0].isSelected;
-
-                    foreach (Models.Geometry.Geometry selectedGeometry in coordinate.selectedGeometrys)
-                    {
-                        if (selectedGeometry.id != currentPointId)
-                        {
-                            selectedGeometry.isSelected = false;
-                            //coordinate.selectedGeometrys.Remove(selectedGeometry);
-                        }
-                    }
-
-                    coordinate.selectedGeometrys.Clear();
-                    if (surroundinsGeometryList[0].isSelected)
-                    {
-                        coordinate.selectedGeometrys.Add(surroundinsGeometryList[0]);
-                    }
-                    */
+                    coordinate.ToSelectGeometry(surroundings.surroundingPoint[0].geometry);    
                 }
                 else
                 {
@@ -205,14 +186,14 @@ namespace Geomystery.Controllers.Geometry
             }
             else if (userTool.toolName == "点工具")
             {
-                if(surroundinsGeometryList == null || surroundinsGeometryList.Count == 0)
+                if(surroundings.surroundingPoint.Count > 0)
                 {
-                    Point2 newPoint = outputCoordinates[0].ToPoint2(vector2);
-                    coordinate.AddPoint(newPoint);
+                    coordinate.ToSelectGeometry(surroundings.surroundingPoint[0].geometry);
                 }
                 else
                 {
-                    coordinate.ToSelectGeometry(surroundinsGeometryList[0]);
+                    Point2 newPoint = outputCoordinates[0].ToPoint2(vector2);
+                    coordinate.AddPoint(newPoint);
                 }
             }
             else if(userTool.toolName == "直线工具")
@@ -224,10 +205,10 @@ namespace Geomystery.Controllers.Geometry
                     dfa = new DFA(0, needList);
                 }
 
-                if (surroundinsGeometryList != null && surroundinsGeometryList.Count == 1)
+                if (surroundings.surroundingPoint.Count > 0)
                 {
-                    coordinate.ToSelectGeometry(surroundinsGeometryList[0]);
-                    dfa.UserSelectGeomerty(surroundinsGeometryList[0], false);
+                    coordinate.ToSelectGeometry(surroundings.surroundingPoint[0].geometry);
+                    dfa.UserSelectGeomerty(surroundings.surroundingPoint[0].geometry, false);
                 }
                 else
                 {
@@ -276,10 +257,10 @@ namespace Geomystery.Controllers.Geometry
                     dfa = new DFA(0, needList);
                 }
 
-                if (surroundinsGeometryList != null && surroundinsGeometryList.Count == 1)
+                if (surroundings.surroundingPoint.Count > 0)
                 {
-                    coordinate.ToSelectGeometry(surroundinsGeometryList[0]);
-                    dfa.UserSelectGeomerty(surroundinsGeometryList[0], false);
+                    coordinate.ToSelectGeometry(surroundings.surroundingPoint[0].geometry);
+                    dfa.UserSelectGeomerty(surroundings.surroundingPoint[0].geometry, false);
                 }
                 else
                 {

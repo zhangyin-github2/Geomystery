@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Geomystery.Award;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -22,6 +24,8 @@ namespace Geomystery
     /// </summary>
     public sealed partial class SelectGame : Page
     {
+        private ViewModel.ViewModel View { set; get; } = new ViewModel.ViewModel();
+        public ObservableCollection<Level> levels;
         public SelectGame()
         {
             this.InitializeComponent();
@@ -30,9 +34,19 @@ namespace Geomystery
             {
                 APPDATA.app_data.Views.Add(View);
             }
+            init();
+        }
+        public void init()
+        {
+            levels = Level.getLevels();
         }
 
-        private ViewModel.ViewModel View { set; get; } = new ViewModel.ViewModel();
-
+        private void levelbord_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            var x = e.ClickedItem as Level;
+            MainPage.debugTxt.Text = x.unlocked.ToString();
+        }
     }
+
+    
 }

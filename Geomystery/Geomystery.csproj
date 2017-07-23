@@ -213,6 +213,7 @@
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
     <Content Include="Pictures\AchievementBord.png" />
     <Content Include="Pictures\coin.png" />
+    <Content Include="Pictures\lock.png" />
     <Content Include="Properties\Default.rd.xml" />
   </ItemGroup>
   <ItemGroup>
