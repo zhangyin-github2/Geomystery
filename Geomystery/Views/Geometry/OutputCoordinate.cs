@@ -211,7 +211,6 @@ namespace Geomystery.Views.Geometry
                         p2 = v2,
                     };
 
-                    if (line.resultLine == null) line.resultLine = new List<OutputLine>();
                     line.resultLine.Add(outputLine);
                     geometryList.Add(outputLine);
                     return 1;
@@ -235,7 +234,21 @@ namespace Geomystery.Views.Geometry
 
         public int AddCircle(Circle circle)
         {
-
+            OutputCircle outputCircle = new OutputCircle()
+            {
+                borderType = ViewType.Solid,
+                fillColor = Color.FromArgb(0, 0, 0, 0),
+                isVisible = true,
+                lineColor = Color.FromArgb(255, 0, 0, 0),
+                circle = circle,
+                selectedFillColor = Color.FromArgb(255, 128, 128, 128),
+                selectedLineColor = Color.FromArgb(255, 128, 128, 128),
+                thickness = 2,
+                center = ToVector2(circle.center),
+                radius = (ToVector2(circle.center) - ToVector2(circle.radius)).Length(),
+            };
+            circle.resultCircle = outputCircle;
+            geometryList.Add(outputCircle);
             return 0;
         }
 

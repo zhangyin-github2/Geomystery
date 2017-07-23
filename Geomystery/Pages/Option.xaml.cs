@@ -28,6 +28,7 @@ namespace Geomystery
         public Option()
         {
             this.InitializeComponent();
+            Window.Current.SizeChanged += Current_SizeChanged;
             init();
         }
 
@@ -65,6 +66,13 @@ namespace Geomystery
         {
             await APPDATA.app_data.Reset();
             init();
+        }
+        public void Current_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
+        {
+            ApplicationView cview = ApplicationView.GetForCurrentView();
+            APPDATA.app_data.ISFULLSCREEN = cview.IsFullScreenMode;
+            Fullscreen.IsChecked = APPDATA.app_data.ISFULLSCREEN;
+            Fullscreen.Content = APPDATA.app_data.ISFULLSCREEN ? CONST.yes : CONST.no;
         }
     }
 }

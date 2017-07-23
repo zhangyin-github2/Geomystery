@@ -254,16 +254,70 @@ namespace Geomystery.Controllers.Geometry
                 }
                 else if(dfa.state == -2)
                 {
-                    if(dfa.needList[0].selectStack[0].IsNew)
+                    if(dfa.needList[0].selectStack.Count == 1)
                     {
-                        coordinate.RemovePoint(dfa.needList[0].selectStack[0].selectedGeometry as Point2);
+                        if (dfa.needList[0].selectStack[0].IsNew)
+                        {
+                            coordinate.RemovePoint(dfa.needList[0].selectStack[0].selectedGeometry as Point2);
+                        }
+
                     }
                     dfa.needList[0].selectStack.Clear();
                     dfa.needList.Clear();
                     dfa = null;
                 }
             }
-            
+            else if (userTool.toolName == "圆工具")
+            {
+                if (dfa == null || dfa.state == 2)
+                {
+                    List<NeedGeometrySetItem> needList = new List<NeedGeometrySetItem>();
+                    needList.Add(new NeedGeometrySetItem() { type = typeof(Point2), needNumber = 2 });
+                    dfa = new DFA(0, needList);
+                }
+
+                if (surroundinsGeometryList != null && surroundinsGeometryList.Count == 1)
+                {
+                    coordinate.ToSelectGeometry(surroundinsGeometryList[0]);
+                    dfa.UserSelectGeomerty(surroundinsGeometryList[0], false);
+                }
+                else
+                {
+                    Point2 newPoint = outputCoordinates[0].ToPoint2(vector2);
+                    coordinate.AddPoint(newPoint);
+                    dfa.UserSelectGeomerty(newPoint, true);
+                }
+
+                if (dfa.state == 2)
+                {
+                    Circle circle = new Circle();
+
+                    circle.center = dfa.needList[0].selectStack[0].selectedGeometry as Point2;
+                    circle.radius = dfa.needList[0].selectStack[1].selectedGeometry as Point2;
+
+                    coordinate.AddCircle(circle);
+
+                    dfa.needList[0].selectStack.Clear();
+                    dfa.needList.Clear();
+                    dfa = null;
+                }
+                else if (dfa.state == -2)
+                {
+                    //if (dfa.needList[0].selectStack.Count == 0) ;
+                    for(int i = 0; i < dfa.needList[0].selectStack.Count; i++)
+                    {
+                        SelectedGeometryStackItem selectedGeometryStackItem = dfa.needList[0].selectStack[i];
+                        if (selectedGeometryStackItem.IsNew)
+                        {
+                            coordinate.RemovePoint(selectedGeometryStackItem.selectedGeometry as Point2);
+                        }
+                    }
+                    dfa.needList[0].selectStack.Clear();
+                    dfa.needList.Clear();
+                    dfa = null;
+                }
+            }
+
         }
 
 
