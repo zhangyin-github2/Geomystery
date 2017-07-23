@@ -36,7 +36,8 @@ namespace Geomystery
 
         public MainPage()
         {
-            this.InitializeComponent();            
+            this.InitializeComponent();
+            myFrame.Navigated += MyFrame_Navigated;
             Application.Current.Suspending += new SuspendingEventHandler(App_Suspending);
             Window.Current.SizeChanged += Current_SizeChanged;
             init();
@@ -89,10 +90,6 @@ namespace Geomystery
             {
                 myFrame.GoBack();
             }
-            if(!myFrame.CanGoBack)
-            {
-                BackButton.Visibility = Visibility.Collapsed;
-            }
         }
 
         private void MuteButton_Click(object sender, RoutedEventArgs e)
@@ -118,7 +115,15 @@ namespace Geomystery
             base.OnNavigatedTo(e);
             ScreenHeight = Window.Current.Bounds.Height;
             ScreenWidth = Window.Current.Bounds.Width;
-            BackButton.Visibility = Visibility.Visible;
+        }
+
+        private void MyFrame_Navigated(object sender, NavigationEventArgs e)
+        {
+            if (!myFrame.CanGoBack)
+            {
+                BackButton.Visibility = Visibility.Collapsed;
+            }
+            else BackButton.Visibility = Visibility.Visible;
         }
 
         /// <summary>
