@@ -192,8 +192,33 @@ namespace Geomystery.Views.Geometry
                     Vector2 v1 = ToVector2(line.p1);
                     Vector2 v2 = ToVector2(line.p2);
                     Vector2 v3 = new Vector2();
-                    Vector2 v4 = new Vector2();
+                    Vector2 v4 = new Vector2(); 
 
+                    if(v1.X == v2.X)                //竖线
+                    {
+                        v3.X = v1.X;
+                        v3.Y = 0;
+                        v4.X = v1.X;
+                        v4.Y = WindowHeight;
+                    }
+                    else if( Math.Abs(v2.Y - v1.Y) > Math.Abs(v2.X-v1.X) )
+                    {
+                        v3.X = v1.X - v1.Y * (v1.X - v2.X) / (v1.Y - v2.Y);
+                        v3.Y = 0;
+                        v4.X = (WindowHeight - v1.Y) / (v2.Y - v1.Y) * v2.X + (v2.Y - WindowHeight) / (v2.Y - v1.Y) * v1.X;
+                        v4.Y = WindowHeight;
+                    }
+                    else if (Math.Abs(v2.Y - v1.Y) <= Math.Abs(v2.X - v1.X))
+                    {
+                        v3.X = WindowWidth;
+                        v3.Y = (WindowWidth - v1.X) / (v2.X - v1.X) * v2.Y + (v2.X - WindowWidth) / (v2.X - v1.X) * v1.Y;
+                        v4.X = 0;
+                        v4.Y = v1.Y - v1.X * (v1.Y - v2.Y) / (v1.X - v2.X);
+                    }
+                    else
+                    {
+                        throw new Exception();
+                    }
                     float length12 = (v1 - v2).Length();
 
 
@@ -207,8 +232,8 @@ namespace Geomystery.Views.Geometry
                         selectedFillColor = Color.FromArgb(255, 128, 128, 128),
                         selectedLineColor = Color.FromArgb(255, 128, 128, 128),
                         thickness = 2,
-                        p1 = v1,
-                        p2 = v2,
+                        p1 = v3,
+                        p2 = v4,
                     };
 
                     line.resultLine.Add(outputLine);
