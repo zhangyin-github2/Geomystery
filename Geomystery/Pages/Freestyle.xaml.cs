@@ -29,7 +29,7 @@ namespace Geomystery
     /// </summary>
     public sealed partial class Freestyle : Page
     {
-        Vector2 center;
+        Vector2 maxHeightWidth;
 
         CanvasCommandList cl = null;
 
@@ -83,6 +83,8 @@ namespace Geomystery
                 args.DrawingSession.DrawCircle(plist[i], 5, Color.FromArgb(255, 0, 0, 0));
             }
             */
+            Rect rect = new Rect(0, 0, maxHeightWidth.X, maxHeightWidth.Y);
+            args.DrawingSession.DrawRectangle(rect,Colors.Black);
             var geoList = controller.outputCoordinates[0].geometryList;
             if(geoList != null)
             {
@@ -131,25 +133,9 @@ namespace Geomystery
 
         private void canvas1_PointerPressed(object sender, PointerRoutedEventArgs e)
         {
-            /*
             Point pxy = e.GetCurrentPoint((CanvasAnimatedControl)sender).Position;
             Vector2 p = pxy.ToVector2();
-            bool flag1 = true;
-            for (int i = 0; i <plist.Count; i++)
-            {
-                if ((plist[i] - p).Length() <= 5)
-                {
-                    plist.RemoveAt(i);
-                    flag1 = false;
-                    break;
-                }
-            }
-            if (flag1)
-            {
-                plist.Add(p);
-            }
             text1.Text = p.X.ToString() + " | " + p.Y.ToString();
-            */
 
             controller.PointerPressed((UserTool)listView1.SelectedItem, sender, e);
         }
@@ -167,16 +153,16 @@ namespace Geomystery
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             //plist = new List<Vector2>();
-            center = new Vector2((float)canvas1.ActualWidth / 2, (float)canvas1.ActualHeight / 2);
-            text1.Text = center.X.ToString() + " | " + center.Y.ToString();
+            controller.outputCoordinates[0].WindowHeight = (float)canvas1.ActualHeight;
+            controller.outputCoordinates[0].WindowWidth = (float)canvas1.ActualWidth;
+            maxHeightWidth = new Vector2((float)canvas1.ActualWidth, (float)canvas1.ActualHeight);
+            text1.Text = maxHeightWidth.X.ToString() + " | " + maxHeightWidth.Y.ToString();
             listView1.SelectedIndex = 2;
         }
 
         private void Page_Unloaded(object sender, RoutedEventArgs e)
         {
             canvas1.RemoveFromVisualTree();
-            controller.outputCoordinates[0].WindowHeight = (float)canvas1.ActualHeight;
-            controller.outputCoordinates[0].WindowWidth = (float)canvas1.ActualWidth;
             canvas1 = null;
         }
 
