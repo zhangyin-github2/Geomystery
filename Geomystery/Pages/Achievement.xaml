@@ -11,8 +11,8 @@
 
     <Page.Resources>
         <ResourceDictionary >
-            <DataTemplate x:DataType="data:Achievements" x:Key="MusicDataTemplate">
-                <Grid  HorizontalAlignment="Stretch">
+            <DataTemplate x:DataType="data:Achievements" x:Key="AchDataTemplate">
+                <Grid  HorizontalAlignment="Stretch" Width="800">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.5*"/>
                         <ColumnDefinition Width="0.6*"/>
@@ -20,15 +20,7 @@
                         <ColumnDefinition Width="1.9*"/>
                         <ColumnDefinition Width="0.5*"/>
                     </Grid.ColumnDefinitions>
-                    <Rectangle Height="200"
-                               Width="1000"
-                               Fill="MediumPurple"
-                               Grid.ColumnSpan="6"
-                               Stroke="MediumOrchid"
-                               StrokeThickness="8"
-                               RadiusX="20"
-                               RadiusY="20"/>
-                    <!--<Image Source="ms-appx:///Pictures/AchievementBord.png" Opacity="0.75" Stretch="Fill" Grid.ColumnSpan="6"/>-->
+                    <Image  Source="ms-appx:///Pictures/AchievementBord.png" Opacity="0.75" Stretch="Uniform" Grid.ColumnSpan="6"/>
                     <Grid Grid.Column="1">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="0.3*"/>
@@ -37,7 +29,8 @@
                         </Grid.RowDefinitions>
                         <Grid Grid.Row="1">
                             <Image Source="{x:Bind picture}" Stretch="Fill"></Image>
-                            <!--Rectangle RadiusX="5" RadiusY="5" StrokeThickness="2" Stroke="SkyBlue">-->
+                            <!--Rectangle RadiusX="5" RadiusY="5" StrokeThickness="2" Stroke="SkyBlue">
+                        </-->
                         </Grid>
                     </Grid>
                     <Grid Grid.Column="3">
@@ -51,11 +44,11 @@
                                 <ColumnDefinition Width="2*"/>
                                 <ColumnDefinition Width="1*"/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Text="{x:Bind name}" FontSize="{x:Bind fontsize1,Mode=TwoWay}" TextAlignment="Left" FontFamily="Microsoft YaHei UI"  Foreground="White" VerticalAlignment="Bottom"/>
-                            <TextBlock Grid.Column="1" Text="{x:Bind islock}" FontSize="{x:Bind fontsize2,Mode=TwoWay}" TextAlignment="Left" FontFamily="Microsoft YaHei UI"  Foreground="{x:Bind col}" VerticalAlignment="Bottom"/>
+                            <TextBlock Text="{x:Bind name}" FontSize="{x:Bind fontsize1,Mode=TwoWay}" TextAlignment="Left" FontFamily="Fonts/方正隶书繁体_0.TTF#FZLiShu-S01T"  Foreground="White" VerticalAlignment="Bottom"/>
+                            <TextBlock Grid.Column="1" Text="{x:Bind islock}" FontSize="{x:Bind fontsize2,Mode=TwoWay}" TextAlignment="Left" FontFamily="幼圆"  Foreground="{x:Bind col}" VerticalAlignment="Bottom"/>
                         </Grid>
                         <Grid Grid.Row="1">
-                            <TextBlock Text="{x:Bind discribe}" FontSize="{x:Bind fontsize3,Mode=TwoWay}" TextAlignment="Left" FontFamily="Microsoft YaHei UI"  Foreground="Silver" TextWrapping="Wrap"/>
+                            <TextBlock Text="{x:Bind discribe}" FontSize="{x:Bind fontsize3,Mode=TwoWay}" TextAlignment="Left" FontFamily="幼圆"  Foreground="Silver" TextWrapping="Wrap"/>
                         </Grid>
                     </Grid>
                 </Grid>
@@ -104,7 +97,7 @@
                           HorizontalContentAlignment="Stretch"
                           VerticalContentAlignment="Stretch"
                           ItemsSource="{x:Bind ach}"
-                          ItemTemplate="{StaticResource MusicDataTemplate}"/>
+                          ItemTemplate="{StaticResource AchDataTemplate}" SelectionChanged="musicBord_SelectionChanged"/>
             </ScrollViewer>
         </Grid>
     </Grid>

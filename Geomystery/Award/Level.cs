@@ -86,6 +86,10 @@ namespace Geomystery.Award
             cp1.Add(new Level() { ID = 7, name = "Ciricl in Square" });
             cp1.Add(new Level() { ID = 8, name = "Rhombus in Rectangle" });
             cp1.Add(new Level() { ID = 9, name = "Circle Center" });
+            foreach(var x in cp1)
+            {
+                x.cover = "ms-appx:///Pictures/Levels/" + x.ID.ToString()+".png";
+            }
             return cp1;
         }
     }

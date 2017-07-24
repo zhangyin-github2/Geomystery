@@ -44,7 +44,7 @@ namespace Geomystery
         private void levelbord_ItemClick(object sender, ItemClickEventArgs e)
         {
             var x = e.ClickedItem as Level;
-            MainPage.debugTxt.Text = x.unlocked.ToString();
+            MainPage.debugTxt.Text = x.cover.ToString();
         }
     }
 
