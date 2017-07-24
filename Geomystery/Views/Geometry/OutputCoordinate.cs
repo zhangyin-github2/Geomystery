@@ -160,11 +160,11 @@ namespace Geomystery.Views.Geometry
             OutputPoint outputPoint = new OutputPoint()
             {
                 borderType = ViewType.Solid,
-                fillColor = Color.FromArgb(0, 0, 0, 0),
                 isVisible = true,
+                fillColor = Color.FromArgb(255, 201, 84, 191),
                 lineColor = Color.FromArgb(255, 0, 0, 0),
                 point = point,
-                selectedFillColor = Color.FromArgb(255, 128, 128, 128),
+                selectedFillColor = Color.FromArgb(255, 0, 0, 0),
                 selectedLineColor = Color.FromArgb(255, 128, 128, 128),
                 thickness = 2,
                 viewPoint = ToVector2(point),
@@ -242,13 +242,13 @@ namespace Geomystery.Views.Geometry
                     OutputLine outputLine = new OutputLine()
                     {
                         borderType = ViewType.Solid,
-                        fillColor = Color.FromArgb(0, 0, 0, 0),
                         isVisible = true,
-                        lineColor = Color.FromArgb(255, 0, 0, 0),
+                        fillColor = Color.FromArgb(0, 130, 91, 230),
+                        lineColor = Color.FromArgb(255, 130, 91, 230),
                         line = line,
                         selectedFillColor = Color.FromArgb(255, 128, 128, 128),
                         selectedLineColor = Color.FromArgb(255, 128, 128, 128),
-                        thickness = 2,
+                        thickness = 8,
                         p1 = v3,
                         p2 = v4,
                     };
@@ -279,13 +279,13 @@ namespace Geomystery.Views.Geometry
             OutputCircle outputCircle = new OutputCircle()
             {
                 borderType = ViewType.Solid,
-                fillColor = Color.FromArgb(0, 0, 0, 0),
                 isVisible = true,
-                lineColor = Color.FromArgb(255, 0, 0, 0),
+                fillColor = Color.FromArgb(0, 130, 91, 230),
+                lineColor = Color.FromArgb(255, 130, 91, 230),
                 circle = circle,
                 selectedFillColor = Color.FromArgb(255, 128, 128, 128),
                 selectedLineColor = Color.FromArgb(255, 128, 128, 128),
-                thickness = 2,
+                thickness = 8,
                 center = ToVector2(circle.center),
                 radius = (ToVector2(circle.center) - ToVector2(circle.radius)).Length(),
             };

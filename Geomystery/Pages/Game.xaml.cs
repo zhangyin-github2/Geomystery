@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Geomystery.Controllers.Geometry;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Numerics;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -22,6 +24,12 @@ namespace Geomystery
     /// </summary>
     public sealed partial class Game : Page
     {
+        Vector2 maxHeightWidth;
+
+        List<UserTool> userTools;
+
+        Geomystery.Controllers.Geometry.Controllers controller;
+
         public Game()
         {
             this.InitializeComponent();
@@ -34,5 +42,19 @@ namespace Geomystery
 
         private ViewModel.ViewModel View { set; get; } = new ViewModel.ViewModel();
 
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            controller.outputCoordinates[0].WindowHeight = (float)canvas1.ActualHeight;
+            controller.outputCoordinates[0].WindowWidth = (float)canvas1.ActualWidth;
+            maxHeightWidth = new Vector2((float)canvas1.ActualWidth, (float)canvas1.ActualHeight);
+            text1.Text = maxHeightWidth.X.ToString() + " | " + maxHeightWidth.Y.ToString();
+            listView1.SelectedIndex = 2;
+        }
+
+        private void Page_Unloaded(object sender, RoutedEventArgs e)
+        {
+            canvas1.RemoveFromVisualTree();
+            canvas1 = null;
+        }
     }
 }
