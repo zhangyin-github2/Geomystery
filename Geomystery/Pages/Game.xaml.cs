@@ -1,4 +1,6 @@
 ﻿using Geomystery.Controllers.Geometry;
+using Geomystery.Models.Geometry;
+using Geomystery.Pages;
 using Geomystery.Views.Geometry;
 using Microsoft.Graphics.Canvas.UI.Xaml;
 using System;
@@ -161,6 +163,33 @@ namespace Geomystery
             MainPage.debugTxt.Text = p.X.ToString() + " | " + p.Y.ToString();
 
             controller.PointerPressed((UserTool)listView1.SelectedItem, sender, e);
+
+            int flag = 0;
+            for(int i = 0; i < controller.coordinate.pointSetList.Count; i++)
+            {
+                if(controller.coordinate.pointSetList[i] is Line)
+                {
+                    Line line = controller.coordinate.pointSetList[i] as Line;
+                    if ((line.p1.id == 1 &&line.p2.id == 2) || (line.p2.id==1 && line.p1.id ==2))
+                    {
+                        flag++;
+                    }
+                    if ((line.p1.id == 1 && line.p2.id == 3) || (line.p2.id == 1 && line.p1.id == 3))
+                    {
+                        flag++;
+                    }
+                    if ((line.p1.id == 2 && line.p2.id == 3) || (line.p2.id == 2 && line.p1.id == 3))
+                    {
+                        flag++;
+                    }
+                }
+            }
+            if(flag==3)
+            {
+                LevelSucceedDialog lsd = new LevelSucceedDialog();
+                lsd.ShowAsync();
+                MainPage.MainFrame.Navigate(typeof(SelectChapter));
+            }
         }
     }
 }

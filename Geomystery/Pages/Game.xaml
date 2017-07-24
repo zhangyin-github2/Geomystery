@@ -38,6 +38,7 @@
         </StackPanel>-->
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="48"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
@@ -52,7 +53,7 @@
                        Visibility="Collapsed"/>
         </StackPanel>
         <ListView x:Name="listView1"
-                  Grid.Row="1"
+                  Grid.Row="2"
                   ItemsSource="{x:Bind userTools}"
                   ItemTemplate="{StaticResource listViewItemTempelate}"
                   >
@@ -61,7 +62,7 @@
 
         <canvas:CanvasAnimatedControl x:Name="canvas1"
                                       Grid.Column="1"
-                                      Grid.Row="1" Draw="canvas1_Draw" PointerPressed="canvas1_PointerPressed"
+                                      Grid.Row="2" Draw="canvas1_Draw" PointerPressed="canvas1_PointerPressed"
                                       
                                       />
     </Grid>

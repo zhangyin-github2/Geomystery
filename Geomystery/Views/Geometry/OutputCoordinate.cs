@@ -164,8 +164,8 @@ namespace Geomystery.Views.Geometry
                 fillColor = Color.FromArgb(255, 201, 84, 191),
                 lineColor = Color.FromArgb(255, 0, 0, 0),
                 point = point,
-                selectedFillColor = Color.FromArgb(255, 0, 0, 0),
-                selectedLineColor = Color.FromArgb(255, 128, 128, 128),
+                selectedFillColor = Color.FromArgb(255, 255, 255, 255),
+                selectedLineColor = Color.FromArgb(255, 0, 0, 0),
                 thickness = 2,
                 viewPoint = ToVector2(point),
             };
