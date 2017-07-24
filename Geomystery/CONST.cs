@@ -30,7 +30,11 @@ namespace Geomystery
             extendAnimation1 = new DoubleAnimation { Duration = new Duration(TimeSpan.FromSeconds(0.5)), From = from, To = to, EnableDependentAnimation = true };
 
             Storyboard.SetTarget(extendAnimation1, back);
-            Storyboard.SetTargetProperty(extendAnimation1, "(UIElement.RenderTransform).(CompositeTransform .TranslateX)");
+            if (direction<2)
+                Storyboard.SetTargetProperty(extendAnimation1, "(UIElement.RenderTransform).(CompositeTransform .TranslateY)");
+            else
+                Storyboard.SetTargetProperty(extendAnimation1, "(UIElement.RenderTransform).(CompositeTransform .TranslateX)");
+
             storyBoard.Children.Add(extendAnimation1);
             storyBoard.Begin();
         } 
