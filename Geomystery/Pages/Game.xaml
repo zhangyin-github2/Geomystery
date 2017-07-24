@@ -8,7 +8,9 @@
     xmlns:canvas="using:Microsoft.Graphics.Canvas.UI.Xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    RequestedTheme="{x:Bind View.Theme,Mode=OneWay}" Loaded="Page_Loaded" Unloaded="Page_Unloaded">
+    RequestedTheme="{x:Bind View.Theme,Mode=OneWay}"
+    Loaded="Page_Loaded"
+    Unloaded="Page_Unloaded">
 
     <Page.Resources>
         <ResourceDictionary>
@@ -46,7 +48,8 @@
 
         <StackPanel Grid.Row="0" Grid.ColumnSpan="2">
             <TextBlock Name="text1"
-                       Margin="48,48,48,48"/>
+                       Margin="48,48,48,48"
+                       Visibility="Collapsed"/>
         </StackPanel>
         <ListView x:Name="listView1"
                   Grid.Row="1"
@@ -58,7 +61,8 @@
 
         <canvas:CanvasAnimatedControl x:Name="canvas1"
                                       Grid.Column="1"
-                                      Grid.Row="1"
+                                      Grid.Row="1" Draw="canvas1_Draw" PointerPressed="canvas1_PointerPressed"
+                                      
                                       />
     </Grid>
 </Page>

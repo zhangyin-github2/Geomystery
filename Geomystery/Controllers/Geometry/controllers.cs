@@ -83,6 +83,23 @@ namespace Geomystery.Controllers.Geometry
         }
 
         /// <summary>
+        /// 关卡的预初始化
+        /// </summary>
+        /// <param name="controller"></param>
+        /// <returns></returns>
+        public int PreInitialized(Controllers controller)
+        {
+            this.coordinate = controller.coordinate;
+            if (outputCoordinates != null)
+            {
+                outputCoordinates.Clear();
+            }
+            outputCoordinates = new List<OutputCoordinate>();
+            outputCoordinates.Add(controller.outputCoordinates[0]);
+            return 1;
+        }
+
+        /// <summary>
         /// 获取鼠标在屏幕当前点附近的逻辑坐标点
         /// </summary>
         /// <param name="point">屏幕上的点</param>
