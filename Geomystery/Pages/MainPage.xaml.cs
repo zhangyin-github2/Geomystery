@@ -76,6 +76,7 @@ namespace Geomystery
                 MuteButton.Content = CONST.mute;
             else
                 MuteButton.Content = CONST.volume2;
+            APPDATA.app_data.BACKBUTTON = this.BackButton;
             //debugT.Text = APPDATA.app_data.show();
             BackButton.Visibility = Visibility.Collapsed;
             myFrame.Navigate(typeof(HomePage));
@@ -101,6 +102,10 @@ namespace Geomystery
             if (myFrame.CanGoBack)
             {
                 myFrame.GoBack();
+            }
+            if(APPDATA.app_data.CURRENT_PAGE!=AppPage.HomePage)
+            {
+                APPDATA.app_data.MoveTo(AppPage.HomePage);
             }
         }
 
@@ -153,5 +158,6 @@ namespace Geomystery
         {
             
         }
+
     }
 }
