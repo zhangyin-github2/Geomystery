@@ -156,7 +156,7 @@ namespace Geomystery
             }
         }
 
-        private void canvas1_PointerPressed(object sender, PointerRoutedEventArgs e)
+        private async void canvas1_PointerPressed(object sender, PointerRoutedEventArgs e)
         {
             Point pxy = e.GetCurrentPoint((CanvasAnimatedControl)sender).Position;
             Vector2 p = pxy.ToVector2();
@@ -165,12 +165,12 @@ namespace Geomystery
             controller.PointerPressed((UserTool)listView1.SelectedItem, sender, e);
 
             int flag = 0;
-            for(int i = 0; i < controller.coordinate.pointSetList.Count; i++)
+            for (int i = 0; i < controller.coordinate.pointSetList.Count; i++)
             {
-                if(controller.coordinate.pointSetList[i] is Line)
+                if (controller.coordinate.pointSetList[i] is Line)
                 {
                     Line line = controller.coordinate.pointSetList[i] as Line;
-                    if ((line.p1.id == 1 &&line.p2.id == 2) || (line.p2.id==1 && line.p1.id ==2))
+                    if ((line.p1.id == 1 && line.p2.id == 2) || (line.p2.id == 1 && line.p1.id == 2))
                     {
                         flag++;
                     }
@@ -184,12 +184,19 @@ namespace Geomystery
                     }
                 }
             }
-            if(flag==3)
+            if (flag == 3)
             {
                 LevelSucceedDialog lsd = new LevelSucceedDialog();
-                lsd.ShowAsync();
+                await lsd.ShowAsync();
                 MainPage.MainFrame.Navigate(typeof(SelectChapter));
             }
+        }
+
+        private void refresh_Click(object sender, RoutedEventArgs e)
+        {
+            controller.outputCoordinates[0].geometryList.Clear();
+            controller = new Controllers.Geometry.Controllers(1);
+            controller.PreInitialized(LevelLoader.GetLevel(1));
         }
     }
 }

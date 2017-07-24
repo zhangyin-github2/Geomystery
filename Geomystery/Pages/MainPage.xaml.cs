@@ -39,6 +39,7 @@ namespace Geomystery
         public MainPage()
         {
             this.InitializeComponent();
+            //backG.RenderTransform= new CompositeTransform();
             this.Name = this.GetType().ToString()+"P";
             myFrame.Navigated += MyFrame_Navigated;
             Application.Current.Suspending += new SuspendingEventHandler(App_Suspending);
@@ -51,17 +52,26 @@ namespace Geomystery
         {
             ApplicationView cview = ApplicationView.GetForCurrentView();
             APPDATA.app_data.ISFULLSCREEN = cview.IsFullScreenMode;
-            APPDATA.app_data.MAINGRID = backG;
             ScreenHeight = Window.Current.Bounds.Height;
             ScreenWidth = Window.Current.Bounds.Width;
             backG.Width = ScreenWidth * 2;
             backG.Height = ScreenHeight * 2;
+            var x = backG.RenderTransform as CompositeTransform;
+            try
+            {
+                if (APPDATA.app_data.CURRENT_PAGE == AppPage.AchievementPage) x.TranslateX = -ScreenWidth;
+                if (APPDATA.app_data.CURRENT_PAGE == AppPage.OptionPage) x.TranslateY = -ScreenHeight;
+            }
+            catch { return;  }
+            backG.RenderTransform = x;
         }
 
         public void init()
         {
             MainFrame = this.myFrame;
             debugTxt = this.debugT;
+            BgaP = bgaPlayer;
+            BgmP = bgmPlayer;
             APPDATA.app_data = new APPDATA();
             APPDATA.LOAD();
             View = new ViewModel.ViewModel();
@@ -77,12 +87,13 @@ namespace Geomystery
             else
                 MuteButton.Content = CONST.volume2;
             APPDATA.app_data.BACKBUTTON = this.BackButton;
+                        APPDATA.app_data.MAINGRID = backG;
             //debugT.Text = APPDATA.app_data.show();
             BackButton.Visibility = Visibility.Collapsed;
+            init_music();
             myFrame.Navigate(typeof(HomePage));
             optionFrame.Navigate(typeof(Option));
             achievementFrame.Navigate(typeof(Achievement));
-            init_music();
         }
         public void init_music()
         {
@@ -101,10 +112,12 @@ namespace Geomystery
         {
             if (myFrame.CanGoBack)
             {
+                BGMPlayer.PlayButton();
                 myFrame.GoBack();
             }
             if(APPDATA.app_data.CURRENT_PAGE!=AppPage.HomePage)
             {
+                BGMPlayer.PlayButton();
                 APPDATA.app_data.MoveTo(AppPage.HomePage);
             }
         }
@@ -156,7 +169,10 @@ namespace Geomystery
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            
+            ScreenHeight = Window.Current.Bounds.Height;
+            ScreenWidth = Window.Current.Bounds.Width;
+            backG.Width = ScreenWidth * 2;
+            backG.Height = ScreenHeight * 2;
         }
 
     }

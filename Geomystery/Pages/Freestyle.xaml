@@ -57,7 +57,7 @@
                     <CompositeTransform ScaleX="-1"/>
                 </Button.RenderTransform>
             </Button>
-            <Button x:Name="refresh" Content="&#xE777;" FontSize="22" Background="Transparent" Foreground="{ThemeResource SystemBackgroundBaseHighBrush}" FontFamily="Segoe MDl2 Assets" Height="38" Width="42" />
+            <Button x:Name="refresh" Content="&#xE777;" FontSize="22" Background="Transparent" Foreground="{ThemeResource SystemBackgroundBaseHighBrush}" FontFamily="Segoe MDl2 Assets" Height="38" Width="42" Click="refresh_Click"  />
         </StackPanel>
     </Grid>
 </Page>

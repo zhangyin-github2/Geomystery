@@ -217,6 +217,11 @@ namespace Geomystery
             //MainPage.debugTxt.Text = "helloWorld";
         }
 
+        private void refresh_Click(object sender, RoutedEventArgs e)
+        {
+            controller.outputCoordinates[0].geometryList.Clear();
+        }
+
         private void undo_Click(object sender, RoutedEventArgs e)
         {
 

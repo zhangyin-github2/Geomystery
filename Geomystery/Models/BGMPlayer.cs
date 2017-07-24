@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Media.Core;
 using Windows.UI.Xaml.Controls;
 
 namespace Geomystery.Models
@@ -17,6 +18,11 @@ namespace Geomystery.Models
                 MusicPlayer = new MediaPlayerElement();
             }
             return MusicPlayer;
+        }
+        public static void PlayButton()
+        {
+            MusicPlayer.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Audio/button3.wav", UriKind.Absolute));
+            MusicPlayer.MediaPlayer.Play();
         }
         public static void setMute()
         {
