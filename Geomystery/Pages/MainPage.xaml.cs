@@ -52,10 +52,10 @@ namespace Geomystery
             ApplicationView cview = ApplicationView.GetForCurrentView();
             APPDATA.app_data.ISFULLSCREEN = cview.IsFullScreenMode;
             APPDATA.app_data.MAINGRID = backG;
-            double w, h;
-            w = Window.Current.Bounds.Width; h = Window.Current.Bounds.Height;
-            backG.Width = w * 2;
-            backG.Height = h * 2;
+            ScreenHeight = Window.Current.Bounds.Height;
+            ScreenWidth = Window.Current.Bounds.Width;
+            backG.Width = ScreenWidth * 2;
+            backG.Height = ScreenHeight * 2;
         }
 
         public void init()
@@ -127,6 +127,8 @@ namespace Geomystery
             base.OnNavigatedTo(e);
             ScreenHeight = Window.Current.Bounds.Height;
             ScreenWidth = Window.Current.Bounds.Width;
+            backG.Width = ScreenWidth * 2;
+            backG.Height = ScreenHeight * 2;
         }
 
         private void MyFrame_Navigated(object sender, NavigationEventArgs e)

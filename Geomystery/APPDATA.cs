@@ -117,6 +117,28 @@ namespace Geomystery
             update_views();
             return 0;
         }
+        /// <summary>
+        /// 移动MAINGRID
+        /// </summary>
+        /// <param name="direction">
+        /// 0上 1下 2左 3右
+        /// </param>
+        void GridMove(int direction)
+        {
+            double from, to;
+            double w, h;
+            w = Window.Current.Bounds.Width; h = Window.Current.Bounds.Height;
+            switch (direction)
+            {
+                case 0:   from = -h / 2; to = 0;      break;
+                case 1:   from = 0     ; to = -h/2;   break;
+                case 2:   from = -w / 2; to = 0;      break;
+                case 3:   from = 0     ; to = -w/2;   break;
+                default:  from = 0     ; to = 0;      break;
+            }
+            CONST.GridMove(MAINGRID, direction,from,to);
+        }
+
         public string show()
         {
             var ss = "";
