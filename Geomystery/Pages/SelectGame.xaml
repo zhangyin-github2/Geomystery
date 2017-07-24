@@ -8,6 +8,7 @@
     mc:Ignorable="d"
     xmlns:toolData="using:Geomystery.Award"
     RequestedTheme="{x:Bind View.Theme,Mode=OneWay}">
+    
     <Page.Resources>
         <ResourceDictionary>
             <local:intToVisibilityConverter x:Key="Converter1"/>
@@ -66,8 +67,8 @@
                 </Grid>
             </DataTemplate>
             <ResourceDictionary.ThemeDictionaries>
-                <ResourceDictionary x:Key="Light" Source="DarkThemeDictionary.xaml"></ResourceDictionary>
-                <ResourceDictionary x:Key="Dark" Source="LightThemeDictionary.xaml"></ResourceDictionary>
+                <ResourceDictionary x:Key="Light" Source="LightThemeDictionary.xaml"></ResourceDictionary>
+                <ResourceDictionary x:Key="Dark" Source="DarkThemeDictionary.xaml"></ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>
         </ResourceDictionary>
     </Page.Resources>
