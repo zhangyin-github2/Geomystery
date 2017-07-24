@@ -45,6 +45,7 @@ namespace Geomystery
         {
             var x = e.ClickedItem as Level;
             MainPage.debugTxt.Text = x.cover.ToString();
+            MainPage.MainFrame.Navigate(typeof(Game),x);
         }
     }
 

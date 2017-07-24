@@ -41,6 +41,8 @@ namespace Geomystery
 
         Geomystery.Controllers.Geometry.Controllers controller;
 
+        Stack<OutputLine> undolist, redolist;
+
         public Freestyle()
         {
             this.InitializeComponent();
@@ -179,7 +181,7 @@ namespace Geomystery
         {
             Point pxy = e.GetCurrentPoint((CanvasAnimatedControl)sender).Position;
             Vector2 p = pxy.ToVector2();
-            text1.Text = p.X.ToString() + " | " + p.Y.ToString();
+            MainPage.debugTxt.Text = p.X.ToString() + " | " + p.Y.ToString();
 
             controller.PointerPressed((UserTool)listView1.SelectedItem, sender, e);
         }
@@ -200,7 +202,7 @@ namespace Geomystery
             controller.outputCoordinates[0].WindowHeight = (float)canvas1.ActualHeight;
             controller.outputCoordinates[0].WindowWidth = (float)canvas1.ActualWidth;
             maxHeightWidth = new Vector2((float)canvas1.ActualWidth, (float)canvas1.ActualHeight);
-            text1.Text = maxHeightWidth.X.ToString() + " | " + maxHeightWidth.Y.ToString();
+            MainPage.debugTxt.Text = maxHeightWidth.X.ToString() + " | " + maxHeightWidth.Y.ToString();
             listView1.SelectedIndex = 2;
         }
 
@@ -212,9 +214,12 @@ namespace Geomystery
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            text1.Text = "helloWorld";
+            //MainPage.debugTxt.Text = "helloWorld";
         }
 
-        
+        private void undo_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
