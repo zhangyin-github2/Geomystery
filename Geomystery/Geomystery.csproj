@@ -271,6 +271,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Audio\" />
     <Folder Include="Pictures\Tool\" />
   </ItemGroup>
   <ItemGroup>
