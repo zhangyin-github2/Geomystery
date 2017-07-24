@@ -91,6 +91,8 @@
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
     <None Include="project.json" />
+    <PRIResource Include="String\ZH_Hans\ZH_Hans.resw" />
+    <PRIResource Include="String\EN_US\EN_US.resw" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Award\Achievement.cs" />
@@ -212,6 +214,7 @@
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
     <Content Include="Pictures\AchievementBord.png" />
     <Content Include="Pictures\coin.png" />
+    <Content Include="Pictures\Levels\1.png" />
     <Content Include="Pictures\lock.png" />
     <Content Include="Properties\Default.rd.xml" />
   </ItemGroup>
@@ -268,6 +271,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Audio\" />
     <Folder Include="Pictures\Tool\" />
   </ItemGroup>
   <ItemGroup>

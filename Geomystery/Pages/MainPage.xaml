@@ -93,7 +93,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Grid x:Name="backG" Grid.RowSpan="1" Width="3840" Height="2160">
+        <Grid x:Name="backG" Grid.RowSpan="1" Width="3840" Height="2160" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
