@@ -90,7 +90,7 @@ namespace Geomystery
             BGMPlayer.MusicPlayer.Name = "MusicPlayer";
             backG.Children.Add(BGMPlayer.MusicPlayer);
             BGMPlayer.MusicPlayer.Visibility = Visibility.Collapsed;
-            BGMPlayer.MusicPlayer.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Assets/buttonmusic.mp3"));
+            BGMPlayer.MusicPlayer.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Assets/button1.wav"));
             BGMPlayer.MusicPlayer.MediaPlayer.IsLoopingEnabled = false;
             BGMPlayer.MusicPlayer.MediaPlayer.AutoPlay = false;
             BGMPlayer.MusicPlayer.MediaPlayer.Volume = 100;
