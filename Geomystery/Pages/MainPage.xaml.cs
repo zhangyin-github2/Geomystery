@@ -16,6 +16,7 @@ using Windows.UI.ViewManagement;
 using Geomystery.Pages;
 using Geomystery.Models;
 using Geomystery.ViewModel;
+using Windows.Media.Core;
 
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上有介绍
@@ -38,16 +39,23 @@ namespace Geomystery
         public MainPage()
         {
             this.InitializeComponent();
+            this.Name = this.GetType().ToString()+"P";
             myFrame.Navigated += MyFrame_Navigated;
             Application.Current.Suspending += new SuspendingEventHandler(App_Suspending);
             Window.Current.SizeChanged += Current_SizeChanged;
             init();
+            debugT.Text = this.Name;
         }
 
         public void Current_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
         {
             ApplicationView cview = ApplicationView.GetForCurrentView();
             APPDATA.app_data.ISFULLSCREEN = cview.IsFullScreenMode;
+            APPDATA.app_data.MAINGRID = backG;
+            double w, h;
+            w = Window.Current.Bounds.Width; h = Window.Current.Bounds.Height;
+            backG.Width = w * 2;
+            backG.Height = h * 2;
         }
 
         public void init()
@@ -68,21 +76,23 @@ namespace Geomystery
                 MuteButton.Content = CONST.mute;
             else
                 MuteButton.Content = CONST.volume2;
-            debugT.Text = APPDATA.app_data.show();
+            //debugT.Text = APPDATA.app_data.show();
             BackButton.Visibility = Visibility.Collapsed;
             myFrame.Navigate(typeof(HomePage));
+            optionFrame.Navigate(typeof(Option));
+            achievementFrame.Navigate(typeof(Achievement));
             init_music();
         }
         public void init_music()
         {
             BGMPlayer.getInstance();
             BGMPlayer.MusicPlayer.Name = "MusicPlayer";
-            Music.Children.Add(BGMPlayer.MusicPlayer);
+            backG.Children.Add(BGMPlayer.MusicPlayer);
             BGMPlayer.MusicPlayer.Visibility = Visibility.Collapsed;
-            BGMPlayer.MusicPlayer.IsLooping = false;
-            BGMPlayer.MusicPlayer.AutoPlay = false;
-            BGMPlayer.MusicPlayer.Source = new Uri("ms-appx:///Assets/buttonmusic.mp3");
-            BGMPlayer.MusicPlayer.Volume = 100;
+            BGMPlayer.MusicPlayer.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Assets/buttonmusic.mp3"));
+            BGMPlayer.MusicPlayer.MediaPlayer.IsLoopingEnabled = false;
+            BGMPlayer.MusicPlayer.MediaPlayer.AutoPlay = false;
+            BGMPlayer.MusicPlayer.MediaPlayer.Volume = 100;
         }
         
 

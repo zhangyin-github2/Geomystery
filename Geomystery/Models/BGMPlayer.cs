@@ -9,14 +9,18 @@ namespace Geomystery.Models
 {
     class BGMPlayer
     {
-        public static MediaElement MusicPlayer;
-        public static MediaElement getInstance()
+        public static MediaPlayerElement MusicPlayer;
+        public static MediaPlayerElement getInstance()
         {
             if (MusicPlayer == null)
             {
-                MusicPlayer = new MediaElement();
+                MusicPlayer = new MediaPlayerElement();
             }
             return MusicPlayer;
+        }
+        public static void setMute()
+        {
+            BGMPlayer.MusicPlayer.MediaPlayer.IsMuted = !BGMPlayer.MusicPlayer.MediaPlayer.IsMuted;
         }
     }
 }

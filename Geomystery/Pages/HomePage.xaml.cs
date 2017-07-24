@@ -40,19 +40,19 @@ namespace Geomystery.Pages
 
         private void Game_Click(object sender, RoutedEventArgs e)
         {
-            BGMPlayer.MusicPlayer.Play();
+            BGMPlayer.MusicPlayer.MediaPlayer.Play();
             Frame.Navigate(typeof(SelectChapter));
         }
 
         private void Freestyle_Click(object sender, RoutedEventArgs e)
         {
-            BGMPlayer.MusicPlayer.Play();
+            BGMPlayer.MusicPlayer.MediaPlayer.Play();
             Frame.Navigate(typeof(Freestyle));
         }
 
         private void Option_Click(object sender, RoutedEventArgs e)
         {
-            BGMPlayer.MusicPlayer.Play();
+            BGMPlayer.MusicPlayer.MediaPlayer.Play();
             Frame.Navigate(typeof(Option));
         }
 

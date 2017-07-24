@@ -1,4 +1,5 @@
-﻿using SQLite.Net;
+﻿using Geomystery.Models;
+using SQLite.Net;
 using SQLite.Net.Platform.WinRT;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,7 @@ namespace Geomystery
         public int GAMEMODE { get; set; }
         public int HAVEDONE { get; set; }
         public List<ViewModel.ViewModel> Views;
+        public Grid MAINGRID { get; set; }
         public static APPDATA app_data;
 
         public APPDATA()
@@ -31,6 +33,7 @@ namespace Geomystery
             ISFULLSCREEN=true;
             HAVEDONE = 0;
             GAMEMODE = -1;
+            MAINGRID = new Grid();
         }
         public static void SAVE()
         {
@@ -85,6 +88,7 @@ namespace Geomystery
         public void setMute()
         {
             app_data.ISMUTE = !app_data.ISMUTE;
+            BGMPlayer.setMute();
         }
         public void update_views()
         {

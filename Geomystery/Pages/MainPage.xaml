@@ -1,4 +1,5 @@
 ﻿<Page
+    x:Name="MainPageP"
     x:Class="Geomystery.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -92,9 +93,19 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Frame x:Name="myFrame"
-               Grid.Row="0"
-               Grid.RowSpan="2"/>
+        <Grid x:Name="backG" Grid.RowSpan="1" Width="3840" Height="2160">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Frame x:Name="myFrame" />
+            <Frame x:Name="optionFrame"  Grid.Row="1"/>
+            <Frame x:Name="achievementFrame" Grid.Column="1"/>
+        </Grid>
         <MediaPlayerElement Name="bgmPlayer"
                             Height="0"
                             Width="0"/>
@@ -127,12 +138,9 @@
                     BorderThickness="0"
                     Click="MuteButton_Click"/>
             <TextBlock x:Name="debugT"
+                       Foreground="{ThemeResource SystemBackgroundBaseHighBrush}"
                        RelativePanel.RightOf="MuteButton"
                        FontSize="10"/>
         </RelativePanel>
-
-        <Grid x:Name="Music">
-        </Grid>
-        
     </Grid>
 </Page>
