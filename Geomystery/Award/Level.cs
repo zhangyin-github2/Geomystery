@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Geomystery.Controllers.Geometry;
+using Geomystery.Models.Geometry;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -86,7 +88,26 @@ namespace Geomystery.Award
             cp1.Add(new Level() { ID = 7, name = "Ciricl in Square" });
             cp1.Add(new Level() { ID = 8, name = "Rhombus in Rectangle" });
             cp1.Add(new Level() { ID = 9, name = "Circle Center" });
+            foreach(var x in cp1)
+            {
+                x.cover = "ms-appx:///Pictures/Levels/" + x.ID.ToString()+".png";
+            }
             return cp1;
         }
+    }
+}
+
+public class LevelLoader
+{
+    public static Controllers GetLevel(int index)
+    {
+        Controllers controller = new Controllers(1);
+        Point2 p1 = new Point2() { X = 66560, Y = -35198 };
+        Point2 p2 = new Point2() { X = 44797, Y = -52078 };
+        Point2 p3 = new Point2() { X = 81920, Y = -54799 };
+        controller.coordinate.AddPoint(p1);
+        controller.coordinate.AddPoint(p2);
+        controller.coordinate.AddPoint(p3);
+        return controller;
     }
 }

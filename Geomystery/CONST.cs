@@ -11,6 +11,7 @@ using Windows.UI.Xaml.Media.Animation;
 
 namespace Geomystery
 {
+    public enum Direction { Up = 0, Down = 1, Left = 2, Right = 3 };
     public static class CONST
     {
         public static string volume1 = "\xE993";
@@ -20,7 +21,7 @@ namespace Geomystery
         public static string yes = "\x2714";
         public static string no = "\x2716";
 
-        public static void GridMove(Grid back,int direction,double from=0,double to=0)
+        public static void GridMove(Grid back,Direction direction,double from=0,double to=0)
         {
             back.RenderTransform = new CompositeTransform();
 
@@ -30,7 +31,7 @@ namespace Geomystery
             extendAnimation1 = new DoubleAnimation { Duration = new Duration(TimeSpan.FromSeconds(0.5)), From = from, To = to, EnableDependentAnimation = true };
 
             Storyboard.SetTarget(extendAnimation1, back);
-            if (direction<2)
+            if (direction<Direction.Left)
                 Storyboard.SetTargetProperty(extendAnimation1, "(UIElement.RenderTransform).(CompositeTransform .TranslateY)");
             else
                 Storyboard.SetTargetProperty(extendAnimation1, "(UIElement.RenderTransform).(CompositeTransform .TranslateX)");

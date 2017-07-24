@@ -4,12 +4,23 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Geomystery"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:toolData="using:Geomystery.Controllers.Geometry"
+    xmlns:canvas="using:Microsoft.Graphics.Canvas.UI.Xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    RequestedTheme="{x:Bind View.Theme,Mode=OneWay}">
+    RequestedTheme="{x:Bind View.Theme,Mode=OneWay}"
+    Loaded="Page_Loaded"
+    Unloaded="Page_Unloaded">
 
     <Page.Resources>
         <ResourceDictionary>
+            <DataTemplate x:DataType="toolData:UserTool"
+                          x:Key="listViewItemTempelate">
+                <StackPanel>
+                    <TextBlock Text="{x:Bind toolName}"/>
+                    <!--<Image Source="{x:Bind toolIcon}"/>-->
+                </StackPanel>
+            </DataTemplate>
             <ResourceDictionary.ThemeDictionaries>
                 <ResourceDictionary x:Key="Light" Source="LightThemeDictionary.xaml"></ResourceDictionary>
                 <ResourceDictionary x:Key="Dark" Source="DarkThemeDictionary.xaml"></ResourceDictionary>
@@ -18,12 +29,41 @@
     </Page.Resources>
 
     <Grid Background="{ThemeResource SystemBackgroundAltHighBrush}">
-        <StackPanel Orientation="Vertical"
+        <!--<StackPanel Orientation="Vertical"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center">
             <TextBlock FontFamily="Microsoft YaHei UI"
                    FontSize="128"
                    Text="? ? ?"/>
+        </StackPanel>-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="48"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="2">
+            <TextBlock Name="text1"
+                       Margin="48,48,48,48"
+                       Visibility="Collapsed"/>
         </StackPanel>
+        <ListView x:Name="listView1"
+                  Grid.Row="2"
+                  ItemsSource="{x:Bind userTools}"
+                  ItemTemplate="{StaticResource listViewItemTempelate}"
+                  >
+
+        </ListView>
+
+        <canvas:CanvasAnimatedControl x:Name="canvas1"
+                                      Grid.Column="1"
+                                      Grid.Row="2" Draw="canvas1_Draw" PointerPressed="canvas1_PointerPressed"
+                                      
+                                      />
     </Grid>
 </Page>
