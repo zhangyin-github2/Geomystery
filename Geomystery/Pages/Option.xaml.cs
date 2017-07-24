@@ -74,5 +74,30 @@ namespace Geomystery
             Fullscreen.IsChecked = APPDATA.app_data.ISFULLSCREEN;
             Fullscreen.Content = APPDATA.app_data.ISFULLSCREEN ? CONST.yes : CONST.no;
         }
+
+        private void LanRight_Click(object sender, RoutedEventArgs e)
+        {
+            if (LanguageNow.Text == "English")
+            {
+                LanguageNow.Text = "简体中文";
+            }
+            else
+            {
+                LanguageNow.Text = "English";
+            }
+           
+        }
+
+        private void LanLeft_Click(object sender, RoutedEventArgs e)
+        {
+            if (LanguageNow.Text == "English")
+            {
+                LanguageNow.Text = "简体中文";
+            }
+            else
+            {
+                LanguageNow.Text = "English";
+            }
+        }
     }
 }

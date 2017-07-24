@@ -507,6 +507,7 @@
                         FontSize="36"
                         Background="{x:Null}"
                         VerticalAlignment="Center"
+                        Click="LanLeft_Click"
                         Content="◀"/>
                 <TextBlock Name="LanguageNow"
                            FontFamily="Microsoft YaHei UI"
@@ -519,6 +520,7 @@
                         FontSize="36"
                         Background="{x:Null}"
                         VerticalAlignment="Center"
+                        Click="LanRight_Click"
                         Content="▶"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal"
