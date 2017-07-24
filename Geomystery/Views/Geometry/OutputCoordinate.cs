@@ -136,7 +136,7 @@ namespace Geomystery.Views.Geometry
                 else                                        //点在直线外
                 {
                     float kk = Vector2.Dot(outerPoint - lpo, lv);                   //v1 .* v2 = |v1| cos θ
-                    result = lpo + kk * lv;
+                    result = lpo + kk * lv / lv.LengthSquared();
                 }
                 return distance;
             }
@@ -147,7 +147,7 @@ namespace Geomystery.Views.Geometry
             if (radius <= 0) return float.NaN;               //圆的半径不可能为负值
             Vector2 centerOuter = outerPoint - center;
             float lengthToCenter = centerOuter.Length();
-            result = center + lengthToCenter / radius * centerOuter;
+            result = center + radius / lengthToCenter * centerOuter;
             return Math.Abs(lengthToCenter - radius);
         }
 
