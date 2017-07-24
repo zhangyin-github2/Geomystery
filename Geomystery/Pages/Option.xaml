@@ -35,9 +35,6 @@
                                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentPresenter">
                                                     <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonForegroundPointerOver}" />
                                                 </ObjectAnimationUsingKeyFrames>
-                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="FontSize" Storyboard.TargetName="ContentPresenter">
-                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="40" />
-                                                </ObjectAnimationUsingKeyFrames>
                                                 <PointerUpThemeAnimation Storyboard.TargetName="RootGrid" />
                                             </Storyboard>
                                         </VisualState>
@@ -92,16 +89,13 @@
                                         <VisualState x:Name="PointerOver">
                                             <Storyboard>
                                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="RootGrid">
-                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Null}" />
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemBackgroundBaseHighBrush}" />
                                                 </ObjectAnimationUsingKeyFrames>
                                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="ContentPresenter">
-                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Null}" />
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemBackgroundAltHighBrush}" />
                                                 </ObjectAnimationUsingKeyFrames>
                                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentPresenter">
                                                     <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonForegroundPointerOver}" />
-                                                </ObjectAnimationUsingKeyFrames>
-                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="FontSize" Storyboard.TargetName="ContentPresenter">
-                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="40" />
                                                 </ObjectAnimationUsingKeyFrames>
                                                 <PointerUpThemeAnimation Storyboard.TargetName="RootGrid" />
                                             </Storyboard>
@@ -109,10 +103,10 @@
                                         <VisualState x:Name="Pressed">
                                             <Storyboard>
                                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="RootGrid">
-                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="green" />
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemBackgroundAltHighBrush}" />
                                                 </ObjectAnimationUsingKeyFrames>
                                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="ContentPresenter">
-                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="red" />
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemBackgroundBaseHighBrush}" />
                                                 </ObjectAnimationUsingKeyFrames>
                                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentPresenter">
                                                     <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonForegroundPointerOver}" />
@@ -127,11 +121,29 @@
                                         </VisualState>
                                         <VisualState x:Name="CheckedPointerOver">
                                             <Storyboard>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="RootGrid">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemBackgroundBaseHighBrush}" />
+                                                </ObjectAnimationUsingKeyFrames>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="ContentPresenter">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemBackgroundAltHighBrush}" />
+                                                </ObjectAnimationUsingKeyFrames>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentPresenter">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonForegroundPointerOver}" />
+                                                </ObjectAnimationUsingKeyFrames>
                                                 <PointerDownThemeAnimation Storyboard.TargetName="RootGrid" />
                                             </Storyboard>
                                         </VisualState>
                                         <VisualState x:Name="CheckedPressed">
                                             <Storyboard>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="RootGrid">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemBackgroundAltHighBrush}" />
+                                                </ObjectAnimationUsingKeyFrames>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="ContentPresenter">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemBackgroundBaseHighBrush}" />
+                                                </ObjectAnimationUsingKeyFrames>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentPresenter">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonForegroundPointerOver}" />
+                                                </ObjectAnimationUsingKeyFrames>
                                                 <PointerDownThemeAnimation Storyboard.TargetName="RootGrid" />
                                             </Storyboard>
                                         </VisualState>
@@ -433,61 +445,60 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
 
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
         <StackPanel Orientation="Vertical"
                     Grid.Column="0"
-                    Margin="0,0,12,0"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center">
             <TextBlock FontFamily="Microsoft YaHei UI"
                        FontSize="44"
                        Foreground="{ThemeResource TextColorPurple}"
-                       Margin="12,24,12,24"
+                       Margin="0,24,36,24"
                        HorizontalAlignment="Right"
                        Text="Language"/>
             <TextBlock FontFamily="Microsoft YaHei UI"
                        FontSize="44"
                        Foreground="{ThemeResource TextColorPurple}"
-                       Margin="12,24,12,24"
+                       Margin="0,24,36,24"
                        HorizontalAlignment="Right"
                        Text="Music Volume"/>
             <TextBlock FontFamily="Microsoft YaHei UI"
                        FontSize="44"
                        Foreground="{ThemeResource TextColorPurple}"
-                       Margin="12,24,12,24"
+                       Margin="0,24,36,24"
                        HorizontalAlignment="Right"
                        Text="SFX Volume"/>
             <TextBlock FontFamily="Microsoft YaHei UI"
                        FontSize="44"
                        Foreground="{ThemeResource TextColorPurple}"
-                       Margin="12,24,12,24"
+                       Margin="0,24,36,24"
                        HorizontalAlignment="Right"
                        Text="Fullscreen"/>
             <TextBlock FontFamily="Microsoft YaHei UI"
                        FontSize="44"
                        Foreground="{ThemeResource TextColorPurple}"
-                       Margin="12,24,12,24"
+                       Margin="0,24,36,24"
                        HorizontalAlignment="Right"
                        Text="Night Mode"/>
             <TextBlock FontFamily="Microsoft YaHei UI"
                        FontSize="44"
                        Foreground="{ThemeResource TextColorPurple}"
-                       Margin="12,24,12,24"
+                       Margin="0,24,36,24"
                        HorizontalAlignment="Right"
                        Text="Reset Progress"/>
             <TextBlock FontFamily="Microsoft YaHei UI"
                        FontSize="44"
                        Foreground="{ThemeResource TextColorPurple}"
-                       Margin="12,24,12,24"
+                       Margin="0,24,36,24"
                        HorizontalAlignment="Right"
                        Text="About Us"/>
         </StackPanel>
         <StackPanel Orientation="Vertical"
                     Grid.Column="1"
-                    Margin="12,0,0,0"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center">
             <StackPanel Orientation="Horizontal"
@@ -556,22 +567,6 @@
                         Margin="12,0,36,0"
                         VerticalAlignment="Center"
                         Content="&#x1F534;" Click="ResetProgress_Click"/>
-                <StackPanel Orientation="Horizontal"
-                            VerticalAlignment="Center"
-                            Visibility="Visible">
-                    <!--Button Name="ResetYes"
-                            FontFamily="Microsoft YaHei UI"
-                            FontSize="36"
-                            Background="{x:Null}"
-                            Margin="12,12,12,12"
-                            Content="确定"/>
-                    <Button Name="ResetNo"
-                            FontFamily="Microsoft YaHei UI"
-                            FontSize="36"
-                            Background="{x:Null}"
-                            Margin="12,12,12,12"
-                            Content="取消"/-->
-                </StackPanel>
             </StackPanel>
             <StackPanel Orientation="Horizontal"
                         Height="104">

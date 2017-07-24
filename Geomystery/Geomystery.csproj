@@ -169,7 +169,8 @@
     <Content Include="Assets\BadgeLogo.scale-150.png" />
     <Content Include="Assets\BadgeLogo.scale-200.png" />
     <Content Include="Assets\BadgeLogo.scale-400.png" />
-    <Content Include="Assets\buttonmusic.mp3" />
+    <Content Include="Audio\button1.wav" />
+    <Content Include="Audio\buttonmusic.mp3" />
     <Content Include="Assets\LargeTile.scale-100.png" />
     <Content Include="Assets\LargeTile.scale-125.png" />
     <Content Include="Assets\LargeTile.scale-150.png" />
@@ -219,6 +220,11 @@
     <Content Include="Pictures\coin.png" />
     <Content Include="Pictures\Levels\1.png" />
     <Content Include="Pictures\lock.png" />
+    <Content Include="Pictures\Tool\tool1.png" />
+    <Content Include="Pictures\Tool\tool2.png" />
+    <Content Include="Pictures\Tool\tool3.png" />
+    <Content Include="Pictures\Tool\tool4.png" />
+    <Content Include="Pictures\Tool\tool5.png" />
     <Content Include="Properties\Default.rd.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -277,10 +283,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Audio\" />
-    <Folder Include="Pictures\Tool\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <SDKReference Include="Microsoft.VCLibs, Version=14.0">
       <Name>Visual C++ 2015 Runtime for Universal Windows Platform Apps</Name>
