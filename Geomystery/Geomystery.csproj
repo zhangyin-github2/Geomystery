@@ -221,6 +221,8 @@
     <Content Include="Audio\button5.wav" />
     <Content Include="Audio\button6.wav" />
     <Content Include="Audio\button7.wav" />
+    <Content Include="Audio\button8.wav" />
+    <Content Include="Audio\button9.wav" />
     <Content Include="Pictures\AchievementBord.png" />
     <Content Include="Pictures\coin.png" />
     <Content Include="Pictures\Levels\1.png" />

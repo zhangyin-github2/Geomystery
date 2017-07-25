@@ -37,7 +37,7 @@
                    Text="? ? ?"/>
         </StackPanel>-->
         <Grid.RowDefinitions>
-            <RowDefinition Height="48"/>
+            <RowDefinition Height="38"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
