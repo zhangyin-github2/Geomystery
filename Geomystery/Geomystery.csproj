@@ -104,6 +104,7 @@
     <Compile Include="Controllers\Geometry\UserTool.cs" />
     <Compile Include="Models\BGMPlayer.cs" />
     <Compile Include="Models\BGM_Player.cs" />
+    <Compile Include="Models\FMatrix\FMatrix.cs" />
     <Compile Include="Models\Geometry\Circle.cs" />
     <Compile Include="Models\Geometry\Geometry.cs" />
     <Compile Include="Models\Geometry\Coordinate.cs" />
