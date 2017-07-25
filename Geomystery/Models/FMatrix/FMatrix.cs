@@ -71,12 +71,12 @@ namespace Geomystery.Models.FMatrix
             if(fmatrix.matrix!=null)
             {
                 matrix = new List<List<T>>();
-                for (int i = 0; i < row; i++)
+                for (int i = 0; i < fmatrix.row; i++)
                 {
                     matrix.Add(new List<T>());
-                    for (int j = 0; j < column; j++)
+                    for (int j = 0; j < fmatrix.column; j++)
                     {
-                        matrix[i][j] = fmatrix.matrix[i][j];
+                        matrix[i].Add(fmatrix.matrix[i][j]);
                     }
                 }
             }
@@ -112,6 +112,54 @@ namespace Geomystery.Models.FMatrix
         }
 
         /// <summary>
+        /// 一重索引器
+        /// </summary>
+        /// <param name="r">行</param>
+        /// <returns>矩阵的一行</returns>
+        public List<T> this[int r]
+        {
+            get
+            { //检查索引范围
+                if (matrix != null && r >= 0 && r < this.row)
+                {
+                    return matrix[r];
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 二重索引器
+        /// </summary>
+        /// <param name="r">行</param>
+        /// <param name="c">列</param>
+        /// <returns>矩阵的一列</returns>
+        public T? this[int r, int c]
+        {
+            get
+            { //检查索引范围
+                if (matrix != null && r >= 0 && r < this.row && c >= 0 && c < this.column)
+                {
+                    return matrix[r][c];
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            set
+            {
+                if (matrix != null && r >= 0 && r < this.row && c >= 0 && c < this.column)
+                {
+                    matrix[r][c] = value.Value;
+                }
+            }
+        }
+
+        /// <summary>
         /// 矩阵乘一个数
         /// </summary>
         /// <param name="mat">原矩阵</param>
@@ -139,9 +187,9 @@ namespace Geomystery.Models.FMatrix
                                     matrix.matrix[i][j] = (T)(object)(Convert.ToDouble(number) * Convert.ToDouble(mat.matrix[i][j]));
                                     break;
                                 }
-                            case "Float":
+                            case "Single":
                                 {
-                                    matrix.matrix[i][j] = (T)(object)(float)(Convert.ToDouble(number) * Convert.ToDouble(mat.matrix[i][j]));
+                                    matrix.matrix[i][j] = (T)(object)(Convert.ToSingle(number) * Convert.ToSingle(mat.matrix[i][j]));
                                     break;
                                 }
                             default:
@@ -151,6 +199,7 @@ namespace Geomystery.Models.FMatrix
                         }
                     }
                 }
+                return matrix;
             }
             return null;
         }
@@ -183,9 +232,9 @@ namespace Geomystery.Models.FMatrix
                                     result.matrix[i][j] = (T)(object)(Convert.ToDouble(mata.matrix[i][j]) + Convert.ToDouble(matb.matrix[i][j]));
                                     break;
                                 }
-                            case "Float":
+                            case "Single":
                                 {
-                                    result.matrix[i][j] = (T)(object)(float)(Convert.ToDouble(mata.matrix[i][j]) + Convert.ToDouble(matb.matrix[i][j]));
+                                    result.matrix[i][j] = (T)(object)(Convert.ToSingle(mata.matrix[i][j]) + Convert.ToSingle(matb.matrix[i][j]));
                                     break;
                                 }
                             default:
@@ -195,6 +244,7 @@ namespace Geomystery.Models.FMatrix
                         }
                     }
                 }
+                return result;
             }
             return null;
         }
@@ -207,9 +257,7 @@ namespace Geomystery.Models.FMatrix
         /// <returns>矩阵乘数的结果矩阵</returns>
         public static FMatrix<T> operator *(FMatrix<T> _matrix, T number)
         {
-            FMatrix<T> mat = new FMatrix<T>(_matrix);
-            mat.Multiply(number);
-            return mat;
+            return Multiply(_matrix, number);
         }
 
         /// <summary>
@@ -249,9 +297,9 @@ namespace Geomystery.Models.FMatrix
                                     matrix[i][j] = (T)(object)(Convert.ToDouble(number) * Convert.ToDouble(matrix[i][j]));
                                     break;
                                 }
-                            case "Float":
+                            case "Single":
                                 {
-                                    matrix[i][j] = (T)(object)(Convert.ToDouble(number) * Convert.ToDouble(matrix[i][j]));
+                                    matrix[i][j] = (T)(object)(Convert.ToSingle(number) * Convert.ToSingle(matrix[i][j]));
                                     break;
                                 }
                             default:
@@ -282,11 +330,11 @@ namespace Geomystery.Models.FMatrix
                     result = new FMatrix<T>(_matrix.row - 1, _matrix.column - 1, default(T));
                     for(int a = 0; a < _matrix.row; a++)
                     {
-                        for(int b = 0; b < _matrix.column; b++)
+                        if (a < i) nowi = a;
+                        else if (a > i) nowi = a - 1;
+                        else continue;
+                        for (int b = 0; b < _matrix.column; b++)
                         {
-                            if (a < i) nowi = a;
-                            else if (a > i) nowi = a - 1;
-                            else continue;
                             if (b < j) nowj = b;
                             else if (b > j) nowj = b - 1;
                             else continue;
@@ -311,7 +359,7 @@ namespace Geomystery.Models.FMatrix
             FMatrix<T> result = Mij(_matrix,i,j);
             if(result!=null)
             {
-                if(Math.Pow(-1, (i + j)) < 0)
+                if((i + j)% 2 == 1)
                 {
                     result = Multiply(result, (T)(object)(-1));
                 }
@@ -322,32 +370,35 @@ namespace Geomystery.Models.FMatrix
         public static T? Determinant(FMatrix<T> mat)
         {
             T? tt = default(T);
-            if (mat.row == mat.column) return null;             //必须是方阵
+            if (mat.row != mat.column) return null;             //必须是方阵
             Type type = typeof(T);
             T? tempT = null;
             if(mat.row == 1)
             {
                 return mat.matrix[0][0];                        //最后一个（一行一列）
             }
+            int flag;
             for (int j = 0; j < mat.column; j++)
             {
-                tempT = Determinant(Aij(mat, 0, j));
+                tempT = Determinant(Mij(mat, 0, j));
                 if (!tempT.HasValue) return null;               //返回空则返回空（有行列式为空破坏整个行列式求值）
+                flag = 1;
+                if (j % 2 == 1) flag = -1;
                 switch (type.Name)
                 {
                     case "Int32":
                         {
-                           tt = (T)(object)(Convert.ToInt32(tt) * Convert.ToInt32(tempT));
+                           tt = (T)(object)(Convert.ToInt32(tt) + flag * Convert.ToInt32(mat.matrix[0][j]) * Convert.ToInt32(tempT));
                             break;
                         }
                     case "Double":
                         {
-                            tt = (T)(object)(Convert.ToDouble(tt) * Convert.ToDouble(tempT));
+                            tt = (T)(object)(Convert.ToDouble(tt) + flag * Convert.ToDouble(mat.matrix[0][j]) * Convert.ToDouble(tempT));
                             break;
                         }
-                    case "Float":
+                    case "Single":
                         {
-                            tt = (T)(object)(Convert.ToDouble(tt) * Convert.ToDouble(tempT));
+                            tt = (T)(object)(Convert.ToSingle(tt) + flag * Convert.ToSingle(mat.matrix[0][j]) * Convert.ToSingle(tempT));
                             break;
                         }
                     default:
@@ -369,5 +420,29 @@ namespace Geomystery.Models.FMatrix
             T? t = Determinant(this);
             return t;
         }
+
+        /// <summary>
+        /// 矩阵的转置
+        /// </summary>
+        /// <param name="mat">原矩阵</param>
+        /// <returns>转置矩阵</returns>
+        public static FMatrix<T> Transpose(FMatrix<T> mat)
+        {
+            FMatrix<T> result = null;
+            if(mat.matrix!=null)
+            {
+                result = new FMatrix<T>(mat.column, mat.row, default(T));
+                for(int i = 0; i < mat.row; i++)
+                {
+                    for(int j = 0; j < mat.column; j++)
+                    {
+                        result[j][i] = mat[i][j];
+                    }
+                }
+            }
+            return result;
+        }
+
     }
+
 }
