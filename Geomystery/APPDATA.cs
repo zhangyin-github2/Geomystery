@@ -113,10 +113,11 @@ namespace Geomystery
             dialog.PrimaryButtonClick += (_s, _e) => { };
             var res = await dialog.ShowAsync();
             if (res.ToString() != "Primary") return 0;
-            var k =  new List<ViewModel.ViewModel>(app_data.Views);
-            APPDATA.app_data = new APPDATA();
-            ApplicationView.GetForCurrentView().TryEnterFullScreenMode();
-            APPDATA.app_data.Views = k;
+            //var k =  new List<ViewModel.ViewModel>(app_data.Views);
+            app_data.ISMUTE = false;
+            app_data.ISNIGHT = false;
+            app_data.ISFULLSCREEN = true;
+            app_data.HAVEDONE = 0;
             update_views();
             return 0;
         }
