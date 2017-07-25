@@ -103,7 +103,6 @@
     <Compile Include="Controllers\Geometry\DFA.cs" />
     <Compile Include="Controllers\Geometry\UserTool.cs" />
     <Compile Include="Models\BGMPlayer.cs" />
-    <Compile Include="Models\BGM_Player.cs" />
     <Compile Include="Models\FMatrix\FMatrix.cs" />
     <Compile Include="Models\Geometry\Circle.cs" />
     <Compile Include="Models\Geometry\Geometry.cs" />
@@ -173,7 +172,6 @@
     <Content Include="Audio\button1.wav" />
     <Content Include="Audio\button2.wav" />
     <Content Include="Audio\button3.wav" />
-    <Content Include="Audio\buttonmusic.mp3" />
     <Content Include="Assets\LargeTile.scale-100.png" />
     <Content Include="Assets\LargeTile.scale-125.png" />
     <Content Include="Assets\LargeTile.scale-150.png" />
@@ -219,6 +217,10 @@
     <Content Include="Assets\Wide310x150Logo.scale-150.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
+    <Content Include="Audio\button4.wav" />
+    <Content Include="Audio\button5.wav" />
+    <Content Include="Audio\button6.wav" />
+    <Content Include="Audio\button7.wav" />
     <Content Include="Pictures\AchievementBord.png" />
     <Content Include="Pictures\coin.png" />
     <Content Include="Pictures\Levels\1.png" />

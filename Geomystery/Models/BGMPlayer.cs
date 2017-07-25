@@ -21,7 +21,7 @@ namespace Geomystery.Models
         }
         public static void PlayButton()
         {
-            MusicPlayer.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Audio/button3.wav", UriKind.Absolute));
+            MusicPlayer.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Audio/button4.wav", UriKind.Absolute));
             MusicPlayer.MediaPlayer.Play();
         }
         public static void setMute()
