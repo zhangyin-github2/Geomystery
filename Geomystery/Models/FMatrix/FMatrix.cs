@@ -366,12 +366,7 @@ namespace Geomystery.Models.FMatrix
         /// <returns>返回|A|，det(A)</returns>
         public T? Determinant()
         {
-            T? t = null;
-            if (row == column) return null;             //必须是方阵
-            for(int i = 0; i < column; i++)
-            {
-
-            }
+            T? t = Determinant(this);
             return t;
         }
     }
