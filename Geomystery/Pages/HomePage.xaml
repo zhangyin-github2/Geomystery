@@ -472,7 +472,8 @@
                        Margin="0,0,0,96"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Bottom"
-                       Text="Geomystery"/>
+                       Text="Geomystery"
+                        x:Uid="Geomystery"/>
             <StackPanel Name="MainMenu"
                         Grid.Row="1"
                         Margin="0,64,0,0"
@@ -486,6 +487,7 @@
                         Foreground="{ThemeResource SystemBackgroundBaseHighBrush}"
                         Background="Tomato"
                         Content="Game"
+                         x:Uid="Game"
                         Click="Game_Click"/>
                 <Rectangle Name="Blank1"
                            Height="50"
@@ -498,6 +500,7 @@
                         Foreground="{ThemeResource SystemBackgroundBaseHighBrush}"
                         Background="Tomato"
                         Content="Freestyle"
+                         x:Uid="Freestyle"
                         Click="Freestyle_Click"/>
                 <Rectangle Name="Blank2"
                            Height="50"
@@ -510,6 +513,7 @@
                         Foreground="{ThemeResource SystemBackgroundBaseHighBrush}"
                         Background="Tomato"
                         Content="Option"
+                        x:Uid="Option"
                         Click="Option_Click"/>
             </StackPanel>
         </Grid>
@@ -525,6 +529,7 @@
                 HorizontalAlignment="Right"
                 VerticalAlignment="Top"
                 Content="Achievement"
+                 x:Uid="Achievement"
                 Click="Achievement_Click"/>
     </Grid>
 

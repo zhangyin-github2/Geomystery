@@ -91,7 +91,8 @@
                            Foreground="{ThemeResource TextColorPurple}"
                            Margin="24,24,24,24"
                            HorizontalAlignment="Center"
-                           Text="Geomystery"/>
+                           Text="Geomystery"
+                           x:Uid="Geomystery"/>
             </StackPanel>
             <TextBlock Name="Version"
                        FontFamily="Microsoft YaHei UI"
@@ -99,7 +100,8 @@
                        Foreground="Gray"
                        Margin="24,24,24,24"
                        HorizontalAlignment="Center"
-                       Text="Version Release Candidate"/>
+                       Text="Version Release Candidate"
+                        x:Uid="Version Release Candidate"/>
         </StackPanel>
     </Grid>
 </Page>
