@@ -165,7 +165,7 @@ namespace Geomystery.Models.FMatrix
         /// <param name="mat">原矩阵</param>
         /// <param name="number">数</param>
         /// <returns>结果矩阵</returns>
-        public static FMatrix<T> Multiply(FMatrix<T> mat, T number)
+        public static FMatrix<T> MultiplyNumber(FMatrix<T> mat, T number)
         {
             if (mat.matrix != null)
             {
@@ -250,6 +250,55 @@ namespace Geomystery.Models.FMatrix
         }
 
         /// <summary>
+        /// 矩阵乘法 AB，左矩阵的列数等于右矩阵的行数
+        /// </summary>
+        /// <param name="mata">矩阵A</param>
+        /// <param name="matb">矩阵B</param>
+        /// <returns>结果矩阵</returns>
+        public static FMatrix<T> Multiply(FMatrix<T> mata, FMatrix<T> matb)
+        {
+            if (mata.matrix != null && matb.matrix != null && mata.column == matb.row)             //行列相同的矩阵
+            {
+                FMatrix<T> result = new FMatrix<T>(mata.row, matb.column, default(T));
+
+                for (int i = 0; i < mata.row; i++)
+                {
+                    for (int j = 0; j < matb.column; j++)
+                    {
+                        result.matrix[i][j] = (T)(object)0;
+                        for (int k = 0; k < mata.column;k++)
+                        {
+                            switch (typeof(T).Name)
+                            {
+                                case "Int32":
+                                    {
+                                        result.matrix[i][j] = (T)(object)(Convert.ToInt32(result.matrix[i][j]) + Convert.ToInt32(mata.matrix[i][k]) * Convert.ToInt32(matb.matrix[k][j]));
+                                        break;
+                                    }
+                                case "Double":
+                                    {
+                                        result.matrix[i][j] = (T)(object)(Convert.ToDouble(result.matrix[i][j]) + Convert.ToDouble(mata.matrix[i][k]) * Convert.ToDouble(matb.matrix[k][j]));
+                                        break;
+                                    }
+                                case "Single":
+                                    {
+                                        result.matrix[i][j] = (T)(object)(Convert.ToSingle(result.matrix[i][j]) + Convert.ToSingle(mata.matrix[i][k]) * Convert.ToSingle(matb.matrix[k][j]));
+                                        break;
+                                    }
+                                default:
+                                    {
+                                        break;
+                                    }
+                            }
+                        }
+                    }
+                }
+                return result;
+            }
+            return null;
+        }
+
+        /// <summary>
         /// 矩阵乘一个数,重载运算符 *
         /// </summary>
         /// <param name="_matrix">矩阵</param>
@@ -257,8 +306,24 @@ namespace Geomystery.Models.FMatrix
         /// <returns>矩阵乘数的结果矩阵</returns>
         public static FMatrix<T> operator *(FMatrix<T> _matrix, T number)
         {
-            return Multiply(_matrix, number);
+            return MultiplyNumber(_matrix, number);
         }
+        public static FMatrix<T> operator *(T number, FMatrix<T> _matrix)
+        {
+            return MultiplyNumber(_matrix, number);
+        }
+
+        /// <summary>
+        /// 运算符重载，矩阵乘法
+        /// </summary>
+        /// <param name="mata">左矩阵</param>
+        /// <param name="matb">右矩阵</param>
+        /// <returns>结果矩阵</returns>
+        public static FMatrix<T> operator *(FMatrix<T> mata, FMatrix<T> matb)
+        {
+            return Multiply(mata, matb);
+        }
+
 
         /// <summary>
         /// 矩阵相加，重载运算符 +
@@ -276,7 +341,7 @@ namespace Geomystery.Models.FMatrix
         /// 乘一个数
         /// </summary>
         /// <param name="number">整形或者浮点型的数</param>
-        public void Multiply(T number)
+        public void MultiplyNumber(T number)
         {
             if(matrix!=null)
             {
@@ -348,7 +413,7 @@ namespace Geomystery.Models.FMatrix
         }
 
         /// <summary>
-        /// 代数余子式
+        /// 代数余子式（不推荐使用，因为矩阵的代数余子式与行列式的代数余子式不同）
         /// </summary>
         /// <param name="_matrix">矩阵</param>
         /// <param name="i">行</param>
@@ -361,7 +426,7 @@ namespace Geomystery.Models.FMatrix
             {
                 if((i + j)% 2 == 1)
                 {
-                    result = Multiply(result, (T)(object)(-1));
+                    result = MultiplyNumber(result, (T)(object)(-1));
                 }
             }
             return result;
@@ -443,6 +508,106 @@ namespace Geomystery.Models.FMatrix
             return result;
         }
 
+        /// <summary>
+        /// 交换矩阵的r1与r2行
+        /// </summary>
+        /// <param name="mat">原矩阵</param>
+        /// <param name="r1">r1行</param>
+        /// <param name="r2">r2行</param>
+        /// <returns>交换后的矩阵</returns>
+        public static FMatrix<T> ExchangeR1R2(FMatrix<T> mat, int r1, int r2)
+        {
+            FMatrix<T> result = null;
+            if (mat.matrix != null && r1 >= 0 && r1 < mat.row && r2 >= 0 && r2 < mat.row)                //可用的矩阵
+            {
+                result = new FMatrix<T>(mat);
+                result.ExchangeR1R2(r1, r2);
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// 交换矩阵的r1与r2行
+        /// </summary>
+        /// <param name="r1">r1行</param>
+        /// <param name="r2">r2行</param>
+        /// <returns>交换成功</returns>
+        public bool ExchangeR1R2(int r1, int r2)
+        {
+            bool result = false;
+            if(matrix!=null && r1 >= 0 && r1 < row && r2 >=0 && r2 < row)                //可用的矩阵
+            {
+                if(r1 != r2)
+                {
+                    T temp;
+                    for (int j = 0; j < column; j++)
+                    {
+                        temp = matrix[r1][j];
+                        matrix[r1][j] = matrix[r2][j];
+                        matrix[r2][j] = temp;
+                    }
+                }
+                result = true;
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// 第r行乘k
+        /// </summary>
+        /// <param name="mat">原矩阵</param>
+        /// <param name="r">第r行</param>
+        /// <param name="k">系数</param>
+        /// <returns>变换后的函数</returns>
+        public static FMatrix<T> RowXMultiplyK(FMatrix<T> mat, int r, T k)
+        {
+            FMatrix<T> result = null;
+            result = new FMatrix<T>(mat);
+            result.RowXMultiplyK(r, k);
+            return result;
+        }
+
+        /// <summary>
+        /// 第r行乘k
+        /// </summary>
+        /// <param name="r">第r行</param>
+        /// <param name="k">系数</param>
+        /// <returns>变换操作是否成功</returns>
+        public bool RowXMultiplyK(int r, T k)
+        {
+            bool result = false;
+            Type type = k.GetType();
+            if(matrix != null && r >=0 && r < this.row)
+            {
+                for(int j = 0; j < this.column; j++)
+                {
+                    switch (type.Name)
+                    {
+                        case "Int32":
+                            {
+                                matrix[r][j] = (T)(object)(Convert.ToInt32(matrix[r][j]) * Convert.ToInt32(k));
+                                break;
+                            }
+                        case "Double":
+                            {
+                                matrix[r][j] = (T)(object)(Convert.ToDouble(matrix[r][j]) * Convert.ToDouble(k));
+                                break;
+                            }
+                        case "Single":
+                            {
+                                matrix[r][j] = (T)(object)(Convert.ToSingle(matrix[r][j]) * Convert.ToSingle(k));
+                                break;
+                            }
+                        default:
+                            {
+                                break;
+                            }
+                    }
+                }
+                result = true;
+            }
+            return result;
+        }
     }
 
 }

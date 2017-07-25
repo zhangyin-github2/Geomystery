@@ -56,7 +56,7 @@ namespace GeomysteryTest
         /// 测试矩阵乘数
         /// </summary>
         [TestMethod]
-        public void TestMultiply()
+        public void TestMultiplyNumber()
         {
             FMatrix<int> mat = new FMatrix<int>(3, 3, -1);
             Assert.IsTrue(mat.row == 3);
@@ -70,7 +70,7 @@ namespace GeomysteryTest
                     number++;
                 }
             }
-            FMatrix<int> matMulti = FMatrix<int>.Multiply(mat, 2);
+            FMatrix<int> matMulti = FMatrix<int>.MultiplyNumber(mat, 2);
             Assert.IsTrue(matMulti.row == 3);
             Assert.IsTrue(matMulti.column == 3);
             Assert.IsTrue(matMulti.matrix[1][1] == 8);
@@ -223,6 +223,52 @@ namespace GeomysteryTest
             Assert.AreEqual(matT[2, 1], 6);
         }
 
+        /// <summary>
+        /// 测试矩阵的乘法
+        /// </summary>
+        [TestMethod]
+        public void TestMultiply()
+        {
+            FMatrix<int> mat = new FMatrix<int>(2, 3, -1);
+            FMatrix<int> mat2 = new FMatrix<int>(3, 4, -1);
+
+            //1 2 5
+            //3 4 6
+            mat[0][0] = 1;
+            mat[0][1] = 2;
+            mat[0][2] = 5;
+            mat[1][0] = 3;
+            mat[1][1] = 4;
+            mat[1][2] = 6;
+
+            //1 2 5 2
+            //3 4 6 4
+            //9 8 7 1
+            mat2[0][0] = 1;
+            mat2[0][1] = 2;
+            mat2[0][2] = 5;
+            mat2[0][3] = 2;
+            mat2[1][0] = 3;
+            mat2[1][1] = 4;
+            mat2[1][2] = 6;
+            mat2[1][3] = 4;
+            mat2[2][0] = 9;
+            mat2[2][1] = 8;
+            mat2[2][2] = 7;
+            mat2[2][3] = 1;
+
+
+            //52  50  52  15
+            //69  70  81  28
+            FMatrix<int> matMulti = mat * mat2;
+            Assert.IsTrue(matMulti.row == 2);
+            Assert.IsTrue(matMulti.column == 4);
+
+            Assert.AreEqual(matMulti.matrix[0][0], 52);
+            Assert.AreEqual(matMulti.matrix[1][1], 70);
+            Assert.AreEqual(matMulti.matrix[0][2], 52);
+            Assert.AreEqual(matMulti.matrix[1][3], 28);
+        }
 
     }
 }
