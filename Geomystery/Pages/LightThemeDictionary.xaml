@@ -2,13 +2,14 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Geomystery.Pages">
-    <!--日间模式-->
-    
-    <!--浅橙色背景-->
+
+    <!--浅橙色/暗紫色-->
     <SolidColorBrush x:Key="SystemBackgroundAltHighBrush" Color="#FFFEF2DA"/>
-    <!--暗紫色背景-->
+    <!--暗紫色/浅橙色-->
     <SolidColorBrush x:Key="SystemBackgroundBaseHighBrush" Color="#FF352D3A"/>
-    <!--紫色文字-->
+    <!--黑/白-->
+    <SolidColorBrush x:Key="BlackWhite" Color="#FF000000"/>
+    <!--紫色/浅紫色-->
     <SolidColorBrush x:Key="TextColorPurple" Color="#FF644385"/>
     <!--粉紫色渐变-->
     <LinearGradientBrush x:Key="ColorGradient1" StartPoint="0,0" EndPoint="1,1">
