@@ -120,9 +120,6 @@
   <data name="About Us.Text" xml:space="preserve">
     <value>关于我们</value>
   </data>
-  <data name="Achievement.Content" xml:space="preserve">
-    <value>成就</value>
-  </data>
   <data name="Chapter1.Content" xml:space="preserve">
     <value>第一章节</value>
   </data>
@@ -141,9 +138,6 @@
   <data name="Game.Content" xml:space="preserve">
     <value>游戏模式</value>
   </data>
-  <data name="Geomystery.Text" xml:space="preserve">
-    <value>几何迷城</value>
-  </data>
   <data name="Language.Text" xml:space="preserve">
     <value>语言</value>
   </data>
@@ -161,8 +155,5 @@
   </data>
   <data name="SFX Volume.Text" xml:space="preserve">
     <value>音效音量</value>
-  </data>
-  <data name="Version Release Candidate.Text" xml:space="preserve">
-    <value>Version Release Candidate</value>
   </data>
 </root>

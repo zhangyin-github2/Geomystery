@@ -198,5 +198,15 @@ namespace Geomystery
             controller = new Controllers.Geometry.Controllers(1);
             controller.PreInitialized(LevelLoader.GetLevel(1));
         }
+
+        private void undo_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void redo_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

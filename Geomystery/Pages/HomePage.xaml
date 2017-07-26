@@ -444,7 +444,7 @@
                      Height="400"
                      Width="400"
                      Stroke="#FFFF7700"
-                     StrokeThickness="8"/>
+                     StrokeThickness="8" />
                 <Polygon Name="Polygon1" 
                      Points="0,100 0,200 135,125"
                      Stroke="#FF004ADD"
@@ -472,8 +472,7 @@
                        Margin="0,0,0,96"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Bottom"
-                       Text="Geomystery"
-                        x:Uid="Geomystery"/>
+                       Text="Geomystery"/>
             <StackPanel Name="MainMenu"
                         Grid.Row="1"
                         Margin="0,64,0,0"
@@ -482,55 +481,37 @@
                 <Button Name="Game"
                         Style="{StaticResource ButtonStyle1-1}"
                         Width="400"
-                        FontFamily="Microsoft YaHei UI"
-                        FontSize="44"
-                        Foreground="{ThemeResource SystemBackgroundBaseHighBrush}"
+                        FontFamily="Microsoft YaHei UI" FontSize="44" Foreground="{ThemeResource SystemBackgroundBaseHighBrush}"
                         Background="Tomato"
-                        Content="Game"
-                         x:Uid="Game"
-                        Click="Game_Click"/>
-                <Rectangle Name="Blank1"
-                           Height="50"
-                           Fill="{x:Null}"/>
+                        Content="Game" x:Uid="Game"
+                        Click="Game_Click" IsTabStop="False"/>
+                <Rectangle Name="Blank1" Height="50" Fill="{x:Null}" />
                 <Button Name="Freestyle"
                         Style="{StaticResource ButtonStyle1-1}"
                         Width="400"
-                        FontFamily="Microsoft YaHei UI"
-                        FontSize="44"
-                        Foreground="{ThemeResource SystemBackgroundBaseHighBrush}"
+                        FontFamily="Microsoft YaHei UI" FontSize="44" Foreground="{ThemeResource SystemBackgroundBaseHighBrush}"
                         Background="Tomato"
-                        Content="Freestyle"
-                         x:Uid="Freestyle"
-                        Click="Freestyle_Click"/>
-                <Rectangle Name="Blank2"
-                           Height="50"
-                           Fill="{x:Null}"/>
+                        Content="Freestyle" x:Uid="Freestyle"
+                        Click="Freestyle_Click" IsTabStop="False"/>
+                <Rectangle Name="Blank2" Height="50" Fill="{x:Null}"/>
                 <Button Name="Option"
                         Style="{StaticResource ButtonStyle1-1}"
                         Width="400"
-                        FontFamily="Microsoft YaHei UI"
-                        FontSize="44"
-                        Foreground="{ThemeResource SystemBackgroundBaseHighBrush}"
+                        FontFamily="Microsoft YaHei UI" FontSize="44" Foreground="{ThemeResource SystemBackgroundBaseHighBrush}"
                         Background="Tomato"
-                        Content="Option"
-                        x:Uid="Option"
-                        Click="Option_Click"/>
+                        Content="Option" x:Uid="Option"
+                        Click="Option_Click" IsTabStop="False"/>
             </StackPanel>
         </Grid>
-        <Button Grid.Column="2"
-                Grid.ColumnSpan="2"
+        <Button Grid.Column="2" Grid.ColumnSpan="2"
                 Name="Achievement"
-                Height="48"
-                Width="Auto"
-                FontSize="24"
-                Foreground="{ThemeResource SystemBackgroundBaseHighBrush}"
-                Background="{x:Null}"
-                BorderThickness="0"
+                Height="48" Width="Auto"
+                FontFamily="Segoe UI Emoji" FontSize="24"
+                Background="{x:Null}" BorderThickness="0"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Top"
-                Content="Achievement"
-                 x:Uid="Achievement"
-                Click="Achievement_Click"/>
+                Content="&#x1F3C6;"
+                Click="Achievement_Click" IsTabStop="False"/>
     </Grid>
 
 </Page>

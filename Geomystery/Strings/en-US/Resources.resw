@@ -120,9 +120,6 @@
   <data name="About Us.Text" xml:space="preserve">
     <value>About Us</value>
   </data>
-  <data name="Achievement.Content" xml:space="preserve">
-    <value>Achievement</value>
-  </data>
   <data name="Chapter1.Content" xml:space="preserve">
     <value>Chapter1</value>
   </data>
@@ -141,9 +138,6 @@
   <data name="Game.Content" xml:space="preserve">
     <value>Game</value>
   </data>
-  <data name="Geomystery.Text" xml:space="preserve">
-    <value>Geomystery</value>
-  </data>
   <data name="Language.Text" xml:space="preserve">
     <value>Language</value>
   </data>
@@ -161,8 +155,5 @@
   </data>
   <data name="SFX Volume.Text" xml:space="preserve">
     <value>SFX Volume</value>
-  </data>
-  <data name="Version Release Candidate.Text" xml:space="preserve">
-    <value>Version Release Candidate</value>
   </data>
 </root>

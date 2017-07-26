@@ -106,12 +106,10 @@
             <Frame x:Name="optionFrame"  Grid.Row="1"/>
             <Frame x:Name="achievementFrame" Grid.Column="1"/>
         </Grid>
-        <MediaPlayerElement Name="bgmPlayer"
-                            Height="0"
-                            Width="0"/>
-        <MediaPlayerElement Name="bgaPlayer"
-                            Height="0"
-                            Width="0"/>
+        <MediaPlayerElement Name="bgmPlayer" Height="0" Width="0"
+                            IsTabStop="False"/>
+        <MediaPlayerElement Name="bgaPlayer" Height="0" Width="0"
+                            IsTabStop="False"/>
         <RelativePanel x:Name="mytitle"
                        Grid.Row="0"
                        HorizontalAlignment="Left"
@@ -126,7 +124,7 @@
                     Width="68"
                     BorderThickness="0"
                     Content="&#xE0C4;" 
-                    Click="BackButton_Click" />
+                    Click="BackButton_Click" IsTabStop="False"/>
             <Button Name="MuteButton"
                     RelativePanel.RightOf="BackButton"
                     Foreground="{ThemeResource SystemBackgroundBaseHighBrush}"
@@ -136,7 +134,7 @@
                     Height="48"
                     Width="68"
                     BorderThickness="0"
-                    Click="MuteButton_Click"/>
+                    Click="MuteButton_Click" IsTabStop="False"/>
             <TextBlock x:Name="debugT"
                        Foreground="{ThemeResource SystemBackgroundBaseHighBrush}"
                        RelativePanel.RightOf="MuteButton"

@@ -85,8 +85,7 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <GridView x:Name="levelbord" Grid.Column="1" Grid.Row="1"  ItemsSource="{x:Bind levels}" 
-                  ItemTemplate="{StaticResource levelTempelate}" ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                  IsItemClickEnabled="True" ItemClick="levelbord_ItemClick"
-        />
+                  ItemTemplate="{StaticResource levelTempelate}" ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                  IsItemClickEnabled="True" ItemClick="levelbord_ItemClick" IsTabStop="False"/>
     </Grid>
 </Page>

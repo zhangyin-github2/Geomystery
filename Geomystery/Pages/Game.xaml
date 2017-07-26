@@ -29,13 +29,6 @@
     </Page.Resources>
 
     <Grid Background="{ThemeResource SystemBackgroundAltHighBrush}">
-        <!--<StackPanel Orientation="Vertical"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center">
-            <TextBlock FontFamily="Microsoft YaHei UI"
-                   FontSize="128"
-                   Text="? ? ?"/>
-        </StackPanel>-->
         <Grid.RowDefinitions>
             <RowDefinition Height="38"/>
             <RowDefinition/>
@@ -47,28 +40,28 @@
         </Grid.ColumnDefinitions>
 
         <canvas:CanvasAnimatedControl x:Name="canvas1"
+                                      IsTabStop="False"
                                       Grid.Column="0"
                                       Grid.Row="0"
                                       Grid.RowSpan="2"
                                       Grid.ColumnSpan="2"
-                                      Draw="canvas1_Draw" PointerPressed="canvas1_PointerPressed"
-                                      />
+                                      Draw="canvas1_Draw" PointerPressed="canvas1_PointerPressed"/>
         <ListView x:Name="listView1"
                   Grid.Row="2"
+                  ScrollViewer.VerticalScrollBarVisibility="Hidden"
                   ItemsSource="{x:Bind userTools}"
                   ItemTemplate="{StaticResource listViewItemTempelate}" Background="#7F808080"
-                  >
-
+                  IsTabStop="False">
         </ListView>
+
         <StackPanel Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" Orientation="Horizontal">
-            <Button x:Name="undo" Content="&#xE248;" FontSize="22" Background="Transparent" Foreground="{ThemeResource SystemBackgroundBaseHighBrush}" FontFamily="Segoe MDl2 Assets" Height="38" Width="42" />
-            <Button x:Name="redo" Content="&#xE248;" FontSize="22" Background="Transparent" Foreground="{ThemeResource SystemBackgroundBaseHighBrush}" FontFamily="Segoe MDl2 Assets" Height="38" Width="42" RenderTransformOrigin="0.5,0.5" >
+            <Button x:Name="undo" Content="&#xE248;" FontSize="22" Background="Transparent" Foreground="{ThemeResource SystemBackgroundBaseHighBrush}" FontFamily="Segoe MDl2 Assets" Height="38" Width="42" Click="undo_Click" IsTabStop="False"/>
+            <Button x:Name="redo" Content="&#xE248;" FontSize="22" Background="Transparent" Foreground="{ThemeResource SystemBackgroundBaseHighBrush}" FontFamily="Segoe MDl2 Assets" Height="38" Width="42" RenderTransformOrigin="0.5,0.5" Click="redo_Click" IsTabStop="False">
                 <Button.RenderTransform>
                     <CompositeTransform ScaleX="-1"/>
                 </Button.RenderTransform>
             </Button>
-            <Button x:Name="refresh" Content="&#xE777;" FontSize="22" Background="Transparent" Foreground="{ThemeResource SystemBackgroundBaseHighBrush}" FontFamily="Segoe MDl2 Assets" Height="38" Width="42" Click="refresh_Click" />
+            <Button x:Name="refresh" Content="&#xE777;" FontSize="22" Background="Transparent" Foreground="{ThemeResource SystemBackgroundBaseHighBrush}" FontFamily="Segoe MDl2 Assets" Height="38" Width="42" Click="refresh_Click" IsTabStop="False"/>
         </StackPanel>
-        
     </Grid>
 </Page>
