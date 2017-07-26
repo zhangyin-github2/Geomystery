@@ -12,6 +12,28 @@ namespace Geomystery.Models.FMatrix
     public class FMatrix<T> where T : struct, IConvertible
     {
         /// <summary>
+        /// 与足够小的数
+        /// </summary>
+        public static double DBL_EPSILON = 2.2204460492503131e-016;
+
+        /// <summary>
+        /// 一个双精度浮点型是否为0
+        /// </summary>
+        /// <param name="d"></param>
+        /// <returns></returns>
+        public static bool IsZero_DBL(double d)
+        {
+            if (Math.Abs(d) < DBL_EPSILON)          //足够小
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
         /// 行
         /// </summary>
         public int row { get; protected set; }
@@ -68,7 +90,7 @@ namespace Geomystery.Models.FMatrix
         {
             row = fmatrix.row;
             column = fmatrix.column;
-            if(fmatrix.matrix!=null)
+            if(fmatrix.matrix != null)
             {
                 matrix = new List<List<T>>();
                 for (int i = 0; i < fmatrix.row; i++)
@@ -608,6 +630,137 @@ namespace Geomystery.Models.FMatrix
             }
             return result;
         }
-    }
 
+        /// <summary>
+        /// 把第r1行的k倍加到r2上
+        /// </summary>
+        /// <param name="mat">原矩阵</param>
+        /// <param name="row1">第row1行</param>
+        /// <param name="kTimes">k倍</param>
+        /// <param name="row2">第row2行</param>
+        /// <returns>增加后的矩阵</returns>
+        public static FMatrix<T> AddKTimesOfRow1ToRow2(FMatrix<T> mat, int row1,T kTimes, int row2)
+        {
+            FMatrix<T> result = null;
+            result = new FMatrix<T>(mat);
+            result.AddKTimesOfRow1ToRow2(row1, kTimes, row2);
+            return result;
+        }
+
+        /// <summary>
+        /// 把第r1行的k倍加到r2上
+        /// </summary>
+        /// <param name="row1">第row1行</param>
+        /// <param name="kTimes">k倍</param>
+        /// <param name="row2">第row2行</param>
+        /// <returns>变换是否成功</returns>
+        public bool AddKTimesOfRow1ToRow2(int row1, T kTimes, int row2)
+        {
+            bool result = false;
+            Type type = kTimes.GetType();
+            if (matrix != null && row1 >= 0 && row1 < this.row && row2 >= 0 && row2 < this.row)             //合理的矩阵与合理的操作
+            {
+                for (int j = 0; j < this.column; j++)
+                {
+                    switch (type.Name)
+                    {
+                        case "Int32":
+                            {
+                                matrix[row2][j] = (T)(object)(Convert.ToInt32(matrix[row2][j]) + Convert.ToInt32(matrix[row1][j]) * Convert.ToInt32(kTimes));
+                                break;
+                            }
+                        case "Double":
+                            {
+                                matrix[row2][j] = (T)(object)(Convert.ToDouble(matrix[row2][j]) + Convert.ToDouble(matrix[row1][j]) * Convert.ToDouble(kTimes));
+                                break;
+                            }
+                        case "Single":
+                            {
+                                matrix[row2][j] = (T)(object)(Convert.ToSingle(matrix[row2][j]) + Convert.ToSingle(matrix[row1][j]) * Convert.ToSingle(kTimes));
+                                break;
+                            }
+                        default:
+                            {
+                                break;
+                            }
+                    }
+                }
+                result = true;
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// 矩阵的逆矩阵（返回矩阵内部类型一定是double）
+        /// </summary>
+        /// <param name="mat">原矩阵</param>
+        /// <returns>double的逆矩阵</returns>
+        public static FMatrix<double> Inverse(FMatrix<T> mat)
+        {
+            FMatrix<double> result = null;
+            bool flag1;                          //“第一位”为空（每一行都必须非0，这样才能保证）
+            int searchi;
+            if (mat.matrix != null && mat.row == mat.column && mat.row > 0)                  //合理矩阵，方阵，
+            {
+                result = new FMatrix<double>(mat.row, mat.row, 0.0);
+                FMatrix<double> AE = new FMatrix<double>(mat.row , mat.row + mat.row, 0);        //mat放置一个单位矩阵
+                for(int i = 0; i < mat.row; i++)
+                {
+                    for (int j = 0; j < mat.column; j++)
+                    {
+                        AE[i][j] = Convert.ToDouble(mat[i][j]);
+                        if (i == j)
+                        {
+                            AE[i][j + mat.row] = 1;                      //对角线
+                        }
+                        else
+                        {
+                            AE[i][j + mat.row] = 0;
+                        }
+                        
+                    }
+                }
+
+                for(int a = 0; a < AE.row; a++)                                 //当前行
+                {
+                    flag1 = true;
+                    
+                    for(searchi = a; searchi < AE.row; searchi++)
+                    {
+                        if(!IsZero_DBL(AE[searchi][a]))
+                        {
+                            flag1 = false;                       //找到某一行当前位置不是0
+                            break;
+                        }
+                    }
+                    if (flag1) return null;                 //某一列全为零,不存在逆矩阵，返回空
+                    if(searchi != a)
+                    {
+                        AE.ExchangeR1R2(searchi, a);            //交换两行，保证不为零
+                    }
+
+                    for(int i = 0; i < AE.row; i++)
+                    {
+                        if (i == a) continue;                           //绕过当前行
+                        AE.AddKTimesOfRow1ToRow2(a, -1.0 * AE[i][a] / AE[a][a], i);         //清零当前列
+                    }
+
+                    AE.RowXMultiplyK(a, 1.0 / AE[a][a]);                                  //当前行
+                }
+
+                for(int i = 0; i < AE.row; i++)
+                {
+                    for (int j = 0; j < AE.row; j++)
+                    {
+                        result[i][j] = AE[i][j + AE.row];
+                    }
+                }
+
+                return result;
+            }
+            return null;
+        }
+
+    }
+    
 }
