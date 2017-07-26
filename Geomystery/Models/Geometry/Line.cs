@@ -170,8 +170,8 @@ namespace Geomystery.Models.Geometry
         /// <returns>交点是一个Point2的数组(List)</returns>
         List<Point2> IPointSet.Intersection(IPointSet another)
         {
-            List<Point2> pcl = new List<Point2>();
-            if(another is Line)
+            List<Point2> pcl = new List<Point2>();          //point cross list
+            if (another is Line)
             {
                 Line l2 = another as Line;                      //转换
                 Vector2 v1 = this.GetVector();
@@ -193,7 +193,7 @@ namespace Geomystery.Models.Geometry
                     matrix[1][2] = p2.Y - p1.Y;
                 }
                 FMatrix<double> simpleMatrix = FMatrix<double>.RowSimplestFormOf(matrix);
-                pcl.Add(new Point2() { X = p1.X + (float)matrix[0][2] * v1.X, Y = p1.Y + (float)matrix[1][2] * v1.Y });     //存在一个交点
+                pcl.Add(new Point2() { X = p1.X + (float)simpleMatrix[0][2] * v1.X, Y = p1.Y + (float)simpleMatrix[0][2] * v1.Y });     //存在一个交点
             }
             else if(another is Circle)
             {

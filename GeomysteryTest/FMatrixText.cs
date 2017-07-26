@@ -367,8 +367,11 @@ namespace GeomysteryTest
             Assert.AreEqual(matSimple[2][2], 0.0, delta);
         }
 
+        /// <summary>
+        /// 测试矩阵的秩
+        /// </summary>
         [TestMethod]
-        public void TsteRank()
+        public void TestRank()
         {
             // 1 2 3
             // 4 5 6

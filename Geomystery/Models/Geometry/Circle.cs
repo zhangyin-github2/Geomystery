@@ -48,13 +48,22 @@ namespace Geomystery.Models.Geometry
         /// <returns>交点是一个Point2的数组</returns>
         List<Point2> IPointSet.Intersection(IPointSet another)
         {
-            List<Point2> pcl = new List<Point2>();
+            List<Point2> pcl = new List<Point2>();          //point cross list
             if (another is Line)
             {
-
+                pcl = another.Intersection(this);               //直接调用直线与圆交点
             }
             else if (another is Circle)
             {
+                Circle c2 = another as Circle;
+                float distanceOfTwoCircle = this.center.distanceOf(c2.center);              //圆心距
+                float radius1 = this.GetRadius();                           //圆1半径
+                float radius2 = c2.GetRadius();                             //圆2半径
+
+                if(distanceOfTwoCircle >= Math.Abs(radius1 - radius2) && distanceOfTwoCircle <= radius1 + radius2)          //存在交点(内切、外切、相交)
+                {
+                    //TODO:两个圆相交
+                }
 
             }
             return pcl;
