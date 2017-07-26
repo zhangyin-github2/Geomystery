@@ -93,52 +93,46 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Grid x:Name="backG" Grid.RowSpan="1" Width="3840" Height="2160" >
+
+        <Grid x:Name="backG" Grid.RowSpan="1" Width="3840" Height="2160">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
+            
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
+            
             <Frame x:Name="myFrame" />
             <Frame x:Name="optionFrame"  Grid.Row="1"/>
             <Frame x:Name="achievementFrame" Grid.Column="1"/>
+
         </Grid>
         <MediaPlayerElement Name="bgmPlayer" Height="0" Width="0"
                             IsTabStop="False"/>
         <MediaPlayerElement Name="bgaPlayer" Height="0" Width="0"
                             IsTabStop="False"/>
-        <RelativePanel x:Name="mytitle"
-                       Grid.Row="0"
-                       HorizontalAlignment="Left"
-                       VerticalAlignment="Top">
+        <RelativePanel x:Name="mytitle" Grid.Row="0"
+                       HorizontalAlignment="Left" VerticalAlignment="Top">
             <Button Name="BackButton"
                     RelativePanel.AlignLeftWithPanel="True"
                     Foreground="{ThemeResource SystemBackgroundBaseHighBrush}"
-                    Background="{x:Null}"
-                    FontFamily="Segoe MDl2 Assets"
-                    FontSize="28"
-                    Height="48"
-                    Width="68"
-                    BorderThickness="0"
-                    Content="&#xE0C4;" 
+                    Background="{x:Null}" BorderThickness="0"
+                    FontFamily="Segoe MDl2 Assets" FontSize="28" Content="&#xE0C4;" 
+                    Height="48" Width="68"
                     Click="BackButton_Click" IsTabStop="False"/>
             <Button Name="MuteButton"
                     RelativePanel.RightOf="BackButton"
                     Foreground="{ThemeResource SystemBackgroundBaseHighBrush}"
-                    Background="{x:Null}"
-                    FontFamily="Segoe MDl2 Assets"
-                    FontSize="28"
-                    Height="48"
-                    Width="68"
-                    BorderThickness="0"
+                    Background="{x:Null}" BorderThickness="0"
+                    FontFamily="Segoe MDl2 Assets" FontSize="28"
+                    Height="48" Width="68"
                     Click="MuteButton_Click" IsTabStop="False"/>
             <TextBlock x:Name="debugT"
-                       Foreground="{ThemeResource SystemBackgroundBaseHighBrush}"
-                       RelativePanel.RightOf="MuteButton"
-                       FontSize="10"/>
+                       FontSize="10" Foreground="{ThemeResource SystemBackgroundBaseHighBrush}"
+                       RelativePanel.RightOf="MuteButton"/>
         </RelativePanel>
     </Grid>
 </Page>
