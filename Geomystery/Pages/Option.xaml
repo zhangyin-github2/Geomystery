@@ -77,7 +77,7 @@
                                         <VisualState x:Name="PointerOver">
                                             <Storyboard>
                                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="RootGrid">
-                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="Gray" />
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="Gray"/>
                                                 </ObjectAnimationUsingKeyFrames>
                                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="ContentPresenter">
                                                     <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemBackgroundBaseHighBrush}" />
@@ -90,21 +90,23 @@
                                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="RootGrid">
                                                     <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ColorGradient1}" />
                                                 </ObjectAnimationUsingKeyFrames>
-                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="For" Storyboard.TargetName="ContentPresenter">
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="ContentPresenter">
                                                     <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ColorGradient1}" />
                                                 </ObjectAnimationUsingKeyFrames>
                                                 <PointerDownThemeAnimation Storyboard.TargetName="RootGrid" />
                                             </Storyboard>
                                         </VisualState>
                                         <VisualState x:Name="Disabled">
-                                            <Storyboard></Storyboard>
+                                            <Storyboard>
+                                                <PointerDownThemeAnimation Storyboard.TargetName="RootGrid" />
+                                            </Storyboard>
                                         </VisualState>
                                     </VisualStateGroup>
                                 </VisualStateManager.VisualStateGroups>
                                 <ContentPresenter x:Name="ContentPresenter" CornerRadius="18" 
                                                   AutomationProperties.AccessibilityView="Raw" 
                                                   BorderBrush="{TemplateBinding BorderBrush}" 
-                                                  BorderThickness="4" 
+                                                  BorderThickness="4"
                                                   ContentTemplate="{TemplateBinding ContentTemplate}" 
                                                   ContentTransitions="{TemplateBinding ContentTransitions}" 
                                                   Content="{TemplateBinding Content}" 
@@ -197,7 +199,7 @@
                 </Setter>
             </Style>
             <!--自定义滑块-->
-            <Style TargetType="Slider">
+            <Style TargetType="Slider" x:Key="SliderStyle1">
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="Slider">
@@ -224,7 +226,7 @@
                                 </Grid.RowDefinitions>
                                 <VisualStateManager.VisualStateGroups>
                                     <VisualStateGroup x:Name="CommonStates">
-                                        <VisualState x:Name="Normal" />
+                                        <VisualState x:Name="Normal"/>
                                         <VisualState x:Name="Pressed">
                                             <Storyboard>
                                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HorizontalThumb"
@@ -546,7 +548,7 @@
                         FontSize="44" FontFamily="Segoe UI Symbol" Content="&#x25C0;" Foreground="{ThemeResource SystemBackgroundBaseHighBrush}"
                         Background="{x:Null}" Style="{StaticResource ButtonStyleRL}"
                         VerticalAlignment="Center"
-                        Click="LanLeft_Click"/>
+                        Click="LanLeft_Click" IsTabStop="False"/>
                 <TextBlock Name="LanguageNow"
                            FontFamily="Microsoft YaHei UI" FontSize="44" Text="English"
                            Foreground="{ThemeResource TextColorPurple}"
@@ -556,46 +558,45 @@
                         FontSize="44" FontFamily="Segoe UI Symbol" Content="&#x25B6;" Foreground="{ThemeResource SystemBackgroundBaseHighBrush}"
                         Background="{x:Null}" Style="{StaticResource ButtonStyleRL}"
                         VerticalAlignment="Center"
-                        Click="LanRight_Click"/>
+                        Click="LanRight_Click" IsTabStop="False"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal"
                         Height="104">
                 <Slider Name="MusicVolSlider"
                         Width="400"
+                        Style="{StaticResource SliderStyle1}"
                         Background="{ThemeResource SystemBackgroundBaseHighBrush}"
-                        VerticalAlignment="Center"/>
+                        VerticalAlignment="Center" IsTabStop="False"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal"
                         Height="104">
                 <Slider Name="SFXVolSlider"
-                        Width="400"
-                        
+                        Width="400" 
+                        Style="{StaticResource SliderStyle1}"
                         Background="{ThemeResource SystemBackgroundBaseHighBrush}"
-                        VerticalAlignment="Center"/>
+                        VerticalAlignment="Center" IsTabStop="False"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal"
                         Height="104">
                 <ToggleButton Name="Fullscreen"
                               Style="{StaticResource ToggleButtonStyle1}"
-                              Click="Fullscreen_Click"
-                              FontFamily="Segoe UI Emoji"
-                              FontSize="36"
+                              FontFamily="Segoe UI Emoji" FontSize="36"
                               Background="{x:Null}"
                               Margin="12,0,0,0"
                               Height="72" Width="72"
-                              VerticalAlignment="Center"/>
+                              VerticalAlignment="Center"
+                              Click="Fullscreen_Click" IsTabStop="False"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal"
                         Height="104">
                 <ToggleButton Name="NightMode"
                               Style="{StaticResource ToggleButtonStyle1}"
-                              Click="NightMode_Click"
-                              FontFamily="Segoe UI Emoji"
-                              FontSize="36"
+                              FontFamily="Segoe UI Emoji" FontSize="36"
                               Background="{x:Null}"
                               Margin="12,0,0,0"
                               Height="72" Width="72"
-                              VerticalAlignment="Center"/>
+                              VerticalAlignment="Center"
+                              Click="NightMode_Click" IsTabStop="False"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal"
                         Height="104">
@@ -607,7 +608,7 @@
                         Margin="12,0,0,0"
                         VerticalAlignment="Center"
                         Content="&#xE117;"
-                        Click="ResetProgress_Click"/>
+                        Click="ResetProgress_Click" IsTabStop="False"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal"
                         Height="104">
@@ -617,7 +618,7 @@
                         VerticalAlignment="Center"
                         Background="{x:Null}"
                         Foreground="{ThemeResource TextColorPurple}"
-                        Click="AboutUs_Click"/>
+                        Click="AboutUs_Click" IsTabStop="False"/>
             </StackPanel>
         </StackPanel>
     </Grid>
