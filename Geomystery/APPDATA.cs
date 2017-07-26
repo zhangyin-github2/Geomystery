@@ -1,4 +1,5 @@
 ﻿using Geomystery.Models;
+using Geomystery.Pages;
 using SQLite.Net;
 using SQLite.Net.Platform.WinRT;
 using System;
@@ -81,8 +82,8 @@ namespace Geomystery
             if (app_data.LANGGUAGE != "en-US") app_data.LANGGUAGE = "en-US";
             else app_data.LANGGUAGE = "zh-CN";
             Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = app_data.LANGGUAGE;
-            if (LanguageOverrideChanged != null) LanguageOverrideChanged(this, new EventArgs());
-
+            LanguageOverrideChanged?.Invoke(this, new EventArgs());
+            update_grid();
             //var k = ResourceLoader.
         }
         public void setFullScreen()
@@ -116,6 +117,27 @@ namespace Geomystery
             {
                 View.Theme = !app_data.ISNIGHT ? ElementTheme.Light : ElementTheme.Dark;
             }
+        }
+        public void update_grid()
+        {
+            var x = app_data.MAINGRID.Children;
+            MainPage.debugTxt.Text = "";
+            foreach (var c in x)
+            {
+                if(c is Frame)
+                {
+                    var k = c as Frame;
+                    string name = k.Name;
+                    
+                    switch (name)
+                    {
+                        case "myFrame": k.Navigate(typeof(HomePage)); MainPage.debugTxt.Text += name + " "; break;
+                        case "optionFrame": k.Navigate(typeof(Option)); MainPage.debugTxt.Text += name + " "; MainPage.debugTxt.Text +=  k.GetNavigationState() ; break;
+                        case "achievementFrame": k.Navigate(typeof(Achievement));  break;
+                    }
+                }
+            }
+
         }
         async public Task<int> Reset()
         {

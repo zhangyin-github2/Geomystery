@@ -79,7 +79,8 @@ namespace Geomystery
 
         private void LanRight_Click(object sender, RoutedEventArgs e)
         {
-            if (LanguageNow.Text == "English")
+            APPDATA.app_data.change_language();
+            if (APPDATA.app_data.LANGGUAGE == "zh-CN")
             {
                 LanguageNow.Text = "简体中文";
             }
@@ -87,7 +88,6 @@ namespace Geomystery
             {
                 LanguageNow.Text = "English";
             }
-           
         }
 
         private void LanLeft_Click(object sender, RoutedEventArgs e)
