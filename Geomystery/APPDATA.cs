@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Resources;
 using Windows.Storage;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
@@ -20,6 +21,7 @@ namespace Geomystery
         public bool ISMUTE { get; set; }
         public bool ISNIGHT { get; set; }
         public bool ISFULLSCREEN { get; set; }
+        public string LANGGUAGE { get; set; }
         public int GAMEMODE { get; set; }
         public int HAVEDONE { get; set; }
         public List<ViewModel.ViewModel> Views;
@@ -28,12 +30,16 @@ namespace Geomystery
         public Button BACKBUTTON { get; set; }
         public static APPDATA app_data;
 
+        public delegate void LanguageOverrideChangedEventHandler(object sender, EventArgs e);
+        public event LanguageOverrideChangedEventHandler LanguageOverrideChanged;
+
         public APPDATA()
         {
             Views = new List<ViewModel.ViewModel>();
             ISMUTE = false;
             ISNIGHT = false;
             ISFULLSCREEN=true;
+            LANGGUAGE = "en-US";
             HAVEDONE = 0;
             GAMEMODE = -1;
             MAINGRID = new Grid();
@@ -66,7 +72,18 @@ namespace Geomystery
                 app_data.ISMUTE = k.ISMUTE;
                 app_data.ISNIGHT = k.ISNIGHT;
                 app_data.HAVEDONE = k.HAVEDONE;
+                app_data.LANGGUAGE = k.LANGGUAGE;
             }
+        }
+        public void change_language()
+        {
+            //ResourceLoader x = ResourceLoader.GetForCurrentView("Resources");
+            if (app_data.LANGGUAGE != "en-US") app_data.LANGGUAGE = "en-US";
+            else app_data.LANGGUAGE = "zh-CN";
+            Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = app_data.LANGGUAGE;
+            if (LanguageOverrideChanged != null) LanguageOverrideChanged(this, new EventArgs());
+
+            //var k = ResourceLoader.
         }
         public void setFullScreen()
         {
@@ -175,12 +192,14 @@ namespace Geomystery
         public bool ISNIGHT { get; set; }
         public bool ISFULLSCREEN { get; set; }
         public int HAVEDONE { get; set; }
+        public string LANGGUAGE { get; set; }
         public option_data()
         {
             ISMUTE = APPDATA.app_data.ISMUTE;
             ISNIGHT = APPDATA.app_data.ISNIGHT;
             ISFULLSCREEN = APPDATA.app_data.ISFULLSCREEN;
             HAVEDONE = APPDATA.app_data.HAVEDONE;
+            LANGGUAGE = APPDATA.app_data.LANGGUAGE;
         }
     }
 }

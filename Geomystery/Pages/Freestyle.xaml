@@ -49,6 +49,7 @@
                                       PointerReleased="canvas1_PointerReleased" PointerMoved="canvas1_PointerMoved"/>
         <ListView x:Name="listView1"
                   Grid.Row="1"
+                  ScrollViewer.VerticalScrollBarVisibility="Hidden"
                   ItemsSource="{x:Bind userTools}"
                   ItemTemplate="{StaticResource listViewItemTempelate}" Background="#7F808080"
                   IsTabStop="False">

@@ -511,7 +511,7 @@
                 HorizontalAlignment="Right"
                 VerticalAlignment="Top"
                 Content="&#x1F3C6;"
-                Click="Achievement_Click"/>
+                Click="Achievement_Click" IsTabStop="False"/>
     </Grid>
 
 </Page>
