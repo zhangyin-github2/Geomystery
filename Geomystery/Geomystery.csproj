@@ -222,6 +222,10 @@
     <Content Include="Pictures\coin.png" />
     <Content Include="Pictures\Levels\1.png" />
     <Content Include="Pictures\lock.png" />
+    <Content Include="Pictures\start.jpg" />
+    <Content Include="Pictures\start2.jpg" />
+    <Content Include="Pictures\start3.jpg" />
+    <Content Include="Pictures\start4.jpg" />
     <Content Include="Pictures\Tool\tool1.png" />
     <Content Include="Pictures\Tool\tool2.png" />
     <Content Include="Pictures\Tool\tool3.png" />
