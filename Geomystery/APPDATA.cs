@@ -31,9 +31,6 @@ namespace Geomystery
         public Button BACKBUTTON { get; set; }
         public static APPDATA app_data;
 
-        public delegate void LanguageOverrideChangedEventHandler(object sender, EventArgs e);
-        public event LanguageOverrideChangedEventHandler LanguageOverrideChanged;
-
         public APPDATA()
         {
             Views = new List<ViewModel.ViewModel>();
@@ -76,15 +73,16 @@ namespace Geomystery
                 app_data.LANGGUAGE = k.LANGGUAGE;
             }
         }
-        public void change_language()
+        public async void change_language()
         {
-            //ResourceLoader x = ResourceLoader.GetForCurrentView("Resources");
             if (app_data.LANGGUAGE != "en-US") app_data.LANGGUAGE = "en-US";
             else app_data.LANGGUAGE = "zh-CN";
+           
             Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = app_data.LANGGUAGE;
-            LanguageOverrideChanged?.Invoke(this, new EventArgs());
+            Windows.ApplicationModel.Resources.Core.ResourceContext.GetForCurrentView().Reset();
+            Windows.ApplicationModel.Resources.Core.ResourceContext.GetForViewIndependentUse().Reset();
+            await Task.Delay(2);
             update_grid();
-            //var k = ResourceLoader.
         }
         public void setFullScreen()
         {
@@ -128,11 +126,10 @@ namespace Geomystery
                 {
                     var k = c as Frame;
                     string name = k.Name;
-                    
                     switch (name)
                     {
-                        case "myFrame": k.Navigate(typeof(HomePage)); MainPage.debugTxt.Text += name + " "; break;
-                        case "optionFrame": k.Navigate(typeof(Option)); MainPage.debugTxt.Text += name + " "; MainPage.debugTxt.Text +=  k.GetNavigationState() ; break;
+                        case "myFrame": k.Navigate(typeof(HomePage)); break;
+                        case "optionFrame": k.Navigate(typeof(Option)); break;
                         case "achievementFrame": k.Navigate(typeof(Achievement));  break;
                     }
                 }
