@@ -39,5 +39,15 @@ namespace Geomystery
         {
             Frame.Navigate(typeof(SelectGame));
         }
+
+        private void Chapter2_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Chapter3_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
