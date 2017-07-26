@@ -38,7 +38,10 @@ namespace Geomystery
 
         public MainPage()
         {
+            
+            
             this.InitializeComponent();
+            myFrame.Navigate(typeof(SplashScreen));
             //backG.RenderTransform= new CompositeTransform();
             this.Name = this.GetType().ToString()+"P";
             myFrame.Navigated += MyFrame_Navigated;
