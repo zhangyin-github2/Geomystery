@@ -30,6 +30,7 @@ namespace Geomystery
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            
         }
 
         /// <summary>
