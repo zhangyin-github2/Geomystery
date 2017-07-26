@@ -40,25 +40,28 @@ namespace Geomystery.Pages
 
         private void Game_Click(object sender, RoutedEventArgs e)
         {
-            BGMPlayer.MusicPlayer.Play();
+            BGMPlayer.PlayButton();
             Frame.Navigate(typeof(SelectChapter));
         }
 
         private void Freestyle_Click(object sender, RoutedEventArgs e)
         {
-            BGMPlayer.MusicPlayer.Play();
+            BGMPlayer.PlayButton();
             Frame.Navigate(typeof(Freestyle));
         }
 
         private void Option_Click(object sender, RoutedEventArgs e)
         {
-            BGMPlayer.MusicPlayer.Play();
-            Frame.Navigate(typeof(Option));
+            BGMPlayer.PlayButton();
+            APPDATA.app_data.MoveTo(AppPage.OptionPage);
+            //Frame.Navigate(typeof(Option));
         }
 
         private void Achievement_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(Achievement));
+            BGMPlayer.PlayButton();
+            APPDATA.app_data.MoveTo(AppPage.AchievementPage);
+            //Frame.Navigate(typeof(Achievement));
         }
     }
 }

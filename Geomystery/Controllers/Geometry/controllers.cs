@@ -3,6 +3,7 @@ using Geomystery.Views.Geometry;
 using Microsoft.Graphics.Canvas.UI.Xaml;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Numerics;
 using System.Text;
@@ -79,6 +80,23 @@ namespace Geomystery.Controllers.Geometry
                 return 1;
             }
             return 0;
+        }
+
+        /// <summary>
+        /// 关卡的预初始化
+        /// </summary>
+        /// <param name="controller"></param>
+        /// <returns></returns>
+        public int PreInitialized(Controllers controller)
+        {
+            this.coordinate = controller.coordinate;
+            if (outputCoordinates != null)
+            {
+                outputCoordinates.Clear();
+            }
+            outputCoordinates = new List<OutputCoordinate>();
+            outputCoordinates.Add(controller.outputCoordinates[0]);
+            return 1;
         }
 
         /// <summary>
@@ -177,10 +195,21 @@ namespace Geomystery.Controllers.Geometry
             {
                 if (surroundings.surroundingPoint.Count > 0)
                 {
-                    coordinate.ToSelectGeometry(surroundings.surroundingPoint[0].geometry);    
+                    coordinate.ToSelectGeometry(surroundings.surroundingPoint[0].geometry);
+                    Debug.WriteLine(surroundings.surroundingPoint[0].geometry.ToString());
+                }
+                else if(surroundings.surroundingLine.Count > 0)
+                {
+                    coordinate.ToSelectGeometry(surroundings.surroundingLine[0].geometry);
+                    Debug.WriteLine(surroundings.surroundingLine[0].geometry.ToString());
+                }
+                else if(surroundings.surroundingCircle.Count > 0)
+                {
+                    coordinate.ToSelectGeometry(surroundings.surroundingCircle[0].geometry);
+                    Debug.WriteLine(surroundings.surroundingCircle[0].geometry.ToString());
                 }
                 else
-                {
+                { 
                     coordinate.ClearSelectedGeometry();
                 }
             }

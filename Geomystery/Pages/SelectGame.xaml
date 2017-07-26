@@ -8,6 +8,7 @@
     mc:Ignorable="d"
     xmlns:toolData="using:Geomystery.Award"
     RequestedTheme="{x:Bind View.Theme,Mode=OneWay}">
+    
     <Page.Resources>
         <ResourceDictionary>
             <local:intToVisibilityConverter x:Key="Converter1"/>
@@ -36,10 +37,10 @@
                                 <ColumnDefinition Width="1*"/>
                                 <ColumnDefinition Width="2*"/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Column="0" Grid.Row="0" Text="{x:Bind ID}" FontSize="32" FontFamily="Bradley Hand ITC" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Grid.Column="0" Grid.Row="0" Text="{x:Bind ID}" FontSize="32" Foreground="Black" FontFamily="Bradley Hand ITC" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
                         </Grid>
-                        <Image Source="{x:Bind cover}" Grid.Row="1" Margin="50,0"/>
-                        <TextBlock Grid.Column="0" Grid.Row="2" Text="{x:Bind name}" FontSize="24"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <Image Source="{x:Bind cover}" Grid.Row="1" Margin="50,0" Stretch="Fill"/>
+                        <TextBlock Grid.Column="0" Grid.Row="2" Text="{x:Bind name}" FontSize="24" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     </Grid>
                     <Grid Grid.Column="1" Grid.Row="1" Visibility="{Binding unlocked, Converter={StaticResource Converter1}}">
                         <Grid.RowDefinitions>
@@ -66,8 +67,8 @@
                 </Grid>
             </DataTemplate>
             <ResourceDictionary.ThemeDictionaries>
-                <ResourceDictionary x:Key="Light" Source="DarkThemeDictionary.xaml"></ResourceDictionary>
-                <ResourceDictionary x:Key="Dark" Source="LightThemeDictionary.xaml"></ResourceDictionary>
+                <ResourceDictionary x:Key="Light" Source="LightThemeDictionary.xaml"></ResourceDictionary>
+                <ResourceDictionary x:Key="Dark" Source="DarkThemeDictionary.xaml"></ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>
         </ResourceDictionary>
     </Page.Resources>

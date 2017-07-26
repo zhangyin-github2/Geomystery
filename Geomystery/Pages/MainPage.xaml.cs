@@ -16,6 +16,7 @@ using Windows.UI.ViewManagement;
 using Geomystery.Pages;
 using Geomystery.Models;
 using Geomystery.ViewModel;
+using Windows.Media.Core;
 
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上有介绍
@@ -38,23 +39,39 @@ namespace Geomystery
         public MainPage()
         {
             this.InitializeComponent();
+            //backG.RenderTransform= new CompositeTransform();
+            this.Name = this.GetType().ToString()+"P";
             myFrame.Navigated += MyFrame_Navigated;
             Application.Current.Suspending += new SuspendingEventHandler(App_Suspending);
             Window.Current.SizeChanged += Current_SizeChanged;
             init();
+            debugT.Text = this.Name;
         }
 
         public void Current_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
         {
             ApplicationView cview = ApplicationView.GetForCurrentView();
             APPDATA.app_data.ISFULLSCREEN = cview.IsFullScreenMode;
+            ScreenHeight = Window.Current.Bounds.Height;
+            ScreenWidth = Window.Current.Bounds.Width;
+            backG.Width = ScreenWidth * 2;
+            backG.Height = ScreenHeight * 2;
+            var x = backG.RenderTransform as CompositeTransform;
+            try
+            {
+                if (APPDATA.app_data.CURRENT_PAGE == AppPage.AchievementPage) x.TranslateX = -ScreenWidth;
+                if (APPDATA.app_data.CURRENT_PAGE == AppPage.OptionPage) x.TranslateY = -ScreenHeight;
+            }
+            catch { return;  }
+            backG.RenderTransform = x;
         }
 
         public void init()
         {
-
             MainFrame = this.myFrame;
             debugTxt = this.debugT;
+            BgaP = bgaPlayer;
+            BgmP = bgmPlayer;
             APPDATA.app_data = new APPDATA();
             APPDATA.LOAD();
             View = new ViewModel.ViewModel();
@@ -69,31 +86,25 @@ namespace Geomystery
                 MuteButton.Content = CONST.mute;
             else
                 MuteButton.Content = CONST.volume2;
-            debugT.Text = APPDATA.app_data.show();
+            APPDATA.app_data.BACKBUTTON = this.BackButton;
+                        APPDATA.app_data.MAINGRID = backG;
+            //debugT.Text = APPDATA.app_data.show();
             BackButton.Visibility = Visibility.Collapsed;
-            myFrame.Navigate(typeof(HomePage));
             init_music();
+            myFrame.Navigate(typeof(HomePage));
+            optionFrame.Navigate(typeof(Option));
+            achievementFrame.Navigate(typeof(Achievement));
         }
         public void init_music()
         {
             BGMPlayer.getInstance();
             BGMPlayer.MusicPlayer.Name = "MusicPlayer";
-            Music.Children.Add(BGMPlayer.MusicPlayer);
+            backG.Children.Add(BGMPlayer.MusicPlayer);
             BGMPlayer.MusicPlayer.Visibility = Visibility.Collapsed;
-            BGMPlayer.MusicPlayer.IsLooping = false;
-            BGMPlayer.MusicPlayer.AutoPlay = false;
-            BGMPlayer.MusicPlayer.Source = new Uri("ms-appx:///Assets/007.mp3");
-            BGMPlayer.MusicPlayer.Volume = 100;
-
-            BGM_Player.getInstance();
-            BGM_Player.MusicPlayer.Name = "MusicPlayer";
-            Music.Children.Add(BGM_Player.MusicPlayer);
-            BGM_Player.MusicPlayer.Visibility = Visibility.Collapsed;
-            BGM_Player.MusicPlayer.IsLooping = true;
-            BGM_Player.MusicPlayer.AutoPlay = true;
-            BGM_Player.MusicPlayer.Source = new Uri("ms-appx:///Assets/bgm.mp3");
-            BGM_Player.MusicPlayer.Play();
-            BGM_Player.MusicPlayer.Volume = 100;
+            BGMPlayer.MusicPlayer.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Assets/Audio/button1.wav", UriKind.Absolute));
+            BGMPlayer.MusicPlayer.MediaPlayer.IsLoopingEnabled = false;
+            BGMPlayer.MusicPlayer.MediaPlayer.AutoPlay = false;
+            BGMPlayer.MusicPlayer.MediaPlayer.Volume = 100;
         }
         
 
@@ -101,7 +112,13 @@ namespace Geomystery
         {
             if (myFrame.CanGoBack)
             {
+                BGMPlayer.PlayButton();
                 myFrame.GoBack();
+            }
+            if(APPDATA.app_data.CURRENT_PAGE!=AppPage.HomePage)
+            {
+                BGMPlayer.PlayButton();
+                APPDATA.app_data.MoveTo(AppPage.HomePage);
             }
         }
 
@@ -128,6 +145,8 @@ namespace Geomystery
             base.OnNavigatedTo(e);
             ScreenHeight = Window.Current.Bounds.Height;
             ScreenWidth = Window.Current.Bounds.Width;
+            backG.Width = ScreenWidth * 2;
+            backG.Height = ScreenHeight * 2;
         }
 
         private void MyFrame_Navigated(object sender, NavigationEventArgs e)
@@ -150,7 +169,11 @@ namespace Geomystery
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            
+            ScreenHeight = Window.Current.Bounds.Height;
+            ScreenWidth = Window.Current.Bounds.Width;
+            backG.Width = ScreenWidth * 2;
+            backG.Height = ScreenHeight * 2;
         }
+
     }
 }

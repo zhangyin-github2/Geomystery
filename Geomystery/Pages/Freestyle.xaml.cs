@@ -41,6 +41,8 @@ namespace Geomystery
 
         Geomystery.Controllers.Geometry.Controllers controller;
 
+        Stack<OutputLine> undolist, redolist;
+
         public Freestyle()
         {
             this.InitializeComponent();
@@ -90,28 +92,72 @@ namespace Geomystery
             {
                 for (int i = 0; i < geoList.Count; i++)
                 {
-                    if (geoList[i] is OutputPoint)
+                    if (geoList[i] is OutputCircle)
                     {
-                        var realPoint = geoList[i] as OutputPoint;
-                        if(realPoint.point.isSelected)
+                        var realCircle = geoList[i] as OutputCircle;
+                        args.DrawingSession.DrawCircle(realCircle.center, realCircle.radius, realCircle.lineColor, realCircle.thickness);
+
+                        if (realCircle.circle.center.isSelected)
                         {
-                            args.DrawingSession.FillCircle(realPoint.viewPoint, OutputPoint.scopeLength, realPoint.selectedFillColor);
+                            args.DrawingSession.FillCircle(realCircle.circle.center.resultPoint.viewPoint, OutputPoint.scopeLength, realCircle.circle.center.resultPoint.selectedFillColor);
+                            args.DrawingSession.DrawCircle(realCircle.circle.center.resultPoint.viewPoint, OutputPoint.scopeLength, realCircle.circle.center.resultPoint.selectedLineColor);
                         }
                         else
                         {
-                            args.DrawingSession.DrawCircle(realPoint.viewPoint, OutputPoint.scopeLength, realPoint.lineColor);
+                            args.DrawingSession.FillCircle(realCircle.circle.center.resultPoint.viewPoint, OutputPoint.scopeLength, realCircle.circle.center.resultPoint.fillColor);
+                            args.DrawingSession.DrawCircle(realCircle.circle.center.resultPoint.viewPoint, OutputPoint.scopeLength, realCircle.circle.center.resultPoint.lineColor);
                         }
-                        
+                        if (realCircle.circle.radius.isSelected)
+                        {
+                            args.DrawingSession.FillCircle(realCircle.circle.radius.resultPoint.viewPoint, OutputPoint.scopeLength, realCircle.circle.radius.resultPoint.selectedFillColor);
+                            args.DrawingSession.DrawCircle(realCircle.circle.radius.resultPoint.viewPoint, OutputPoint.scopeLength, realCircle.circle.radius.resultPoint.selectedLineColor);
+                        }
+                        else
+                        {
+                            args.DrawingSession.FillCircle(realCircle.circle.radius.resultPoint.viewPoint, OutputPoint.scopeLength, realCircle.circle.radius.resultPoint.fillColor);
+                            args.DrawingSession.DrawCircle(realCircle.circle.radius.resultPoint.viewPoint, OutputPoint.scopeLength, realCircle.circle.radius.resultPoint.lineColor);
+                        }
                     }
-                    else if(geoList[i] is OutputLine)
+                    else if (geoList[i] is OutputLine)
                     {
                         var realLine = geoList[i] as OutputLine;
-                        args.DrawingSession.DrawLine(realLine.p1, realLine.p2, realLine.lineColor);
+                        args.DrawingSession.DrawLine(realLine.p1, realLine.p2, realLine.lineColor, realLine.thickness);
+
+                        if (realLine.line.p1.isSelected)
+                        {
+                            args.DrawingSession.FillCircle(realLine.line.p1.resultPoint.viewPoint, OutputPoint.scopeLength, realLine.line.p1.resultPoint.selectedFillColor);
+                            args.DrawingSession.DrawCircle(realLine.line.p1.resultPoint.viewPoint, OutputPoint.scopeLength, realLine.line.p1.resultPoint.selectedLineColor);
+                        }
+                        else
+                        {
+                            args.DrawingSession.FillCircle(realLine.line.p1.resultPoint.viewPoint, OutputPoint.scopeLength, realLine.line.p1.resultPoint.fillColor);
+                            args.DrawingSession.DrawCircle(realLine.line.p1.resultPoint.viewPoint, OutputPoint.scopeLength, realLine.line.p1.resultPoint.lineColor);
+                        }
+                        if(realLine.line.p2.isSelected)
+                        {
+                            args.DrawingSession.FillCircle(realLine.line.p2.resultPoint.viewPoint, OutputPoint.scopeLength, realLine.line.p1.resultPoint.selectedFillColor);
+                            args.DrawingSession.DrawCircle(realLine.line.p2.resultPoint.viewPoint, OutputPoint.scopeLength, realLine.line.p1.resultPoint.selectedLineColor);
+                        }
+                        else
+                        {
+                            args.DrawingSession.FillCircle(realLine.line.p2.resultPoint.viewPoint, OutputPoint.scopeLength, realLine.line.p1.resultPoint.fillColor);
+                            args.DrawingSession.DrawCircle(realLine.line.p2.resultPoint.viewPoint, OutputPoint.scopeLength, realLine.line.p1.resultPoint.lineColor);
+                        }
                     }
-                    else if (geoList[i] is OutputCircle)
+                    else if (geoList[i] is OutputPoint)
                     {
-                        var realCircle = geoList[i] as OutputCircle;
-                        args.DrawingSession.DrawCircle(realCircle.center, realCircle.radius, realCircle.lineColor);
+                        var realPoint = geoList[i] as OutputPoint;
+                        if (realPoint.point.isSelected)
+                        {
+                            args.DrawingSession.FillCircle(realPoint.viewPoint, OutputPoint.scopeLength, realPoint.selectedFillColor);
+                            args.DrawingSession.DrawCircle(realPoint.viewPoint, OutputPoint.scopeLength, realPoint.selectedLineColor);
+                        }
+                        else
+                        {
+                            args.DrawingSession.FillCircle(realPoint.viewPoint, OutputPoint.scopeLength, realPoint.fillColor);
+                            args.DrawingSession.DrawCircle(realPoint.viewPoint, OutputPoint.scopeLength, realPoint.lineColor);
+                        }
+
                     }
                 }
             }
@@ -135,7 +181,7 @@ namespace Geomystery
         {
             Point pxy = e.GetCurrentPoint((CanvasAnimatedControl)sender).Position;
             Vector2 p = pxy.ToVector2();
-            text1.Text = p.X.ToString() + " | " + p.Y.ToString();
+            MainPage.debugTxt.Text = p.X.ToString() + " | " + p.Y.ToString();
 
             controller.PointerPressed((UserTool)listView1.SelectedItem, sender, e);
         }
@@ -156,7 +202,7 @@ namespace Geomystery
             controller.outputCoordinates[0].WindowHeight = (float)canvas1.ActualHeight;
             controller.outputCoordinates[0].WindowWidth = (float)canvas1.ActualWidth;
             maxHeightWidth = new Vector2((float)canvas1.ActualWidth, (float)canvas1.ActualHeight);
-            text1.Text = maxHeightWidth.X.ToString() + " | " + maxHeightWidth.Y.ToString();
+            MainPage.debugTxt.Text = maxHeightWidth.X.ToString() + " | " + maxHeightWidth.Y.ToString();
             listView1.SelectedIndex = 2;
         }
 
@@ -168,9 +214,17 @@ namespace Geomystery
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            text1.Text = "helloWorld";
+            //MainPage.debugTxt.Text = "helloWorld";
         }
 
-        
+        private void refresh_Click(object sender, RoutedEventArgs e)
+        {
+            controller.outputCoordinates[0].geometryList.Clear();
+        }
+
+        private void undo_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
