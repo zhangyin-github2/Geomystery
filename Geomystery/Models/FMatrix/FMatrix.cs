@@ -761,6 +761,92 @@ namespace Geomystery.Models.FMatrix
             return null;
         }
 
+        /// <summary>
+        /// 行最简形
+        /// </summary>
+        /// <param name="mat">原矩阵</param>
+        /// <returns>行最简形式的矩阵</returns>
+        public static FMatrix<double> RowSimplestFormOf(FMatrix<T> mat)
+        {
+            FMatrix<double> result = null;
+            bool flag1;
+            int searchi;
+            if (mat.matrix != null && mat.column > 0 && mat.row > 0)                  //合理矩阵，方阵，
+            {
+                result = new FMatrix<double>(mat.row, mat.row, 0.0);
+
+                for (int i = 0; i < mat.row; i++)
+                {
+                    for (int j = 0; j < mat.column; j++)
+                    {
+                        result[i][j] = Convert.ToDouble(mat[i][j]);
+                    }
+                }
+
+                for (int a = 0; a < result.row; a++)                                 //当前行
+                {
+                    flag1 = true;
+                    for (searchi = a; searchi < result.row; searchi++)
+                    {
+                        if (!IsZero_DBL(result[searchi][a]))
+                        {
+                            flag1 = false;                       //找到某一行当前位置不是0
+                            break;
+                        }
+                        else
+                        {
+                            result[searchi][a] = 0.0;
+                        }
+                    }
+                    if (flag1) continue;                 //某一列全为零,换下一列
+                    if (searchi != a)
+                    {
+                        result.ExchangeR1R2(searchi, a);            //交换两行，保证不为零
+                    }
+
+                    for (int i = 0; i < result.row; i++)
+                    {
+                        if (i == a) continue;                           //绕过当前行
+                        result.AddKTimesOfRow1ToRow2(a, -1.0 * result[i][a] / result[a][a], i);         //清零当前列
+                    }
+
+                    result.RowXMultiplyK(a, 1.0 / result[a][a]);                                  //当前行
+                }
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// 矩阵的秩
+        /// </summary>
+        /// <param name="mat">待计算矩阵</param>
+        /// <returns>矩阵的秩</returns>
+        public static int? Rank(FMatrix<T> mat)
+        {
+            int? result = null;
+            bool flag1;
+            if(mat.matrix != null && mat.row > 0 && mat.column > 0)
+            {
+                result = 0;
+                FMatrix<double> simple = FMatrix<T>.RowSimplestFormOf(mat);
+                int rcmin = (mat.row <= mat.column) ? mat.row : mat.column;
+                for(int i = 0; i < rcmin; i++)
+                {
+                    flag1 = false;
+                    for(int j = 0; j < mat.column; j++)
+                    {
+                        if(simple[i][j] != 0.0)         //非零行
+                        {
+                            flag1 = true;
+                            break;
+                        }
+                    }
+                    if (flag1) result++;
+                }
+            }
+            return result;
+        }
+
     }
     
 }

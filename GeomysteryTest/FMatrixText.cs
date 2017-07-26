@@ -206,6 +206,7 @@ namespace GeomysteryTest
         /// <summary>
         /// 测试矩阵的转置
         /// </summary>
+        [TestMethod]
         public void TestTranspose()
         {
             FMatrix<int> mat = new FMatrix<int>(2, 3, 0);
@@ -333,6 +334,87 @@ namespace GeomysteryTest
             Assert.AreEqual(mat2inv[0][1], 1, delta);
             Assert.AreEqual(mat2inv[1][0], 1.5, delta);
             Assert.AreEqual(mat2inv[1][1], -0.5, delta);
+        }
+
+        /// <summary>
+        /// 测试行最简型
+        /// </summary>
+        [TestMethod]
+        public void TestRowSimplestFormOf()
+        {
+            FMatrix<int> mat = new FMatrix<int>(3, 3, 0);
+            int number = 1;
+            for (int i = 0; i < 2; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    mat.matrix[i][j] = number;
+                    number++;
+                }
+            }
+
+            FMatrix<double> matSimple = FMatrix<int>.RowSimplestFormOf(mat);
+            Assert.AreEqual(matSimple[0][0], 1.0, delta);
+            Assert.AreEqual(matSimple[0][1], 0.0, 0);
+            Assert.AreEqual(matSimple[0][2], -1.0, delta);
+
+            Assert.AreEqual(matSimple[1][0], 0.0, 0);
+            Assert.AreEqual(matSimple[1][1], 1.0, delta);
+            Assert.AreEqual(matSimple[1][2], 2.0, delta);
+
+            Assert.AreEqual(matSimple[2][0], 0.0, 0);
+            Assert.AreEqual(matSimple[2][1], 0.0, 0);
+            Assert.AreEqual(matSimple[2][2], 0.0, delta);
+        }
+
+        [TestMethod]
+        public void TsteRank()
+        {
+            // 1 2 3
+            // 4 5 6
+            // 7 8 9
+            FMatrix<int> mat = new FMatrix<int>(3, 3, 0);
+            int number = 1;
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    mat.matrix[i][j] = number;
+                    number++;
+                }
+            }
+
+            int? rank = FMatrix<int>.Rank(mat);
+            Assert.IsTrue(rank.HasValue);
+            Assert.AreEqual(rank.Value, 2);
+
+
+            //1 2 3 4
+            //5 6 7 8
+            //9 8 7 6
+            //5 4 3 2
+            FMatrix<int> mat2 = new FMatrix<int>(4, 4, 0);
+            number = 1;
+            for (int i = 0; i < 2; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    mat2.matrix[i][j] = number;
+                    number++;
+                }
+            }
+            number = 9;
+            for (int i = 2; i < 4; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    mat2.matrix[i][j] = number;
+                    number--;
+                }
+            }
+            int? rank2 = FMatrix<int>.Rank(mat2);
+            Assert.IsTrue(rank2.HasValue);
+            Assert.AreEqual(rank2.Value, 2);
         }
     }
 }
