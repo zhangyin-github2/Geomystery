@@ -33,6 +33,15 @@ namespace Geomystery.Models.Geometry
         public OutputCircle resultCircle { get; set; }
 
         /// <summary>
+        /// 计算圆的半径
+        /// </summary>
+        /// <returns>半径</returns>
+        public float GetRadius()
+        {
+            return (float)Math.Sqrt(Math.Pow(center.X - radius.X, 2) + Math.Pow(center.Y - radius.Y, 2));
+        }
+
+        /// <summary>
         /// 圆可能会与直线相交，也可能会与另一个圆相交，交点有0,1,2个
         /// </summary>
         /// <param name="another">another可能是一个Circle或者Line</param>
