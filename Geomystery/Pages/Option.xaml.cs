@@ -39,6 +39,8 @@ namespace Geomystery
             {
                 APPDATA.app_data.Views.Add(View);
             }
+            if (APPDATA.app_data.LANGGUAGE == "zh-CN")  LanguageNow.Text = "简体中文";
+            else LanguageNow.Text = "English";
             NightMode.IsChecked = APPDATA.app_data.ISNIGHT;
             Fullscreen.IsChecked = APPDATA.app_data.ISFULLSCREEN;
             Fullscreen.Content = APPDATA.app_data.ISFULLSCREEN ? CONST.yes : CONST.no;
@@ -90,7 +92,8 @@ namespace Geomystery
 
         private void LanLeft_Click(object sender, RoutedEventArgs e)
         {
-            if (LanguageNow.Text == "English")
+            APPDATA.app_data.change_language();
+            if (APPDATA.app_data.LANGGUAGE == "zh-CN")
             {
                 LanguageNow.Text = "简体中文";
             }
