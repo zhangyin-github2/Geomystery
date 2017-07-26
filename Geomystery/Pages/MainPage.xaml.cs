@@ -82,15 +82,20 @@ namespace Geomystery
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.FullScreen;    //启动设置全屏
             if (!APPDATA.app_data.ISFULLSCREEN)
                 ApplicationView.GetForCurrentView().ExitFullScreenMode();       //退出全屏
+            init_music();
             if (APPDATA.app_data.ISMUTE)
+            {
                 MuteButton.Content = CONST.mute;
+            }   
             else
+            {
                 MuteButton.Content = CONST.volume2;
+            } 
             APPDATA.app_data.BACKBUTTON = this.BackButton;
-                        APPDATA.app_data.MAINGRID = backG;
+            APPDATA.app_data.MAINGRID = backG;
             //debugT.Text = APPDATA.app_data.show();
             BackButton.Visibility = Visibility.Collapsed;
-            init_music();
+            
             myFrame.Navigate(typeof(HomePage));
             optionFrame.Navigate(typeof(Option));
             achievementFrame.Navigate(typeof(Achievement));
@@ -105,6 +110,7 @@ namespace Geomystery
             BGMPlayer.MusicPlayer.MediaPlayer.IsLoopingEnabled = false;
             BGMPlayer.MusicPlayer.MediaPlayer.AutoPlay = false;
             BGMPlayer.MusicPlayer.MediaPlayer.Volume = 100;
+            BGMPlayer.MusicPlayer.MediaPlayer.IsMuted = APPDATA.app_data.ISMUTE ;
         }
         
 
