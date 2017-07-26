@@ -92,12 +92,14 @@
                           Grid.Row="1"
                           VerticalScrollBarVisibility="Hidden"
                           HorizontalAlignment="Center"
-                          VerticalAlignment="Center">
+                          VerticalAlignment="Center"
+                          IsTabStop="False">
                 <GridView x:Name="musicBord"
                           HorizontalContentAlignment="Stretch"
                           VerticalContentAlignment="Stretch"
                           ItemsSource="{x:Bind ach}"
-                          ItemTemplate="{StaticResource AchDataTemplate}" SelectionChanged="musicBord_SelectionChanged"/>
+                          ItemTemplate="{StaticResource AchDataTemplate}" SelectionChanged="musicBord_SelectionChanged"
+                          IsTabStop="False"/>
             </ScrollViewer>
         </Grid>
     </Grid>
