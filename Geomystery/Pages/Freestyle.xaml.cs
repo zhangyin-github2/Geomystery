@@ -222,6 +222,11 @@ namespace Geomystery
             controller.outputCoordinates[0].geometryList.Clear();
         }
 
+        private void redo_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         private void undo_Click(object sender, RoutedEventArgs e)
         {
 
