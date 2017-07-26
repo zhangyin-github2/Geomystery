@@ -45,6 +45,7 @@
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     Content="Chapter1"
+                    x:Uid="Chapter1"
                     Click="Chapter1_Click"/>
             <Button Name="Chapter2"
                     FontFamily="Microsoft YaHei UI"
@@ -57,7 +58,8 @@
                     Width="960"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
-                    Content="Chapter2"/>
+                    Content="Chapter2"
+                    x:Uid="Chapter2"/>
             <Button Name="Chapter3"
                     FontFamily="Microsoft YaHei UI"
                     FontSize="48"
@@ -69,7 +71,8 @@
                     Width="960"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
-                    Content="Chapter3"/>
+                    Content="Chapter3"
+                    x:Uid="Chapter3"/>
         </FlipView>
     </Grid>
 </Page>

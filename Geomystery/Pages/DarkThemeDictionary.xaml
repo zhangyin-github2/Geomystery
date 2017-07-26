@@ -3,12 +3,20 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Geomystery.Pages">
 
+    <!--浅橙色/暗紫色-->
     <SolidColorBrush x:Key="SystemBackgroundAltHighBrush" Color="#FF352D3A"/>
-    <!--暗紫色背景-->
+    <!--暗紫色/浅橙色-->
     <SolidColorBrush x:Key="SystemBackgroundBaseHighBrush" Color="#FFFEF2DA"/>
-    <!--浅橙色背景-->
+    <!--黑/白-->
+    <SolidColorBrush x:Key="BlackWhite" Color="#FFFFFFFF"/>
+    <!--紫色/浅紫色-->
     <SolidColorBrush x:Key="TextColorPurple" Color="#FFB08AFF"/>
-    <!--浅紫色文字-->
+    <!--粉紫色渐变-->
+    <LinearGradientBrush x:Key="ColorGradient1" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#ffc954bf" Offset="0.0" />
+        <GradientStop Color="#ff825be6" Offset="1.0" />
+    </LinearGradientBrush>
+    
     <Color x:Key="SystemTranslucentBaseHighColor">#FFFFFFFF</Color>
     <Color x:Key="SystemThemeMainColor">#FF0074CE</Color>
 
