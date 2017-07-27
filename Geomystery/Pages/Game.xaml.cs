@@ -51,10 +51,9 @@ namespace Geomystery
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-           
-
-            controller = new Controllers.Geometry.Controllers(1);
-            controller.PreInitialized(LevelLoader.GetLevel(1));
+            //controller = new Controllers.Geometry.Controllers();
+            //controller.PreInitialized(LevelLoader.GetLevel(1));                 //第一关的控制器
+            controller = LevelLoader.GetLevel(1);
             controller.outputCoordinates[0].WindowHeight = (float)canvas1.ActualHeight;
             controller.outputCoordinates[0].WindowWidth = (float)canvas1.ActualWidth;
             maxHeightWidth = new Vector2((float)canvas1.ActualWidth, (float)canvas1.ActualHeight);
@@ -74,6 +73,7 @@ namespace Geomystery
 
         private void canvas1_Draw(Microsoft.Graphics.Canvas.UI.Xaml.ICanvasAnimatedControl sender, Microsoft.Graphics.Canvas.UI.Xaml.CanvasAnimatedDrawEventArgs args)
         {
+            if (controller == null || !controller.isIniialized) return;
             var draw = args.DrawingSession;
             /*
             args.DrawingSession.DrawText("click me", center, Colors.Red);
@@ -82,8 +82,8 @@ namespace Geomystery
                 args.DrawingSession.DrawCircle(plist[i], 5, Color.FromArgb(255, 0, 0, 0));
             }
             */
-            Rect rect = new Rect(0, 0, maxHeightWidth.X, maxHeightWidth.Y);
-            args.DrawingSession.DrawRectangle(rect, Colors.Black);
+            //Rect rect = new Rect(0, 0, maxHeightWidth.X, maxHeightWidth.Y);
+            //args.DrawingSession.DrawRectangle(rect, Colors.Black);
             var geoList = controller.outputCoordinates[0].geometryList;
             if (geoList != null)
             {
@@ -201,9 +201,14 @@ namespace Geomystery
 
         private void refresh_Click(object sender, RoutedEventArgs e)
         {
-            controller.outputCoordinates[0].geometryList.Clear();
-            controller = new Controllers.Geometry.Controllers(1);
-            controller.PreInitialized(LevelLoader.GetLevel(1));
+            //controller.outputCoordinates[0].geometryList.Clear();
+            controller = null;
+            controller = LevelLoader.GetLevel(1);
+
+            controller.historyDfaList.Clear();
+            controller.outputCoordinates[0].refreshCanvas(canvas1);
+            redo.IsEnabled = controller.CanRedo();
+            undo.IsEnabled = controller.CanUndo();
         }
 
         private void undo_Click(object sender, RoutedEventArgs e)

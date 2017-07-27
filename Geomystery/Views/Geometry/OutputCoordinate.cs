@@ -1,4 +1,5 @@
 ﻿using Geomystery.Models.Geometry;
+using Microsoft.Graphics.Canvas.UI.Xaml;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -363,7 +364,7 @@ namespace Geomystery.Views.Geometry
                             int j;
                             for(j = 0; j < result.surroundingLine.Count; j++)
                             {
-                                if (result.surroundingLine[i].geometry == lCurrent.line) break;
+                                if (result.surroundingLine[j].geometry == lCurrent.line) break;
                             }
                             if(j == result.surroundingLine.Count)                           //防止重复添加
                             {
@@ -464,5 +465,19 @@ namespace Geomystery.Views.Geometry
             result.surroundingPoint.Sort();                     //排序
             return result;
         }
+
+        public void refreshCanvas(CanvasAnimatedControl canvas1)
+        {
+            try
+            {
+                WindowHeight = (float)canvas1.ActualHeight;
+                WindowWidth = (float)canvas1.ActualWidth;
+            }
+            catch
+            {
+
+            }
+        }
+
     }
 }
