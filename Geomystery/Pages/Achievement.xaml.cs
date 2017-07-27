@@ -34,12 +34,7 @@ namespace Geomystery
             {
                 APPDATA.app_data.Views.Add(View);
             }
-            ach = Achievements.GetAch(20);
-        }
-
-        private void musicBord_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
+            ach = Achievements.GetAch(10);
         }
     }
 }
