@@ -19,16 +19,24 @@ namespace Geomystery
     public enum AppPage {HomePage=0,OptionPage,AchievementPage,SelectChapterPage,SelectGamePage,GamePage,FreeStylePage,AboutPage};
     public class APPDATA
     {
+        //这部分是需要系统保存在数据库中的配置
         public bool ISMUTE { get; set; }
         public bool ISNIGHT { get; set; }
         public bool ISFULLSCREEN { get; set; }
         public string LANGGUAGE { get; set; }
-        public int GAMEMODE { get; set; }
         public int HAVEDONE { get; set; }
+        public double SFXVOLUME { get; set; }
+
+        //系统内部配置
+        public int GAMEMODE { get; set; }
         public List<ViewModel.ViewModel> Views;
         public AppPage CURRENT_PAGE { get; set; }
         public Grid MAINGRID { get; set; }
         public Button BACKBUTTON { get; set; }
+
+        /// <summary>
+        /// 单件模式实例体
+        /// </summary>
         public static APPDATA app_data;
 
         public APPDATA()
@@ -39,6 +47,7 @@ namespace Geomystery
             ISFULLSCREEN=true;
             LANGGUAGE = "en-US";
             HAVEDONE = 0;
+            SFXVOLUME = 100;
             GAMEMODE = -1;
             MAINGRID = new Grid();
         }
@@ -71,6 +80,7 @@ namespace Geomystery
                 app_data.ISNIGHT = k.ISNIGHT;
                 app_data.HAVEDONE = k.HAVEDONE;
                 app_data.LANGGUAGE = k.LANGGUAGE;
+                app_data.SFXVOLUME = k.SFXVOLUME;
             }
         }
         public async void change_language()
@@ -103,7 +113,10 @@ namespace Geomystery
             app_data.ISNIGHT = !app_data.ISNIGHT;
             update_views();
         }
-
+        public void setVolume(double x)
+        {
+             app_data.SFXVOLUME = BGMPlayer.MusicPlayer.MediaPlayer.Volume = 1.00 * x;
+        }
         public void setMute()
         {
             app_data.ISMUTE = !app_data.ISMUTE;
@@ -159,6 +172,8 @@ namespace Geomystery
         }
         public void MoveTo(AppPage to)
         {
+            if (to != AppPage.HomePage) BACKBUTTON.Visibility = Visibility.Visible;
+            else BACKBUTTON.Visibility = Visibility.Collapsed;
             switch (to)
             {
                 case AppPage.OptionPage:
@@ -180,8 +195,6 @@ namespace Geomystery
                 case AppPage.SelectGamePage: MainPage.MainFrame.Navigate(typeof(SelectGame)); break;
                 default: return;
             }
-            if (to != AppPage.HomePage) BACKBUTTON.Visibility = Visibility.Visible;
-            else BACKBUTTON.Visibility = Visibility.Collapsed;
             app_data.CURRENT_PAGE = to;
         }
         /// <summary>
@@ -220,6 +233,7 @@ namespace Geomystery
         public bool ISFULLSCREEN { get; set; }
         public int HAVEDONE { get; set; }
         public string LANGGUAGE { get; set; }
+        public double SFXVOLUME { get; set; }
         public option_data()
         {
             ISMUTE = APPDATA.app_data.ISMUTE;
@@ -227,6 +241,7 @@ namespace Geomystery
             ISFULLSCREEN = APPDATA.app_data.ISFULLSCREEN;
             HAVEDONE = APPDATA.app_data.HAVEDONE;
             LANGGUAGE = APPDATA.app_data.LANGGUAGE;
+            SFXVOLUME = APPDATA.app_data.SFXVOLUME;
         }
     }
 }

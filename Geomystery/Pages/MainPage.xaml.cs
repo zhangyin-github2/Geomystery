@@ -72,6 +72,7 @@ namespace Geomystery
             debugTxt = this.debugT;
             BgaP = bgaPlayer;
             BgmP = bgmPlayer;
+            mytitle.Visibility = Visibility.Visible;
             startFrame.Navigate(typeof(SplashScreen));
             APPDATA.app_data = new APPDATA();
             APPDATA.LOAD();
@@ -100,6 +101,7 @@ namespace Geomystery
             achievementFrame.Navigate(typeof(Achievement));
 
             await SplashScreen.goback();
+            mytitle.Visibility = Visibility.Visible;
             startFrame.Visibility = Visibility.Collapsed;
             if (!APPDATA.app_data.ISFULLSCREEN)
                 ApplicationView.GetForCurrentView().ExitFullScreenMode();       //退出全屏
@@ -113,7 +115,7 @@ namespace Geomystery
             BGMPlayer.MusicPlayer.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Assets/Audio/button1.wav", UriKind.Absolute));
             BGMPlayer.MusicPlayer.MediaPlayer.IsLoopingEnabled = false;
             BGMPlayer.MusicPlayer.MediaPlayer.AutoPlay = false;
-            BGMPlayer.MusicPlayer.MediaPlayer.Volume = 100;
+            BGMPlayer.MusicPlayer.MediaPlayer.Volume = APPDATA.app_data.SFXVOLUME;
             BGMPlayer.MusicPlayer.MediaPlayer.IsMuted = APPDATA.app_data.ISMUTE ;
         }
         

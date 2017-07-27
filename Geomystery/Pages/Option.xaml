@@ -1225,7 +1225,7 @@
                     Style="{StaticResource SliderStyle1}"
                     Background="{ThemeResource SystemBackgroundBaseHighBrush}"
                     HorizontalAlignment="Left" VerticalAlignment="Center"
-                    Width="400" IsTabStop="False"/>
+                    Width="400" IsTabStop="False" ValueChanged="SFXVolSlider_ValueChanged"/>
             <ToggleButton Name="Fullscreen"
                           Grid.Column="1" Grid.Row="3" 
                           Style="{StaticResource ToggleButtonStyle1}"
