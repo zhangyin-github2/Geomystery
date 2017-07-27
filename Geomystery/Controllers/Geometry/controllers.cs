@@ -408,7 +408,82 @@ namespace Geomystery.Controllers.Geometry
 
         }
 
-
+        /// <summary>
+        /// 是否可以撤销
+        /// </summary>
+        /// <returns>可否撤销</returns>
+        public bool CanUndo()
+        {
+            if (runningDFA == null && historyDfaList.Count == 0) return false;
+            return true;
+        }
         
+        /// <summary>
+        /// 是否可以重做
+        /// </summary>
+        /// <returns>可否重做</returns>
+        public bool CanRedo()
+        {
+            if (redoDfaList.Count == 0) return false;
+            return true;
+        }
+
+        /// <summary>
+        /// 撤销
+        /// </summary>
+        /// <returns>撤销结果</returns>
+        public bool Undo()
+        {
+            if(CanUndo())
+            {
+                if(runningDFA != null)
+                {
+                    runningDFA.Undo();
+                    runningDFA = null;
+                }
+                else if(historyDfaList.Count > 0)
+                {
+                    DFA dfa = historyDfaList[historyDfaList.Count - 1];
+                    redoDfaList.Add(dfa);
+                    dfa.Undo();
+                    historyDfaList.Remove(dfa);
+                }
+                else
+                {
+                    throw new Exception("逻辑错误");
+                }
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// 重做
+        /// </summary>
+        /// <returns>重做结果</returns>
+        public bool Redo()
+        {
+            if(CanRedo())
+            {
+                if (runningDFA != null)
+                {
+                    runningDFA.Undo();
+                    runningDFA = null;
+                }
+                if (redoDfaList.Count > 0)
+                {
+                    DFA dfa = redoDfaList[redoDfaList.Count - 1];
+                    historyDfaList.Add(dfa);
+                    dfa.Redo();
+                    redoDfaList.Remove(dfa);
+                }
+                else
+                {
+                    throw new Exception("逻辑错误");
+                }
+                return true;
+            }
+            return false;
+        }
     }
 }
