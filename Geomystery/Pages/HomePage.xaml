@@ -113,10 +113,10 @@
                                         </VisualState>
                                     </VisualStateGroup>
                                 </VisualStateManager.VisualStateGroups>
-                                <ContentPresenter x:Name="ContentPresenter" CornerRadius="6" 
+                                <ContentPresenter x:Name="ContentPresenter" CornerRadius="6.4" 
                                                   AutomationProperties.AccessibilityView="Raw" 
                                                   BorderBrush="{TemplateBinding BorderBrush}" 
-                                                  BorderThickness="3" 
+                                                  BorderThickness="3.2" 
                                                   ContentTemplate="{TemplateBinding ContentTemplate}" 
                                                   ContentTransitions="{TemplateBinding ContentTransitions}" 
                                                   Content="{TemplateBinding Content}" 
@@ -171,10 +171,10 @@
                                         </VisualState>
                                     </VisualStateGroup>
                                 </VisualStateManager.VisualStateGroups>
-                                <ContentPresenter x:Name="ContentPresenter" CornerRadius="4" 
+                                <ContentPresenter x:Name="ContentPresenter" CornerRadius="4.4" 
                                                   AutomationProperties.AccessibilityView="Raw" 
                                                   BorderBrush="{TemplateBinding BorderBrush}" 
-                                                  BorderThickness="2" 
+                                                  BorderThickness="2.2" 
                                                   ContentTemplate="{TemplateBinding ContentTemplate}" 
                                                   ContentTransitions="{TemplateBinding ContentTransitions}" 
                                                   Content="{TemplateBinding Content}" 
@@ -191,7 +191,7 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="Button">
-                            <Grid x:Name="RootGrid" CornerRadius="3.5" Background="{TemplateBinding Background}">
+                            <Grid x:Name="RootGrid" CornerRadius="3.4" Background="{TemplateBinding Background}">
                                 <VisualStateManager.VisualStateGroups>
                                     <VisualStateGroup x:Name="CommonStates">
                                         <VisualState x:Name="Normal">
@@ -229,10 +229,10 @@
                                         </VisualState>
                                     </VisualStateGroup>
                                 </VisualStateManager.VisualStateGroups>
-                                <ContentPresenter x:Name="ContentPresenter" CornerRadius="2" 
+                                <ContentPresenter x:Name="ContentPresenter" CornerRadius="2.7" 
                                                   AutomationProperties.AccessibilityView="Raw" 
                                                   BorderBrush="{TemplateBinding BorderBrush}" 
-                                                  BorderThickness="1" 
+                                                  BorderThickness="1.4" 
                                                   ContentTemplate="{TemplateBinding ContentTemplate}" 
                                                   ContentTransitions="{TemplateBinding ContentTransitions}" 
                                                   Content="{TemplateBinding Content}" 
@@ -267,12 +267,6 @@
                         <Setter Target="Pic.Margin" Value="0,-43,0,0"/>
                         <Setter Target="GeoTitle.FontSize" Value="40"/>
                         <Setter Target="GeoTitle.Margin" Value="0,0,0,32"/>
-                        <Setter Target="Ellipse1.Height" Value="169"/>
-                        <Setter Target="Ellipse1.Width" Value="169"/>
-                        <Setter Target="Ellipse1.StrokeThickness" Value="3.5"/>
-                        <Setter Target="Polygon1.Height" Value="152"/>
-                        <Setter Target="Polygon1.Width" Value="152"/>
-                        <Setter Target="Polygon1.StrokeThickness" Value="3.5"/>
                         <Setter Target="MainMenu.Margin" Value="0,20,0,0"/>
                         <Setter Target="Game.Style" Value="{StaticResource ButtonStyle0.338}"/>
                         <Setter Target="Game.Height" Value="28"/>
@@ -302,12 +296,6 @@
                         <Setter Target="Pic.Margin" Value="0,-70,0,0"/>
                         <Setter Target="GeoTitle.FontSize" Value="66"/>
                         <Setter Target="GeoTitle.Margin" Value="0,0,0,52"/>
-                        <Setter Target="Ellipse1.Height" Value="275"/>
-                        <Setter Target="Ellipse1.Width" Value="275"/>
-                        <Setter Target="Ellipse1.StrokeThickness" Value="5.5"/>
-                        <Setter Target="Polygon1.Height" Value="248"/>
-                        <Setter Target="Polygon1.Width" Value="248"/>
-                        <Setter Target="Polygon1.StrokeThickness" Value="5.5"/>
                         <Setter Target="MainMenu.Margin" Value="0,36,0,0"/>
                         <Setter Target="Game.Style" Value="{StaticResource ButtonStyle0.55}"/>
                         <Setter Target="Game.Height" Value="44"/>
@@ -337,12 +325,6 @@
                         <Setter Target="Pic.Margin" Value="0,-100,0,0"/>
                         <Setter Target="GeoTitle.FontSize" Value="96"/>
                         <Setter Target="GeoTitle.Margin" Value="0,0,0,76"/>
-                        <Setter Target="Ellipse1.Height" Value="400"/>
-                        <Setter Target="Ellipse1.Width" Value="400"/>
-                        <Setter Target="Ellipse1.StrokeThickness" Value="8"/>
-                        <Setter Target="Polygon1.Height" Value="360"/>
-                        <Setter Target="Polygon1.Width" Value="360"/>
-                        <Setter Target="Polygon1.StrokeThickness" Value="8"/>
                         <Setter Target="MainMenu.Margin" Value="0,52,0,0"/>
                         <Setter Target="Game.Style" Value="{StaticResource ButtonStyle0.8}"/>
                         <Setter Target="Game.Height" Value="64"/>
@@ -372,12 +354,6 @@
                         <Setter Target="Pic.Margin" Value="0,-128,0,0"/>
                         <Setter Target="GeoTitle.FontSize" Value="120"/>
                         <Setter Target="GeoTitle.Margin" Value="0,0,0,96"/>
-                        <Setter Target="Ellipse1.Height" Value="500"/>
-                        <Setter Target="Ellipse1.Width" Value="500"/>
-                        <Setter Target="Ellipse1.StrokeThickness" Value="10"/>
-                        <Setter Target="Polygon1.Height" Value="450"/>
-                        <Setter Target="Polygon1.Width" Value="450"/>
-                        <Setter Target="Polygon1.StrokeThickness" Value="10"/>
                         <Setter Target="MainMenu.Margin" Value="0,64,0,0"/>
                         <Setter Target="Game.Style" Value="{StaticResource ButtonStyle1}"/>
                         <Setter Target="Game.Height" Value="80"/>
@@ -412,11 +388,37 @@
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="3*"/>
             </Grid.RowDefinitions>
-            <Grid Grid.Row="1"
-                  Name="Pic"
-                  VerticalAlignment="Top"
-                  Margin="0,-100,0,0">
-                <Ellipse Name="Ellipse1"
+            <Grid Name="Pic"
+                  Grid.Row="1" VerticalAlignment="Top" Margin="0,-128,0,0">
+
+                <Polygon Name="Four"
+                         Points="-50,-86.6 -86.6,50 50,86.5 86.6,-50"
+                         Height="225" Width="225"
+                         StrokeThickness="8" Stroke="#ffca54bf"
+                         Stretch="Fill"/>
+                <Ellipse Name="Ellip2"
+                         Height="260" Width="260"
+                         StrokeThickness="8" Stroke="#FFbb55c7"/>
+                <Polygon Name="Three"
+                         Points="-100,0 50,86.6 50,-86.5"
+                         Height="450" Width="389.7" Margin="0,0,130,0"
+                         StrokeThickness="8" Stroke="#FFaa57d0"
+                         Stretch="Fill" RenderTransformOrigin="0.665,0.498"/>
+                <Ellipse Name="Ellip1" 
+                         Height="519.6" Width="519.6"
+                         StrokeThickness="8" Stroke="#FF9359dd"/>
+                <Polygon Name="Six"
+                         Points="-100,0 -50,86.6 50,86.5 100,0 50,-86.6 -50 -86.6"
+                         Height="519.6" Width="600"
+                         StrokeThickness="8" Stroke="#FF835be6"
+                         Stretch="Fill"/>
+                <Polygon Name="Tree"
+                         Points="-100,0 0,0 50,86.5 0,0 50,-86.5 0,0"
+                         Height="450" Width="389.7" Margin="0,0,130,0"
+                         StrokeThickness="8" Stroke="#FF835be6"
+                         Stretch="Fill"/>
+
+                <!--<Ellipse Name="Ellipse1"
                      Height="400"
                      Width="400"
                      Stroke="#FFFF7700"
@@ -427,7 +429,7 @@
                      StrokeThickness="8"
                      Stretch="Fill"
                      Height="360"
-                     Width="360"/>
+                     Width="360"/>-->
             </Grid>
         </Grid>
         <Grid Grid.Column="2">
@@ -474,7 +476,7 @@
         </Grid>
         <Button Name="Achievement"
                 Grid.Column="2" Grid.ColumnSpan="2"
-                Height="48" Width="Auto"
+                Height="48"
                 FontFamily="Segoe UI Emoji" FontSize="24" Content="&#x1F3C6;"
                 Background="{x:Null}" BorderThickness="0"
                 HorizontalAlignment="Right" VerticalAlignment="Top"
