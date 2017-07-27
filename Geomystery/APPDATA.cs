@@ -16,7 +16,7 @@ using Windows.UI.Xaml.Controls;
 
 namespace Geomystery
 {
-    public enum AppPage {HomePage=0,OptionPage=1,AchievementPage=2,SelectChapterPage=3,SelectGamePage=4,FreeStylePage=5,AboutPage=6};
+    public enum AppPage {HomePage=0,OptionPage,AchievementPage,SelectChapterPage,SelectGamePage,GamePage,FreeStylePage,AboutPage};
     public class APPDATA
     {
         public bool ISMUTE { get; set; }
@@ -161,20 +161,28 @@ namespace Geomystery
         {
             switch (to)
             {
-                case AppPage.OptionPage: GridMove(Direction.Down); break;
+                case AppPage.OptionPage:
+                    if (CURRENT_PAGE == AppPage.HomePage) GridMove(Direction.Down);
+                    else;
+                    break;
                 case AppPage.AchievementPage: GridMove(Direction.Right); break;
                 case AppPage.HomePage:
                     if (CURRENT_PAGE == AppPage.OptionPage) GridMove(Direction.Up);
-                    else if (CURRENT_PAGE == AppPage.AchievementPage)
+                    else if (CURRENT_PAGE == AppPage.AchievementPage) GridMove(Direction.Left);
+                    else 
                     {
-                        GridMove(Direction.Left);
+                        MainPage.MainFrame.Navigate(typeof(HomePage));
                     }
                     break;
+                case AppPage.AboutPage:;break;
+                case AppPage.FreeStylePage: MainPage.MainFrame.Navigate(typeof(Freestyle)); break;
+                case AppPage.SelectChapterPage: MainPage.MainFrame.Navigate(typeof(SelectChapter)); break;
+                case AppPage.SelectGamePage: MainPage.MainFrame.Navigate(typeof(SelectGame)); break;
                 default: return;
             }
             if (to != AppPage.HomePage) BACKBUTTON.Visibility = Visibility.Visible;
             else BACKBUTTON.Visibility = Visibility.Collapsed;
-            CURRENT_PAGE = to;
+            app_data.CURRENT_PAGE = to;
         }
         /// <summary>
         /// 移动MAINGRID

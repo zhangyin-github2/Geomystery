@@ -41,13 +41,13 @@ namespace Geomystery.Pages
         private void Game_Click(object sender, RoutedEventArgs e)
         {
             BGMPlayer.PlayButton();
-            Frame.Navigate(typeof(SelectChapter));
+            APPDATA.app_data.MoveTo(AppPage.SelectChapterPage);
         }
 
         private void Freestyle_Click(object sender, RoutedEventArgs e)
         {
             BGMPlayer.PlayButton();
-            Frame.Navigate(typeof(Freestyle));
+            APPDATA.app_data.MoveTo(AppPage.FreeStylePage);
         }
 
         private void Option_Click(object sender, RoutedEventArgs e)
