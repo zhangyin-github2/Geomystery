@@ -183,7 +183,7 @@ namespace Geomystery
             Vector2 p = pxy.ToVector2();
             MainPage.debugTxt.Text = p.X.ToString() + " | " + p.Y.ToString();
 
-            controller.PointerPressed((UserTool)listView1.SelectedItem, sender, e);
+            controller.PointerPressed((UserTool)toolList.SelectedItem, sender, e);
         }
 
         private void canvas1_PointerReleased(object sender, PointerRoutedEventArgs e)
@@ -203,7 +203,7 @@ namespace Geomystery
             controller.outputCoordinates[0].WindowWidth = (float)canvas1.ActualWidth;
             maxHeightWidth = new Vector2((float)canvas1.ActualWidth, (float)canvas1.ActualHeight);
             MainPage.debugTxt.Text = maxHeightWidth.X.ToString() + " | " + maxHeightWidth.Y.ToString();
-            listView1.SelectedIndex = 2;
+            toolList.SelectedIndex = 2;
         }
 
         private void Page_Unloaded(object sender, RoutedEventArgs e)

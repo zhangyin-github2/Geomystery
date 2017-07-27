@@ -41,7 +41,7 @@ namespace Geomystery
             }
             if (APPDATA.app_data.LANGGUAGE == "zh-CN")  LanguageNow.Text = "简体中文";
             else LanguageNow.Text = "English";
-            SFXVolSlider.Value = APPDATA.app_data.SFXVOLUME;
+            SFXVolSlider.Value = APPDATA.app_data.SFXVOLUME*SFXVolSlider.Maximum;
             NightMode.IsChecked = APPDATA.app_data.ISNIGHT;
             Fullscreen.IsChecked = APPDATA.app_data.ISFULLSCREEN;
             Fullscreen.Content = APPDATA.app_data.ISFULLSCREEN ? CONST.yes : CONST.no;
