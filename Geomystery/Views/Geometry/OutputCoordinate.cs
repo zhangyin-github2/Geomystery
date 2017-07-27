@@ -264,16 +264,32 @@ namespace Geomystery.Views.Geometry
 
 
         /// <summary>
-        /// 移除某一条直线的投影
+        /// 从视图坐标系（屏幕上）移除直线的投影
         /// </summary>
         /// <param name="line">被移除投影的直线</param>
         /// <returns></returns>
         public int RemoveLine(Line line)
         {
-
+            foreach (OutputGeometry outputGeometry in geometryList)
+            {
+                if (outputGeometry is OutputLine)
+                {
+                    OutputLine outputLine = outputGeometry as OutputLine;
+                    if (outputLine.line == line)
+                    {
+                        geometryList.Remove(outputGeometry);
+                        return 1;
+                    }
+                }
+            }
             return 0;
         }
 
+        /// <summary>
+        /// 添加逻辑坐标系中圆在视图坐标系的投影
+        /// </summary>
+        /// <param name="circle"></param>
+        /// <returns>操作结果</returns>
         public int AddCircle(Circle circle)
         {
             OutputCircle outputCircle = new OutputCircle()
@@ -294,9 +310,25 @@ namespace Geomystery.Views.Geometry
             return 0;
         }
 
+        /// <summary>
+        /// 从视图坐标系（屏幕上）移除圆的投影
+        /// </summary>
+        /// <param name="circle">逻辑坐标系中的圆</param>
+        /// <returns>操作结果</returns>
         public int RemoveCircle(Circle circle)
         {
-
+            foreach (OutputGeometry outputGeometry in geometryList)
+            {
+                if (outputGeometry is OutputCircle)
+                {
+                    OutputCircle outputCircle = outputGeometry as OutputCircle;
+                    if (outputCircle.circle == circle)
+                    {
+                        geometryList.Remove(outputGeometry);
+                        return 1;
+                    }
+                }
+            }
             return 0;
         }
 
@@ -328,7 +360,14 @@ namespace Geomystery.Views.Geometry
                         var perpendicularFoot = new Vector2();
                         if ((currentLength = OutputCoordinate.DistanceOfPointAndLine(lCurrent.p1, lCurrent.p2 - lCurrent.p1, point, ref perpendicularFoot)) < OutputPoint.scopeLength)
                         {
-                            result.surroundingLine.Add(new GeometryAndTheDistance() { geometry = lCurrent.line, distance = currentLength });
+                            for(int j = 0; i < result.surroundingLine.Count; i++)
+                            {
+                                if (result.surroundingLine[i].geometry == lCurrent.line) break;
+                            }
+                            if(i == result.surroundingLine.Count)                           //不重复添加
+                            {
+                                result.surroundingLine.Add(new GeometryAndTheDistance() { geometry = lCurrent.line, distance = currentLength });
+                            }
                         }
                     }
                     else if (geometryList[i] is OutputCircle)
@@ -341,6 +380,87 @@ namespace Geomystery.Views.Geometry
                     }
                 }
             }
+            result.surroundingPoint.Sort();                         //排序
+            result.surroundingLine.Sort();
+            result.surroundingCircle.Sort();
+            return result;
+        }
+
+        /// <summary>
+        /// 当前屏幕上鼠标点击点附近可用的交点或者依附点
+        /// </summary>
+        /// <param name="surroundings"></param>
+        /// <returns></returns>
+        public Surroundings GetCross(Surroundings surroundings)
+        {
+            Surroundings result = new Surroundings() { screenPoint = surroundings.screenPoint };
+            if (surroundings.surroundingLine.Count == 0 && surroundings.surroundingCircle.Count == 0) return result;
+            float currentLength;
+            if (surroundings.surroundingLine.Count > 1 &&surroundings.surroundingCircle.Count ==0 )
+            {
+                for(int i = 0; i < surroundings.surroundingLine.Count; i++)                     //遍历直线集合
+                {
+                    Line lCurrent = surroundings.surroundingLine[i].geometry as Line;
+                    for(int j = i; j < surroundings.surroundingLine.Count; j++)                 //前一个元素已经和自己相交过，所以后面的元素不需要
+                    {
+                        Vector2 perpendicularFoot = new Vector2();   //垂足
+                        if (i == j)                                  //自己和自己，单依赖
+                        {
+                            currentLength = DistanceOfPointAndLine(this.ToVector2(lCurrent.p1), this.ToVector2(lCurrent.p2) - this.ToVector2(lCurrent.p1), surroundings.screenPoint, ref perpendicularFoot);
+                            Point2 pf = new Point2() { X = perpendicularFoot.X, Y = perpendicularFoot.Y };
+                            pf.rely.Add(lCurrent);                      //依赖于一条直线
+                            result.surroundingPoint.Add(new GeometryAndTheDistance() { geometry = pf, distance = currentLength });
+                        }
+                        else                                        //相交依赖
+                        {
+                            List<Point2> plist = ((IPointSet)lCurrent).Intersection(surroundings.surroundingLine[j].geometry as Line);
+                            for(int k = 0; k < plist.Count; k++)
+                            {
+                                plist[k].rely.Add(lCurrent);                                                  //添加依赖于两条直线
+                                plist[k].rely.Add(surroundings.surroundingLine[j].geometry as Line);
+                                result.surroundingPoint.Add(new GeometryAndTheDistance() { geometry = plist[k], distance = Vector2.Distance(this.ToVector2(plist[k]), surroundings.screenPoint)});
+                            }
+                        }
+                        
+                    }
+                    for(int j = 0; j < surroundings.surroundingCircle.Count; j++)               //直线与每个圆相交
+                    {
+                        List<Point2> plist = ((IPointSet)lCurrent).Intersection(surroundings.surroundingLine[j].geometry as Circle);
+                        for (int k = 0; k < plist.Count; k++)
+                        {
+                            plist[k].rely.Add(lCurrent);                                                  //添加依赖于1条直线和1个圆
+                            plist[k].rely.Add(surroundings.surroundingLine[j].geometry as Circle);
+                            result.surroundingPoint.Add(new GeometryAndTheDistance() { geometry = plist[k], distance = Vector2.Distance(this.ToVector2(plist[k]), surroundings.screenPoint) });
+                        }
+                    }
+                }
+                for(int i = 0; i < surroundings.surroundingCircle.Count; i++)
+                {
+                    Circle cCurrent = surroundings.surroundingCircle[i].geometry as Circle;
+                    for (int j = 0; j < surroundings.surroundingCircle.Count; j++)               //圆集合的相交
+                    {
+                        Vector2 nearestFoot = new Vector2();
+                        if (i == j)                                  //自己和自己，单依赖
+                        {
+                            currentLength = OutputCoordinate.DistanceOfPointAndCircle(this.ToVector2(cCurrent.center), (this.ToVector2(cCurrent.radius) - this.ToVector2(cCurrent.center)).Length(), surroundings.screenPoint, ref nearestFoot);
+                            Point2 nf = new Point2() { X = nearestFoot.X, Y = nearestFoot.Y };
+                            nf.rely.Add(cCurrent);                                                      //依赖于圆
+                            result.surroundingPoint.Add(new GeometryAndTheDistance() { geometry = nf, distance = currentLength });
+                        }
+                        else                                        //相交依赖
+                        {
+                            List<Point2> plist = ((IPointSet)cCurrent).Intersection(surroundings.surroundingLine[j].geometry as Circle);
+                            for (int k = 0; k < plist.Count; k++)
+                            {
+                                plist[k].rely.Add(cCurrent);                                                  //添加依赖于两条直线
+                                plist[k].rely.Add(surroundings.surroundingLine[j].geometry as Circle);
+                                result.surroundingPoint.Add(new GeometryAndTheDistance() { geometry = plist[k], distance = Vector2.Distance(this.ToVector2(plist[k]), surroundings.screenPoint) });
+                            }
+                        }
+                    }
+                }
+            }
+            result.surroundingPoint.Sort();                     //排序
             return result;
         }
     }
