@@ -10,9 +10,9 @@
 
     <Page.Resources>
         <ResourceDictionary>
+            
             <!--自定义buttonRL-->
-            <Style x:Key="ButtonStyleRL"  
-                   TargetType="Button">
+            <Style x:Key="ButtonStyleRL" TargetType="Button">
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="Button">
@@ -35,20 +35,17 @@
                                         <VisualState x:Name="Pressed">
                                             <Storyboard>
                                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentPresenter">
-                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource BlackWhite}" />
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemBackgroundBaseHighBrush}" />
                                                 </ObjectAnimationUsingKeyFrames>
                                                 <PointerDownThemeAnimation Storyboard.TargetName="RootGrid" />
                                             </Storyboard>
-                                        </VisualState>
-                                        <VisualState x:Name="Disabled">
-                                            <Storyboard></Storyboard>
                                         </VisualState>
                                     </VisualStateGroup>
                                 </VisualStateManager.VisualStateGroups>
                                 <ContentPresenter x:Name="ContentPresenter" CornerRadius="0" 
                                                   AutomationProperties.AccessibilityView="Raw" 
                                                   BorderBrush="{TemplateBinding BorderBrush}" 
-                                                  BorderThickness="4" 
+                                                  BorderThickness="0" 
                                                   ContentTemplate="{TemplateBinding ContentTemplate}" 
                                                   ContentTransitions="{TemplateBinding ContentTransitions}" 
                                                   Content="{TemplateBinding Content}" 
@@ -60,9 +57,9 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-            <!--自定义button1-1-->
-            <Style x:Key="ButtonStyle1"  
-                   TargetType="Button">
+
+            <!--自定义button-->
+            <Style x:Key="ButtonStyle1-1" TargetType="Button">
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="Button">
@@ -96,11 +93,6 @@
                                                 <PointerDownThemeAnimation Storyboard.TargetName="RootGrid" />
                                             </Storyboard>
                                         </VisualState>
-                                        <VisualState x:Name="Disabled">
-                                            <Storyboard>
-                                                <PointerDownThemeAnimation Storyboard.TargetName="RootGrid" />
-                                            </Storyboard>
-                                        </VisualState>
                                     </VisualStateGroup>
                                 </VisualStateManager.VisualStateGroups>
                                 <ContentPresenter x:Name="ContentPresenter" CornerRadius="18" 
@@ -118,9 +110,9 @@
                     </Setter.Value>
                 </Setter>
             </Style>
+
             <!--自定义togglebutton-->
-            <Style x:Key="ToggleButtonStyle1"  
-                   TargetType="ToggleButton">
+            <Style x:Key="ToggleButtonStyle1-1" TargetType="ToggleButton">
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="ToggleButton">
@@ -156,7 +148,7 @@
                                         </VisualState>
                                         <VisualState x:Name="Checked">
                                             <Storyboard>
-                                                <PointerDownThemeAnimation Storyboard.TargetName="RootGrid" />
+                                                <PointerUpThemeAnimation Storyboard.TargetName="RootGrid" />
                                             </Storyboard>
                                         </VisualState>
                                         <VisualState x:Name="CheckedPointerOver">
@@ -198,7 +190,8 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-            <!--自定义滑块1-1-->
+
+            <!--自定义滑块-->
             <Style TargetType="Slider" x:Key="SliderStyle1-1">
                 <Setter Property="Template">
                     <Setter.Value>
@@ -235,7 +228,7 @@
                                         <VisualState x:Name="PointerOver">
                                             <Storyboard>
                                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HorizontalThumb" Storyboard.TargetProperty="Background">
-                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextColorPurple}" />
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemBackgroundBaseHighBrush}" />
                                                 </ObjectAnimationUsingKeyFrames>
                                             </Storyboard>
                                         </VisualState>
@@ -272,36 +265,12 @@
                                                    RadiusX="8" RadiusY="8"
                                                    Margin="0,0,-16,0"
                                                    Grid.Row="1" />
-                                        <TickBar x:Name="TopTickBar"
-                                                 Visibility="Collapsed"
-                                                 Fill="{ThemeResource SystemControlForegroundBaseMediumLowBrush}"
-                                                 Height="{ThemeResource SliderOutsideTickBarThemeHeight}"
-                                                 VerticalAlignment="Bottom"
-                                                 Margin="0,0,0,4"
-                                                 Grid.ColumnSpan="3" />
-                                        <TickBar x:Name="HorizontalInlineTickBar"
-                                                 Visibility="Collapsed"
-                                                 Fill="{ThemeResource SystemControlBackgroundAltHighBrush}"
-                                                 Height="{ThemeResource SliderTrackThemeHeight}"
-                                                 Grid.Row="1"
-                                                 Grid.ColumnSpan="3" />
-                                        <TickBar x:Name="BottomTickBar"
-                                                 Visibility="Collapsed"
-                                                 Fill="{ThemeResource SystemControlForegroundBaseMediumLowBrush}"
-                                                 Height="{ThemeResource SliderOutsideTickBarThemeHeight}"
-                                                 VerticalAlignment="Top"
-                                                 Margin="0,4,0,0"
-                                                 Grid.Row="2"
-                                                 Grid.ColumnSpan="3" />
                                         <Thumb x:Name="HorizontalThumb"
-                                               Background="{ThemeResource SystemBackgroundBaseHighBrush}"
+                                               Background="{ThemeResource TextColorPurple}"
                                                Style="{StaticResource SliderThumbStyle}"
                                                DataContext="{TemplateBinding Value}"
-                                               Height="32"
-                                               Width="32"
-                                               Grid.Row="0"
-                                               Grid.RowSpan="3"
-                                               Grid.Column="1"
+                                               Height="32" Width="32"
+                                               Grid.Row="0" Grid.RowSpan="3" Grid.Column="1"
                                                AutomationProperties.AccessibilityView="Raw" />
                                     </Grid>
                                 </Grid>
@@ -319,7 +288,6 @@
         </ResourceDictionary>
     </Page.Resources>
 
-
     <Grid Background="{ThemeResource SystemBackgroundAltHighBrush}">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup >
@@ -330,6 +298,21 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <!--最小大小 0.338倍-->
+                        <Setter Target="OptionGrid.Height" Value="244"/>
+                        <Setter Target="LanguageT.FontSize" Value="15"/>
+                        <Setter Target="LanguageT.Margin" Value="0,0,12,0"/>
+                        <Setter Target="MusicVolumeT.FontSize" Value="15"/>
+                        <Setter Target="MusicVolumeT.Margin" Value="0,0,12,0"/>
+                        <Setter Target="SFXVolumeT.FontSize" Value="15"/>
+                        <Setter Target="SFXVolumeT.Margin" Value="0,0,12,0"/>
+                        <Setter Target="FullscreenT.FontSize" Value="15"/>
+                        <Setter Target="FullscreenT.Margin" Value="0,0,12,0"/>
+                        <Setter Target="NightModeT.FontSize" Value="15"/>
+                        <Setter Target="NightModeT.Margin" Value="0,0,12,0"/>
+                        <Setter Target="ResetT.FontSize" Value="15"/>
+                        <Setter Target="ResetT.Margin" Value="0,0,12,0"/>
+                        <Setter Target="AboutT.FontSize" Value="15"/>
+                        <Setter Target="AboutT.Margin" Value="0,0,12,0"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="miniView">
@@ -339,6 +322,21 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <!--中等大小 0.55倍-->
+                        <Setter Target="OptionGrid.Height" Value="396"/>
+                        <Setter Target="LanguageT.FontSize" Value="24"/>
+                        <Setter Target="LanguageT.Margin" Value="0,0,20,0"/>
+                        <Setter Target="MusicVolumeT.FontSize" Value="24"/>
+                        <Setter Target="MusicVolumeT.Margin" Value="0,0,20,0"/>
+                        <Setter Target="SFXVolumeT.FontSize" Value="24"/>
+                        <Setter Target="SFXVolumeT.Margin" Value="0,0,20,0"/>
+                        <Setter Target="FullscreenT.FontSize" Value="24"/>
+                        <Setter Target="FullscreenT.Margin" Value="0,0,20,0"/>
+                        <Setter Target="NightModeT.FontSize" Value="24"/>
+                        <Setter Target="NightModeT.Margin" Value="0,0,20,0"/>
+                        <Setter Target="ResetT.FontSize" Value="24"/>
+                        <Setter Target="ResetT.Margin" Value="0,0,20,0"/>
+                        <Setter Target="AboutT.FontSize" Value="24"/>
+                        <Setter Target="AboutT.Margin" Value="0,0,20,0"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="normalView">
@@ -348,6 +346,21 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <!--标准大小 0.8倍-->
+                        <Setter Target="OptionGrid.Height" Value="576"/>
+                        <Setter Target="LanguageT.FontSize" Value="35"/>
+                        <Setter Target="LanguageT.Margin" Value="0,0,29,0"/>
+                        <Setter Target="MusicVolumeT.FontSize" Value="35"/>
+                        <Setter Target="MusicVolumeT.Margin" Value="0,0,29,0"/>
+                        <Setter Target="SFXVolumeT.FontSize" Value="35"/>
+                        <Setter Target="SFXVolumeT.Margin" Value="0,0,29,0"/>
+                        <Setter Target="FullscreenT.FontSize" Value="35"/>
+                        <Setter Target="FullscreenT.Margin" Value="0,0,29,0"/>
+                        <Setter Target="NightModeT.FontSize" Value="35"/>
+                        <Setter Target="NightModeT.Margin" Value="0,0,29,0"/>
+                        <Setter Target="ResetT.FontSize" Value="35"/>
+                        <Setter Target="ResetT.Margin" Value="0,0,29,0"/>
+                        <Setter Target="AboutT.FontSize" Value="35"/>
+                        <Setter Target="AboutT.Margin" Value="0,0,29,0"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="fullView">
@@ -357,152 +370,135 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <!--1080P 1倍-->
+                        <Setter Target="OptionGrid.Height" Value="720"/>
+                        <Setter Target="LanguageT.FontSize" Value="44"/>
+                        <Setter Target="LanguageT.Margin" Value="0,0,36,0"/>
+                        <Setter Target="MusicVolumeT.FontSize" Value="44"/>
+                        <Setter Target="MusicVolumeT.Margin" Value="0,0,36,0"/>
+                        <Setter Target="SFXVolumeT.FontSize" Value="44"/>
+                        <Setter Target="SFXVolumeT.Margin" Value="0,0,36,0"/>
+                        <Setter Target="FullscreenT.FontSize" Value="44"/>
+                        <Setter Target="FullscreenT.Margin" Value="0,0,36,0"/>
+                        <Setter Target="NightModeT.FontSize" Value="44"/>
+                        <Setter Target="NightModeT.Margin" Value="0,0,36,0"/>
+                        <Setter Target="ResetT.FontSize" Value="44"/>
+                        <Setter Target="ResetT.Margin" Value="0,0,36,0"/>
+                        <Setter Target="AboutT.FontSize" Value="44"/>
+                        <Setter Target="AboutT.Margin" Value="0,0,36,0"/>
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
 
+        
+        <Grid Name="OptionGrid" Background="{x:Null}" Height="720">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
-        </Grid.ColumnDefinitions>
-        <StackPanel Orientation="Vertical"
-                    Grid.Column="0"
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Center">
-            <TextBlock FontFamily="Microsoft YaHei UI"
-                       FontSize="44"
-                       Foreground="{ThemeResource TextColorPurple}"
-                       Margin="0,24,36,24"
-                       HorizontalAlignment="Right"
-                       Text="Language"
-                        x:Uid="Language"/>
-            <TextBlock FontFamily="Microsoft YaHei UI"
-                       FontSize="44"
-                       Foreground="{ThemeResource TextColorPurple}"
-                       Margin="0,24,36,24"
-                       HorizontalAlignment="Right"
-                       Text="Music Volume"
-                       x:Uid="Music Volume"/>
-            <TextBlock FontFamily="Microsoft YaHei UI"
-                       FontSize="44"
-                       Foreground="{ThemeResource TextColorPurple}"
-                       Margin="0,24,36,24"
-                       HorizontalAlignment="Right"
-                       Text="SFX Volume"
-                        x:Uid="SFX Volume"/>
-            <TextBlock FontFamily="Microsoft YaHei UI"
-                       FontSize="44"
-                       Foreground="{ThemeResource TextColorPurple}"
-                       Margin="0,24,36,24"
-                       HorizontalAlignment="Right"
-                       Text="Fullscreen"
-                        x:Uid="Fullscreen"/>
-            <TextBlock FontFamily="Microsoft YaHei UI"
-                       FontSize="44"
-                       Foreground="{ThemeResource TextColorPurple}"
-                       Margin="0,24,36,24"
-                       HorizontalAlignment="Right"
-                       Text="Night Mode"
-                        x:Uid="Night Mode"/>
-            <TextBlock FontFamily="Microsoft YaHei UI"
-                       FontSize="44"
-                       Foreground="{ThemeResource TextColorPurple}"
-                       Margin="0,24,36,24"
-                       HorizontalAlignment="Right"
-                       Text="Reset Progress"
-                       x:Uid="Reset Progress"/>
-            <TextBlock FontFamily="Microsoft YaHei UI"
-                       FontSize="44"
-                       Foreground="{ThemeResource TextColorPurple}"
-                       Margin="0,24,36,24"
-                       HorizontalAlignment="Right"
-                       Text="About Us"
-                       x:Uid="About Us"/>
-        </StackPanel>
-        <StackPanel Orientation="Vertical"
-                    Grid.Column="1"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center">
-            <StackPanel Orientation="Horizontal"
-                        Height="104">
+            <TextBlock Name="LanguageT"
+                       Grid.Column="0" Grid.Row="0"
+                       FontFamily="Microsoft YaHei UI" FontSize="44" Foreground="{ThemeResource TextColorPurple}"
+                       Margin="0,0,36,0" HorizontalAlignment="Right" VerticalAlignment="Center"
+                       Text="Language" x:Uid="Language"/>
+            <TextBlock Name="MusicVolumeT"
+                       Grid.Column="0" Grid.Row="1"
+                       FontFamily="Microsoft YaHei UI" FontSize="44" Foreground="{ThemeResource TextColorPurple}"
+                       Margin="0,0,36,0" HorizontalAlignment="Right" VerticalAlignment="Center"
+                       Text="Music Volume" x:Uid="Music Volume"/>
+            <TextBlock Name="SFXVolumeT"
+                       Grid.Column="0" Grid.Row="2"
+                       FontFamily="Microsoft YaHei UI" FontSize="44" Foreground="{ThemeResource TextColorPurple}"
+                       Margin="0,0,36,0" HorizontalAlignment="Right" VerticalAlignment="Center"
+                       Text="SFX Volume" x:Uid="SFX Volume"/>
+            <TextBlock Name="FullscreenT"
+                       Grid.Column="0" Grid.Row="3"
+                       FontFamily="Microsoft YaHei UI" FontSize="44" Foreground="{ThemeResource TextColorPurple}"
+                       Margin="0,0,36,0" HorizontalAlignment="Right" VerticalAlignment="Center"
+                       Text="Fullscreen" x:Uid="Fullscreen"/>
+            <TextBlock Name="NightModeT"
+                       Grid.Column="0" Grid.Row="4"
+                       FontFamily="Microsoft YaHei UI" FontSize="44" Foreground="{ThemeResource TextColorPurple}"
+                       Margin="0,0,36,0" HorizontalAlignment="Right" VerticalAlignment="Center"
+                       Text="Night Mode" x:Uid="Night Mode"/>
+            <TextBlock Name="ResetT"
+                       Grid.Column="0" Grid.Row="5"
+                       FontFamily="Microsoft YaHei UI" FontSize="44" Foreground="{ThemeResource TextColorPurple}"
+                       Margin="0,0,36,0" HorizontalAlignment="Right" VerticalAlignment="Center"
+                       Text="Reset Progress" x:Uid="Reset Progress"/>
+            <TextBlock Name="AboutT"
+                       Grid.Column="0" Grid.Row="6"
+                       FontFamily="Microsoft YaHei UI" FontSize="44" Foreground="{ThemeResource TextColorPurple}"
+                       Margin="0,0,36,0" HorizontalAlignment="Right" VerticalAlignment="Center"
+                       Text="About Us" x:Uid="About Us"/>
+
+            <StackPanel Name="LanPanel"
+                        Orientation="Horizontal" 
+                        Grid.Column="1" Grid.Row="0">
                 <Button Name="LanLeft"
-                        FontSize="44" FontFamily="Segoe UI Symbol" Content="&#x25C0;" Foreground="{ThemeResource SystemBackgroundBaseHighBrush}"
+                        FontSize="44" FontFamily="Segoe UI Symbol" Content="&#x25C0;" Foreground="{ThemeResource TextColorPurple}"
                         Background="{x:Null}" Style="{StaticResource ButtonStyleRL}"
-                        VerticalAlignment="Center"
                         Click="LanLeft_Click" IsTabStop="False"/>
                 <TextBlock Name="LanguageNow"
-                           FontFamily="Microsoft YaHei UI" FontSize="44" Text="English"
-                           Foreground="{ThemeResource TextColorPurple}"
+                           FontFamily="Microsoft YaHei UI" FontSize="44" Foreground="{ThemeResource TextColorPurple}"
                            Width="200" VerticalAlignment="Center"
-                           TextAlignment="Center"/>
+                           Text="English" TextAlignment="Center"/>
                 <Button Name="LanRight"
-                        FontSize="44" FontFamily="Segoe UI Symbol" Content="&#x25B6;" Foreground="{ThemeResource SystemBackgroundBaseHighBrush}"
+                        FontSize="44" FontFamily="Segoe UI Symbol" Content="&#x25B6;" Foreground="{ThemeResource TextColorPurple}"
                         Background="{x:Null}" Style="{StaticResource ButtonStyleRL}"
-                        VerticalAlignment="Center"
                         Click="LanRight_Click" IsTabStop="False"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal"
-                        Height="104">
-                <Slider Name="MusicVolSlider"
-                        Width="400"
-                        Style="{StaticResource SliderStyle1-1}"
-                        Background="{ThemeResource SystemBackgroundBaseHighBrush}"
-                        VerticalAlignment="Center" IsTabStop="False"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal"
-                        Height="104">
-                <Slider Name="SFXVolSlider"
-                        Width="400"
-                        Style="{StaticResource SliderStyle1-1}"
-                        Background="{ThemeResource SystemBackgroundBaseHighBrush}"
-                        VerticalAlignment="Center" IsTabStop="False"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal"
-                        Height="104">
-                <ToggleButton Name="Fullscreen"
-                              Style="{StaticResource ToggleButtonStyle1}"
-                              FontFamily="Segoe UI Emoji" FontSize="36"
-                              Background="{x:Null}"
-                              Margin="12,0,0,0"
-                              Height="72" Width="72"
-                              VerticalAlignment="Center"
-                              Click="Fullscreen_Click" IsTabStop="False"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal"
-                        Height="104">
-                <ToggleButton Name="NightMode"
-                              Style="{StaticResource ToggleButtonStyle1}"
-                              FontFamily="Segoe UI Emoji" FontSize="36"
-                              Background="{x:Null}"
-                              Margin="12,0,0,0"
-                              Height="72" Width="72"
-                              VerticalAlignment="Center"
-                              Click="NightMode_Click" IsTabStop="False"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal"
-                        Height="104">
-                <Button Name="ResetProgress"
-                        Style="{StaticResource ButtonStyle1}"
-                        FontFamily="Segoe UI Symbol" FontSize="36" Foreground="#FFD42200"
-                        Background="{x:Null}"
-                        Height="72" Width="72"
-                        Margin="12,0,0,0"
-                        VerticalAlignment="Center"
-                        Content="&#xE117;"
-                        Click="ResetProgress_Click" IsTabStop="False"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal"
-                        Height="104">
-                <Button Name="AboutUs"
-                        Style="{StaticResource ButtonStyleRL}"
-                        FontFamily="Microsoft YaHei UI" FontSize="48" Content="Geomystery"
-                        VerticalAlignment="Center"
-                        Background="{x:Null}"
-                        Foreground="{ThemeResource TextColorPurple}"
-                        Click="AboutUs_Click" IsTabStop="False"/>
-            </StackPanel>
-        </StackPanel>
+            <Slider Name="MusicVolSlider"
+                    Grid.Column="1" Grid.Row="1"
+                    Style="{StaticResource SliderStyle1-1}"
+                    Background="{ThemeResource SystemBackgroundBaseHighBrush}"
+                    HorizontalAlignment="Left" VerticalAlignment="Center"
+                    Width="400" IsTabStop="False"/>
+            <Slider Name="SFXVolSlider"
+                    Grid.Column="1" Grid.Row="2" 
+                    Style="{StaticResource SliderStyle1-1}"
+                    Background="{ThemeResource SystemBackgroundBaseHighBrush}"
+                    HorizontalAlignment="Left" VerticalAlignment="Center"
+                    Width="400" IsTabStop="False"/>
+            <ToggleButton Name="Fullscreen"
+                          Grid.Column="1" Grid.Row="3" 
+                          Style="{StaticResource ToggleButtonStyle1-1}"
+                          FontFamily="Segoe UI Emoji" FontSize="36" Content="&#x2714;"
+                          Background="{x:Null}"
+                          Height="72" Width="72" Margin="12,0,0,0"
+                          Click="Fullscreen_Click" IsTabStop="False"/>
+            <ToggleButton Name="NightMode"
+                          Grid.Column="1" Grid.Row="4" 
+                          Style="{StaticResource ToggleButtonStyle1-1}"
+                          FontFamily="Segoe UI Emoji" FontSize="36" Content="&#x2716;"
+                          Background="{x:Null}"
+                          Height="72" Width="72" Margin="12,0,0,0"
+                          VerticalAlignment="Center"
+                          Click="NightMode_Click" IsTabStop="False"/>
+            <Button Name="ResetProgress"
+                    Grid.Column="1" Grid.Row="5" 
+                    Style="{StaticResource ButtonStyle1-1}"
+                    FontFamily="Segoe UI Symbol" FontSize="36" Foreground="#FFD42200" Content="&#xE117;"
+                    Background="{x:Null}"
+                    Height="72" Width="72" Margin="12,0,0,0"
+                    Click="ResetProgress_Click" IsTabStop="False"/>
+            <Button Name="AboutUs"
+                    Grid.Column="1" Grid.Row="6" 
+                    Style="{StaticResource ButtonStyleRL}"
+                    FontFamily="Microsoft YaHei UI" FontSize="48" Content="Geomystery"
+                    Background="{x:Null}"
+                    Foreground="{ThemeResource TextColorPurple}"
+                    Click="AboutUs_Click" IsTabStop="False"/>
+        </Grid>
     </Grid>
 </Page>

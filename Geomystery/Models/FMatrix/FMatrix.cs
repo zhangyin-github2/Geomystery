@@ -773,7 +773,7 @@ namespace Geomystery.Models.FMatrix
             int searchi;
             if (mat.matrix != null && mat.column > 0 && mat.row > 0)                  //合理矩阵，方阵，
             {
-                result = new FMatrix<double>(mat.row, mat.row, 0.0);
+                result = new FMatrix<double>(mat.row, mat.column, 0.0);
 
                 for (int i = 0; i < mat.row; i++)
                 {

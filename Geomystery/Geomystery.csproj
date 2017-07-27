@@ -139,6 +139,9 @@
     <Compile Include="Pages\Option.xaml.cs">
       <DependentUpon>Option.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\SplashScreen.xaml.cs">
+      <DependentUpon>SplashScreen.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Pages\SelectChapter.xaml.cs">
       <DependentUpon>SelectChapter.xaml</DependentUpon>
@@ -287,6 +290,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\SelectGame.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\SplashScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
