@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -22,27 +24,19 @@ namespace Geomystery.Pages
     /// </summary>
     public sealed partial class SplashScreen : Page
     {
-
-
-        public int tenthSecond = 3;
         public SplashScreen()
         {
-
             this.InitializeComponent();
-            timer1_Tick();
+            Debug.WriteLine("into start!");
+            
         }
-
-        private void timer1_Tick()
+        public static async Task<int> goback()
         {
-            //throw new NotImplementedException();
-            tenthSecond--;
-            if (tenthSecond == -1)
-            {
-                Frame.Navigate(typeof(HomePage));
-
-            }
+            Debug.WriteLine("leave start!");
+            await Task.Delay(1000);
+            //while (true) ;
+            return 0;
         }
-
     }
 }
 

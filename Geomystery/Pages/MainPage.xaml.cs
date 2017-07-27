@@ -38,11 +38,7 @@ namespace Geomystery
 
         public MainPage()
         {
-            
-            
             this.InitializeComponent();
-            myFrame.Navigate(typeof(SplashScreen));
-            //backG.RenderTransform= new CompositeTransform();
             this.Name = this.GetType().ToString()+"P";
             myFrame.Navigated += MyFrame_Navigated;
             Application.Current.Suspending += new SuspendingEventHandler(App_Suspending);
@@ -57,6 +53,7 @@ namespace Geomystery
             APPDATA.app_data.ISFULLSCREEN = cview.IsFullScreenMode;
             ScreenHeight = Window.Current.Bounds.Height;
             ScreenWidth = Window.Current.Bounds.Width;
+           
             backG.Width = ScreenWidth * 2;
             backG.Height = ScreenHeight * 2;
             var x = backG.RenderTransform as CompositeTransform;
@@ -69,39 +66,43 @@ namespace Geomystery
             backG.RenderTransform = x;
         }
 
-        public void init()
+        public async void init()
         {
             MainFrame = this.myFrame;
             debugTxt = this.debugT;
             BgaP = bgaPlayer;
             BgmP = bgmPlayer;
+            startFrame.Navigate(typeof(SplashScreen));
             APPDATA.app_data = new APPDATA();
             APPDATA.LOAD();
             View = new ViewModel.ViewModel();
-            if(!APPDATA.app_data.Views.Contains(View))
+            if (!APPDATA.app_data.Views.Contains(View))
             {
                 APPDATA.app_data.Views.Add(View);
             }
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.FullScreen;    //启动设置全屏
-            if (!APPDATA.app_data.ISFULLSCREEN)
-                ApplicationView.GetForCurrentView().ExitFullScreenMode();       //退出全屏
             init_music();
             if (APPDATA.app_data.ISMUTE)
             {
                 MuteButton.Content = CONST.mute;
-            }   
+            }
             else
             {
                 MuteButton.Content = CONST.volume2;
-            } 
+            }
             APPDATA.app_data.BACKBUTTON = this.BackButton;
             APPDATA.app_data.MAINGRID = backG;
             //debugT.Text = APPDATA.app_data.show();
             BackButton.Visibility = Visibility.Collapsed;
-            
+
             myFrame.Navigate(typeof(HomePage));
             optionFrame.Navigate(typeof(Option));
             achievementFrame.Navigate(typeof(Achievement));
+
+            await SplashScreen.goback();
+            startFrame.Visibility = Visibility.Collapsed;
+            if (!APPDATA.app_data.ISFULLSCREEN)
+                ApplicationView.GetForCurrentView().ExitFullScreenMode();       //退出全屏
         }
         public void init_music()
         {
