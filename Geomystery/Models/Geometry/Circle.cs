@@ -79,8 +79,21 @@ namespace Geomystery.Models.Geometry
                         Vector2 vepb1 = vep * (float)halfChord;                     //一个点
                         Vector2 vepb2 = -vep * (float)halfChord;                    //另一个点
                         Vector2 bbbb = new Vector2() { X = this.center.X + vb.X, Y = this.center.Y + vb.Y };
-                        pcl.Add(new Point2() { X = bbbb.X + vepb1.X, Y = bbbb.Y + vepb1.Y });
-                        pcl.Add(new Point2() { X = bbbb.X + vepb2.X, Y = bbbb.Y + vepb2.Y });
+                        Point2 p1 = new Point2() { X = bbbb.X + vepb1.X, Y = bbbb.Y + vepb1.Y };
+                        Point2 p2 = new Point2() { X = bbbb.X + vepb2.X, Y = bbbb.Y + vepb2.Y };
+                        bool counterclockwise = true;              //逆时针
+                        if ((p1.X - c2.center.X) * (p2.Y - c2.center.Y) - (p1.Y - c2.center.Y) * (p2.X - c2.center.X) < 0)           //顺时针
+                        {
+                            counterclockwise = false;
+                        }
+                        p1.rely.Add(this);
+                        p1.rely.Add((Geometry)another);
+                        p1.markOfTwoIntersectPointOnCircle = counterclockwise;
+                        p2.rely.Add(this);
+                        p2.rely.Add((Geometry)another);
+                        p2.markOfTwoIntersectPointOnCircle = !counterclockwise;
+                        pcl.Add(p1);
+                        pcl.Add(p2);
                     }
                     else if(method == 2)                    //解析几何方法
                     {

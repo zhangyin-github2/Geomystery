@@ -174,7 +174,9 @@ namespace Geomystery.Models.Geometry
                 Point2 p2 = l2.GetCenterPoint();
                 FMatrix<double> matrix = new FMatrix<double>(2, 3, 0);
                 //if(Vector2.Zero)                              //理论上来说两个直线方向向量都不会为0
-                Vector2 multiVector = v1 * v2;                      //向量积、叉积
+                Vector3 v31 = new Vector3() { X = v1.X, Y = v1.Y, Z = 0 };
+                Vector3 v32 = new Vector3() { X = v2.X, Y = v2.Y, Z = 0 };
+                Vector3 multiVector = v31 * v32;                      //向量积、叉积
                 if(multiVector.Length() > 1e-7)                     //几乎平行
                 {
                     
@@ -185,9 +187,13 @@ namespace Geomystery.Models.Geometry
                     matrix[1][0] = v1.Y;
                     matrix[1][1] = -v2.Y;
                     matrix[1][2] = p2.Y - p1.Y;
+
+                    FMatrix<double> simpleMatrix = FMatrix<double>.RowSimplestFormOf(matrix);
+                    Point2 onePoint = new Point2() { X = p1.X + (float)simpleMatrix[0][2] * v1.X, Y = p1.Y + (float)simpleMatrix[0][2] * v1.Y };
+                    onePoint.rely.Add(this);
+                    onePoint.rely.Add((Geometry)another);
+                    pcl.Add(onePoint);     //存在一个交点
                 }
-                FMatrix<double> simpleMatrix = FMatrix<double>.RowSimplestFormOf(matrix);
-                pcl.Add(new Point2() { X = p1.X + (float)simpleMatrix[0][2] * v1.X, Y = p1.Y + (float)simpleMatrix[0][2] * v1.Y });     //存在一个交点
             }
             else if(another is Circle)
             {
@@ -204,8 +210,21 @@ namespace Geomystery.Models.Geometry
                     Vector2 lve = Vector2.Normalize(lv);
                     Vector2 vd1 = lve * halfChord;
                     Vector2 vd2 = Vector2.Negate(lve) * halfChord;
-                    pcl.Add(new Point2() { X = result.X + vd1.X, Y = result.Y + vd1.Y });
-                    pcl.Add(new Point2() { X = result.X + vd2.X, Y = result.Y + vd2.Y });
+                    Point2 p1 = new Point2() { X = result.X + vd1.X, Y = result.Y + vd1.Y };
+                    Point2 p2 = new Point2() { X = result.X + vd2.X, Y = result.Y + vd2.Y };
+                    bool counterclockwise = true;              //逆时针
+                    if((p1.X-c2.center.X)*(p2.Y-c2.center.Y) - (p1.Y-c2.center.Y)*(p2.X-c2.center.X) < 0)           //顺时针
+                    {
+                        counterclockwise = false;
+                    }
+                    p1.rely.Add(this);
+                    p1.rely.Add((Geometry)another);
+                    p1.markOfTwoIntersectPointOnCircle = counterclockwise;
+                    p2.rely.Add(this);
+                    p2.rely.Add((Geometry)another);
+                    p2.markOfTwoIntersectPointOnCircle = !counterclockwise;
+                    pcl.Add(p1);
+                    pcl.Add(p2);
                 }
             }
             return pcl;

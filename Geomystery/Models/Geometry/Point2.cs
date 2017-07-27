@@ -30,6 +30,11 @@ namespace Geomystery.Models.Geometry
         public OutputPoint resultPoint { get; set; }
 
         /// <summary>
+        /// 逆时针的第1个，或者是第二个，这个标记表示了圆与某个点集相交的时候，交点的顺序
+        /// </summary>
+        public bool markOfTwoIntersectPointOnCircle { get; set; }
+
+        /// <summary>
         /// 简单的转换成Vector2函数
         /// </summary>
         /// <returns>Vector2类的对象</returns>

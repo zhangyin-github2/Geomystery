@@ -211,7 +211,7 @@ namespace Geomystery.Controllers.Geometry
             {
                 runningDFA = new DFA(userTool, 0, coordinate);                      //创建当前工具的记录器
             }
-            else if (runningDFA.userTool.toolName != userTool.toolName)             //用户更换工具
+            else if (runningDFA.userTool.toolName != userTool.toolName || runningDFA.state == -2)             //用户更换工具
             {
                 runningDFA.Undo();                          //撤销上一个工具
                 runningDFA = null;
@@ -249,20 +249,36 @@ namespace Geomystery.Controllers.Geometry
                         if(surroundings.surroundingLine[0].distance <= surroundings.surroundingCircle[0].distance)
                         {
                             coordinate.ToSelectGeometry(surroundings.surroundingLine[0].geometry);
-
+                            runningDFA.UserSelectGeomerty(surroundings.surroundingLine[0].geometry, false);
                         }
                         else
                         {
                             coordinate.ToSelectGeometry(surroundings.surroundingCircle[0].geometry);
-
+                            runningDFA.UserSelectGeomerty(surroundings.surroundingCircle[0].geometry, false);
                         }
                     }
-                    
-                    //Debug.WriteLine(surroundings.surroundingPoint[0].geometry.ToString());
+                    else
+                    {
+                        coordinate.ToSelectGeometry(surroundings.surroundingLine[0].geometry);
+                        runningDFA.UserSelectGeomerty(surroundings.surroundingLine[0].geometry, false);
+                    }
                 }
                 else if(surroundings.surroundingCircle.Count > 0)
                 {
+                    coordinate.ToSelectGeometry(surroundings.surroundingCircle[0].geometry);
+                    runningDFA.UserSelectGeomerty(surroundings.surroundingCircle[0].geometry, false);
+                }
 
+                if(runningDFA.state == 2)
+                {
+                    List<Point2> plist = ((IPointSet)(runningDFA.needList[0].selectStack[0].selectedGeometry)).Intersection((IPointSet)runningDFA.needList[0].selectStack[1].selectedGeometry);
+                    for (int i = 0; i < plist.Count; i++)
+                    {
+                        coordinate.AddPoint(plist[i]);
+                    }
+                    historyDfaList.Add(runningDFA);
+                    redoDfaList.Clear();
+                    runningDFA = null;
                 }
             }
             else if (userTool.toolName == "点工具")

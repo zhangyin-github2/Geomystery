@@ -81,6 +81,10 @@ namespace Geomystery.Models.Geometry
             GeometryCount++;
 
             pointList.Add(point);                   //坐标系中有一个点
+            for(int i = 0; i < point.rely.Count; i++)
+            {
+                point.rely[i].influence.Add(point);                 //绑定依赖关系
+            }
             for(int i = 0; i < outputCoordinates.Count;i++)
             {
                 outputCoordinates[i].AddPoint(point);
@@ -154,6 +158,11 @@ namespace Geomystery.Models.Geometry
 
             pointSetList.Add(line);                   //坐标系中有一个条线
 
+            for (int i = 0; i < line.rely.Count; i++)
+            {
+                line.rely[i].influence.Add(line);                 //绑定依赖关系
+            }
+
             for (int i = 0; i < outputCoordinates.Count; i++)
             {
                 outputCoordinates[i].AddLine(line);
@@ -209,6 +218,11 @@ namespace Geomystery.Models.Geometry
             circle.radius.influence.Add(circle);
 
             pointSetList.Add(circle);                   //坐标系中有一个条线
+
+            for (int i = 0; i < circle.rely.Count; i++)
+            {
+                circle.rely[i].influence.Add(circle);                 //绑定依赖关系
+            }
 
             for (int i = 0; i < outputCoordinates.Count; i++)
             {
