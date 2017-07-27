@@ -39,7 +39,7 @@ namespace Geomystery
             {
                 APPDATA.app_data.Views.Add(View);
             }
-            if (APPDATA.app_data.LANGGUAGE == "zh-CN")  LanguageNow.Text = "简体中文";
+            if (APPDATA.app_data.LANGGUAGE != "en-US")  LanguageNow.Text = "简体中文";
             else LanguageNow.Text = "English";
             SFXVolSlider.Value = APPDATA.app_data.SFXVOLUME*SFXVolSlider.Maximum;
             MusicVolSlider.Value = APPDATA.app_data.MUSICVOLUME * MusicVolSlider.Maximum;
@@ -83,27 +83,13 @@ namespace Geomystery
         private void LanRight_Click(object sender, RoutedEventArgs e)
         {
             APPDATA.app_data.change_language();
-            if (APPDATA.app_data.LANGGUAGE == "zh-CN")
-            {
-                LanguageNow.Text = "简体中文";
-            }
-            else
-            {
-                LanguageNow.Text = "English";
-            }
+            
         }
 
         private void LanLeft_Click(object sender, RoutedEventArgs e)
         {
             APPDATA.app_data.change_language();
-            if (APPDATA.app_data.LANGGUAGE == "zh-CN")
-            {
-                LanguageNow.Text = "简体中文";
-            }
-            else
-            {
-                LanguageNow.Text = "English";
-            }
+            
         }
 
         private void SFXVolSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)

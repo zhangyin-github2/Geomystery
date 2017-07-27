@@ -4,6 +4,7 @@ using SQLite.Net;
 using SQLite.Net.Platform.WinRT;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -46,7 +47,7 @@ namespace Geomystery
             ISMUTE = false;
             ISNIGHT = false;
             ISFULLSCREEN=true;
-            LANGGUAGE = Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride;
+            LANGGUAGE = Windows.Globalization.ApplicationLanguages.Languages[0];
             HAVEDONE = 0;
             MUSICVOLUME = 1;
             SFXVOLUME = 1;

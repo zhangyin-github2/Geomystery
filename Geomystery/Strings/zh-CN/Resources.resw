@@ -141,6 +141,9 @@
   <data name="Language.Text" xml:space="preserve">
     <value>语言</value>
   </data>
+  <data name="LanguageNow.Text" xml:space="preserve">
+    <value>简体中文</value>
+  </data>
   <data name="Music Volume.Text" xml:space="preserve">
     <value>音乐音量</value>
   </data>
