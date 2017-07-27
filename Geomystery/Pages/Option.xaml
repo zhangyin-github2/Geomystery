@@ -1219,7 +1219,7 @@
                     Style="{StaticResource SliderStyle1}"
                     Background="{ThemeResource SystemBackgroundBaseHighBrush}"
                     HorizontalAlignment="Left" VerticalAlignment="Center"
-                    Width="400" IsTabStop="False"/>
+                    Width="400" IsTabStop="False" ValueChanged="MusicVolSlider_ValueChanged"/>
             <Slider Name="SFXVolSlider"
                     Grid.Column="1" Grid.Row="2" 
                     Style="{StaticResource SliderStyle1}"

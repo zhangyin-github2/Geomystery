@@ -26,6 +26,7 @@ namespace Geomystery
         public string LANGGUAGE { get; set; }
         public int HAVEDONE { get; set; }
         public double SFXVOLUME { get; set; }
+        public double MUSICVOLUME { get; set; }
 
         //系统内部配置
         public int GAMEMODE { get; set; }
@@ -45,9 +46,10 @@ namespace Geomystery
             ISMUTE = false;
             ISNIGHT = false;
             ISFULLSCREEN=true;
-            LANGGUAGE = "en-US";
+            LANGGUAGE = Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride;
             HAVEDONE = 0;
-            SFXVOLUME = 100;
+            MUSICVOLUME = 1;
+            SFXVOLUME = 1;
             GAMEMODE = -1;
             MAINGRID = new Grid();
         }
@@ -81,6 +83,7 @@ namespace Geomystery
                 app_data.HAVEDONE = k.HAVEDONE;
                 app_data.LANGGUAGE = k.LANGGUAGE;
                 app_data.SFXVOLUME = k.SFXVOLUME;
+                app_data.MUSICVOLUME = k.MUSICVOLUME;
             }
         }
         public async void change_language()
@@ -116,6 +119,10 @@ namespace Geomystery
         public void setVolume(double x)
         {
              app_data.SFXVOLUME = BGMPlayer.MusicPlayer.MediaPlayer.Volume = 1.00 * x;
+        }
+        public void setBgmVolume(double x)
+        {
+            app_data.MUSICVOLUME = BGMPlayer.BgmPlayer.MediaPlayer.Volume = 1.00 * x;
         }
         public void setMute()
         {
@@ -167,6 +174,7 @@ namespace Geomystery
             app_data.ISNIGHT = false;
             app_data.ISFULLSCREEN = true;
             app_data.HAVEDONE = 0;
+            app_data.MUSICVOLUME = app_data.SFXVOLUME = 1;
             update_views();
             return 0;
         }
@@ -188,13 +196,15 @@ namespace Geomystery
                     }
                     break;
                 case AppPage.AboutPage:;break;
-                case AppPage.FreeStylePage: MainPage.MainFrame.Navigate(typeof(Freestyle)); break;
+                case AppPage.FreeStylePage: MainPage.MainFrame.Navigate(typeof(Freestyle)); BGMPlayer.BgmPlayer.MediaPlayer.Pause();  break;
                 case AppPage.SelectChapterPage: MainPage.MainFrame.Navigate(typeof(SelectChapter)); break;
                 case AppPage.SelectGamePage: MainPage.MainFrame.Navigate(typeof(SelectGame)); break;
+                case AppPage.GamePage: BGMPlayer.BgmPlayer.MediaPlayer.Pause(); break;
                 default: return;
             }
             if (to != AppPage.HomePage) BACKBUTTON.Visibility = Visibility.Visible;
             else BACKBUTTON.Visibility = Visibility.Collapsed;
+            if ((to != AppPage.GamePage && to != AppPage.FreeStylePage)) BGMPlayer.BgmPlayer.MediaPlayer.Play();
             app_data.CURRENT_PAGE = to;
         }
         /// <summary>
@@ -234,6 +244,7 @@ namespace Geomystery
         public int HAVEDONE { get; set; }
         public string LANGGUAGE { get; set; }
         public double SFXVOLUME { get; set; }
+        public double MUSICVOLUME { get; set; }
         public option_data()
         {
             ISMUTE = APPDATA.app_data.ISMUTE;
@@ -242,6 +253,7 @@ namespace Geomystery
             HAVEDONE = APPDATA.app_data.HAVEDONE;
             LANGGUAGE = APPDATA.app_data.LANGGUAGE;
             SFXVOLUME = APPDATA.app_data.SFXVOLUME;
+            MUSICVOLUME = APPDATA.app_data.MUSICVOLUME;
         }
     }
 }

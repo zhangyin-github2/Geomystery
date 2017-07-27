@@ -47,6 +47,7 @@ namespace Geomystery
             MainPage.debugTxt.Text = x.cover.ToString();
             if (x.unlocked == 0) return;
             MainPage.MainFrame.Navigate(typeof(Game),x);
+            APPDATA.app_data.MoveTo(AppPage.GamePage);
             APPDATA.app_data.CURRENT_PAGE = AppPage.GamePage;
         }
     }

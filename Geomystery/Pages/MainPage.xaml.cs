@@ -109,14 +109,11 @@ namespace Geomystery
         public void init_music()
         {
             BGMPlayer.getInstance();
-            BGMPlayer.MusicPlayer.Name = "MusicPlayer";
             backG.Children.Add(BGMPlayer.MusicPlayer);
+            backG.Children.Add(BGMPlayer.BgmPlayer);
             BGMPlayer.MusicPlayer.Visibility = Visibility.Collapsed;
-            BGMPlayer.MusicPlayer.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Assets/Audio/button1.wav", UriKind.Absolute));
-            BGMPlayer.MusicPlayer.MediaPlayer.IsLoopingEnabled = false;
-            BGMPlayer.MusicPlayer.MediaPlayer.AutoPlay = false;
-            BGMPlayer.MusicPlayer.MediaPlayer.Volume = APPDATA.app_data.SFXVOLUME;
-            BGMPlayer.MusicPlayer.MediaPlayer.IsMuted = APPDATA.app_data.ISMUTE ;
+            BGMPlayer.BgmPlayer.Visibility = Visibility.Collapsed;
+            BGMPlayer.PlayBgm();
         }
         
 
