@@ -107,32 +107,31 @@
             <Frame x:Name="myFrame" />
             <Frame x:Name="optionFrame"  Grid.Row="1"/>
             <Frame x:Name="achievementFrame" Grid.Column="1"/>
-
-        </Grid>
-        <MediaPlayerElement Name="bgmPlayer" Height="0" Width="0"
-                            IsTabStop="False"/>
-        <MediaPlayerElement Name="bgaPlayer" Height="0" Width="0"
-                            IsTabStop="False"/>
-        <RelativePanel x:Name="mytitle" Grid.Row="0"
+            <RelativePanel x:Name="mytitle" Grid.Row="0"
                        HorizontalAlignment="Left" VerticalAlignment="Top">
-            <Button Name="BackButton"
+                <Button Name="BackButton"
                     RelativePanel.AlignLeftWithPanel="True"
                     Foreground="{ThemeResource SystemBackgroundBaseHighBrush}"
                     Background="{x:Null}" BorderThickness="0"
                     FontFamily="Segoe MDl2 Assets" FontSize="28" Content="&#xE0C4;" 
                     Height="48" Width="68"
                     Click="BackButton_Click" IsTabStop="False"/>
-            <Button Name="MuteButton"
+                <Button Name="MuteButton"
                     RelativePanel.RightOf="BackButton"
                     Foreground="{ThemeResource SystemBackgroundBaseHighBrush}"
                     Background="{x:Null}" BorderThickness="0"
                     FontFamily="Segoe MDl2 Assets" FontSize="28"
                     Height="48" Width="68"
                     Click="MuteButton_Click" IsTabStop="False"/>
-            <TextBlock x:Name="debugT"
+                <TextBlock x:Name="debugT"
                        FontSize="10" Foreground="{ThemeResource SystemBackgroundBaseHighBrush}"
                        RelativePanel.RightOf="MuteButton"/>
-        </RelativePanel>
-        <Frame x:Name="startFrame"/>
+            </RelativePanel>
+            <Frame x:Name="startFrame"/>
+        </Grid>
+        <MediaPlayerElement Name="bgmPlayer" Height="0" Width="0"
+                            IsTabStop="False"/>
+        <MediaPlayerElement Name="bgaPlayer" Height="0" Width="0"
+                            IsTabStop="False"/>
     </Grid>
 </Page>
