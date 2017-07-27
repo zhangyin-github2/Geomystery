@@ -217,6 +217,12 @@ namespace Geomystery.Controllers.Geometry
                 runningDFA = null;
                 runningDFA = new DFA(userTool, 0, coordinate);
             }
+            else if (runningDFA.state == 2)
+            {
+                historyDfaList.Add(runningDFA);
+                redoDfaList.Clear();
+                runningDFA = null;
+            }
 
             if (userTool.toolName == "选择工具")
             {
@@ -274,7 +280,9 @@ namespace Geomystery.Controllers.Geometry
                     List<Point2> plist = ((IPointSet)(runningDFA.needList[0].selectStack[0].selectedGeometry)).Intersection((IPointSet)runningDFA.needList[0].selectStack[1].selectedGeometry);
                     for (int i = 0; i < plist.Count; i++)
                     {
+                        runningDFA.result.Add(plist[i]);
                         coordinate.AddPoint(plist[i]);
+                        coordinate.ToSelectGeometry(plist[i]);
                     }
                     historyDfaList.Add(runningDFA);
                     redoDfaList.Clear();
@@ -285,12 +293,22 @@ namespace Geomystery.Controllers.Geometry
             {
                 if(surroundings.surroundingPoint.Count > 0)
                 {
+                    runningDFA.UserSelectGeomerty(surroundings.surroundingPoint[0].geometry, false);
                     coordinate.ToSelectGeometry(surroundings.surroundingPoint[0].geometry);
                 }
                 else
                 {
                     Point2 newPoint = outputCoordinates[0].ToPoint2(vector2);
+                    runningDFA.UserSelectGeomerty(newPoint, true);
+                    //runningDFA.result.Add()
                     coordinate.AddPoint(newPoint);
+                    coordinate.ToSelectGeometry(newPoint);
+                }
+                if (runningDFA.state == 2)
+                {
+                    historyDfaList.Add(runningDFA);
+                    redoDfaList.Clear();
+                    runningDFA = null;
                 }
             }
             else if(userTool.toolName == "直线工具")
@@ -304,37 +322,24 @@ namespace Geomystery.Controllers.Geometry
                 {
                     Point2 newPoint = outputCoordinates[0].ToPoint2(vector2);
                     coordinate.AddPoint(newPoint);
+                    coordinate.ToSelectGeometry(newPoint);
                     runningDFA.UserSelectGeomerty(newPoint, true);
                 }
 
-                if(runningDFA.state == 2)
+                if (runningDFA.state == 2)
                 {
                     Line line = new Line();
 
                     line.p1 = runningDFA.needList[0].selectStack[0].selectedGeometry as Point2;
                     line.p2 = runningDFA.needList[0].selectStack[1].selectedGeometry as Point2;
-
                     line.type = LineType.Straight;
                     line.lineRely = LineRely.Normal;
 
                     coordinate.AddLine(line);
-
-                    runningDFA.needList[0].selectStack.Clear();
-                    runningDFA.needList.Clear();
-                    runningDFA = null;
-                }
-                else if(runningDFA.state == -2)
-                {
-                    if(runningDFA.needList[0].selectStack.Count == 1)
-                    {
-                        if (runningDFA.needList[0].selectStack[0].IsNew)
-                        {
-                            coordinate.RemovePoint(runningDFA.needList[0].selectStack[0].selectedGeometry as Point2);
-                        }
-
-                    }
-                    runningDFA.needList[0].selectStack.Clear();
-                    runningDFA.needList.Clear();
+                    coordinate.ToSelectGeometry(line);
+                    runningDFA.result.Add(line);
+                    historyDfaList.Add(runningDFA);
+                    redoDfaList.Clear();
                     runningDFA = null;
                 }
             }
@@ -349,6 +354,7 @@ namespace Geomystery.Controllers.Geometry
                 {
                     Point2 newPoint = outputCoordinates[0].ToPoint2(vector2);
                     coordinate.AddPoint(newPoint);
+                    coordinate.ToSelectGeometry(newPoint);
                     runningDFA.UserSelectGeomerty(newPoint, true);
                 }
 
@@ -360,26 +366,13 @@ namespace Geomystery.Controllers.Geometry
                     circle.radius = runningDFA.needList[0].selectStack[1].selectedGeometry as Point2;
 
                     coordinate.AddCircle(circle);
+                    coordinate.ToSelectGeometry(circle);
+                    runningDFA.result.Add(circle);
+                    historyDfaList.Add(runningDFA);
+                    redoDfaList.Clear();
+                    runningDFA = null;
+                }
 
-                    runningDFA.needList[0].selectStack.Clear();
-                    runningDFA.needList.Clear();
-                    runningDFA = null;
-                }
-                else if (runningDFA.state == -2)
-                {
-                    //if (dfa.needList[0].selectStack.Count == 0) ;
-                    for(int i = 0; i < runningDFA.needList[0].selectStack.Count; i++)
-                    {
-                        SelectedGeometryStackItem selectedGeometryStackItem = runningDFA.needList[0].selectStack[i];
-                        if (selectedGeometryStackItem.IsNew)
-                        {
-                            coordinate.RemovePoint(selectedGeometryStackItem.selectedGeometry as Point2);
-                        }
-                    }
-                    runningDFA.needList[0].selectStack.Clear();
-                    runningDFA.needList.Clear();
-                    runningDFA = null;
-                }
             }
 
         }

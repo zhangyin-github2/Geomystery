@@ -60,6 +60,10 @@ namespace Geomystery
             maxHeightWidth = new Vector2((float)canvas1.ActualWidth, (float)canvas1.ActualHeight);
             //text1.Text = maxHeightWidth.X.ToString() + " | " + maxHeightWidth.Y.ToString();
             listView1.SelectedIndex = 2;
+
+            controller.historyDfaList.Clear();
+            redo.IsEnabled = controller.CanRedo();
+            undo.IsEnabled = controller.CanUndo();
         }
 
         private void Page_Unloaded(object sender, RoutedEventArgs e)
@@ -164,6 +168,9 @@ namespace Geomystery
 
             controller.PointerPressed((UserTool)listView1.SelectedItem, sender, e);
 
+            redo.IsEnabled = controller.CanRedo();
+            undo.IsEnabled = controller.CanUndo();
+
             int flag = 0;
             for (int i = 0; i < controller.coordinate.pointSetList.Count; i++)
             {
@@ -201,12 +208,16 @@ namespace Geomystery
 
         private void undo_Click(object sender, RoutedEventArgs e)
         {
-
+            controller.Undo();
+            redo.IsEnabled = controller.CanRedo();
+            undo.IsEnabled = controller.CanUndo();
         }
 
         private void redo_Click(object sender, RoutedEventArgs e)
         {
-
+            controller.Redo();
+            redo.IsEnabled = controller.CanRedo();
+            undo.IsEnabled = controller.CanUndo(); ;
         }
     }
 }

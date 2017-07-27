@@ -129,6 +129,7 @@ namespace Geomystery.Controllers.Geometry
                 isInitialized = true;           //经过初始化
                 state = 1;                      //执行
                 turn = 0;                           //填充need list 下标
+                result = new List<Models.Geometry.Geometry>();          //操作结果记录
                 this.workingMode = workmode;        //工作模式
             }
             else
@@ -164,6 +165,7 @@ namespace Geomystery.Controllers.Geometry
                 isInitialized = true;           //经过初始化
                 state = 1;                      //执行
                 turn = 0;                           //填充need list 下标
+                result = new List<Models.Geometry.Geometry>();          //操作结果记录
                 this.workingMode = workmode;        //工作模式
                 return 1;
             }
@@ -261,14 +263,21 @@ namespace Geomystery.Controllers.Geometry
         {
             if (!isInitialized) return;               //未初始化
             if (needList == null) return;               //不存在的情况
+            if(state == 2)                  //执行完成
+            {
+                for(int i = 0; i < result.Count; i++)
+                {
+                    coordinate.Remove(result[i]);
+                }
+            }
             for(int i = turn; i >= 0; i--)
             {
-                if (needList[turn].selectStack.Count == 0) continue;
-                for(int j = needList[turn].selectStack.Count; j >= 0; j--)
+                if (needList[i].selectStack.Count == 0) continue;
+                for(int j = needList[i].selectStack.Count - 1; j >= 0; j--)
                 {
-                    if (needList[turn].selectStack[j].IsNew)
+                    if (needList[i].selectStack[j].IsNew)
                     {
-                        coordinate.Remove(needList[turn].selectStack[j].selectedGeometry);
+                        coordinate.Remove(needList[i].selectStack[j].selectedGeometry);
                     }
                 }
                 //needList[turn].selectStack.Clear();
@@ -282,17 +291,25 @@ namespace Geomystery.Controllers.Geometry
         {
             if (!isInitialized) return;               //未初始化
             if (needList == null) return;               //不存在的情况
-            for (int i = turn; i >= 0; i--)
+            
+            for (int i = 0; i <= turn; i++)
             {
-                if (needList[turn].selectStack.Count == 0) continue;
-                for (int j = needList[turn].selectStack.Count; j >= 0; j--)
+                if (needList[i].selectStack.Count == 0) continue;
+                for (int j = 0; j < needList[i].selectStack.Count; j++)
                 {
-                    if (needList[turn].selectStack[j].IsNew)
+                    if (needList[i].selectStack[j].IsNew)
                     {
-                        coordinate.Remove(needList[turn].selectStack[j].selectedGeometry);
+                        coordinate.Add(needList[i].selectStack[j].selectedGeometry);
                     }
                 }
                 //needList[turn].selectStack.Clear();
+            }
+            if (state == 2)                  //执行完成
+            {
+                for (int i = 0; i < result.Count; i++)
+                {
+                    coordinate.Add(result[i]);
+                }
             }
         }
     }
