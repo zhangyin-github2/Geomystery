@@ -386,12 +386,14 @@
         </Grid.RowDefinitions>
         <Grid Grid.Column="1" Grid.Row="1">
             <Grid Name="Pic" VerticalAlignment="Center">
-                <Image Source="ms-appx:///Pictures/homepic/square.png"/>
-                <Image Source="ms-appx:///Pictures/homepic/circle2.png"/>
-                <Image Source="ms-appx:///Pictures/homepic/triangle.png"/>
-                <Image Source="ms-appx:///Pictures/homepic/circle1.png"/>
-                <Image Source="ms-appx:///Pictures/homepic/hexagon.png"/>
-
+                <!--图片版-->
+                <Image x:Name="square" Source="ms-appx:///Pictures/homepic/square.png"/>
+                <Image x:Name="circle2" Source="ms-appx:///Pictures/homepic/circle2.png"/>
+                <Image x:Name="triangle" Source="ms-appx:///Pictures/homepic/triangle.png"/>
+                <Image x:Name="circle1" Source="ms-appx:///Pictures/homepic/circle1.png"/>
+                <Image x:Name="hexagon" Source="ms-appx:///Pictures/homepic/hexagon.png"/>
+                
+                <!--xaml版-->
                 <!--<Polygon Name="Four"
                          Points="-50,-86.6 -86.6,50 50,86.5 86.6,-50"
                          Height="225" Width="225"
@@ -418,19 +420,6 @@
                          Height="450" Width="389.7" Margin="0,0,130,0"
                          StrokeThickness="8" Stroke="#4c7bcf"
                          Stretch="Fill"/>-->
-
-                <!--<Ellipse Name="Ellipse1"
-                     Height="400"
-                     Width="400"
-                     Stroke="#FFFF7700"
-                     StrokeThickness="8" />
-                <Polygon Name="Polygon1" 
-                     Points="0,100 0,200 135,125"
-                     Stroke="#FF004ADD"
-                     StrokeThickness="8"
-                     Stretch="Fill"
-                     Height="360"
-                     Width="360"/>-->
             </Grid>
         </Grid>
 
