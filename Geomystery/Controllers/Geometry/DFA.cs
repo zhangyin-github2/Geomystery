@@ -191,7 +191,7 @@ namespace Geomystery.Controllers.Geometry
                         }
                     }
 
-                    if(geometry.GetType() == needList[turn].type)               //类型匹配检查
+                    if(geometry.GetType() == needList[turn].type || (needList[turn].type.Name=="IPointSet" && geometry.GetType()==typeof(Line) || geometry.GetType()==typeof(Circle)) )               //类型匹配检查
                     {
                         if (needList[turn].needNumber == needList[turn].selectStack.Count - 1) turn++;
                         needList[turn].selectStack.Add(new SelectedGeometryStackItem() { IsNew = newCreate, selectedGeometry = geometry });
