@@ -392,7 +392,7 @@
                 <Image x:Name="triangle" Source="ms-appx:///Pictures/homepic/triangle.png"/>
                 <Image x:Name="circle1" Source="ms-appx:///Pictures/homepic/circle1.png"/>
                 <Image x:Name="hexagon" Source="ms-appx:///Pictures/homepic/hexagon.png"/>
-                
+
                 <!--xaml版-->
                 <!--<Polygon Name="Four"
                          Points="-50,-86.6 -86.6,50 50,86.5 86.6,-50"
