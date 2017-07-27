@@ -119,16 +119,19 @@ namespace Geomystery
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            if (myFrame.CanGoBack)
+            switch (APPDATA.app_data.CURRENT_PAGE)
             {
-                BGMPlayer.PlayButton();
-                myFrame.GoBack();
+                case AppPage.HomePage: return;
+                case AppPage.AchievementPage:
+                case AppPage.OptionPage: 
+                case AppPage.FreeStylePage:
+                case AppPage.SelectChapterPage: APPDATA.app_data.MoveTo(AppPage.HomePage); break;
+
+                case AppPage.GamePage: APPDATA.app_data.MoveTo(AppPage.SelectGamePage); break;
+                case AppPage.SelectGamePage: APPDATA.app_data.MoveTo(AppPage.SelectChapterPage); break;
+                case AppPage.AboutPage: optionFrame.Navigate(typeof(Option));APPDATA.app_data.MoveTo(AppPage.OptionPage); break;
             }
-            if(APPDATA.app_data.CURRENT_PAGE!=AppPage.HomePage)
-            {
-                BGMPlayer.PlayButton();
-                APPDATA.app_data.MoveTo(AppPage.HomePage);
-            }
+            BGMPlayer.PlayButton();
         }
 
         private void MuteButton_Click(object sender, RoutedEventArgs e)

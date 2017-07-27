@@ -61,6 +61,7 @@ namespace Geomystery
 
         private void AboutUs_Click(object sender, RoutedEventArgs e)
         {
+            APPDATA.app_data.MoveTo(AppPage.AboutPage);
             Frame.Navigate(typeof(About));
         }
 

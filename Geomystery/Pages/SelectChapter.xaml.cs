@@ -37,7 +37,7 @@ namespace Geomystery
 
         private void Chapter1_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(SelectGame));
+            APPDATA.app_data.MoveTo(AppPage.SelectGamePage);
         }
 
         private void Chapter2_Click(object sender, RoutedEventArgs e)
