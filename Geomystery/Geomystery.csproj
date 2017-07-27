@@ -228,6 +228,11 @@
     <Content Include="Audio\button9.wav" />
     <Content Include="Pictures\AchievementBord.png" />
     <Content Include="Pictures\coin.png" />
+    <Content Include="Pictures\homepic\circle1.png" />
+    <Content Include="Pictures\homepic\circle2.png" />
+    <Content Include="Pictures\homepic\hexagon.png" />
+    <Content Include="Pictures\homepic\square.png" />
+    <Content Include="Pictures\homepic\triangle.png" />
     <Content Include="Pictures\Levels\1.png" />
     <Content Include="Pictures\lock.png" />
     <Content Include="Pictures\logox.png" />

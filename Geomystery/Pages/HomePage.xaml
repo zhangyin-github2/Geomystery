@@ -264,7 +264,6 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <!--最小大小 0.338倍-->
-                        <Setter Target="Pic.Margin" Value="0,-43,0,0"/>
                         <Setter Target="GeoTitle.FontSize" Value="40"/>
                         <Setter Target="GeoTitle.Margin" Value="0,0,0,32"/>
                         <Setter Target="MainMenu.Margin" Value="0,20,0,0"/>
@@ -293,7 +292,6 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <!--中等大小 0.55倍-->
-                        <Setter Target="Pic.Margin" Value="0,-70,0,0"/>
                         <Setter Target="GeoTitle.FontSize" Value="66"/>
                         <Setter Target="GeoTitle.Margin" Value="0,0,0,52"/>
                         <Setter Target="MainMenu.Margin" Value="0,36,0,0"/>
@@ -322,7 +320,6 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <!--标准大小 0.8倍-->
-                        <Setter Target="Pic.Margin" Value="0,-100,0,0"/>
                         <Setter Target="GeoTitle.FontSize" Value="96"/>
                         <Setter Target="GeoTitle.Margin" Value="0,0,0,76"/>
                         <Setter Target="MainMenu.Margin" Value="0,52,0,0"/>
@@ -351,7 +348,6 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <!--1080P 1倍-->
-                        <Setter Target="Pic.Margin" Value="0,-128,0,0"/>
                         <Setter Target="GeoTitle.FontSize" Value="120"/>
                         <Setter Target="GeoTitle.Margin" Value="0,0,0,96"/>
                         <Setter Target="MainMenu.Margin" Value="0,64,0,0"/>
@@ -384,39 +380,39 @@
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="2*"/>
-                <RowDefinition Height="3*"/>
-            </Grid.RowDefinitions>
-            <Grid Name="Pic"
-                  Grid.Row="1" VerticalAlignment="Top" Margin="0,-128,0,0">
+            <Grid Name="Pic" VerticalAlignment="Center">
+                <Image Source="ms-appx:///Pictures/homepic/square.png"/>
+                <Image Source="ms-appx:///Pictures/homepic/circle2.png"/>
+                <Image Source="ms-appx:///Pictures/homepic/triangle.png"/>
+                <Image Source="ms-appx:///Pictures/homepic/circle1.png"/>
+                <Image Source="ms-appx:///Pictures/homepic/hexagon.png"/>
 
-                <Polygon Name="Four"
+                <!--<Polygon Name="Four"
                          Points="-50,-86.6 -86.6,50 50,86.5 86.6,-50"
                          Height="225" Width="225"
-                         StrokeThickness="8" Stroke="#ffca54bf"
+                         StrokeThickness="8" Stroke="#3c9b9d"
                          Stretch="Fill"/>
                 <Ellipse Name="Ellip2"
                          Height="260" Width="260"
-                         StrokeThickness="8" Stroke="#FFbb55c7"/>
+                         StrokeThickness="8" Stroke="#ff6347"/>
                 <Polygon Name="Three"
                          Points="-100,0 50,86.6 50,-86.5"
                          Height="450" Width="389.7" Margin="0,0,130,0"
-                         StrokeThickness="8" Stroke="#FFaa57d0"
-                         Stretch="Fill" RenderTransformOrigin="0.665,0.498"/>
+                         StrokeThickness="8" Stroke="#566a8f"
+                         Stretch="Fill" />
                 <Ellipse Name="Ellip1" 
                          Height="519.6" Width="519.6"
-                         StrokeThickness="8" Stroke="#FF9359dd"/>
+                         StrokeThickness="8" Stroke="#ff7700"/>
                 <Polygon Name="Six"
                          Points="-100,0 -50,86.6 50,86.5 100,0 50,-86.6 -50 -86.6"
                          Height="519.6" Width="600"
-                         StrokeThickness="8" Stroke="#FF835be6"
+                         StrokeThickness="8" Stroke="#4c7bcf"
                          Stretch="Fill"/>
                 <Polygon Name="Tree"
                          Points="-100,0 0,0 50,86.5 0,0 50,-86.5 0,0"
                          Height="450" Width="389.7" Margin="0,0,130,0"
-                         StrokeThickness="8" Stroke="#FF835be6"
-                         Stretch="Fill"/>
+                         StrokeThickness="8" Stroke="#4c7bcf"
+                         Stretch="Fill"/>-->
 
                 <!--<Ellipse Name="Ellipse1"
                      Height="400"
