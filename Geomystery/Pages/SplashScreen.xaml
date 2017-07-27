@@ -7,9 +7,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid>
-        <Grid.Background>
-            <ImageBrush ImageSource="ms-appx:///Assets/SplashScreen.scale-400.png"></ImageBrush>
-        </Grid.Background>
+    <Grid Background="#FFFEF2DA">
+        <Image Source="ms-appx:///Assets/SplashScreen.scale-400.png" Stretch="Uniform"/>
+        <TextBlock Text="start!" Foreground="Black" FontSize="150"/>
     </Grid>
 </Page>

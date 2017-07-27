@@ -99,12 +99,11 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            
             <Frame x:Name="myFrame" />
             <Frame x:Name="optionFrame"  Grid.Row="1"/>
             <Frame x:Name="achievementFrame" Grid.Column="1"/>
@@ -134,5 +133,6 @@
                        FontSize="10" Foreground="{ThemeResource SystemBackgroundBaseHighBrush}"
                        RelativePanel.RightOf="MuteButton"/>
         </RelativePanel>
+        <Frame x:Name="startFrame"/>
     </Grid>
 </Page>
