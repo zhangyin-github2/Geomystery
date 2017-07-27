@@ -103,6 +103,32 @@ namespace Geomystery.Models.Geometry
                 {
                     outputCoordinate.RemovePoint(point);                //移除所有投影
                 }
+                /*
+                foreach (Line line in this.pointSetList)                //移除依赖于这个点的直线
+                {
+                    if(line.p1 == point || line.p2 == point || line.p3 == point || line.rely.Contains(point))
+                    {
+                        RemoveLine(line);
+                    }
+                }
+                foreach (Circle circle in this.pointSetList)                //移除依赖于这个点的圆
+                {
+                    if (circle.center == point || circle.radius == point)
+                    {
+                        RemoveCircle(circle);
+                    }
+                }*/
+                foreach (Geometry geometry in point.influence)                //移除依赖于这个点的直线
+                {
+                    if(geometry is Line)
+                    {
+                        RemoveLine(geometry as Line);
+                    }
+                    else if(geometry is Circle)
+                    {
+                        RemoveCircle(geometry as Circle);
+                    }
+                }
                 pointList.Remove(point);                                //移除逻辑点
             }
 
@@ -139,7 +165,29 @@ namespace Geomystery.Models.Geometry
 
         public int RemoveLine(Line line)
         {
-
+            if (line.coord == this)
+            {
+                foreach (OutputCoordinate outputCoordinate in this.outputCoordinates)
+                {
+                    outputCoordinate.RemoveLine(line);                //移除所有投影
+                }
+                foreach (Geometry geometry in line.influence)                //移除依赖于这个点的直线
+                {
+                    if (geometry is Line)
+                    {
+                        RemoveLine(geometry as Line);
+                    }
+                    else if (geometry is Circle)
+                    {
+                        RemoveCircle(geometry as Circle);
+                    }
+                    else if(geometry is Point2)
+                    {
+                        RemovePoint(geometry as Point2);
+                    }
+                }
+                pointSetList.Remove(line);                                //移除逻辑直线
+            }
             return 0;
         }
 
@@ -173,7 +221,29 @@ namespace Geomystery.Models.Geometry
 
         public int RemoveCircle(Circle circle)
         {
-
+            if (circle.coord == this)
+            {
+                foreach (OutputCoordinate outputCoordinate in this.outputCoordinates)
+                {
+                    outputCoordinate.RemoveCircle(circle);                //移除所有投影
+                }
+                foreach (Geometry geometry in circle.influence)                //移除依赖于这个点的直线
+                {
+                    if (geometry is Line)
+                    {
+                        RemoveLine(geometry as Line);
+                    }
+                    else if (geometry is Circle)
+                    {
+                        RemoveCircle(geometry as Circle);
+                    }
+                    else if (geometry is Point2)
+                    {
+                        RemovePoint(geometry as Point2);
+                    }
+                }
+                pointSetList.Remove(circle);                                //移除逻辑直线
+            }
             return 0;
         }
 
@@ -194,36 +264,15 @@ namespace Geomystery.Models.Geometry
             {
                 if(geometry is Point2)
                 {
-                    if(pointList.Contains(geometry))
-                    {
-                        foreach (OutputCoordinate outputCoordinate in this.outputCoordinates)
-                        {
-                            outputCoordinate.RemovePoint(geometry as Point2);                //移除所有投影
-                        }
-                        pointList.Remove(geometry as Point2);                                //移除逻辑点
-                    }
+                    RemovePoint(geometry as Point2);
                 }
                 else if (geometry is Line)
                 {
-                    if (pointSetList.Contains(geometry as Line))
-                    {
-                        foreach (OutputCoordinate outputCoordinate in this.outputCoordinates)
-                        {
-                            outputCoordinate.RemoveLine(geometry as Line);                //移除所有投影
-                        }
-                        pointSetList.Remove(geometry as Line);                                //移除线
-                    }
+                    RemoveLine(geometry as Line);
                 }
                 else if (geometry is Circle)
                 {
-                    if (pointSetList.Contains(geometry as Circle))
-                    {
-                        foreach (OutputCoordinate outputCoordinate in this.outputCoordinates)
-                        {
-                            outputCoordinate.RemoveCircle(geometry as Circle);                //移除所有投影
-                        }
-                        pointSetList.Remove(geometry as Circle);                                //移除圆
-                    }
+                    RemoveCircle(geometry as Circle);
                 }
             }
             return 0;

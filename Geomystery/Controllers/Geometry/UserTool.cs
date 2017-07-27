@@ -24,9 +24,9 @@ namespace Geomystery.Controllers.Geometry
         public string toolIcon { get; set; }
 
         /// <summary>
-        /// 这个工具需要多少个定义点
+        /// 这个工具需要需求列表
         /// </summary>
-        public int NeedPointNumber { get; set; }
+        public List<NeedGeometrySetItem> NeedGeometryList { get; set; }
 
         /// <summary>
         /// 返回相应工具的操作结果
@@ -144,35 +144,44 @@ namespace Geomystery.Controllers.Geometry
                 _instance.userTools.Add(new UserTool()
                 {
                     toolName = "选择工具",
-                    NeedPointNumber = -1,
-                    toolIcon = "ms-appx:///Pictures/Tool/tool1.png"
+                    toolIcon = "ms-appx:///Pictures/Tool/tool1.png",
+                    NeedGeometryList = null,
                 });
 
+                List<NeedGeometrySetItem> crossTool = new List<NeedGeometrySetItem>();
+                crossTool.Add(new NeedGeometrySetItem() { type = typeof(IPointSet), needNumber = 2 });
                 _instance.userTools.Add(new UserTool()
                 {
                     toolName = "交点工具",
-                    NeedPointNumber = -1,
-                    toolIcon = "ms-appx:///Pictures/Tool/tool2.png"
+                    toolIcon = "ms-appx:///Pictures/Tool/tool2.png",
+                    NeedGeometryList = crossTool,
                 });
 
+                List<NeedGeometrySetItem> pointTool = new List<NeedGeometrySetItem>();
+                pointTool.Add(new NeedGeometrySetItem() { type = typeof(Point2), needNumber = 1 });
                 _instance.userTools.Add(new UserTool()
                 {
                     toolName = "点工具",
-                    NeedPointNumber = -1,
-                    toolIcon = "ms-appx:///Pictures/Tool/tool3.png"
+                    toolIcon = "ms-appx:///Pictures/Tool/tool3.png",
+                    NeedGeometryList = pointTool,
                 });
 
+                List<NeedGeometrySetItem> lineTool = new List<NeedGeometrySetItem>();
+                lineTool.Add(new NeedGeometrySetItem() { type = typeof(Point2), needNumber = 2 });
                 _instance.userTools.Add(new UserTool()
                 {
                     toolName = "直线工具",
-                    NeedPointNumber = -1,
-                    toolIcon = "ms-appx:///Pictures/Tool/tool4.png"
+                    toolIcon = "ms-appx:///Pictures/Tool/tool4.png",
+                    NeedGeometryList = lineTool,
                 });
+
+                List<NeedGeometrySetItem> circleTool = new List<NeedGeometrySetItem>();
+                circleTool.Add(new NeedGeometrySetItem() { type = typeof(Point2), needNumber = 2 });
                 _instance.userTools.Add(new UserTool()
                 {
                     toolName = "圆工具",
-                    NeedPointNumber = -1,
-                    toolIcon = "ms-appx:///Pictures/Tool/tool5.png"
+                    toolIcon = "ms-appx:///Pictures/Tool/tool5.png",
+                    NeedGeometryList = circleTool,
                 });
             }
 

@@ -86,12 +86,6 @@ namespace Geomystery.Models.Geometry
         /// </summary>
         public LineRely lineRely { get; set; }
 
-
-        /// <summary>
-        /// 线上的点，这些点依赖于这条线，直线平移或者控制点（p1、p2）旋转删除时会受影响
-        /// </summary>
-        public List<Point2> online { get; set; }
-
         /// <summary>
         /// 记录了这条线在屏幕上的投影直线是一个绑定，理论上来说，如果一个模型M有多个实现V，这个变量就会变成List<OutputLine>
         /// </summary>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Geomystery.Models.Geometry;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,37 +7,6 @@ using System.Threading.Tasks;
 
 namespace Geomystery.Controllers.Geometry
 {
-    /// <summary>
-    /// 选中几何元素种类
-    /// </summary>
-    public enum NeedGeometryType
-    {
-        /// <summary>
-        /// 普通几何元素
-        /// </summary>
-        Geometry,
-
-        /// <summary>
-        /// 点
-        /// </summary>
-        Point,
-
-        /// <summary>
-        /// 线
-        /// </summary>
-        Line,
-
-        /// <summary>
-        /// 圆
-        /// </summary>
-        Cricle,
-
-        /// <summary>
-        /// 点集
-        /// </summary>
-        IPointSet,
-    }
-
     /// <summary>
     /// 当前工具选择栈
     /// </summary>
@@ -72,21 +42,18 @@ namespace Geomystery.Controllers.Geometry
         /// 实际选择栈
         /// </summary>
         public List<SelectedGeometryStackItem> selectStack;
-
-        /// <summary>
-        /// 构造函数
-        /// </summary>
-        public NeedGeometrySetItem()
-        {
-            selectStack = new List<SelectedGeometryStackItem>();
-        }
     }
 
     /// <summary>
-    /// 记录用户选择元素的自动机，可能不是确定的有限状态自动机（DFA），但是名字仍然是DFA
+    /// 用户操作记录器，借用有限状态自动机的DFA，但本身并不是DFA
     /// </summary>
     public class DFA
     {
+        /// <summary>
+        /// 工具名称，用来记录当前的工具
+        /// </summary>
+        public UserTool userTool { get; set; }
+
         /// <summary>
         /// 工作模式：0 构造模式，不重复的确定数量的元素构造，1 可取消模式，可以取消上一次选择的点，2 增加模式，例如构造多边形时，重复选择将会封闭图形
         /// </summary>
@@ -113,57 +80,98 @@ namespace Geomystery.Controllers.Geometry
         public int state { get; private set; }
 
         /// <summary>
+        /// 工作场景
+        /// </summary>
+        public Coordinate coordinate { get; set; }
+
+        /// <summary>
+        /// 工具使用结果
+        /// </summary>
+        public List<Models.Geometry.Geometry> result { get; set; }
+
+        /// <summary>
         /// 构造函数
         /// </summary>
         public DFA()
         {
+            userTool = null;
             isInitialized = false;
             state = -1;
             turn = -1;
             //selectStack = new List<SelectedGeometryStackItem>();
         }
 
-        public DFA(int workmode, List<NeedGeometrySetItem> needList)
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        /// <param name="userTool">使用工具</param>
+        /// <param name="workmode">工作模式</param>
+        /// <param name="coordinate">工作场景坐标系</param>
+        public DFA(UserTool userTool, int workmode, Coordinate coordinate)
         {
-            this.needList = needList;
-            if (needList != null)
+            this.userTool = userTool;
+            this.coordinate = coordinate;
+            if (userTool != null && this.coordinate != null)
             {
-                isInitialized = true;
-                state = 1;
-                turn = 0;
-                this.workingMode = workmode;
+                if(userTool.NeedGeometryList != null)                  //需要初始化需求序列
+                {
+                    needList = new List<NeedGeometrySetItem>();
+                    for (int i = 0; i < userTool.NeedGeometryList.Count; i++)
+                    {
+                        needList.Add(new NeedGeometrySetItem()
+                        {
+                            type = userTool.NeedGeometryList[i].type,
+                            needNumber = userTool.NeedGeometryList[i].needNumber,
+                            selectStack = new List<SelectedGeometryStackItem>(),
+                        });
+                    }
+                }
+                isInitialized = true;           //经过初始化
+                state = 1;                      //执行
+                turn = 0;                           //填充need list 下标
+                this.workingMode = workmode;        //工作模式
             }
             else
             {
+                isInitialized = false;
                 turn = -1;
                 state = -1;
             }
             
         }
 
-        public int Initialized(int workmode, List<NeedGeometrySetItem> needList)
+        public int Initialized(UserTool userTool, int workmode, Coordinate coordinate)
         {
             if(isInitialized)
             {
                 return 1;
             }
-            else if(!isInitialized)
+            else if(!isInitialized && userTool != null && coordinate != null)             //还没初始化
             {
-                if(needList!=null)
+                if (userTool.NeedGeometryList != null)                  //需要初始化需求序列
                 {
-                    this.needList = needList;
-                    isInitialized = true;
-                    state = 1;
-                    turn = 0;
-                    this.workingMode = workmode;
-                    return 1;
+                    needList = new List<NeedGeometrySetItem>();
+                    for (int i = 0; i < userTool.NeedGeometryList.Count; i++)
+                    {
+                        needList.Add(new NeedGeometrySetItem()
+                        {
+                            type = userTool.NeedGeometryList[i].type,
+                            needNumber = userTool.NeedGeometryList[i].needNumber,
+                            selectStack = new List<SelectedGeometryStackItem>(),
+                        });
+                    }
                 }
+                isInitialized = true;           //经过初始化
+                state = 1;                      //执行
+                turn = 0;                           //填充need list 下标
+                this.workingMode = workmode;        //工作模式
+                return 1;
             }
             return 0;
         }
 
         /// <summary>
-        /// 用户选择了一个元素
+        /// 用户选择了一个元素（记录了用户的操作）
         /// </summary>
         /// <param name="geometry">用户选择的元素</param>
         /// <param name="newCreate">这个元素是否是新增的</param>
@@ -244,6 +252,48 @@ namespace Geomystery.Controllers.Geometry
 
             }
             return 1;
+        }
+
+        /// <summary>
+        /// 撤销本工具进行的操作
+        /// </summary>
+        public void Undo()
+        {
+            if (!isInitialized) return;               //未初始化
+            if (needList == null) return;               //不存在的情况
+            for(int i = turn; i >= 0; i--)
+            {
+                if (needList[turn].selectStack.Count == 0) continue;
+                for(int j = needList[turn].selectStack.Count; j >= 0; j--)
+                {
+                    if (needList[turn].selectStack[j].IsNew)
+                    {
+                        coordinate.Remove(needList[turn].selectStack[j].selectedGeometry);
+                    }
+                }
+                //needList[turn].selectStack.Clear();
+            }
+        }
+
+        /// <summary>
+        /// 重做
+        /// </summary>
+        public void Redo()
+        {
+            if (!isInitialized) return;               //未初始化
+            if (needList == null) return;               //不存在的情况
+            for (int i = turn; i >= 0; i--)
+            {
+                if (needList[turn].selectStack.Count == 0) continue;
+                for (int j = needList[turn].selectStack.Count; j >= 0; j--)
+                {
+                    if (needList[turn].selectStack[j].IsNew)
+                    {
+                        coordinate.Remove(needList[turn].selectStack[j].selectedGeometry);
+                    }
+                }
+                //needList[turn].selectStack.Clear();
+            }
         }
     }
 }
