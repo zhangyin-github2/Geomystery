@@ -89,8 +89,8 @@ namespace Geomystery.Models.Geometry
             {
                 outputCoordinates[i].AddPoint(point);
             }
-            this.ClearSelectedGeometry();
-            this.ToSelectGeometry(point);
+            //this.ClearSelectedGeometry();
+            //this.ToSelectGeometry(point);
             return 0;
         }
 
@@ -167,8 +167,8 @@ namespace Geomystery.Models.Geometry
             {
                 outputCoordinates[i].AddLine(line);
             }
-            this.ClearSelectedGeometry();
-            this.ToSelectGeometry(line);
+            //this.ClearSelectedGeometry();
+            //this.ToSelectGeometry(line);
             return 0;
         }
 
@@ -228,8 +228,8 @@ namespace Geomystery.Models.Geometry
             {
                 outputCoordinates[i].AddCircle(circle);
             }
-            this.ClearSelectedGeometry();
-            this.ToSelectGeometry(circle);
+            //this.ClearSelectedGeometry();
+            //this.ToSelectGeometry(circle);
             return 0;
         }
 
@@ -272,6 +272,11 @@ namespace Geomystery.Models.Geometry
             return 0;
         }
 
+        /// <summary>
+        /// 移除
+        /// </summary>
+        /// <param name="geometry">几何元素</param>
+        /// <returns>移除结果</returns>
         public int Remove(Geometry geometry)
         {
             if (geometry.coord == this)
@@ -288,6 +293,32 @@ namespace Geomystery.Models.Geometry
                 {
                     RemoveCircle(geometry as Circle);
                 }
+            }
+            return 0;
+        }
+
+        /// <summary>
+        /// 添加
+        /// </summary>
+        /// <param name="geometry">几何元素</param>
+        /// <returns>添加结果</returns>
+        public int Add(Geometry geometry)
+        {
+            if (geometry.coord == this)
+            {
+                if (geometry is Point2)
+                {
+                    AddPoint(geometry as Point2);
+                }
+                else if (geometry is Line)
+                {
+                    AddLine(geometry as Line);
+                }
+                else if (geometry is Circle)
+                {
+                    AddCircle(geometry as Circle);
+                }
+                //this.ToSelectGeometry(geometry);
             }
             return 0;
         }

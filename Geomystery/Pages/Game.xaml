@@ -46,6 +46,9 @@
                                       Grid.RowSpan="2"
                                       Grid.ColumnSpan="2"
                                       Draw="canvas1_Draw" PointerPressed="canvas1_PointerPressed"/>
+        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Height="Auto" Width="Auto">
+            
+        </StackPanel>
         <ListView x:Name="listView1"
                   Grid.Row="2"
                   ScrollViewer.VerticalScrollBarVisibility="Hidden"
