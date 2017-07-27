@@ -172,8 +172,6 @@ namespace Geomystery
         }
         public void MoveTo(AppPage to)
         {
-            if (to != AppPage.HomePage) BACKBUTTON.Visibility = Visibility.Visible;
-            else BACKBUTTON.Visibility = Visibility.Collapsed;
             switch (to)
             {
                 case AppPage.OptionPage:
@@ -195,6 +193,8 @@ namespace Geomystery
                 case AppPage.SelectGamePage: MainPage.MainFrame.Navigate(typeof(SelectGame)); break;
                 default: return;
             }
+            if (to != AppPage.HomePage) BACKBUTTON.Visibility = Visibility.Visible;
+            else BACKBUTTON.Visibility = Visibility.Collapsed;
             app_data.CURRENT_PAGE = to;
         }
         /// <summary>
