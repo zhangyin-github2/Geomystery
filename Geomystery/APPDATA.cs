@@ -81,7 +81,7 @@ namespace Geomystery
             Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = app_data.LANGGUAGE;
             Windows.ApplicationModel.Resources.Core.ResourceContext.GetForCurrentView().Reset();
             Windows.ApplicationModel.Resources.Core.ResourceContext.GetForViewIndependentUse().Reset();
-            await Task.Delay(2);
+            await Task.Delay(50);
             update_grid();
         }
         public void setFullScreen()
