@@ -8,7 +8,8 @@
     mc:Ignorable="d">
 
     <Grid Background="#FFFEF2DA">
-        <Image Source="ms-appx:///Assets/SplashScreen.scale-400.png" Height="300" Stretch="Uniform" VerticalAlignment="Center"/>
-        <TextBlock Text="start!" Foreground="Black" FontSize="150"/>
+        <Grid Height="300">
+            <Image Source="ms-appx:///Pictures/SplashScreen.png" />
+        </Grid>
     </Grid>
 </Page>

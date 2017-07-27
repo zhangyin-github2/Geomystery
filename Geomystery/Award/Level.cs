@@ -102,6 +102,11 @@ public class LevelLoader
     public static Controllers GetLevel(int index)
     {
         Controllers controller = new Controllers(1);
+
+        controller.historyDfaList = new List<DFA>();
+        controller.redoDfaList = new List<DFA>();
+        //controller.isIniialized = true;
+
         Point2 p1 = new Point2() { X = 66560, Y = -35198 };
         Point2 p2 = new Point2() { X = 44797, Y = -52078 };
         Point2 p3 = new Point2() { X = 81920, Y = -54799 };

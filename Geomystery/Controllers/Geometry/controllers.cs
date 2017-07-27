@@ -59,6 +59,15 @@ namespace Geomystery.Controllers.Geometry
         public Point releasedPoint { get; set; }
 
         /// <summary>
+        /// 空构造函数
+        /// </summary>
+        public Controllers()
+        {
+            isIniialized = false;
+            OutputPoint.scopeLength = 6;               //10 dip
+        }
+
+        /// <summary>
         /// 输出坐标系个数
         /// </summary>
         /// <param name="outputNumber">输出坐标系个数</param>
@@ -68,7 +77,6 @@ namespace Geomystery.Controllers.Geometry
             OutputPoint.scopeLength = 6;               //10 dip
             Initialized(outputNumber);
         }
-
 
         /// <summary>
         /// 初始化坐标系
@@ -90,7 +98,7 @@ namespace Geomystery.Controllers.Geometry
 
                 historyDfaList = new List<DFA>();
                 redoDfaList = new List<DFA>();
-
+                isIniialized = true;
                 return 1;
             }
             return 0;
@@ -111,83 +119,6 @@ namespace Geomystery.Controllers.Geometry
             outputCoordinates = new List<OutputCoordinate>();
             outputCoordinates.Add(controller.outputCoordinates[0]);
             return 1;
-        }
-
-        /// <summary>
-        /// 获取鼠标在屏幕当前点附近的逻辑坐标点
-        /// </summary>
-        /// <param name="point">屏幕上的点</param>
-        /// <returns>逻辑点列表</returns>
-        public List<Models.Geometry.Geometry> GetSurroundings(Vector2 point)
-        {
-            List<Models.Geometry.Geometry> result = null;
-            List<OutputGeometry> outGeometry = outputCoordinates[0].geometryList;
-            result = new List<Models.Geometry.Geometry>();
-            float minLength = -1;
-            float currentLength = 0;
-            if (outGeometry == null) return null;
-            for (int i = 0; i < outGeometry.Count; i++)
-            {
-                if(outGeometry[i].isVisible == true)
-                {
-                    if(outGeometry[i] is OutputPoint)
-                    {
-                        var pCurrent = outGeometry[i] as OutputPoint;
-                        if ((currentLength = (pCurrent.viewPoint - point).Length()) < OutputPoint.scopeLength)            //点击的点在屏幕上某个点的圆圈内
-                        {
-                            if(minLength == -1)
-                            {
-                                minLength = currentLength;
-                                result.Add(pCurrent.point);
-                            }
-                            else if(currentLength < minLength)
-                            {
-                                minLength = currentLength;
-                                result.Clear();
-                                result.Add(pCurrent.point);
-                            }
-                        }
-                    }
-                    else if(outGeometry[i] is OutputLine)
-                    {
-                        var lCurrent = outGeometry[i] as OutputLine;
-                        var perpendicularFoot = new Vector2();
-                        if ( (currentLength = OutputCoordinate.DistanceOfPointAndLine(lCurrent.p1,lCurrent.p2 - lCurrent.p1, point,ref perpendicularFoot)) < OutputPoint.scopeLength)
-                        {
-                            if (minLength == -1)
-                            {
-                                minLength = currentLength;
-                                result.Add(lCurrent.line);
-                            }
-                            else if (currentLength < minLength)
-                            {
-                                minLength = currentLength;
-                                result.Clear();
-                                result.Add(lCurrent.line);
-                            }
-                        }
-                    }
-                    else if (outGeometry[i] is OutputCircle)
-                    {
-                        var cCurrent = outGeometry[i] as OutputCircle;
-                        if( (currentLength = Math.Abs(cCurrent.radius - (point-cCurrent.center).Length())) < OutputPoint.scopeLength)
-                        {
-                            if (minLength == -1)
-                            {
-                                minLength = currentLength;
-                                result.Add(cCurrent.circle);
-                            }
-                            else if (currentLength < minLength)
-                            {
-                                minLength = currentLength;
-                                result.Clear();
-                                result.Add(cCurrent.circle);
-                            }
-                        }
-                    }
-                }
-            }
-            return result;
         }
 
         /// <summary>

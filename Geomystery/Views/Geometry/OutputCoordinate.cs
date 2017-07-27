@@ -1,4 +1,5 @@
 ﻿using Geomystery.Models.Geometry;
+using Microsoft.Graphics.Canvas.UI.Xaml;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -363,7 +364,7 @@ namespace Geomystery.Views.Geometry
                             int j;
                             for(j = 0; j < result.surroundingLine.Count; j++)
                             {
-                                if (result.surroundingLine[i].geometry == lCurrent.line) break;
+                                if (result.surroundingLine[j].geometry == lCurrent.line) break;
                             }
                             if(j == result.surroundingLine.Count)                           //防止重复添加
                             {
@@ -463,6 +464,70 @@ namespace Geomystery.Views.Geometry
             }
             result.surroundingPoint.Sort();                     //排序
             return result;
+        }
+
+        public void refreshCanvas(CanvasAnimatedControl canvas1)
+        {
+            WindowHeight = (float)canvas1.ActualHeight;
+            WindowWidth = (float)canvas1.ActualWidth;
+        }
+
+        /// <summary>
+        /// 刷新显示坐标系中所有的元素坐标
+        /// </summary>
+        public void refreshGeometrys()
+        {
+            foreach(OutputGeometry outputGeometry in geometryList)
+            {
+                if(outputGeometry is OutputPoint)
+                {
+                    OutputPoint outputPoint = outputGeometry as OutputPoint;
+                    outputPoint.viewPoint = ToVector2(outputPoint.point);
+                }
+                else if(outputGeometry is OutputLine)
+                {
+                    OutputLine outputLine = outputGeometry as OutputLine;
+                    Vector2 v1 = ToVector2(outputLine.line.p1);
+                    Vector2 v2 = ToVector2(outputLine.line.p2);
+                    Vector2 v3 = new Vector2();
+                    Vector2 v4 = new Vector2();
+
+                    if (v1.X == v2.X)                //竖线
+                    {
+                        v3.X = v1.X;
+                        v3.Y = 0;
+                        v4.X = v1.X;
+                        v4.Y = WindowHeight;
+                    }
+                    else if (Math.Abs(v2.Y - v1.Y) > Math.Abs(v2.X - v1.X))
+                    {
+                        v3.X = v1.X - v1.Y * (v1.X - v2.X) / (v1.Y - v2.Y);
+                        v3.Y = 0;
+                        v4.X = (WindowHeight - v1.Y) / (v2.Y - v1.Y) * v2.X + (v2.Y - WindowHeight) / (v2.Y - v1.Y) * v1.X;
+                        v4.Y = WindowHeight;
+                    }
+                    else if (Math.Abs(v2.Y - v1.Y) <= Math.Abs(v2.X - v1.X))
+                    {
+                        v3.X = WindowWidth;
+                        v3.Y = (WindowWidth - v1.X) / (v2.X - v1.X) * v2.Y + (v2.X - WindowWidth) / (v2.X - v1.X) * v1.Y;
+                        v4.X = 0;
+                        v4.Y = v1.Y - v1.X * (v1.Y - v2.Y) / (v1.X - v2.X);
+                    }
+                    else
+                    {
+                        throw new Exception();
+                    }
+
+                    outputLine.p1 = v3;
+                    outputLine.p2 = v4;
+                }
+                else if(outputGeometry is OutputCircle)
+                {
+                    OutputCircle outputCircle = outputGeometry as OutputCircle;
+                    outputCircle.center = ToVector2(outputCircle.circle.center);
+                    outputCircle.radius = (ToVector2(outputCircle.circle.center) - ToVector2(outputCircle.circle.radius)).Length();
+                }
+            }
         }
     }
 }
