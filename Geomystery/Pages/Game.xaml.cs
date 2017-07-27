@@ -224,5 +224,22 @@ namespace Geomystery
             redo.IsEnabled = controller.CanRedo();
             undo.IsEnabled = controller.CanUndo(); ;
         }
+
+        private void canvas1_PointerWheelChanged(object sender, PointerRoutedEventArgs e)
+        {
+            var wheelDelta = e.GetCurrentPoint(canvas1).Properties.MouseWheelDelta;
+            int step = wheelDelta / 10;
+            if (step > 0)
+            {
+                controller.outputCoordinates[0].unitLength *= (1.0f + 0.01f * step);
+            }
+            else if (step < 0 && controller.outputCoordinates[0].unitLength > 1)
+            {
+                float newUL = controller.outputCoordinates[0].unitLength * (1.0f + 0.01f * step);
+                if (newUL >= 1) controller.outputCoordinates[0].unitLength = newUL;
+                else controller.outputCoordinates[0].unitLength = 1;
+            }
+            controller.outputCoordinates[0].refreshGeometrys();         //刷新
+        }
     }
 }
