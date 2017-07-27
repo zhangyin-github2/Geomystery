@@ -33,8 +33,7 @@ namespace Geomystery.Pages
         public static async Task<int> goback()
         {
             Debug.WriteLine("leave start!");
-            await Task.Delay(3000);
-            //while (true) ;
+            await Task.Delay(2000);
             return 0;
         }
     }
