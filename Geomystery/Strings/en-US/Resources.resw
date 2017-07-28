@@ -141,6 +141,9 @@
   <data name="Language.Text" xml:space="preserve">
     <value>Language</value>
   </data>
+  <data name="LanguageNow.Text" xml:space="preserve">
+    <value>English</value>
+  </data>
   <data name="Music Volume.Text" xml:space="preserve">
     <value>Music Volume</value>
   </data>

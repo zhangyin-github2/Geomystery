@@ -1208,7 +1208,7 @@
                 <TextBlock Name="LanguageNow"
                            FontFamily="Microsoft YaHei UI" FontSize="44" Foreground="{ThemeResource TextColorPurple}"
                            Width="200" VerticalAlignment="Center"
-                           Text="English" TextAlignment="Center"/>
+                           Text="English" TextAlignment="Center" x:Uid="LanguageNow"/>
                 <Button Name="LanRight"
                         FontFamily="Segoe UI Symbol" FontSize="44" Foreground="{ThemeResource TextColorPurple}" Content="&#x25B6;"
                         Background="{x:Null}" Style="{StaticResource ButtonStyleRL}"
