@@ -95,14 +95,17 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <!--最小大小 0.338倍-->
-                        <Setter Target="undo.FontSize" Value="13"/>
-                        <Setter Target="redo.FontSize" Value="13"/>
-                        <Setter Target="refresh.FontSize" Value="13"/>
+                        <Setter Target="undo.FontSize" Value="14"/>
+                        <Setter Target="redo.FontSize" Value="14"/>
+                        <Setter Target="refresh.FontSize" Value="14"/>
                         <Setter Target="undo.Height" Value="22"/>
                         <Setter Target="redo.Height" Value="22"/>
                         <Setter Target="refresh.Height" Value="22"/>
                         <Setter Target="blank1.Height" Value="22"/>
                         <Setter Target="blank2.Height" Value="22"/>
+                        <Setter Target="undo.Width" Value="30"/>
+                        <Setter Target="redo.Width" Value="30"/>
+                        <Setter Target="refresh.Width" Value="30"/>
                         <Setter Target="blank1.Width" Value="60"/>
                         <Setter Target="blank2.Width" Value="90"/>
                     </VisualState.Setters>
@@ -114,16 +117,19 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <!--中等大小 0.55倍-->
-                        <Setter Target="undo.FontSize" Value="18"/>
-                        <Setter Target="redo.FontSize" Value="18"/>
-                        <Setter Target="refresh.FontSize" Value="18"/>
-                        <Setter Target="undo.Height" Value="30"/>
-                        <Setter Target="redo.Height" Value="30"/>
-                        <Setter Target="refresh.Height" Value="30"/>
-                        <Setter Target="blank1.Height" Value="30"/>
-                        <Setter Target="blank2.Height" Value="30"/>
-                        <Setter Target="blank1.Width" Value="80"/>
-                        <Setter Target="blank2.Width" Value="100"/>
+                        <Setter Target="undo.FontSize" Value="21"/>
+                        <Setter Target="redo.FontSize" Value="21"/>
+                        <Setter Target="refresh.FontSize" Value="21"/>
+                        <Setter Target="undo.Height" Value="34"/>
+                        <Setter Target="redo.Height" Value="34"/>
+                        <Setter Target="refresh.Height" Value="34"/>
+                        <Setter Target="blank1.Height" Value="34"/>
+                        <Setter Target="blank2.Height" Value="34"/>
+                        <Setter Target="undo.Width" Value="46"/>
+                        <Setter Target="redo.Width" Value="46"/>
+                        <Setter Target="refresh.Width" Value="46"/>
+                        <Setter Target="blank1.Width" Value="92"/>
+                        <Setter Target="blank2.Width" Value="138"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="normalView">
@@ -133,16 +139,19 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <!--标准大小 0.8倍-->
-                        <Setter Target="undo.FontSize" Value="22"/>
-                        <Setter Target="redo.FontSize" Value="22"/>
-                        <Setter Target="refresh.FontSize" Value="22"/>
-                        <Setter Target="undo.Height" Value="38"/>
-                        <Setter Target="redo.Height" Value="38"/>
-                        <Setter Target="refresh.Height" Value="38"/>
-                        <Setter Target="blank1.Height" Value="38"/>
-                        <Setter Target="blank2.Height" Value="38"/>
-                        <Setter Target="blank1.Width" Value="106"/>
-                        <Setter Target="blank2.Width" Value="116"/>
+                        <Setter Target="undo.FontSize" Value="29"/>
+                        <Setter Target="redo.FontSize" Value="29"/>
+                        <Setter Target="refresh.FontSize" Value="29"/>
+                        <Setter Target="undo.Height" Value="48"/>
+                        <Setter Target="redo.Height" Value="48"/>
+                        <Setter Target="refresh.Height" Value="48"/>
+                        <Setter Target="blank1.Height" Value="48"/>
+                        <Setter Target="blank2.Height" Value="48"/>
+                        <Setter Target="undo.Width" Value="65"/>
+                        <Setter Target="redo.Width" Value="65"/>
+                        <Setter Target="refresh.Width" Value="65"/>
+                        <Setter Target="blank1.Width" Value="130"/>
+                        <Setter Target="blank2.Width" Value="195"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="fullView">
@@ -152,16 +161,19 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <!--1080P 1倍-->
-                        <Setter Target="undo.FontSize" Value="28"/>
-                        <Setter Target="redo.FontSize" Value="28"/>
-                        <Setter Target="refresh.FontSize" Value="28"/>
-                        <Setter Target="undo.Height" Value="48"/>
-                        <Setter Target="redo.Height" Value="48"/>
-                        <Setter Target="refresh.Height" Value="48"/>
-                        <Setter Target="blank1.Height" Value="48"/>
-                        <Setter Target="blank2.Height" Value="48"/>
-                        <Setter Target="blank1.Width" Value="132"/>
-                        <Setter Target="blank2.Width" Value="132"/>
+                        <Setter Target="undo.FontSize" Value="36"/>
+                        <Setter Target="redo.FontSize" Value="36"/>
+                        <Setter Target="refresh.FontSize" Value="36"/>
+                        <Setter Target="undo.Height" Value="60"/>
+                        <Setter Target="redo.Height" Value="60"/>
+                        <Setter Target="refresh.Height" Value="60"/>
+                        <Setter Target="blank1.Height" Value="60"/>
+                        <Setter Target="blank2.Height" Value="60"/>
+                        <Setter Target="undo.Width" Value="82"/>
+                        <Setter Target="redo.Width" Value="82"/>
+                        <Setter Target="refresh.Width" Value="82"/>
+                        <Setter Target="blank1.Width" Value="164"/>
+                        <Setter Target="blank2.Width" Value="246"/>
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
@@ -192,18 +204,18 @@
         </Grid>
 
 
-        <Rectangle Name="blank1" Height="48" Width="132" Fill="{x:Null}" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" IsTapEnabled="False" />
+        <Rectangle Name="blank1" Height="60" Width="164" Fill="{ThemeResource SystemBackgroundAltHighBrush}" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" IsTapEnabled="False" />
 
-        <Rectangle Name="blank2" Height="48" Width="132" Fill="{x:Null}" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Top" IsTapEnabled="False" />
+        <Rectangle Name="blank2" Height="60" Width="246" Fill="{ThemeResource SystemBackgroundAltHighBrush}" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Top" IsTapEnabled="False" />
         
         <StackPanel Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Top" Orientation="Horizontal">
-            <Button x:Name="undo" BorderThickness="0" Content="&#xE248;" FontSize="22" Background="Transparent" Foreground="{ThemeResource SystemBackgroundBaseHighBrush}" FontFamily="Segoe MDl2 Assets" Height="48" Click="undo_Click" IsTabStop="False"/>
-            <Button x:Name="redo" BorderThickness="0" Content="&#xE248;" FontSize="22" Background="Transparent" Foreground="{ThemeResource SystemBackgroundBaseHighBrush}" FontFamily="Segoe MDl2 Assets" Height="48" RenderTransformOrigin="0.5,0.5" Click="redo_Click" IsTabStop="False">
+            <Button x:Name="undo" BorderThickness="0" Content="&#xE248;" FontSize="36" Background="Transparent" Foreground="{ThemeResource SystemBackgroundBaseHighBrush}" FontFamily="Segoe MDl2 Assets" Height="64" Width="82" Click="undo_Click" IsTabStop="False"/>
+            <Button x:Name="redo" BorderThickness="0" Content="&#xE248;" FontSize="36" Background="Transparent" Foreground="{ThemeResource SystemBackgroundBaseHighBrush}" FontFamily="Segoe MDl2 Assets" Height="64" Width="82" RenderTransformOrigin="0.5,0.5" Click="redo_Click" IsTabStop="False">
                 <Button.RenderTransform>
                     <CompositeTransform ScaleX="-1"/>
                 </Button.RenderTransform>
             </Button>
-            <Button x:Name="refresh" BorderThickness="0" Content="&#xE777;" FontSize="22" Background="Transparent" Foreground="{ThemeResource SystemBackgroundBaseHighBrush}" FontFamily="Segoe MDl2 Assets" Height="48" Click="refresh_Click" IsTabStop="False"/>
+            <Button x:Name="refresh" BorderThickness="0" Content="&#xE777;" FontSize="36" Background="Transparent" Foreground="{ThemeResource SystemBackgroundBaseHighBrush}" FontFamily="Segoe MDl2 Assets" Height="64" Width="82" Click="refresh_Click" IsTabStop="False"/>
         </StackPanel>
     </Grid>
 </Page>

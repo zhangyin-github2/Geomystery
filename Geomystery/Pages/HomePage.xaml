@@ -283,7 +283,8 @@
                         <Setter Target="Option.FontSize" Value="12"/>
                         <Setter Target="Blank3.Height" Value="16"/>
                         <Setter Target="Achievement.Height" Value="22"/>
-                        <Setter Target="Achievement.FontSize" Value="10"/>
+                        <Setter Target="Achievement.Width" Value="30"/>
+                        <Setter Target="Achievement.FontSize" Value="12"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="miniView">
@@ -310,8 +311,9 @@
                         <Setter Target="Option.Width" Value="220"/>
                         <Setter Target="Option.FontSize" Value="24"/>
                         <Setter Target="Blank3.Height" Value="28"/>
-                        <Setter Target="Achievement.Height" Value="30"/>
-                        <Setter Target="Achievement.FontSize" Value="14"/>
+                        <Setter Target="Achievement.Height" Value="34"/>
+                        <Setter Target="Achievement.Width" Value="46"/>
+                        <Setter Target="Achievement.FontSize" Value="20"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="normalView">
@@ -338,8 +340,9 @@
                         <Setter Target="Option.Width" Value="320"/>
                         <Setter Target="Option.FontSize" Value="36"/>
                         <Setter Target="Blank3.Height" Value="40"/>
-                        <Setter Target="Achievement.Height" Value="38"/>
-                        <Setter Target="Achievement.FontSize" Value="18"/>
+                        <Setter Target="Achievement.Height" Value="48"/>
+                        <Setter Target="Achievement.Width" Value="65"/>
+                        <Setter Target="Achievement.FontSize" Value="29"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="fullView">
@@ -366,8 +369,9 @@
                         <Setter Target="Option.Width" Value="400"/>
                         <Setter Target="Option.FontSize" Value="44"/>
                         <Setter Target="Blank3.Height" Value="50"/>
-                        <Setter Target="Achievement.Height" Value="48"/>
-                        <Setter Target="Achievement.FontSize" Value="24"/>
+                        <Setter Target="Achievement.Height" Value="60"/>
+                        <Setter Target="Achievement.Width" Value="82"/>
+                        <Setter Target="Achievement.FontSize" Value="36"/>
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
@@ -464,8 +468,8 @@
 
         <Button Name="Achievement"
                 Grid.Column="2" Grid.ColumnSpan="2"
-                Height="48"
-                FontFamily="Segoe UI Emoji" FontSize="24" Content="&#x1F3C6;"
+                Height="60" Width="82"
+                FontFamily="Segoe UI Emoji" FontSize="36" Content="&#x1F3C6;"
                 Background="{x:Null}" BorderThickness="0"
                 HorizontalAlignment="Right" VerticalAlignment="Top"
                 Click="Achievement_Click" IsTabStop="False"/>
