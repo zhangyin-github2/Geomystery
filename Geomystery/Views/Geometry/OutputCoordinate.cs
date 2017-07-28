@@ -165,7 +165,7 @@ namespace Geomystery.Views.Geometry
                 fillColor = Color.FromArgb(255, 201, 84, 191),
                 lineColor = Color.FromArgb(255, 0, 0, 0),
                 point = point,
-                selectedFillColor = Color.FromArgb(255, 255, 255, 255),
+                selectedFillColor = Color.FromArgb(255, 255, 99, 71),
                 selectedLineColor = Color.FromArgb(255, 0, 0, 0),
                 thickness = 2,
                 viewPoint = ToVector2(point),
@@ -239,23 +239,40 @@ namespace Geomystery.Views.Geometry
                     }
                     float length12 = (v1 - v2).Length();
 
-
                     OutputLine outputLine = new OutputLine()
                     {
                         borderType = ViewType.Solid,
                         isVisible = true,
-                        fillColor = Color.FromArgb(0, 130, 91, 230),
-                        lineColor = Color.FromArgb(255, 130, 91, 230),
+                        fillColor = Color.FromArgb(255, 76, 123, 207),
+                        lineColor = Color.FromArgb(255, 76, 123, 207),
                         line = line,
-                        selectedFillColor = Color.FromArgb(255, 128, 128, 128),
-                        selectedLineColor = Color.FromArgb(255, 128, 128, 128),
+                        selectedFillColor = Color.FromArgb(255, 130, 91, 230),
+                        selectedLineColor = Color.FromArgb(255, 255, 99, 91),
+                        thickness = 8,
+                        p1 = v1,
+                        p2 = v2,
+                    };
+
+                    OutputLine outputLineStraight = new OutputLine()
+                    {
+                        borderType = ViewType.Solid,
+                        isVisible = true,
+                        fillColor = Color.FromArgb(128, 86, 106, 143),
+                        lineColor = Color.FromArgb(128, 86, 106, 143),
+                        line = line,
+                        selectedFillColor = Color.FromArgb(128, 86, 106, 143),
+                        selectedLineColor = Color.FromArgb(128, 86, 106, 143),
                         thickness = 8,
                         p1 = v3,
                         p2 = v4,
                     };
 
-                    line.resultLine.Add(outputLine);
+                    line.resultLine.Add(outputLineStraight);                //先画延长线
+                    geometryList.Add(outputLineStraight);
+
+                    line.resultLine.Add(outputLine);                        //覆盖线段
                     geometryList.Add(outputLine);
+                    
                     return 1;
                 }
             }
@@ -297,11 +314,11 @@ namespace Geomystery.Views.Geometry
             {
                 borderType = ViewType.Solid,
                 isVisible = true,
-                fillColor = Color.FromArgb(0, 130, 91, 230),
+                fillColor = Color.FromArgb(255, 130, 91, 230),
                 lineColor = Color.FromArgb(255, 130, 91, 230),
                 circle = circle,
                 selectedFillColor = Color.FromArgb(255, 128, 128, 128),
-                selectedLineColor = Color.FromArgb(255, 128, 128, 128),
+                selectedLineColor = Color.FromArgb(255, 255, 99, 71),
                 thickness = 8,
                 center = ToVector2(circle.center),
                 radius = (ToVector2(circle.center) - ToVector2(circle.radius)).Length(),
