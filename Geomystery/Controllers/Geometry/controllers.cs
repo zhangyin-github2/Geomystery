@@ -409,5 +409,170 @@ namespace Geomystery.Controllers.Geometry
             }
             return false;
         }
+
+        public int AddFromString(string args)
+        {
+            if (args == null || args == "") return 0;                           //无参数
+            char[] splitter = new Char[] { ',', };
+            string[] infomations = args.Split(splitter);                        //参数列表
+            if (infomations.Count() < 3) return 0;
+            string nowstr = null;
+            int id = -1;                                //元素的id
+            if (!int.TryParse(infomations[1], out id)) return 0;                //id不正常
+            if (infomations[0] == "0" || infomations[0].ToLower() == "p" || infomations[0].ToLower() == "point")
+            {
+                nowstr = infomations[2];
+                if (nowstr == "0" || nowstr.ToLower() == "n" || nowstr.ToLower() == "normal")
+                {
+                    float pX, pY;
+                    if (!float.TryParse(infomations[3], out pX)) return 0;                //id不正常
+                    if (!float.TryParse(infomations[4], out pY)) return 0;                //id不正常
+                    Point2 point = new Point2()
+                    {
+                        X = pX,
+                        Y = pY,
+                        coord = this.coordinate,
+                        id = id,
+                    };
+                    coordinate.AddPoint(point);
+                    point.id = id;
+                    return 1;
+                }
+                else if (nowstr == "1" || nowstr.ToLower() == "r" || nowstr.ToLower() == "rely")
+                {
+                    float pX, pY;
+                    if (!float.TryParse(infomations[3], out pX)) return 0;                //id不正常
+                    if (!float.TryParse(infomations[4], out pY)) return 0;                //id不正常
+                    int rid;        //依赖点集id
+                    if (!int.TryParse(infomations[1], out rid)) return 0;                //id不正常
+
+                    Point2 point = new Point2()
+                    {
+                        X = pX,
+                        Y = pY,
+                        coord = this.coordinate,
+                        id = id,
+                    };
+                    //if (p2.rely == null) p2.rely = new List<Models.Geometry.Geometry>();
+                    Models.Geometry.Geometry relyGeometry = coordinate.GetGeometryById(rid);
+                    if (relyGeometry == null) return 0;                                 //不存在的依赖元素
+                    Vector2 vresult = new Vector2();
+                    if (relyGeometry is Line)
+                    {
+                        Line lCurrent = relyGeometry as Line;
+                        OutputCoordinate.DistanceOfPointAndLine(lCurrent.p1.ToVector2(), new Vector2() { X = lCurrent.p2.X - lCurrent.p1.X, Y = lCurrent.p2.Y - lCurrent.p1.Y}, point.ToVector2(), ref vresult);
+                    }
+                    else if(relyGeometry is Circle)
+                    {
+                        Circle cCurrent = relyGeometry as Circle;
+                        OutputCoordinate.DistanceOfPointAndCircle(cCurrent.center.ToVector2(), Point2.Distance(cCurrent.radius, cCurrent.center), point.ToVector2(), ref vresult);
+                    }
+                    else
+                    {
+                        return 0;                                                       //点只能附着在点集上
+                    }
+                    point.rely.Add(relyGeometry);
+                    Point2 pointActual = new Point2() { X = vresult.X, Y = vresult.Y, id = id, };
+                    coordinate.AddPoint(pointActual);
+                    pointActual.id = id;
+                    return 1;
+                }
+                else if (nowstr == "2" || nowstr.ToLower() == "i" || nowstr.ToLower() == "intersect")
+                {
+                    int iid1, iid2;
+                    if (!int.TryParse(infomations[3], out iid1)) return 0;                //id不正常
+                    if (!int.TryParse(infomations[4], out iid2)) return 0;                //id不正常
+                    bool cwiskmark;        //如果点集其中一个是圆，该点在第一个点集中是否为逆时针第一个
+                    if (!bool.TryParse(infomations[1], out cwiskmark)) cwiskmark = true;
+                    if (iid1 == iid2) return 0;
+                    Models.Geometry.Geometry iSet1 = coordinate.GetGeometryById(iid1);
+                    if (iSet1 == null) return 0;
+                    Models.Geometry.Geometry iSet2 = coordinate.GetGeometryById(iid2);
+                    if (iSet2 == null) return 0;
+                    if (iSet1 is IPointSet && iSet2 is IPointSet)                       //两个必须都是点集
+                    {
+                        List<Point2> plist = (iSet1 as IPointSet).Intersection(iSet2 as IPointSet);
+                        if (plist.Count == 1)
+                        {
+                            coordinate.AddPoint(plist[0]);
+                        }
+                        for(int i = 0; i < plist.Count; i++)
+                        {
+                            if(plist[i].markOfTwoIntersectPointOnCircle == cwiskmark)           //选择两个点之中你要的交点
+                            {
+                                
+                                coordinate.AddPoint(plist[i]);
+                                plist[i].id = id;
+                                return 1;
+                                //break;
+                            }
+                        }
+                    }
+                    return 0;                       //两个必须都是点集
+                }
+                else
+                {
+                    return 0;                   //创建失败
+                }
+            }
+            else if(infomations[0] == "1" || infomations[0].ToUpper() == "L" || infomations[0].ToLower() == "line")         //构造线
+            {
+                nowstr = infomations[2];
+                if (nowstr == "0" || nowstr.ToLower() == "n" || nowstr.ToLower() == "normal")               //两点构造一条直线
+                {
+                    int pid1, pid2;
+                    if (!int.TryParse(infomations[3], out pid1)) return 0;                //id不正常
+                    if (!int.TryParse(infomations[4], out pid2)) return 0;                //id不正常
+                    if (pid1 == pid2) return 0;
+                    Models.Geometry.Geometry p1 = coordinate.GetGeometryById(pid1);
+                    if (p1 == null) return 0;
+                    Models.Geometry.Geometry p2 = coordinate.GetGeometryById(pid2);
+                    if (p2 == null) return 0;
+                    if (p1 is Point2 && p2 is Point2)                       //两个必须都是点集
+                    {
+                        Line line = new Line()
+                        {
+                            p1 = p1 as Point2,
+                            p2 = p2 as Point2,
+                            id = id,
+                        };
+                        coordinate.AddLine(line);
+                        line.id = id;
+                    }
+                }
+            }
+            else if(infomations[0] == "2" || infomations[0].ToLower() == "c" || infomations[0].ToLower() == "circle")
+            {
+                nowstr = infomations[2];
+                if (nowstr == "0" || nowstr.ToLower() == "n" || nowstr.ToLower() == "normal")               //圆心，圆上一点构造圆
+                {
+                    int pid1, pid2;
+                    if (!int.TryParse(infomations[3], out pid1)) return 0;                //id不正常
+                    if (!int.TryParse(infomations[4], out pid2)) return 0;                //id不正常
+                    if (pid1 == pid2) return 0;
+                    Models.Geometry.Geometry p1 = coordinate.GetGeometryById(pid1);
+                    if (p1 == null) return 0;
+                    Models.Geometry.Geometry p2 = coordinate.GetGeometryById(pid2);
+                    if (p2 == null) return 0;
+                    if (p1 is Point2 && p2 is Point2)                       //两个必须都是点集
+                    {
+                        Circle circle = new Circle()
+                        {
+                            center = p1 as Point2,
+                            radius = p2 as Point2,
+                            id = id,
+                        };
+                        coordinate.AddCircle(circle);
+                        circle.id = id;
+                    }
+                }
+            }
+            else
+            {
+                return 0;                   //创建失败
+            }
+
+            return 0;
+        }
     }
 }

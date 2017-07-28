@@ -56,7 +56,7 @@ namespace Geomystery.Models.Geometry
 
         public float distanceOf(Point2 anoyherP)
         {
-            return distance(this, anoyherP);
+            return Distance(this, anoyherP);
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace Geomystery.Models.Geometry
         /// <param name="p1">点1</param>
         /// <param name="p2">点2</param>
         /// <returns>两点距离</returns>
-        public static float distance(Point2 p1, Point2 p2)
+        public static float Distance(Point2 p1, Point2 p2)
         {
             return (float)Math.Sqrt(Math.Pow(p1.X - p2.X, 2.0) + Math.Pow(p1.Y - p2.Y, 2.0));
         }

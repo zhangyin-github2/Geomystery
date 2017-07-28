@@ -447,5 +447,22 @@ namespace Geomystery.Models.Geometry
                 }
             }
         }
+
+        public Geometry GetGeometryById(int id)
+        {
+            foreach (Models.Geometry.Geometry selectedPoint in this.pointList)
+            {
+                if (selectedPoint.id == id) return selectedPoint;
+            }
+            foreach (Models.Geometry.Geometry selectedPointSet in this.pointSetList)
+            {
+                if (selectedPointSet.id == id) return selectedPointSet;
+            }
+            foreach (Models.Geometry.Geometry selectedPolygon in this.polygonList)
+            {
+                if (selectedPolygon.id == id) return selectedPolygon;
+            }
+            return null;
+        }
     }
 }

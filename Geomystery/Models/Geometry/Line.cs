@@ -192,6 +192,7 @@ namespace Geomystery.Models.Geometry
                     Point2 onePoint = new Point2() { X = p1.X + (float)simpleMatrix[0][2] * v1.X, Y = p1.Y + (float)simpleMatrix[0][2] * v1.Y };
                     onePoint.rely.Add(this);
                     onePoint.rely.Add((Geometry)another);
+                    onePoint.markOfTwoIntersectPointOnCircle = true;
                     pcl.Add(onePoint);     //存在一个交点
                 }
             }
