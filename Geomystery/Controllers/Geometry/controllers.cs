@@ -412,21 +412,23 @@ namespace Geomystery.Controllers.Geometry
 
         public int AddFromString(string args)
         {
-            if (args == null || args == "") return 0;                           //无参数
+            if (args == null || args == "") return -1;                           //无参数
             char[] splitter = new Char[] { ',', };
             string[] infomations = args.Split(splitter);                        //参数列表
-            if (infomations.Count() < 3) return 0;
+            if (infomations.Count() < 4) return -2;
             string nowstr = null;
             int id = -1;                                //元素的id
-            if (!int.TryParse(infomations[1], out id)) return 0;                //id不正常
+            if (!int.TryParse(infomations[1], out id)) return -3;                //id不正常
+            bool isVisible;                             //可见性
+            if (!bool.TryParse(infomations[3], out isVisible)) return -4;        //可见性不正常
             if (infomations[0] == "0" || infomations[0].ToLower() == "p" || infomations[0].ToLower() == "point")
             {
                 nowstr = infomations[2];
                 if (nowstr == "0" || nowstr.ToLower() == "n" || nowstr.ToLower() == "normal")
                 {
                     float pX, pY;
-                    if (!float.TryParse(infomations[3], out pX)) return 0;                //id不正常
-                    if (!float.TryParse(infomations[4], out pY)) return 0;                //id不正常
+                    if (!float.TryParse(infomations[4], out pX)) return 0;                //id不正常
+                    if (!float.TryParse(infomations[5], out pY)) return 0;                //id不正常
                     Point2 point = new Point2()
                     {
                         X = pX,
@@ -441,10 +443,10 @@ namespace Geomystery.Controllers.Geometry
                 else if (nowstr == "1" || nowstr.ToLower() == "r" || nowstr.ToLower() == "rely")
                 {
                     float pX, pY;
-                    if (!float.TryParse(infomations[3], out pX)) return 0;                //id不正常
-                    if (!float.TryParse(infomations[4], out pY)) return 0;                //id不正常
+                    if (!float.TryParse(infomations[4], out pX)) return 0;                //id不正常
+                    if (!float.TryParse(infomations[5], out pY)) return 0;                //id不正常
                     int rid;        //依赖点集id
-                    if (!int.TryParse(infomations[1], out rid)) return 0;                //id不正常
+                    if (!int.TryParse(infomations[6], out rid)) return 0;                //id不正常
 
                     Point2 point = new Point2()
                     {
@@ -480,10 +482,10 @@ namespace Geomystery.Controllers.Geometry
                 else if (nowstr == "2" || nowstr.ToLower() == "i" || nowstr.ToLower() == "intersect")
                 {
                     int iid1, iid2;
-                    if (!int.TryParse(infomations[3], out iid1)) return 0;                //id不正常
-                    if (!int.TryParse(infomations[4], out iid2)) return 0;                //id不正常
+                    if (!int.TryParse(infomations[4], out iid1)) return 0;                //id不正常
+                    if (!int.TryParse(infomations[5], out iid2)) return 0;                //id不正常
                     bool cwiskmark;        //如果点集其中一个是圆，该点在第一个点集中是否为逆时针第一个
-                    if (!bool.TryParse(infomations[1], out cwiskmark)) cwiskmark = true;
+                    if (!bool.TryParse(infomations[6], out cwiskmark)) cwiskmark = true;
                     if (iid1 == iid2) return 0;
                     Models.Geometry.Geometry iSet1 = coordinate.GetGeometryById(iid1);
                     if (iSet1 == null) return 0;
@@ -521,8 +523,8 @@ namespace Geomystery.Controllers.Geometry
                 if (nowstr == "0" || nowstr.ToLower() == "n" || nowstr.ToLower() == "normal")               //两点构造一条直线
                 {
                     int pid1, pid2;
-                    if (!int.TryParse(infomations[3], out pid1)) return 0;                //id不正常
-                    if (!int.TryParse(infomations[4], out pid2)) return 0;                //id不正常
+                    if (!int.TryParse(infomations[4], out pid1)) return 0;                //id不正常
+                    if (!int.TryParse(infomations[5], out pid2)) return 0;                //id不正常
                     if (pid1 == pid2) return 0;
                     Models.Geometry.Geometry p1 = coordinate.GetGeometryById(pid1);
                     if (p1 == null) return 0;
@@ -547,8 +549,8 @@ namespace Geomystery.Controllers.Geometry
                 if (nowstr == "0" || nowstr.ToLower() == "n" || nowstr.ToLower() == "normal")               //圆心，圆上一点构造圆
                 {
                     int pid1, pid2;
-                    if (!int.TryParse(infomations[3], out pid1)) return 0;                //id不正常
-                    if (!int.TryParse(infomations[4], out pid2)) return 0;                //id不正常
+                    if (!int.TryParse(infomations[4], out pid1)) return 0;                //id不正常
+                    if (!int.TryParse(infomations[5], out pid2)) return 0;                //id不正常
                     if (pid1 == pid2) return 0;
                     Models.Geometry.Geometry p1 = coordinate.GetGeometryById(pid1);
                     if (p1 == null) return 0;

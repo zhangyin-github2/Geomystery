@@ -297,18 +297,27 @@ namespace Geomystery.Views.Geometry
         /// <returns></returns>
         public int RemoveLine(Line line)
         {
-            foreach (OutputGeometry outputGeometry in outputPointSetList)
+            int n = 0;
+            /*
+            while(n < outputPointSetList.Count)
             {
-                if (outputGeometry is OutputLine)
+                if (outputPointSetList[n] is OutputLine)
                 {
-                    OutputLine outputLine = outputGeometry as OutputLine;
+                    OutputLine outputLine = outputPointSetList[n] as OutputLine;
                     if (outputLine.line == line)
                     {
-                        outputPointSetList.Remove(outputGeometry);
-                        return 1;
+                        outputPointSetList.Remove(outputPointSetList[n]);
+                        continue;
                     }
                 }
+                n++;
             }
+            */
+            for(int i = 0; i < line.resultLine.Count; i++)
+            {
+                outputPointSetList.Remove(line.resultLine[i]);
+            }
+            line.resultLine.Clear();
             return 0;
         }
 
