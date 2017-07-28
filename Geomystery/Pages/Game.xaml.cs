@@ -141,19 +141,19 @@ namespace Geomystery
             List<OutputPoint> pointList = controller.outputCoordinates[0].outputPointList;
             if (pointList != null)
             {
-                foreach (OutputPoint outputPoint in pointList)
+                for (int i = 0; i < pointList.Count; i++)
                 {
-                    if (outputPoint.isVisible)
+                    if (pointList[i].isVisible)
                     {
-                        if (outputPoint.point.isSelected)
+                        if (pointList[i].point.isSelected)
                         {
-                            args.DrawingSession.FillCircle(outputPoint.viewPoint, OutputPoint.scopeLength, outputPoint.selectedFillColor);
-                            args.DrawingSession.DrawCircle(outputPoint.viewPoint, OutputPoint.scopeLength, outputPoint.selectedLineColor);
+                            args.DrawingSession.FillCircle(pointList[i].viewPoint, OutputPoint.scopeLength, pointList[i].selectedFillColor);
+                            args.DrawingSession.DrawCircle(pointList[i].viewPoint, OutputPoint.scopeLength, pointList[i].selectedLineColor);
                         }
                         else
                         {
-                            args.DrawingSession.FillCircle(outputPoint.viewPoint, OutputPoint.scopeLength, outputPoint.fillColor);
-                            args.DrawingSession.DrawCircle(outputPoint.viewPoint, OutputPoint.scopeLength, outputPoint.lineColor);
+                            args.DrawingSession.FillCircle(pointList[i].viewPoint, OutputPoint.scopeLength, pointList[i].fillColor);
+                            args.DrawingSession.DrawCircle(pointList[i].viewPoint, OutputPoint.scopeLength, pointList[i].lineColor);
                         }
                     }
                 }
