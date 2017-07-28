@@ -234,6 +234,13 @@ namespace Geomystery
             controller.outputCoordinates[0].refreshGeometrys();         //刷新
         }
 
+        private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            controller.outputCoordinates[0].WindowHeight = (float)canvas1.ActualHeight;
+            controller.outputCoordinates[0].WindowWidth = (float)canvas1.ActualWidth;
+            controller.outputCoordinates[0].refreshGeometrys();         //刷新
+        }
+
         private void undo_Click(object sender, RoutedEventArgs e)
         {
             controller.Undo();

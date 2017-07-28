@@ -260,6 +260,10 @@ namespace Geomystery
             double k = Math.Min(kw, kh);
             GameId.FontSize = Math.Max(32 * k,12);
             GameName.FontSize = Math.Max(28 * k, 12);
+
+            controller.outputCoordinates[0].WindowHeight = (float)canvas1.ActualHeight;
+            controller.outputCoordinates[0].WindowWidth = (float)canvas1.ActualWidth;
+            controller.outputCoordinates[0].refreshGeometrys();         //刷新
         }
     }
 }

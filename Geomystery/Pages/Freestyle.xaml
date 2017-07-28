@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:canvas="using:Microsoft.Graphics.Canvas.UI.Xaml"
     xmlns:toolData="using:Geomystery.Controllers.Geometry"
-    mc:Ignorable="d" Loaded="Page_Loaded" Unloaded="Page_Unloaded"
+    mc:Ignorable="d" Loaded="Page_Loaded" Unloaded="Page_Unloaded" SizeChanged="Page_SizeChanged"
     RequestedTheme="{x:Bind View.Theme,Mode=OneWay}">
 
     <Page.Resources>
