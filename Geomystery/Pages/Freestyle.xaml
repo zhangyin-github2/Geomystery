@@ -166,6 +166,7 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
@@ -184,8 +185,7 @@
                                       PointerPressed="canvas1_PointerPressed"
                                       PointerReleased="canvas1_PointerReleased"
                                       PointerMoved="canvas1_PointerMoved"
-                                      PointerWheelChanged="canvas1_PointerWheelChanged"
-                                      />
+                                      PointerWheelChanged="canvas1_PointerWheelChanged"/>
         
         <Grid Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Bottom">
             <Rectangle Fill="#7F808080"/>
@@ -196,9 +196,9 @@
             </ListView>
         </Grid>
 
-        <Rectangle Name="blank1" Height="60" Width="164" Fill="{x:Null}" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" IsTapEnabled="False" />
+        <Rectangle Name="blank1" Height="60" Width="164" Fill="{ThemeResource SystemBackgroundAltHighBrush}" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" IsTapEnabled="False" />
 
-        <Rectangle Name="blank2" Height="60" Width="246" Fill="{x:Null}" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Top" IsTapEnabled="False" />
+        <Rectangle Name="blank2" Height="60" Width="246" Fill="{ThemeResource SystemBackgroundAltHighBrush}" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Top" IsTapEnabled="False" />
 
         <StackPanel Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Top" Orientation="Horizontal">
             <Button x:Name="undo" BorderThickness="0" Content="&#xE248;" FontSize="36" Background="Transparent" Foreground="{ThemeResource SystemBackgroundBaseHighBrush}" FontFamily="Segoe MDl2 Assets" Height="64" Width="82" Click="undo_Click" IsTabStop="False"/>
