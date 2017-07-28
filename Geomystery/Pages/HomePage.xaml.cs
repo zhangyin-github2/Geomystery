@@ -103,7 +103,6 @@ namespace Geomystery.Pages
 
             turnSB.RepeatBehavior = RepeatBehavior.Forever;
             turnSB.Begin();
-            turnSB.
         }
 
         private void Game_Click(object sender, RoutedEventArgs e)
