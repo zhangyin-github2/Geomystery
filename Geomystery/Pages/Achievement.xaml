@@ -12,7 +12,7 @@
     <Page.Resources>
         <ResourceDictionary >
             <DataTemplate x:DataType="data:Achievements" x:Key="AchDataTemplate">
-                <Grid  HorizontalAlignment="Stretch" Width="450">
+                <Grid  HorizontalAlignment="Stretch" Width="450"  >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.5*"/>
                         <ColumnDefinition Width="0.6*"/>
@@ -40,7 +40,7 @@
                         </Grid.RowDefinitions>
                         <Grid Grid.Row="0">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="3*"/>
                                 <ColumnDefinition Width="1*"/>
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="{x:Bind name}" FontSize="{x:Bind fontsize1,Mode=TwoWay}" TextAlignment="Left" FontFamily="隶书"  Foreground="#FF141414" VerticalAlignment="Bottom"/>

@@ -7,14 +7,14 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     xmlns:toolData="using:Geomystery.Award"
-    RequestedTheme="{x:Bind View.Theme,Mode=OneWay}">
+    RequestedTheme="{x:Bind View.Theme,Mode=OneWay}"  LayoutUpdated="Page_LayoutUpdated">
     
     <Page.Resources>
         <ResourceDictionary>
             <local:intToVisibilityConverter x:Key="Converter1"/>
             <DataTemplate x:DataType="toolData:Level"
                           x:Key="levelTempelate">
-                <Grid Width="350" Height="180">
+                <Grid Width="350" Height="180" Loaded="Grid_Loaded">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*"/>
                         <ColumnDefinition Width="8*"/>
@@ -84,7 +84,9 @@
             <RowDefinition Height="5*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <GridView x:Name="levelbord" Grid.Column="1" Grid.Row="1"  ItemsSource="{x:Bind levels}" 
+        <GridView x:Name="levelbord" Grid.Column="1" Grid.Row="1"  
+                  HorizontalAlignment="Center" VerticalAlignment="Center"
+                  ItemsSource="{x:Bind levels}" 
                   ItemTemplate="{StaticResource levelTempelate}" ScrollViewer.VerticalScrollBarVisibility="Hidden"
                   IsItemClickEnabled="True" ItemClick="levelbord_ItemClick" IsTabStop="False"/>
     </Grid>
