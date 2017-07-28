@@ -93,7 +93,14 @@ namespace Geomystery
                     if (geoList[i] is OutputCircle)
                     {
                         var realCircle = geoList[i] as OutputCircle;
-                        args.DrawingSession.DrawCircle(realCircle.center, realCircle.radius, realCircle.lineColor, realCircle.thickness);
+                        if(realCircle.circle.isSelected)
+                        {
+                            args.DrawingSession.DrawCircle(realCircle.center, realCircle.radius, realCircle.selectedLineColor, realCircle.thickness);
+                        }
+                        else
+                        {
+                            args.DrawingSession.DrawCircle(realCircle.center, realCircle.radius, realCircle.lineColor, realCircle.thickness);
+                        }
 
                         if (realCircle.circle.center.isSelected)
                         {
@@ -119,7 +126,14 @@ namespace Geomystery
                     else if (geoList[i] is OutputLine)
                     {
                         var realLine = geoList[i] as OutputLine;
-                        args.DrawingSession.DrawLine(realLine.p1, realLine.p2, realLine.lineColor, realLine.thickness);
+                        if(realLine.line.isSelected)
+                        {
+                            args.DrawingSession.DrawLine(realLine.p1, realLine.p2, realLine.selectedLineColor, realLine.thickness);
+                        }
+                        else
+                        {
+                            args.DrawingSession.DrawLine(realLine.p1, realLine.p2, realLine.lineColor, realLine.thickness);
+                        }
 
                         if (realLine.line.p1.isSelected)
                         {

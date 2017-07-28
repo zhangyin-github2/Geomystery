@@ -85,17 +85,24 @@ namespace Geomystery
                 args.DrawingSession.DrawCircle(plist[i], 5, Color.FromArgb(255, 0, 0, 0));
             }
             */
-            Rect rect = new Rect(0, 0, maxHeightWidth.X, maxHeightWidth.Y);
-            args.DrawingSession.DrawRectangle(rect,Colors.Black);
+            //Rect rect = new Rect(0, 0, maxHeightWidth.X, maxHeightWidth.Y);
+            //args.DrawingSession.DrawRectangle(rect,Colors.Black);
             var geoList = controller.outputCoordinates[0].geometryList;
-            if(geoList != null)
+            if (geoList != null)
             {
                 for (int i = 0; i < geoList.Count; i++)
                 {
                     if (geoList[i] is OutputCircle)
                     {
                         var realCircle = geoList[i] as OutputCircle;
-                        args.DrawingSession.DrawCircle(realCircle.center, realCircle.radius, realCircle.lineColor, realCircle.thickness);
+                        if (realCircle.circle.isSelected)
+                        {
+                            args.DrawingSession.DrawCircle(realCircle.center, realCircle.radius, realCircle.selectedLineColor, realCircle.thickness);
+                        }
+                        else
+                        {
+                            args.DrawingSession.DrawCircle(realCircle.center, realCircle.radius, realCircle.lineColor, realCircle.thickness);
+                        }
 
                         if (realCircle.circle.center.isSelected)
                         {
@@ -121,7 +128,14 @@ namespace Geomystery
                     else if (geoList[i] is OutputLine)
                     {
                         var realLine = geoList[i] as OutputLine;
-                        args.DrawingSession.DrawLine(realLine.p1, realLine.p2, realLine.lineColor, realLine.thickness);
+                        if (realLine.line.isSelected)
+                        {
+                            args.DrawingSession.DrawLine(realLine.p1, realLine.p2, realLine.selectedLineColor, realLine.thickness);
+                        }
+                        else
+                        {
+                            args.DrawingSession.DrawLine(realLine.p1, realLine.p2, realLine.lineColor, realLine.thickness);
+                        }
 
                         if (realLine.line.p1.isSelected)
                         {
@@ -133,7 +147,7 @@ namespace Geomystery
                             args.DrawingSession.FillCircle(realLine.line.p1.resultPoint.viewPoint, OutputPoint.scopeLength, realLine.line.p1.resultPoint.fillColor);
                             args.DrawingSession.DrawCircle(realLine.line.p1.resultPoint.viewPoint, OutputPoint.scopeLength, realLine.line.p1.resultPoint.lineColor);
                         }
-                        if(realLine.line.p2.isSelected)
+                        if (realLine.line.p2.isSelected)
                         {
                             args.DrawingSession.FillCircle(realLine.line.p2.resultPoint.viewPoint, OutputPoint.scopeLength, realLine.line.p1.resultPoint.selectedFillColor);
                             args.DrawingSession.DrawCircle(realLine.line.p2.resultPoint.viewPoint, OutputPoint.scopeLength, realLine.line.p1.resultPoint.selectedLineColor);
@@ -184,6 +198,9 @@ namespace Geomystery
             MainPage.debugTxt.Text = p.X.ToString() + " | " + p.Y.ToString();
 
             controller.PointerPressed((UserTool)toolList.SelectedItem, sender, e);
+
+            redo.IsEnabled = controller.CanRedo();
+            undo.IsEnabled = controller.CanUndo();
         }
 
         private void canvas1_PointerReleased(object sender, PointerRoutedEventArgs e)
@@ -204,6 +221,8 @@ namespace Geomystery
             maxHeightWidth = new Vector2((float)canvas1.ActualWidth, (float)canvas1.ActualHeight);
             MainPage.debugTxt.Text = maxHeightWidth.X.ToString() + " | " + maxHeightWidth.Y.ToString();
             toolList.SelectedIndex = 2;
+            redo.IsEnabled = controller.CanRedo();
+            undo.IsEnabled = controller.CanUndo();
         }
 
         private void Page_Unloaded(object sender, RoutedEventArgs e)
@@ -219,17 +238,40 @@ namespace Geomystery
 
         private void refresh_Click(object sender, RoutedEventArgs e)
         {
-            controller.outputCoordinates[0].geometryList.Clear();
+            controller = new Controllers.Geometry.Controllers(1);
+            controller.outputCoordinates[0].WindowHeight = (float)canvas1.ActualHeight;
+            controller.outputCoordinates[0].WindowWidth = (float)canvas1.ActualWidth;
         }
 
         private void redo_Click(object sender, RoutedEventArgs e)
         {
+            controller.Redo();
+            redo.IsEnabled = controller.CanRedo();
+            undo.IsEnabled = controller.CanUndo();
+        }
 
+        private void canvas1_PointerWheelChanged(object sender, PointerRoutedEventArgs e)
+        {
+            var wheelDelta = e.GetCurrentPoint(canvas1).Properties.MouseWheelDelta;
+            int step = wheelDelta / 10;
+            if (step > 0)
+            {
+                controller.outputCoordinates[0].unitLength *= (1.0f + 0.01f * step);
+            }
+            else if (step < 0 && controller.outputCoordinates[0].unitLength > 1)
+            {
+                float newUL = controller.outputCoordinates[0].unitLength * (1.0f + 0.01f * step);
+                if (newUL >= 1) controller.outputCoordinates[0].unitLength = newUL;
+                else controller.outputCoordinates[0].unitLength = 1;
+            }
+            controller.outputCoordinates[0].refreshGeometrys();         //刷新
         }
 
         private void undo_Click(object sender, RoutedEventArgs e)
         {
-
+            controller.Undo();
+            redo.IsEnabled = controller.CanRedo();
+            undo.IsEnabled = controller.CanUndo();
         }
     }
 }
