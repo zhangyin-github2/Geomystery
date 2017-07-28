@@ -26,6 +26,8 @@ namespace Geomystery
     {
         private ViewModel.ViewModel View { set; get; } = new ViewModel.ViewModel();
         public ObservableCollection<Level> levels;
+        public List<Grid> GridInListView = new List<Grid>();
+        public List<TextBlock> TextInListView = new List<TextBlock>();
         public SelectGame()
         {
             this.InitializeComponent();
@@ -44,7 +46,7 @@ namespace Geomystery
         {
             GridInListView.Add((Grid)sender);
         }
-        public List<Grid> GridInListView = new List<Grid>();
+        
         private void Page_LayoutUpdated(object sender, object e)
         {
             double w, h;
@@ -64,6 +66,26 @@ namespace Geomystery
             MainPage.MainFrame.Navigate(typeof(Game),x);
             APPDATA.app_data.MoveTo(AppPage.GamePage);
             APPDATA.app_data.CURRENT_PAGE = AppPage.GamePage;
+        }
+
+        private void TextBlock_Loaded(object sender, RoutedEventArgs e)
+        {
+            TextInListView.Add(sender as TextBlock);
+        }
+
+        private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            double w, h,k;
+            h = Window.Current.Bounds.Height;
+            w = Window.Current.Bounds.Width;
+            k = Math.Min( w / 1920.0,  h / 1080.0);
+            foreach (var x in TextInListView)
+            {
+                string ss = x.Text;
+                if (!char.IsDigit(ss[0]))
+                    x.FontSize = 32 * k;
+                else x.FontSize = 36 * k;
+            }
         }
     }
 
