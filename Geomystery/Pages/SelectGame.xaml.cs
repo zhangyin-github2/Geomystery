@@ -40,7 +40,22 @@ namespace Geomystery
         {
             levels = Level.getLevels();
         }
-
+        private void Grid_Loaded(object sender, RoutedEventArgs e)
+        {
+            GridInListView.Add((Grid)sender);
+        }
+        public List<Grid> GridInListView = new List<Grid>();
+        private void Page_LayoutUpdated(object sender, object e)
+        {
+            double w, h;
+            h = Window.Current.Bounds.Height;
+            w = Window.Current.Bounds.Width;
+            foreach (var x in GridInListView)
+            {
+                x.Width = 450 * w / 1920.0;
+                x.Height = 250 * h / 1080.0;
+            }
+        }
         private void levelbord_ItemClick(object sender, ItemClickEventArgs e)
         {
             var x = e.ClickedItem as Level;
