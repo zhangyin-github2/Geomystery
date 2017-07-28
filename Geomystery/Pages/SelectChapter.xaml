@@ -334,9 +334,9 @@
                         <Setter Target="Chapter1.BorderThickness" Value="3.4" />
                         <Setter Target="Chapter2.BorderThickness" Value="3.4" />
                         <Setter Target="Chapter3.BorderThickness" Value="3.4" />
-                        <Setter Target="Chapter1.FontSize" Value="16" />
-                        <Setter Target="Chapter2.FontSize" Value="16" />
-                        <Setter Target="Chapter3.FontSize" Value="16" />
+                        <Setter Target="Chapter1.FontSize" Value="24" />
+                        <Setter Target="Chapter2.FontSize" Value="24" />
+                        <Setter Target="Chapter3.FontSize" Value="24" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="miniView">
@@ -356,9 +356,9 @@
                         <Setter Target="Chapter1.BorderThickness" Value="5.5" />
                         <Setter Target="Chapter2.BorderThickness" Value="5.5" />
                         <Setter Target="Chapter3.BorderThickness" Value="5.5" />
-                        <Setter Target="Chapter1.FontSize" Value="26" />
-                        <Setter Target="Chapter2.FontSize" Value="26" />
-                        <Setter Target="Chapter3.FontSize" Value="26" />
+                        <Setter Target="Chapter1.FontSize" Value="38" />
+                        <Setter Target="Chapter2.FontSize" Value="38" />
+                        <Setter Target="Chapter3.FontSize" Value="38" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="normalView">
@@ -378,9 +378,9 @@
                         <Setter Target="Chapter1.BorderThickness" Value="8" />
                         <Setter Target="Chapter2.BorderThickness" Value="8" />
                         <Setter Target="Chapter3.BorderThickness" Value="8" />
-                        <Setter Target="Chapter1.FontSize" Value="38" />
-                        <Setter Target="Chapter2.FontSize" Value="38" />
-                        <Setter Target="Chapter3.FontSize" Value="38" />
+                        <Setter Target="Chapter1.FontSize" Value="54" />
+                        <Setter Target="Chapter2.FontSize" Value="54" />
+                        <Setter Target="Chapter3.FontSize" Value="54" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="fullView">
@@ -399,9 +399,9 @@
                         <Setter Target="Chapter1.BorderThickness" Value="10" />
                         <Setter Target="Chapter2.BorderThickness" Value="10" />
                         <Setter Target="Chapter3.BorderThickness" Value="10" />
-                        <Setter Target="Chapter1.FontSize" Value="48" />
-                        <Setter Target="Chapter2.FontSize" Value="48" />
-                        <Setter Target="Chapter3.FontSize" Value="48" />
+                        <Setter Target="Chapter1.FontSize" Value="68" />
+                        <Setter Target="Chapter2.FontSize" Value="68" />
+                        <Setter Target="Chapter3.FontSize" Value="68" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
