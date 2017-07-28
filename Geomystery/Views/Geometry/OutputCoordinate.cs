@@ -52,11 +52,22 @@ namespace Geomystery.Views.Geometry
          */
         public Vector2 vector { get; set; }
 
-
+        ///old只有一个图层，直线和圆会把点盖住
         /// <summary>
         /// 被显示的几何实体列表
         /// </summary>
-        public List<OutputGeometry> geometryList { get; set; }
+        //public List<OutputGeometry> geometryList { get; set; }
+
+
+        /// <summary>
+        /// 屏幕上的点的列表
+        /// </summary>
+        public List<OutputPoint> outputPointList { get; set; }
+
+        /// <summary>
+        /// 屏幕上点集的列表
+        /// </summary>
+        public List<OutputGeometry> outputPointSetList { get; set; }
 
         /// <summary>
         /// 被显示的文本列表，这个文本可能是孤立文本，也可能是一个几何体的名字（需要附着在这个几何体的周围）
@@ -70,7 +81,9 @@ namespace Geomystery.Views.Geometry
         public OutputCoordinate(Coordinate coordinate)
         {
             this.coordinate = coordinate;
-            geometryList = new List<OutputGeometry>();
+            outputPointList = new List<OutputPoint>();
+            outputPointSetList = new List<OutputGeometry>();
+            //geometryList = new List<OutputGeometry>();
             unitLength = 100;
         }
 
@@ -171,7 +184,7 @@ namespace Geomystery.Views.Geometry
                 viewPoint = ToVector2(point),
             };
             point.resultPoint = outputPoint;
-            geometryList.Add(outputPoint);
+            outputPointList.Add(outputPoint);
             return 1;
         }
 
@@ -181,16 +194,12 @@ namespace Geomystery.Views.Geometry
         /// <param name="point">待移除的点（逻辑坐标系中）</param>
         public int RemovePoint(Point2 point)
         {
-            foreach(OutputGeometry outputGeometry in geometryList)
+            foreach(OutputPoint outputPoint in outputPointList)
             {
-                if(outputGeometry is OutputPoint)
+                if (outputPoint.point == point)
                 {
-                    OutputPoint outputPoint = outputGeometry as OutputPoint;
-                    if(outputPoint.point == point)
-                    {
-                        geometryList.Remove(outputGeometry);
-                        return 1;
-                    }
+                    outputPointList.Remove(outputPoint);
+                    return 1;
                 }
             }
             return 0;
@@ -205,7 +214,7 @@ namespace Geomystery.Views.Geometry
         {
             if(line.lineRely == LineRely.Normal)                    //两点生成
             {
-                if(line.type == LineType.Straight)                      //直线
+                if(line.type == LineType.Line)                      //直线
                 {
                     Vector2 v1 = ToVector2(line.p1);
                     Vector2 v2 = ToVector2(line.p2);
@@ -268,10 +277,10 @@ namespace Geomystery.Views.Geometry
                     };
 
                     line.resultLine.Add(outputLineStraight);                //先画延长线
-                    geometryList.Add(outputLineStraight);
+                    outputPointSetList.Add(outputLineStraight);
 
                     line.resultLine.Add(outputLine);                        //覆盖线段
-                    geometryList.Add(outputLine);
+                    outputPointSetList.Add(outputLine);
                     
                     return 1;
                 }
@@ -288,14 +297,14 @@ namespace Geomystery.Views.Geometry
         /// <returns></returns>
         public int RemoveLine(Line line)
         {
-            foreach (OutputGeometry outputGeometry in geometryList)
+            foreach (OutputGeometry outputGeometry in outputPointSetList)
             {
                 if (outputGeometry is OutputLine)
                 {
                     OutputLine outputLine = outputGeometry as OutputLine;
                     if (outputLine.line == line)
                     {
-                        geometryList.Remove(outputGeometry);
+                        outputPointSetList.Remove(outputGeometry);
                         return 1;
                     }
                 }
@@ -324,7 +333,7 @@ namespace Geomystery.Views.Geometry
                 radius = (ToVector2(circle.center) - ToVector2(circle.radius)).Length(),
             };
             circle.resultCircle = outputCircle;
-            geometryList.Add(outputCircle);
+            outputPointSetList.Add(outputCircle);
             return 0;
         }
 
@@ -335,14 +344,14 @@ namespace Geomystery.Views.Geometry
         /// <returns>操作结果</returns>
         public int RemoveCircle(Circle circle)
         {
-            foreach (OutputGeometry outputGeometry in geometryList)
+            foreach (OutputGeometry outputGeometry in outputPointSetList)
             {
                 if (outputGeometry is OutputCircle)
                 {
                     OutputCircle outputCircle = outputGeometry as OutputCircle;
                     if (outputCircle.circle == circle)
                     {
-                        geometryList.Remove(outputGeometry);
+                        outputPointSetList.Remove(outputGeometry);
                         return 1;
                     }
                 }
@@ -359,39 +368,42 @@ namespace Geomystery.Views.Geometry
         {
             Surroundings result = new Surroundings() { screenPoint = point };
             float currentLength = 0;
-            if (geometryList == null) return null;
-            for (int i = 0; i < geometryList.Count; i++)
+            if (outputPointList == null && outputPointSetList == null) return null;
+            for (int i = 0; i < outputPointList.Count; i++)
             {
-                if (geometryList[i].isVisible == true)
+                if (outputPointList[i].isVisible == true)
                 {
-                    if (geometryList[i] is OutputPoint)
+                    var pCurrent = outputPointList[i];
+                    if ((currentLength = (pCurrent.viewPoint - point).Length()) < OutputPoint.scopeLength)            //点击的点在屏幕上某个点的圆圈内
                     {
-                        var pCurrent = geometryList[i] as OutputPoint;
-                        if ((currentLength = (pCurrent.viewPoint - point).Length()) < OutputPoint.scopeLength)            //点击的点在屏幕上某个点的圆圈内
-                        {
-                            result.surroundingPoint.Add(new GeometryAndTheDistance() { geometry = pCurrent.point, distance = currentLength });
-                        }
+                        result.surroundingPoint.Add(new GeometryAndTheDistance() { geometry = pCurrent.point, distance = currentLength });
                     }
-                    else if (geometryList[i] is OutputLine)
+                }
+            }
+            for (int i = 0; i < outputPointSetList.Count; i++)
+            {
+                if (outputPointSetList[i].isVisible == true)
+                {
+                    if (outputPointSetList[i] is OutputLine)
                     {
-                        var lCurrent = geometryList[i] as OutputLine;
+                        var lCurrent = outputPointSetList[i] as OutputLine;
                         var perpendicularFoot = new Vector2();
                         if ((currentLength = OutputCoordinate.DistanceOfPointAndLine(lCurrent.p1, lCurrent.p2 - lCurrent.p1, point, ref perpendicularFoot)) < OutputPoint.scopeLength)
                         {
                             int j;
-                            for(j = 0; j < result.surroundingLine.Count; j++)
+                            for (j = 0; j < result.surroundingLine.Count; j++)
                             {
                                 if (result.surroundingLine[j].geometry == lCurrent.line) break;
                             }
-                            if(j == result.surroundingLine.Count)                           //防止重复添加
+                            if (j == result.surroundingLine.Count)                           //防止重复添加
                             {
                                 result.surroundingLine.Add(new GeometryAndTheDistance() { geometry = lCurrent.line, distance = currentLength });
                             }
                         }
                     }
-                    else if (geometryList[i] is OutputCircle)
+                    else if (outputPointSetList[i] is OutputCircle)
                     {
-                        var cCurrent = geometryList[i] as OutputCircle;
+                        var cCurrent = outputPointSetList[i] as OutputCircle;
                         if ((currentLength = Math.Abs(cCurrent.radius - (point - cCurrent.center).Length())) < OutputPoint.scopeLength)
                         {
                             result.surroundingCircle.Add(new GeometryAndTheDistance() { geometry = cCurrent.circle, distance = currentLength });
@@ -494,55 +506,104 @@ namespace Geomystery.Views.Geometry
         /// </summary>
         public void refreshGeometrys()
         {
-            foreach(OutputGeometry outputGeometry in geometryList)
+            foreach (OutputPoint outputPoint in outputPointList)
             {
-                if(outputGeometry is OutputPoint)
+                outputPoint.viewPoint = ToVector2(outputPoint.point);
+            }
+            int i = 0;
+            OutputGeometry outputGeometry;
+            while (i < outputPointSetList.Count)
+            {
+                outputGeometry = outputPointSetList[i];
+                if (outputGeometry is OutputPoint)
                 {
-                    OutputPoint outputPoint = outputGeometry as OutputPoint;
-                    outputPoint.viewPoint = ToVector2(outputPoint.point);
+                    throw new Exception("不可能触发的异常");
                 }
                 else if(outputGeometry is OutputLine)
                 {
-                    OutputLine outputLine = outputGeometry as OutputLine;
-                    Vector2 v1 = ToVector2(outputLine.line.p1);
-                    Vector2 v2 = ToVector2(outputLine.line.p2);
-                    Vector2 v3 = new Vector2();
-                    Vector2 v4 = new Vector2();
+                    OutputLine outLine = outputGeometry as OutputLine;
+                    Line line = outLine.line;
+                    if (line.lineRely == LineRely.Normal)                    //两点生成
+                    {
+                        if (line.type == LineType.Line)                      //线段
+                        {
+                            if (!(outputPointSetList[i + 1] is OutputLine)) throw new Exception();
+                            if ( (outputPointSetList[i + 1] as OutputLine).line != line) throw new Exception();
 
-                    if (v1.X == v2.X)                //竖线
-                    {
-                        v3.X = v1.X;
-                        v3.Y = 0;
-                        v4.X = v1.X;
-                        v4.Y = WindowHeight;
-                    }
-                    else if (Math.Abs(v2.Y - v1.Y) > Math.Abs(v2.X - v1.X))
-                    {
-                        v3.X = v1.X - v1.Y * (v1.X - v2.X) / (v1.Y - v2.Y);
-                        v3.Y = 0;
-                        v4.X = (WindowHeight - v1.Y) / (v2.Y - v1.Y) * v2.X + (v2.Y - WindowHeight) / (v2.Y - v1.Y) * v1.X;
-                        v4.Y = WindowHeight;
-                    }
-                    else if (Math.Abs(v2.Y - v1.Y) <= Math.Abs(v2.X - v1.X))
-                    {
-                        v3.X = WindowWidth;
-                        v3.Y = (WindowWidth - v1.X) / (v2.X - v1.X) * v2.Y + (v2.X - WindowWidth) / (v2.X - v1.X) * v1.Y;
-                        v4.X = 0;
-                        v4.Y = v1.Y - v1.X * (v1.Y - v2.Y) / (v1.X - v2.X);
-                    }
-                    else
-                    {
-                        throw new Exception();
-                    }
+                            Vector2 v1 = ToVector2(line.p1);
+                            Vector2 v2 = ToVector2(line.p2);
+                            Vector2 v3 = new Vector2();
+                            Vector2 v4 = new Vector2();
 
-                    outputLine.p1 = v3;
-                    outputLine.p2 = v4;
+                            if (v1.X == v2.X)                //竖线
+                            {
+                                v3.X = v1.X;
+                                v3.Y = 0;
+                                v4.X = v1.X;
+                                v4.Y = WindowHeight;
+                            }
+                            else if (Math.Abs(v2.Y - v1.Y) > Math.Abs(v2.X - v1.X))
+                            {
+                                v3.X = v1.X - v1.Y * (v1.X - v2.X) / (v1.Y - v2.Y);
+                                v3.Y = 0;
+                                v4.X = (WindowHeight - v1.Y) / (v2.Y - v1.Y) * v2.X + (v2.Y - WindowHeight) / (v2.Y - v1.Y) * v1.X;
+                                v4.Y = WindowHeight;
+                            }
+                            else if (Math.Abs(v2.Y - v1.Y) <= Math.Abs(v2.X - v1.X))
+                            {
+                                v3.X = WindowWidth;
+                                v3.Y = (WindowWidth - v1.X) / (v2.X - v1.X) * v2.Y + (v2.X - WindowWidth) / (v2.X - v1.X) * v1.Y;
+                                v4.X = 0;
+                                v4.Y = v1.Y - v1.X * (v1.Y - v2.Y) / (v1.X - v2.X);
+                            }
+                            else
+                            {
+                                throw new Exception();
+                            }
+
+                            OutputLine outputLineNew = new OutputLine()
+                            {
+                                borderType = ViewType.Solid,
+                                isVisible = true,
+                                fillColor = Color.FromArgb(255, 76, 123, 207),
+                                lineColor = Color.FromArgb(255, 76, 123, 207),
+                                line = line,
+                                selectedFillColor = Color.FromArgb(255, 130, 91, 230),
+                                selectedLineColor = Color.FromArgb(255, 255, 99, 91),
+                                thickness = 8,
+                                p1 = v1,
+                                p2 = v2,
+                            };
+
+                            OutputLine outputLineStraightNew = new OutputLine()
+                            {
+                                borderType = ViewType.Solid,
+                                isVisible = true,
+                                fillColor = Color.FromArgb(128, 86, 106, 143),
+                                lineColor = Color.FromArgb(128, 86, 106, 143),
+                                line = line,
+                                selectedFillColor = Color.FromArgb(128, 86, 106, 143),
+                                selectedLineColor = Color.FromArgb(128, 86, 106, 143),
+                                thickness = 8,
+                                p1 = v3,
+                                p2 = v4,
+                            };
+                            line.resultLine.Clear();
+                            line.resultLine.Add(outputLineStraightNew);                //先画延长线
+                            outputPointSetList[i] = outputLineStraightNew;
+
+                            line.resultLine.Add(outputLineNew);                        //覆盖线段
+                            outputPointSetList[i + 1] = outputLineNew;
+                            i = i + 2;
+                        }
+                    }
                 }
                 else if(outputGeometry is OutputCircle)
                 {
                     OutputCircle outputCircle = outputGeometry as OutputCircle;
                     outputCircle.center = ToVector2(outputCircle.circle.center);
                     outputCircle.radius = (ToVector2(outputCircle.circle.center) - ToVector2(outputCircle.circle.radius)).Length();
+                    i++;
                 }
             }
         }

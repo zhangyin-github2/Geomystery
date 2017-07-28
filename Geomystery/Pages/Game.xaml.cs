@@ -103,15 +103,15 @@ namespace Geomystery
             */
             //Rect rect = new Rect(0, 0, maxHeightWidth.X, maxHeightWidth.Y);
             //args.DrawingSession.DrawRectangle(rect, Colors.Black);
-            var geoList = controller.outputCoordinates[0].geometryList;
-            if (geoList != null)
+            List<OutputGeometry> pointSetList = controller.outputCoordinates[0].outputPointSetList;
+            if (pointSetList != null)
             {
-                for (int i = 0; i < geoList.Count; i++)
+                for (int i = 0; i < pointSetList.Count; i++)
                 {
-                    if (geoList[i] is OutputCircle)
+                    if (pointSetList[i] is OutputCircle)
                     {
-                        var realCircle = geoList[i] as OutputCircle;
-                        if(realCircle.circle.isSelected)
+                        var realCircle = pointSetList[i] as OutputCircle;
+                        if (realCircle.circle.isSelected)
                         {
                             args.DrawingSession.DrawCircle(realCircle.center, realCircle.radius, realCircle.selectedLineColor, realCircle.thickness);
                         }
@@ -141,10 +141,10 @@ namespace Geomystery
                             args.DrawingSession.DrawCircle(realCircle.circle.radius.resultPoint.viewPoint, OutputPoint.scopeLength, realCircle.circle.radius.resultPoint.lineColor);
                         }
                     }
-                    else if (geoList[i] is OutputLine)
+                    else if (pointSetList[i] is OutputLine)
                     {
-                        var realLine = geoList[i] as OutputLine;
-                        if(realLine.line.isSelected)
+                        var realLine = pointSetList[i] as OutputLine;
+                        if (realLine.line.isSelected)
                         {
                             args.DrawingSession.DrawLine(realLine.p1, realLine.p2, realLine.selectedLineColor, realLine.thickness);
                         }
@@ -174,20 +174,23 @@ namespace Geomystery
                             args.DrawingSession.DrawCircle(realLine.line.p2.resultPoint.viewPoint, OutputPoint.scopeLength, realLine.line.p1.resultPoint.lineColor);
                         }
                     }
-                    else if (geoList[i] is OutputPoint)
-                    {
-                        var realPoint = geoList[i] as OutputPoint;
-                        if (realPoint.point.isSelected)
-                        {
-                            args.DrawingSession.FillCircle(realPoint.viewPoint, OutputPoint.scopeLength, realPoint.selectedFillColor);
-                            args.DrawingSession.DrawCircle(realPoint.viewPoint, OutputPoint.scopeLength, realPoint.selectedLineColor);
-                        }
-                        else
-                        {
-                            args.DrawingSession.FillCircle(realPoint.viewPoint, OutputPoint.scopeLength, realPoint.fillColor);
-                            args.DrawingSession.DrawCircle(realPoint.viewPoint, OutputPoint.scopeLength, realPoint.lineColor);
-                        }
+                }
+            }
 
+            List<OutputPoint> pointList = controller.outputCoordinates[0].outputPointList;
+            if (pointList != null)
+            {
+                foreach (OutputPoint outputPoint in pointList)
+                {
+                    if (outputPoint.point.isSelected)
+                    {
+                        args.DrawingSession.FillCircle(outputPoint.viewPoint, OutputPoint.scopeLength, outputPoint.selectedFillColor);
+                        args.DrawingSession.DrawCircle(outputPoint.viewPoint, OutputPoint.scopeLength, outputPoint.selectedLineColor);
+                    }
+                    else
+                    {
+                        args.DrawingSession.FillCircle(outputPoint.viewPoint, OutputPoint.scopeLength, outputPoint.fillColor);
+                        args.DrawingSession.DrawCircle(outputPoint.viewPoint, OutputPoint.scopeLength, outputPoint.lineColor);
                     }
                 }
             }

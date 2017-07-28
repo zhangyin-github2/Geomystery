@@ -263,7 +263,7 @@ namespace Geomystery.Controllers.Geometry
 
                     line.p1 = runningDFA.needList[0].selectStack[0].selectedGeometry as Point2;
                     line.p2 = runningDFA.needList[0].selectStack[1].selectedGeometry as Point2;
-                    line.type = LineType.Straight;
+                    line.type = LineType.Line;
                     line.lineRely = LineRely.Normal;
 
                     coordinate.AddLine(line);
