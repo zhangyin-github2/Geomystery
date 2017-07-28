@@ -198,6 +198,9 @@ namespace Geomystery
             MainPage.debugTxt.Text = p.X.ToString() + " | " + p.Y.ToString();
 
             controller.PointerPressed((UserTool)toolList.SelectedItem, sender, e);
+
+            redo.IsEnabled = controller.CanRedo();
+            undo.IsEnabled = controller.CanUndo();
         }
 
         private void canvas1_PointerReleased(object sender, PointerRoutedEventArgs e)
@@ -218,6 +221,8 @@ namespace Geomystery
             maxHeightWidth = new Vector2((float)canvas1.ActualWidth, (float)canvas1.ActualHeight);
             MainPage.debugTxt.Text = maxHeightWidth.X.ToString() + " | " + maxHeightWidth.Y.ToString();
             toolList.SelectedIndex = 2;
+            redo.IsEnabled = controller.CanRedo();
+            undo.IsEnabled = controller.CanUndo();
         }
 
         private void Page_Unloaded(object sender, RoutedEventArgs e)
@@ -233,17 +238,23 @@ namespace Geomystery
 
         private void refresh_Click(object sender, RoutedEventArgs e)
         {
-            controller.outputCoordinates[0].geometryList.Clear();
+            controller = new Controllers.Geometry.Controllers(1);
+            controller.outputCoordinates[0].WindowHeight = (float)canvas1.ActualHeight;
+            controller.outputCoordinates[0].WindowWidth = (float)canvas1.ActualWidth;
         }
 
         private void redo_Click(object sender, RoutedEventArgs e)
         {
-
+            controller.Redo();
+            redo.IsEnabled = controller.CanRedo();
+            undo.IsEnabled = controller.CanUndo();
         }
 
         private void undo_Click(object sender, RoutedEventArgs e)
         {
-
+            controller.Undo();
+            redo.IsEnabled = controller.CanRedo();
+            undo.IsEnabled = controller.CanUndo();
         }
     }
 }
