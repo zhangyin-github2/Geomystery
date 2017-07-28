@@ -28,6 +28,10 @@ namespace Geomystery.Award
         /// </summary>
         public string cover;
         /// <summary>
+        /// 关卡说明
+        /// </summary>
+        public string intro;
+        /// <summary>
         /// 是否已解锁
         /// </summary>
         public int unlocked { get; set; }
@@ -84,9 +88,9 @@ namespace Geomystery.Award
             cp1.Add(new Level() { ID = 3, name = "Draw Point" });
             cp1.Add(new Level() { ID = 4, name = "Angle of 60°" });
             cp1.Add(new Level() { ID = 5, name = "Perpendicular Bisector" });
-            cp1.Add(new Level() { ID = 6, name = "Mid Point" });
-            cp1.Add(new Level() { ID = 7, name = "Ciricl in Square" });
-            cp1.Add(new Level() { ID = 8, name = "Rhombus in Rectangle" });
+            cp1.Add(new Level() { ID = 6, name = "Angle Bisector" });
+            cp1.Add(new Level() { ID = 7, name = "Perpendicular Line" });
+            cp1.Add(new Level() { ID = 8, name = "Ciricl in Diamond" });
             cp1.Add(new Level() { ID = 9, name = "Circle Center" });
             foreach(var x in cp1)
             {
@@ -107,12 +111,53 @@ public class LevelLoader
         controller.redoDfaList = new List<DFA>();
         //controller.isIniialized = true;
 
-        Point2 p1 = new Point2() { X = 66560, Y = -35198 };
-        Point2 p2 = new Point2() { X = 44797, Y = -52078 };
-        Point2 p3 = new Point2() { X = 81920, Y = -54799 };
-        controller.coordinate.AddPoint(p1);
-        controller.coordinate.AddPoint(p2);
-        controller.coordinate.AddPoint(p3);
+        switch (index)
+        {
+            case 1:
+                {
+                    Point2 p1 = new Point2() { X = 66560, Y = -35198 };
+                    Point2 p2 = new Point2() { X = 44797, Y = -52078 };
+                    Point2 p3 = new Point2() { X = 81920, Y = -54799 };
+                    controller.coordinate.AddPoint(p1);
+                    controller.coordinate.AddPoint(p2);
+                    controller.coordinate.AddPoint(p3);
+                    break;
+                }
+            case 2:
+                {
+                    Point2 p1 = new Point2() { X = 66560, Y = -35198 };
+                    Point2 p2 = new Point2() { X = 44797, Y = -52078 };
+                    Point2 p3 = new Point2() { X = 81920, Y = -54799 };
+                    controller.coordinate.AddPoint(p1);
+                    controller.coordinate.AddPoint(p2);
+                    controller.coordinate.AddPoint(p3);
+                    break;
+                }
+            case 3:
+                {
+                    Point2 p1 = new Point2() { X = 66560, Y = -35198 };
+                    Point2 p2 = new Point2() { X = 44797, Y = -52078 };
+                    Point2 p3 = new Point2() { X = 81920, Y = -54799 };
+                    controller.coordinate.AddPoint(p1);
+                    controller.coordinate.AddPoint(p2);
+                    controller.coordinate.AddPoint(p3);
+                    p1.resultPoint.isVisible = false;
+                    p2.resultPoint.isVisible = false;
+                    p3.resultPoint.isVisible = false;
+                    Line l1 = new Line() { p1 = p1, p2 = p2 };
+                    Line l2 = new Line() { p1 = p2, p2 = p3 };
+                    Line l3 = new Line() { p1 = p3, p2 = p1 };
+                    controller.coordinate.AddLine(l1);
+                    controller.coordinate.AddLine(l2);
+                    controller.coordinate.AddLine(l3);
+                    break;
+                }
+            case 4:
+                {
+
+                    break;
+                }
+        }
         return controller;
     }
-}
+ }

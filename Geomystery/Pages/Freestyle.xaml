@@ -182,7 +182,10 @@
                                       Draw="canvas1_Draw"
                                       CreateResources="canvas1_CreateResources"
                                       PointerPressed="canvas1_PointerPressed"
-                                      PointerReleased="canvas1_PointerReleased" PointerMoved="canvas1_PointerMoved"/>
+                                      PointerReleased="canvas1_PointerReleased"
+                                      PointerMoved="canvas1_PointerMoved"
+                                      PointerWheelChanged="canvas1_PointerWheelChanged"
+                                      />
         
         <Grid Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Bottom">
             <Rectangle Fill="#7F808080"/>

@@ -73,12 +73,12 @@ namespace Geomystery
             //controller = new Controllers.Geometry.Controllers();
             //controller.PreInitialized(LevelLoader.GetLevel(1));                 //第一关的控制器
             controller = LevelLoader.GetLevel(1);
+
             controller.outputCoordinates[0].WindowHeight = (float)canvas1.ActualHeight;
             controller.outputCoordinates[0].WindowWidth = (float)canvas1.ActualWidth;
             maxHeightWidth = new Vector2((float)canvas1.ActualWidth, (float)canvas1.ActualHeight);
             //text1.Text = maxHeightWidth.X.ToString() + " | " + maxHeightWidth.Y.ToString();
             listView1.SelectedIndex = 2;
-
             controller.historyDfaList.Clear();
             redo.IsEnabled = controller.CanRedo();
             undo.IsEnabled = controller.CanUndo();
