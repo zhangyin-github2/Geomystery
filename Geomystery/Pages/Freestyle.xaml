@@ -14,7 +14,7 @@
         <ResourceDictionary>
             <DataTemplate x:DataType="toolData:UserTool"
                           x:Key="listViewItemTempelate">
-                <Grid Height="64" Width="64" >
+                <Grid x:Name="toolbutton" Height="64" Width="64" >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="8*"/>
@@ -28,25 +28,14 @@
                     </Grid.ColumnDefinitions>
                     <!--<TextBlock Text="{x:Bind toolName}"/>-->
                     <Grid Grid.Column="1" Grid.Row="1">
-                        <Rectangle RadiusX="15" RadiusY="15" Fill="WhiteSmoke"/>
+                        <Rectangle RadiusX="12" RadiusY="12" Fill="WhiteSmoke"/>
                         <Image   Source="{x:Bind toolIcon}"/>
                     </Grid>
                 </Grid>
             </DataTemplate>
+            
+            <!--listviewstyle-->
             <Style x:Key="myListViewStyle" TargetType="ListView">
-                <Setter Property="IsTabStop" Value="False"/>
-                <Setter Property="TabNavigation" Value="Once"/>
-                <Setter Property="IsSwipeEnabled" Value="True"/>
-                <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
-                <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
-                <Setter Property="ScrollViewer.HorizontalScrollMode" Value="Disabled"/>
-                <Setter Property="ScrollViewer.IsHorizontalRailEnabled" Value="False"/>
-                <Setter Property="ScrollViewer.VerticalScrollMode" Value="Enabled"/>
-                <Setter Property="ScrollViewer.IsVerticalRailEnabled" Value="True"/>
-                <Setter Property="ScrollViewer.ZoomMode" Value="Disabled"/>
-                <Setter Property="ScrollViewer.IsDeferredScrollingEnabled" Value="False"/>
-                <Setter Property="ScrollViewer.BringIntoViewOnFocusChange" Value="True"/>
-                <Setter Property="UseSystemFocusVisuals" Value="False"/>
                 <Setter Property="ItemContainerTransitions">
                     <Setter.Value>
                         <TransitionCollection>
@@ -76,6 +65,7 @@
                     </Setter.Value>
                 </Setter>
             </Style>
+            
             <ResourceDictionary.ThemeDictionaries>
                 <ResourceDictionary x:Key="Light" Source="LightThemeDictionary.xaml"></ResourceDictionary>
                 <ResourceDictionary x:Key="Dark" Source="DarkThemeDictionary.xaml"></ResourceDictionary>
@@ -84,8 +74,89 @@
     </Page.Resources>
 
     <Grid x:Name="mainGrade" Background="{ThemeResource SystemBackgroundAltHighBrush}">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup >
+                <VisualState x:Name="microView" >
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"
+                                         MinWindowHeight="0"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <!--最小大小 0.338倍-->
+                        <Setter Target="undo.FontSize" Value="13"/>
+                        <Setter Target="redo.FontSize" Value="13"/>
+                        <Setter Target="refresh.FontSize" Value="13"/>
+                        <Setter Target="undo.Height" Value="22"/>
+                        <Setter Target="redo.Height" Value="22"/>
+                        <Setter Target="refresh.Height" Value="22"/>
+                        <Setter Target="blank1.Height" Value="22"/>
+                        <Setter Target="blank2.Height" Value="22"/>
+                        <Setter Target="blank1.Width" Value="60"/>
+                        <Setter Target="blank2.Width" Value="90"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="miniView">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="800"
+                                         MinWindowHeight="500"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <!--中等大小 0.55倍-->
+                        <Setter Target="undo.FontSize" Value="18"/>
+                        <Setter Target="redo.FontSize" Value="18"/>
+                        <Setter Target="refresh.FontSize" Value="18"/>
+                        <Setter Target="undo.Height" Value="30"/>
+                        <Setter Target="redo.Height" Value="30"/>
+                        <Setter Target="refresh.Height" Value="30"/>
+                        <Setter Target="blank1.Height" Value="30"/>
+                        <Setter Target="blank2.Height" Value="30"/>
+                        <Setter Target="blank1.Width" Value="80"/>
+                        <Setter Target="blank2.Width" Value="100"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="normalView">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1168"
+                                         MinWindowHeight="657"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <!--标准大小 0.8倍-->
+                        <Setter Target="undo.FontSize" Value="22"/>
+                        <Setter Target="redo.FontSize" Value="22"/>
+                        <Setter Target="refresh.FontSize" Value="22"/>
+                        <Setter Target="undo.Height" Value="38"/>
+                        <Setter Target="redo.Height" Value="38"/>
+                        <Setter Target="refresh.Height" Value="38"/>
+                        <Setter Target="blank1.Height" Value="38"/>
+                        <Setter Target="blank2.Height" Value="38"/>
+                        <Setter Target="blank1.Width" Value="106"/>
+                        <Setter Target="blank2.Width" Value="116"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="fullView">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1920"
+                                         MinWindowHeight="1080"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <!--1080P 1倍-->
+                        <Setter Target="undo.FontSize" Value="28"/>
+                        <Setter Target="redo.FontSize" Value="28"/>
+                        <Setter Target="refresh.FontSize" Value="28"/>
+                        <Setter Target="undo.Height" Value="48"/>
+                        <Setter Target="redo.Height" Value="48"/>
+                        <Setter Target="refresh.Height" Value="48"/>
+                        <Setter Target="blank1.Height" Value="48"/>
+                        <Setter Target="blank2.Height" Value="48"/>
+                        <Setter Target="blank1.Width" Value="132"/>
+                        <Setter Target="blank2.Width" Value="132"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
         <Grid.RowDefinitions>
-            <RowDefinition Height="38"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
@@ -96,32 +167,33 @@
 
         <canvas:CanvasAnimatedControl x:Name="canvas1"
                                       IsTabStop="False"
-                                      Grid.Column="0"
-                                      Grid.ColumnSpan="2"
-                                      Grid.Row="0"
-                                      Grid.RowSpan="2"
+                                      Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Grid.RowSpan="2"
                                       Draw="canvas1_Draw"
                                       CreateResources="canvas1_CreateResources"
                                       PointerPressed="canvas1_PointerPressed"
                                       PointerReleased="canvas1_PointerReleased" PointerMoved="canvas1_PointerMoved"/>
+        
         <Grid Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Bottom">
             <Rectangle Fill="#7F808080"/>
             <ListView x:Name="toolList"
-                  ScrollViewer.VerticalScrollBarVisibility="Hidden"
-                  ItemsSource="{x:Bind userTools}" ItemTemplate="{StaticResource listViewItemTempelate}"
-                  IsTabStop="False" HorizontalAlignment="Center" VerticalAlignment="Bottom" Style="{StaticResource myListViewStyle}">
+                      ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                      ItemsSource="{x:Bind userTools}" ItemTemplate="{StaticResource listViewItemTempelate}"
+                      IsTabStop="False" HorizontalAlignment="Center" VerticalAlignment="Bottom" Style="{StaticResource myListViewStyle}">
             </ListView>
         </Grid>
 
+        <Rectangle Name="blank1" Height="48" Width="132" Fill="{x:Null}" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" IsTapEnabled="False" />
 
-        <StackPanel Grid.Column="1" HorizontalAlignment="Right" Orientation="Horizontal">
-            <Button x:Name="undo" Content="&#xE248;" FontSize="22" Background="Transparent" Foreground="{ThemeResource SystemBackgroundBaseHighBrush}" FontFamily="Segoe MDl2 Assets" Height="38" Width="42" Click="undo_Click" IsTabStop="False"/>
-            <Button x:Name="redo" Content="&#xE248;" FontSize="22" Background="Transparent" Foreground="{ThemeResource SystemBackgroundBaseHighBrush}" FontFamily="Segoe MDl2 Assets" Height="38" Width="42" RenderTransformOrigin="0.5,0.5" Click="redo_Click" IsTabStop="False">
+        <Rectangle Name="blank2" Height="48" Width="132" Fill="{x:Null}" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Top" IsTapEnabled="False" />
+
+        <StackPanel Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Right" Orientation="Horizontal">
+            <Button x:Name="undo" BorderThickness="0" Content="&#xE248;" FontSize="22" Background="Transparent" Foreground="{ThemeResource SystemBackgroundBaseHighBrush}" FontFamily="Segoe MDl2 Assets" Height="48" Click="undo_Click" IsTabStop="False"/>
+            <Button x:Name="redo" BorderThickness="0" Content="&#xE248;" FontSize="22" Background="Transparent" Foreground="{ThemeResource SystemBackgroundBaseHighBrush}" FontFamily="Segoe MDl2 Assets" Height="48" RenderTransformOrigin="0.5,0.5" Click="redo_Click" IsTabStop="False">
                 <Button.RenderTransform>
                     <CompositeTransform ScaleX="-1"/>
                 </Button.RenderTransform>
             </Button>
-            <Button x:Name="refresh" Content="&#xE777;" FontSize="22" Background="Transparent" Foreground="{ThemeResource SystemBackgroundBaseHighBrush}" FontFamily="Segoe MDl2 Assets" Height="38" Width="42" Click="refresh_Click" IsTabStop="False"/>
+            <Button x:Name="refresh" BorderThickness="0" Content="&#xE777;" FontSize="22" Background="Transparent" Foreground="{ThemeResource SystemBackgroundBaseHighBrush}" FontFamily="Segoe MDl2 Assets" Height="48" Click="refresh_Click" IsTabStop="False"/>
         </StackPanel>
     </Grid>
 </Page>

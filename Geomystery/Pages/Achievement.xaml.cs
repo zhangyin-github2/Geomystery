@@ -25,6 +25,7 @@ namespace Geomystery
     public sealed partial class Achievement : Page
     {
         private ViewModel.ViewModel View { set; get; } = new ViewModel.ViewModel();
+        
         public ObservableCollection<Achievements> ach;
         public Achievement()
         {

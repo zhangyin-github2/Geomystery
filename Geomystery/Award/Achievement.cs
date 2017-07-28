@@ -33,28 +33,38 @@ namespace Geomystery.Award
         {
             var ach = new ObservableCollection<Achievements>();
 
+            ach.Add(new Achievements { name = "小试牛刀", picture = "Picture/小试牛刀.png", aim = 1, reward_num = 200, islock = "未达成", col = new SolidColorBrush(Color.FromArgb(200, 255, 0, 0)), fontsize1 = 2 * ff, fontsize2 = ff, fontsize3 = 1.2 * ff });
             ach.Add(new Achievements { name = "旗开得胜", picture = "Picture/旗开得胜.png", aim=1,reward_num=200, islock = "未达成", col = new SolidColorBrush(Color.FromArgb(200, 255, 0, 0)), fontsize1 = 2 * ff, fontsize2 = ff, fontsize3 = 1.2 * ff });
             ach.Add(new Achievements { name = "细心的人", picture = "Picture/细心的人.png", aim = 1, reward_num = 300, islock = "未达成", col = new SolidColorBrush(Color.FromArgb(200, 255, 0, 0)), fontsize1 = 2 * ff, fontsize2 = ff, fontsize3 = 1.2 * ff });
-            ach.Add(new Achievements { name = "事不过三", picture = "Picture/事不过三.png", aim = 1, reward_num = 300, islock = "未达成", col = new SolidColorBrush(Color.FromArgb(200, 255, 0, 0)), fontsize1 = 2 * ff, fontsize2 = ff, fontsize3 = 1.2 * ff });
-            ach.Add(new Achievements { name = "数学家", picture = "Picture/数学家.png", aim = 1, reward_num = 300, islock = "未达成", col = new SolidColorBrush(Color.FromArgb(200, 255, 0, 0)), fontsize1 = 2 * ff, fontsize2 = ff, fontsize3 = 1.2 * ff });
-            ach.Add(new Achievements { name = "完美过关", picture = "Picture/完美过关.png", aim = 1, reward_num = 300, islock = "未达成", col = new SolidColorBrush(Color.FromArgb(200, 255, 0, 0)), fontsize1 = 2 * ff, fontsize2 = ff, fontsize3 = 1.2 * ff });
+            ach.Add(new Achievements { name = "事不过三", picture = "Picture/事不过三.png", aim = 1, reward_num = 300, islock = "未达成", col = new SolidColorBrush(Color.FromArgb(200, 255, 0, 0)), fontsize1 = 2 * ff, fontsize2 = ff, fontsize3 = 1.2 * ff });             
             ach.Add(new Achievements { name = "好事多磨", picture = "Picture/好事多磨.png", aim = 1, reward_num = 200, islock = "未达成", col = new SolidColorBrush(Color.FromArgb(200, 255, 0, 0)), fontsize1 = 2 * ff, fontsize2 = ff, fontsize3 = 1.2 * ff });
             ach.Add(new Achievements { name = "圆圆不断", picture = "Picture/圆圆不断.png", aim = 1, reward_num = 400, islock = "未达成", col = new SolidColorBrush(Color.FromArgb(200, 255, 0, 0)), fontsize1 = 2 * ff, fontsize2 = ff, fontsize3 = 1.2 * ff });
             ach.Add(new Achievements { name = "穿针引线", picture = "Picture/穿针引线.png", aim = 1, reward_num = 400, islock = "未达成", col = new SolidColorBrush(Color.FromArgb(200, 255, 0, 0)), fontsize1 = 2 * ff, fontsize2 = ff, fontsize3 = 1.2 * ff });
             ach.Add(new Achievements { name = "土豪", picture = "Picture/土豪.png", aim = 1, reward_num = 500, islock = "未达成", col = new SolidColorBrush(Color.FromArgb(200, 255, 0, 0)), fontsize1 = 2 * ff, fontsize2 = ff, fontsize3 = 1.2 * ff });
-            ach.Add(new Achievements { name = " 解题狂人", picture = "Picture/ 解题狂人.png", aim = 1, reward_num = 1000, islock = "未达成", col = new SolidColorBrush(Color.FromArgb(200, 255, 0, 0)), fontsize1 = 2 * ff, fontsize2 = ff, fontsize3 = 1.2 * ff });
-          
+            ach.Add(new Achievements { name = "解题狂人", picture = "Picture/ 解题狂人.png", aim = 1, reward_num = 1000, islock = "未达成", col = new SolidColorBrush(Color.FromArgb(200, 255, 0, 0)), fontsize1 = 2 * ff, fontsize2 = ff, fontsize3 = 1.2 * ff });
+            ach.Add(new Achievements { name = "数学家", picture = "Picture/数学家.png", aim = 1, reward_num = 1000, islock = "未达成", col = new SolidColorBrush(Color.FromArgb(200, 255, 0, 0)), fontsize1 = 2 * ff, fontsize2 = ff, fontsize3 = 1.2 * ff });
+            ach.Add(new Achievements { name = "几何大师", picture = "Picture/几何大师.png", aim = 1, reward_num = 3000, islock = "未达成", col = new SolidColorBrush(Color.FromArgb(200, 255, 0, 0)), fontsize1 = 2 * ff, fontsize2 = ff, fontsize3 = 1.2 * ff });
 
-            ach[0].discribe = "完成了你的第一关，开启了你的解题之旅。";
-            ach[1].discribe = "第3关中，画出了所有可能的答案。";
-            ach[2].discribe = "第5关中使用圆工具次数少于三次直线工具次数少于三次。";
-            ach[3].discribe = "第10关中，画出了所有可能的答案。";
-            ach[4].discribe = "第12关中使用圆工具次数少于三次直线工具次数少于四次。";
-            ach[5].discribe = "在某一关卡中尝试了10次仍未解锁。";
-            ach[6].discribe = "累计使用圆工具50次。";
-            ach[7].discribe = "累计使用线工具50次。";
-            ach[8].discribe = "金币数量超过1000。";
-            ach[9].discribe = "解锁全部关卡。";
+            string[] Discirbe = new string[] {
+                "完成了你的第一关，开启了你的解题之旅。",
+                "通关第一章",
+                "在任意一关中第一次尝试就完美通关",
+                "第5关中使用圆工具次数少于三次直线工具次数少于三次。",
+                "在任意一关卡中尝试了10次仍未通过。",
+                "累计使用圆工具500次。",
+                "累计使用线工具500次。",
+                "金币数量超过1000。",
+                "解锁全部关卡。",
+                "通关所有章节",
+                "完美通过所有关卡。",
+            };
+
+            for(int i=0;i< Discirbe.Length;i++)
+            {
+                ach[i].discribe = Discirbe[i];
+            }
+
+            
             
 
 

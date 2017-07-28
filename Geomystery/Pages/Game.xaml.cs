@@ -70,7 +70,7 @@ namespace Geomystery
             canvas1.RemoveFromVisualTree();
             canvas1 = null;
         }
-
+        
         private void canvas1_Draw(Microsoft.Graphics.Canvas.UI.Xaml.ICanvasAnimatedControl sender, Microsoft.Graphics.Canvas.UI.Xaml.CanvasAnimatedDrawEventArgs args)
         {
             if (controller == null || !controller.isIniialized) return;

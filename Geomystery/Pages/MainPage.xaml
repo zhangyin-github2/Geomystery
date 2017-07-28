@@ -29,13 +29,12 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <!--最小大小 0.338倍-->
-                        <Setter Target="mytitle.Height" Value="22"/>
                         <Setter Target="BackButton.Height" Value="22"/>
-                        <Setter Target="BackButton.Width" Value="32"/>
-                        <Setter Target="BackButton.FontSize" Value="13"/>
+                        <Setter Target="BackButton.Width" Value="30"/>
+                        <Setter Target="BackButton.FontSize" Value="14"/>
                         <Setter Target="MuteButton.Height" Value="22"/>
-                        <Setter Target="MuteButton.Width" Value="32"/>
-                        <Setter Target="MuteButton.FontSize" Value="13"/>
+                        <Setter Target="MuteButton.Width" Value="30"/>
+                        <Setter Target="MuteButton.FontSize" Value="14"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="miniView">
@@ -45,13 +44,12 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <!--中等大小 0.55倍-->
-                        <Setter Target="mytitle.Height" Value="30"/>
-                        <Setter Target="BackButton.Height" Value="30"/>
-                        <Setter Target="BackButton.Width" Value="42"/>
-                        <Setter Target="BackButton.FontSize" Value="18"/>
-                        <Setter Target="MuteButton.Height" Value="30"/>
-                        <Setter Target="MuteButton.Width" Value="42"/>
-                        <Setter Target="MuteButton.FontSize" Value="18"/>
+                        <Setter Target="BackButton.Height" Value="34"/>
+                        <Setter Target="BackButton.Width" Value="46"/>
+                        <Setter Target="BackButton.FontSize" Value="21"/>
+                        <Setter Target="MuteButton.Height" Value="34"/>
+                        <Setter Target="MuteButton.Width" Value="46"/>
+                        <Setter Target="MuteButton.FontSize" Value="21"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="normalView">
@@ -61,13 +59,12 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <!--标准大小 0.8倍-->
-                        <Setter Target="mytitle.Height" Value="38"/>
-                        <Setter Target="BackButton.Height" Value="38"/>
-                        <Setter Target="BackButton.Width" Value="54"/>
-                        <Setter Target="BackButton.FontSize" Value="22"/>
-                        <Setter Target="MuteButton.Height" Value="38"/>
-                        <Setter Target="MuteButton.Width" Value="54"/>
-                        <Setter Target="MuteButton.FontSize" Value="22"/>
+                        <Setter Target="BackButton.Height" Value="48"/>
+                        <Setter Target="BackButton.Width" Value="65"/>
+                        <Setter Target="BackButton.FontSize" Value="29"/>
+                        <Setter Target="MuteButton.Height" Value="48"/>
+                        <Setter Target="MuteButton.Width" Value="65"/>
+                        <Setter Target="MuteButton.FontSize" Value="29"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="fullView">
@@ -77,13 +74,12 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <!--1080P 1倍-->
-                        <Setter Target="mytitle.Height" Value="48"/>
-                        <Setter Target="BackButton.Height" Value="48"/>
-                        <Setter Target="BackButton.Width" Value="68"/>
-                        <Setter Target="BackButton.FontSize" Value="28"/>
-                        <Setter Target="MuteButton.Height" Value="48"/>
-                        <Setter Target="MuteButton.Width" Value="68"/>
-                        <Setter Target="MuteButton.FontSize" Value="28"/>
+                        <Setter Target="BackButton.Height" Value="60"/>
+                        <Setter Target="BackButton.Width" Value="82"/>
+                        <Setter Target="BackButton.FontSize" Value="36"/>
+                        <Setter Target="MuteButton.Height" Value="60"/>
+                        <Setter Target="MuteButton.Width" Value="82"/>
+                        <Setter Target="MuteButton.FontSize" Value="36"/>
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
@@ -114,17 +110,17 @@
                     RelativePanel.AlignLeftWithPanel="True"
                     Foreground="{ThemeResource SystemBackgroundBaseHighBrush}"
                     Background="{x:Null}" BorderThickness="0"
-                    FontFamily="Segoe MDl2 Assets" FontSize="28" Content="&#xE0C4;" 
-                    Height="48" Width="68"
+                    FontFamily="Segoe MDl2 Assets" FontSize="36" Content="&#xE0C4;" 
+                    Height="64" Width="Auto"
                     Click="BackButton_Click" IsTabStop="False"/>
-            <Button Name="MuteButton"
+            <Button Name="MuteButton" 
                     RelativePanel.RightOf="BackButton"
                     Foreground="{ThemeResource SystemBackgroundBaseHighBrush}"
                     Background="{x:Null}" BorderThickness="0"
-                    FontFamily="Segoe MDl2 Assets" FontSize="28"
-                    Height="48" Width="68"
+                    FontFamily="Segoe MDl2 Assets" FontSize="36" 
+                    Height="64" Width="Auto"
                     Click="MuteButton_Click" IsTabStop="False"/>
-            <TextBlock x:Name="debugT"
+            <TextBlock x:Name="debugT" Visibility="Visible"
                        FontSize="10" Foreground="{ThemeResource SystemBackgroundBaseHighBrush}"
                        RelativePanel.RightOf="MuteButton"/>
         </RelativePanel>
