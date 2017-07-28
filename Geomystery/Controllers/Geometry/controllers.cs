@@ -59,6 +59,21 @@ namespace Geomystery.Controllers.Geometry
         public Point releasedPoint { get; set; }
 
         /// <summary>
+        /// “过关条件序列 ”为空代表自由模式，不为空代表游戏模式，集合 0 号用来存放条件，其他用来存放已经达成的条件序列（们）
+        /// </summary>
+        public List<ConditionsList> conditionLists { get; set; }
+
+        /// <summary>
+        /// 过关通知委托
+        /// </summary>
+        public delegate void MissionSuccess();
+
+        /// <summary>
+        /// 游戏通关事件
+        /// </summary>
+        public event MissionSuccess missionSuccess;             //游戏通关事件
+
+        /// <summary>
         /// 空构造函数
         /// </summary>
         public Controllers()
@@ -410,7 +425,7 @@ namespace Geomystery.Controllers.Geometry
             return false;
         }
 
-        public int AddFromString(string args)
+        public int AddGeometryFromString(string args)
         {
             if (args == null || args == "") return -1;                           //无参数
             char[] splitter = new Char[] { ',', };
@@ -575,6 +590,92 @@ namespace Geomystery.Controllers.Geometry
             }
 
             return 0;
+        }
+
+
+        public int AddConditionFromString(string args)
+        {
+            if (args == null || args == "") return -1;                           //无参数
+            char[] splitter = new Char[] { ',', };
+            string[] infomations = args.Split(splitter);                        //参数列表
+            if (infomations.Count() < 2) return -2;
+
+            if (conditionLists[0].conditions == null) conditionLists[0].conditions = new List<Condition>();
+
+            bool meet;
+            if (!bool.TryParse(infomations[1], out meet)) return -4;                //是否满足满足的标志不正常
+            if (infomations[0] == "0" || infomations[0].ToLower() == "f" || infomations[0].ToLower() == "free" || infomations[0].ToLower() == "freecondition")
+            {
+                int pid;
+                if (!int.TryParse(infomations[2], out pid)) return -4;                //id不正常
+                conditionLists[0].conditions.Add(new FreeCondition() { isMeetTheConditions = meet, pid = pid, point = null });
+            }
+            else if (infomations[0] == "1" || infomations[0].ToLower() == "d" || infomations[0].ToLower() == "draw" || infomations[0].ToLower() == "drawpointset")
+            {
+                int iid;
+                if (!int.TryParse(infomations[2], out iid)) return -4;                //id不正常
+                int p1id, p2id;
+                if (!int.TryParse(infomations[3], out p1id)) return -4;                //id不正常
+                if (!int.TryParse(infomations[4], out p2id)) return -4;                //id不正常
+                conditionLists[0].conditions.Add(new PenDrawCondition() { isMeetTheConditions = meet, iid = iid, p1id = p1id, p2id = p2id });
+            }
+            else if (infomations[0] == "2" || infomations[0].ToLower() == "o" || infomations[0].ToLower() == "on" || infomations[0].ToLower() == "onpointset")
+            {
+                int pid;
+                if (!int.TryParse(infomations[2], out pid)) return -4;                //id不正常
+                int iid;
+                if (!int.TryParse(infomations[3], out iid)) return -4;                //id不正常
+                conditionLists[0].conditions.Add(new OnTheTreeCondition() { isMeetTheConditions = meet, pid = pid, iid = iid });
+            }
+            else if (infomations[0] == "3" || infomations[0].ToLower() == "i" || infomations[0].ToLower() == "intersect" || infomations[0].ToLower() == "intersection")
+            {
+                int pid;
+                if (!int.TryParse(infomations[2], out pid)) return -4;                //id不正常
+                int i1id, i2id;
+                if (!int.TryParse(infomations[3], out i1id)) return -4;                //id不正常
+                if (!int.TryParse(infomations[4], out i2id)) return -4;                //id不正常
+                conditionLists[0].conditions.Add(new IntersectCondition() { isMeetTheConditions = meet, pid = pid, i1id = i1id, i2id = i2id });
+            }
+            return 0;
+        }
+
+        /// <summary>
+        /// 判断用户是否过关
+        /// </summary>
+        /// <returns>是否过关</returns>
+        public bool isWin()
+        {
+            int meetNumber = 0;                     //可以通关条件满足个数
+            bool flag1;                         //条件满足
+            if(conditionLists != null && conditionLists.Count > 1)              //是游戏模式且存在过关条件
+            {
+                for(int i = 1; i < conditionLists.Count; i++)
+                {
+                    flag1 = true;
+                    for(int j = 0; j < conditionLists[i].conditions.Count; j++)
+                    {
+                        if(!conditionLists[i].conditions[j].isMeetTheConditions)
+                        {
+                            flag1 = false;
+                            break;
+                        }
+                    }
+                    if(flag1) meetNumber++;
+                }
+            }
+            if (meetNumber > 0) return true;                //过关
+            return false;
+        }
+
+        /// <summary>
+        /// 用户通关通知事件委托
+        /// </summary>
+        public void passNotify()
+        {
+            if (isWin())
+            {
+                missionSuccess();                   //通知函数
+            }
         }
     }
 }

@@ -35,7 +35,7 @@ namespace Geomystery.Controllers.Geometry
         /// <summary>
         /// 本条件是否得到满足
         /// </summary>
-        public bool ifMeetTheConditions { get; set; }
+        public bool isMeetTheConditions { get; set; }
     }
 
     /// <summary>
@@ -52,11 +52,6 @@ namespace Geomystery.Controllers.Geometry
         /// 自由的点的id
         /// </summary>
         public int pid { get; set; }
-
-        FreeCondition()
-        {
-            pid = -1;
-        }
     }
 
     /// <summary>
@@ -124,7 +119,7 @@ namespace Geomystery.Controllers.Geometry
     /// <summary>
     /// 线与圆的交点（直线或者圆互相之间的交点）
     /// </summary>
-    public class TntersectCondition : Condition
+    public class IntersectCondition : Condition
     {
         /// <summary>
         /// 某个点，是两个点集的交点

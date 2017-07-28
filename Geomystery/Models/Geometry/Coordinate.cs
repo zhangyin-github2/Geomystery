@@ -44,9 +44,6 @@ namespace Geomystery.Models.Geometry
         /// </summary>
         public List<OutputCoordinate> outputCoordinates { get; set; }
 
-        public delegate void MissionSuccess();                  //声明委托
-        public event MissionSuccess missionSuccess;             //游戏通关事件
-
         /// <summary>
         /// 逻辑坐标系构造函数
         /// </summary>
@@ -466,26 +463,6 @@ namespace Geomystery.Models.Geometry
                 if (selectedPolygon.id == id) return selectedPolygon;
             }
             return null;
-        }
-
-        /// <summary>
-        /// 判断用户是否过关
-        /// </summary>
-        /// <returns>是否过关</returns>
-        public bool isWin()
-        {
-            return false;
-        }
-
-        /// <summary>
-        /// 用户通关通知事件委托
-        /// </summary>
-        public void passNotify()
-        {
-            if(isWin())
-            {
-                missionSuccess();                   //通知函数
-            }
         }
     }
 }
