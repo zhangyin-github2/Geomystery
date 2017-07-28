@@ -73,12 +73,12 @@ namespace Geomystery.Pages
 
             var doubleAnim4 = new DoubleAnimationUsingKeyFrames();
             doubleAnim4.KeyFrames.Add(new EasingDoubleKeyFrame() { KeyTime = TimeSpan.FromMilliseconds(0), Value = 0 });
-            doubleAnim4.KeyFrames.Add(new EasingDoubleKeyFrame() { KeyTime = TimeSpan.FromSeconds(0.5*t), Value = 1800 });
+            doubleAnim4.KeyFrames.Add(new EasingDoubleKeyFrame() { KeyTime = TimeSpan.FromSeconds(0.5*t), Value = 1080 });
             doubleAnim4.KeyFrames.Add(new EasingDoubleKeyFrame() { KeyTime = TimeSpan.FromSeconds(t), Value = 0 });
 
             var doubleAnim5 = new DoubleAnimationUsingKeyFrames();
-            doubleAnim5.KeyFrames.Add(new EasingDoubleKeyFrame() { KeyTime = TimeSpan.FromMilliseconds(0), Value = 0 });
-            doubleAnim5.KeyFrames.Add(new EasingDoubleKeyFrame() { KeyTime = TimeSpan.FromSeconds(t), Value = 540 });
+            doubleAnim5.KeyFrames.Add(new EasingDoubleKeyFrame() { KeyTime = TimeSpan.FromMilliseconds(0), Value = -60 }); //小圆直径与正方形对角线同步
+            doubleAnim5.KeyFrames.Add(new EasingDoubleKeyFrame() { KeyTime = TimeSpan.FromSeconds(t), Value = 480 });
 
             turnSB.Children.Add(doubleAnim);
             turnSB.Children.Add(doubleAnim2);

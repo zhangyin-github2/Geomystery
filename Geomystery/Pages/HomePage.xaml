@@ -389,15 +389,14 @@
             <Grid Name="Pic" VerticalAlignment="Center">
                 <!--图片版-->
                 <Image x:Name="square" Source="ms-appx:///Pictures/homepic/square.png" RenderTransformOrigin="0.5,0.5"/>
-                <Image x:Name="circle2" Height="480" Width="480" HorizontalAlignment="Center" VerticalAlignment="Center" Source="ms-appx:///Pictures/homepic/circle2.png" RenderTransformOrigin="0.5,0.5">
+                <Image x:Name="circle2" Height="480" Width="480" HorizontalAlignment="Center" VerticalAlignment="Center"
+                       Source="ms-appx:///Pictures/homepic/circle2.png" RenderTransformOrigin="0.5,0.5">
                     <Image.Projection>
-                        <PlaneProjection RotationX="45" CenterOfRotationX="0.5"/>
+                        <PlaneProjection RotationX="0" RotationZ="0" CenterOfRotationX="0.5"/>
                     </Image.Projection>
                  </Image>
                 <Image x:Name="triangle" Source="ms-appx:///Pictures/homepic/triangle.png" RenderTransformOrigin="0.5,0.5"/>
-                <Image x:Name="circle1" Source="ms-appx:///Pictures/homepic/circle1.png" RenderTransformOrigin="0.5,0.5">
-                    
-                </Image>
+                <Image x:Name="circle1" Source="ms-appx:///Pictures/homepic/circle1.png" RenderTransformOrigin="0.5,0.5"/>
                 <Image x:Name="hexagon" Source="ms-appx:///Pictures/homepic/hexagon.png" RenderTransformOrigin="0.5,0.5"/>
 
                 <!--xaml版-->
