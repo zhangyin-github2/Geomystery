@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     xmlns:toolData="using:Geomystery.Award"
-    RequestedTheme="{x:Bind View.Theme,Mode=OneWay}"  LayoutUpdated="Page_LayoutUpdated">
+    RequestedTheme="{x:Bind View.Theme,Mode=OneWay}"  LayoutUpdated="Page_LayoutUpdated" SizeChanged="Page_SizeChanged" >
     
     <Page.Resources>
         <ResourceDictionary>
@@ -37,10 +37,10 @@
                                 <ColumnDefinition Width="1*"/>
                                 <ColumnDefinition Width="2*"/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Column="0" Grid.Row="0" Text="{x:Bind ID}" FontSize="32" Foreground="Black" FontFamily="Bradley Hand ITC" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Grid.Column="0" Grid.Row="0" Text="{x:Bind ID}" FontSize="32" Foreground="Black" FontFamily="Bradley Hand ITC" HorizontalAlignment="Center" VerticalAlignment="Center"  Loaded="TextBlock_Loaded" ></TextBlock>
                         </Grid>
                         <Image Source="{x:Bind cover}" Grid.Row="1" Margin="50,0" Stretch="Fill"/>
-                        <TextBlock Grid.Column="0" Grid.Row="2" Text="{x:Bind name}" FontSize="24" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBlock Grid.Column="0" Grid.Row="2" Text="{x:Bind name}" FontSize="24" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Center"  Loaded="TextBlock_Loaded" />
                     </Grid>
                     <Grid Grid.Column="1" Grid.Row="1" Visibility="{Binding unlocked, Converter={StaticResource Converter1}}">
                         <Grid.RowDefinitions>
@@ -59,10 +59,10 @@
                                 <ColumnDefinition Width="1*"/>
                                 <ColumnDefinition Width="2*"/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Column="0" Grid.Row="0" Text="{x:Bind ID}" FontSize="32" FontFamily="Bradley Hand ITC" Foreground="WhiteSmoke" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Grid.Column="0" Grid.Row="0" Text="{x:Bind ID}" FontSize="32" FontFamily="Bradley Hand ITC" Foreground="WhiteSmoke" HorizontalAlignment="Center" VerticalAlignment="Center"  Loaded="TextBlock_Loaded" ></TextBlock>
                         </Grid>
                         <Image Grid.Row="1" Grid.Column="1" Source="ms-appx:///Pictures/lock.png" />
-                        <TextBlock Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" Text="{x:Bind name}" FontSize="24" Foreground="WhiteSmoke" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBlock Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" Text="{x:Bind name}" FontSize="24" Foreground="WhiteSmoke" VerticalAlignment="Center" HorizontalAlignment="Center"  Loaded="TextBlock_Loaded" />
                     </Grid>
                 </Grid>
             </DataTemplate>
