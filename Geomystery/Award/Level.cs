@@ -90,7 +90,7 @@ namespace Geomystery.Award
             cp1.Add(new Level() { ID = 5, name = "Perpendicular Bisector" });
             cp1.Add(new Level() { ID = 6, name = "Angle Bisector" });
             cp1.Add(new Level() { ID = 7, name = "Perpendicular Line" });
-            cp1.Add(new Level() { ID = 8, name = "Ciricl in Diamond" });
+            cp1.Add(new Level() { ID = 8, name = "Circle in Diamond" });
             cp1.Add(new Level() { ID = 9, name = "Circle Center" });
             foreach(var x in cp1)
             {
