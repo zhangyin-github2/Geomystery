@@ -478,7 +478,7 @@ namespace Geomystery.Models.Geometry
         }
 
         /// <summary>
-        /// 用户通关通知
+        /// 用户通关通知事件委托
         /// </summary>
         public void passNotify()
         {
