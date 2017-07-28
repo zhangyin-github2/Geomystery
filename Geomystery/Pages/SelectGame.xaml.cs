@@ -41,6 +41,22 @@ namespace Geomystery
         public void init()
         {
             levels = Level.getLevels();
+            double w, h;
+            h = Window.Current.Bounds.Height;
+            w = Window.Current.Bounds.Width;
+            foreach (var x in GridInListView)
+            {
+                x.Width = 450 * w / 1920.0;
+                x.Height = 250 * h / 1080.0;
+            }
+            var k = Math.Min(w / 1920.0, h / 1080.0);
+            foreach (var x in TextInListView)
+            {
+                string ss = x.Text;
+                if (!char.IsDigit(ss[0]))
+                    x.FontSize = 32 * k;
+                else x.FontSize = 36 * k;
+            }
         }
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
@@ -58,6 +74,20 @@ namespace Geomystery
                 x.Height = 250 * h / 1080.0;
             }
         }
+        private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            double w, h, k;
+            h = Window.Current.Bounds.Height;
+            w = Window.Current.Bounds.Width;
+            k = Math.Min(w / 1920.0, h / 1080.0);
+            foreach (var x in TextInListView)
+            {
+                string ss = x.Text;
+                if (!char.IsDigit(ss[0]))
+                    x.FontSize = 32 * k;
+                else x.FontSize = 36 * k;
+            }
+        }
         private void levelbord_ItemClick(object sender, ItemClickEventArgs e)
         {
             var x = e.ClickedItem as Level;
@@ -70,23 +100,19 @@ namespace Geomystery
 
         private void TextBlock_Loaded(object sender, RoutedEventArgs e)
         {
-            TextInListView.Add(sender as TextBlock);
-        }
-
-        private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
+            var x = sender as TextBlock;
             double w, h,k;
             h = Window.Current.Bounds.Height;
             w = Window.Current.Bounds.Width;
-            k = Math.Min( w / 1920.0,  h / 1080.0);
-            foreach (var x in TextInListView)
-            {
-                string ss = x.Text;
-                if (!char.IsDigit(ss[0]))
-                    x.FontSize = 32 * k;
-                else x.FontSize = 36 * k;
-            }
+            k = Math.Min(w / 1920.0, h / 1080.0);
+            string ss = x.Text;
+            if (!char.IsDigit(ss[0]))
+                x.FontSize = 32 * k;
+            else x.FontSize = 36 * k;
+            TextInListView.Add(x);
         }
+
+       
     }
 
     

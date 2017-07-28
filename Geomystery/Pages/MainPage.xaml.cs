@@ -60,7 +60,7 @@ namespace Geomystery
             try
             {
                 if (APPDATA.app_data.CURRENT_PAGE == AppPage.AchievementPage) x.TranslateX = -ScreenWidth;
-                if (APPDATA.app_data.CURRENT_PAGE == AppPage.OptionPage) x.TranslateY = -ScreenHeight;
+                if (APPDATA.app_data.CURRENT_PAGE == AppPage.OptionPage|| APPDATA.app_data.CURRENT_PAGE == AppPage.AboutPage) x.TranslateY = -ScreenHeight;
             }
             catch { return;  }
             backG.RenderTransform = x;
@@ -72,7 +72,7 @@ namespace Geomystery
             debugTxt = this.debugT;
             BgaP = bgaPlayer;
             BgmP = bgmPlayer;
-            mytitle.Visibility = Visibility.Visible;
+            mytitle.Visibility = Visibility.Collapsed;
             startFrame.Navigate(typeof(SplashScreen));
             APPDATA.app_data = new APPDATA();
             APPDATA.LOAD();

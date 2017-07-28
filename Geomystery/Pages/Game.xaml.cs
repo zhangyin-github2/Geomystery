@@ -1,4 +1,5 @@
-﻿using Geomystery.Controllers.Geometry;
+﻿using Geomystery.Award;
+using Geomystery.Controllers.Geometry;
 using Geomystery.Models.Geometry;
 using Geomystery.Pages;
 using Geomystery.Views.Geometry;
@@ -18,6 +19,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上有介绍
@@ -32,7 +34,7 @@ namespace Geomystery
         Vector2 maxHeightWidth;
 
         List<UserTool> userTools;
-
+        Level localLevel = new Level();
         Geomystery.Controllers.Geometry.Controllers controller;
 
         public Game()
@@ -43,11 +45,28 @@ namespace Geomystery
             {
                 APPDATA.app_data.Views.Add(View);
             }
-
+                 
             userTools = UserToolsManager.GetInstance().GetTools();
+            init();
         }
-
+        void init()
+        {
+            GameDiscribe.Visibility = Visibility.Collapsed;
+            double kw, kh;
+            kh = Window.Current.Bounds.Height / 1080;
+            kw = Window.Current.Bounds.Width / 1920;
+            double k = Math.Min(kw, kh);
+            GameId.FontSize = Math.Max(32 * k, 12);
+            GameName.FontSize = Math.Max(28 * k, 12);
+        }
         private ViewModel.ViewModel View { set; get; } = new ViewModel.ViewModel();
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            var x = localLevel = e.Parameter as Level;
+            GameId.Text = x.ID.ToString();
+            GameName.Text = x.name;
+            GameImage.Source = new BitmapImage(new Uri(x.cover, UriKind.Absolute));
+        }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
@@ -254,6 +273,25 @@ namespace Geomystery
                 else controller.outputCoordinates[0].unitLength = 1;
             }
             controller.outputCoordinates[0].refreshGeometrys();         //刷新
+        }
+
+        private void Page_LayoutUpdated(object sender, object e)
+        {
+            double kw, kh;
+            kh = Window.Current.Bounds.Height/1080;
+            kw = Window.Current.Bounds.Width/1920;
+            GameIm.Width = 300 * Math.Min( kw,kh);
+            GameIm.Height = GameIm.Width * 0.618;
+        }
+
+        private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            double kw, kh;
+            kh = Window.Current.Bounds.Height / 1080;
+            kw = Window.Current.Bounds.Width / 1920;
+            double k = Math.Min(kw, kh);
+            GameId.FontSize = Math.Max(32 * k,12);
+            GameName.FontSize = Math.Max(28 * k, 12);
         }
     }
 }
