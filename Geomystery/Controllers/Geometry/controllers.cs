@@ -772,6 +772,7 @@ namespace Geomystery.Controllers.Geometry
         /// <returns></returns>
         public bool TextGeometry(Models.Geometry.Geometry newGeometry)
         {
+            if (this.conditionLists == null) return true;
             for(int i = 0; i < meetingconditionLists.Count; i++)
             {
                 if(newGeometry is Point2)

@@ -155,8 +155,9 @@ public class LevelLoader
                     {
                         controller.AddGeometryFromString(geoList[i]);
                     }
-                    controller.conditionLists = new List<ConditionsList>();
-                    controller.meetingconditionLists = new List<ConditionsList>();
+                    //复制一下代表条件列表缓存，也可以不需要模板与副本，每次关卡都要从头加载条件列表
+                    controller.conditionLists = new List<ConditionsList>();                             //需要达成条件
+                    controller.meetingconditionLists = new List<ConditionsList>();                      //复制自“需要达成条件”的正在达成条件
                     controller.conditionLists.Add(new ConditionsList());
                     for (int i = 0; i < conList.Count; i++)
                     {
