@@ -333,7 +333,7 @@
                             <TextBlock Text="{x:Bind discribe}" VerticalAlignment="Bottom" FontSize="24" Loaded="ChpDiscibeTextBlock_Loaded" TextWrapping="WrapWholeWords" TextAlignment="Justify"/>
                         </Grid>
                         <Grid Visibility="{Binding unlocked, Converter={StaticResource Converter1}}" >
-                            <Image Source="ms-appx:///Pictures/lock.png"></Image>
+                            <Image Source="ms-appx:///Pictures/lockx.png"></Image>
                         </Grid>
                     </Grid>
                 </Button>
