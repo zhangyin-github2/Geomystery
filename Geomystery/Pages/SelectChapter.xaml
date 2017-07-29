@@ -335,7 +335,7 @@
                                 <RowDefinition Height="1*"/>
                             </Grid.RowDefinitions>
                             <TextBlock Grid.ColumnSpan="2" Text="{x:Bind name}" Foreground="White" VerticalAlignment="Center" FontSize="48" FontFamily="Arial Black"  Loaded="ChpNameTextBlock_Loaded" FontWeight="Bold" />
-                            <TextBlock Grid.Row="0" Text="{x:Bind discribe}" Foreground="White" VerticalAlignment="Bottom" FontSize="24" Loaded="ChpDiscibeTextBlock_Loaded" TextWrapping="WrapWholeWords" TextAlignment="Justify"/>
+                            <TextBlock Grid.Row="0" Margin="0,0,0,20" Text="{x:Bind discribe}" Foreground="White" VerticalAlignment="Bottom" FontSize="24" Loaded="ChpDiscibeTextBlock_Loaded" TextWrapping="WrapWholeWords" TextAlignment="Justify"/>
                         </Grid>
                         <Grid Visibility="{Binding unlocked, Converter={StaticResource Converter1}}" >
                             <Image Source="ms-appx:///Pictures/lockx.png"
