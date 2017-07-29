@@ -89,6 +89,8 @@ namespace Geomystery
             controller.historyDfaList.Clear();
             redo.IsEnabled = controller.CanRedo();
             undo.IsEnabled = controller.CanUndo();
+
+            controller.missionSuccess += success;
         }
 
         private void Page_Unloaded(object sender, RoutedEventArgs e)
@@ -199,33 +201,33 @@ namespace Geomystery
                     }
                 }
             }
-            if (flag == 3)
+        }
+
+        public async void success()
+        {
+            LevelSucceedDialog lsd = new LevelSucceedDialog();
+            APPDATA.app_data.HAVEDONE = Math.Max(APPDATA.app_data.HAVEDONE, localLevel.ID);
+            //lsd.PrimaryButtonClick += (_s, _e) => { };
+            var res = await lsd.ShowAsync();
+            if (res.ToString() == "Primary")
             {
-                LevelSucceedDialog lsd = new LevelSucceedDialog();
-                APPDATA.app_data.HAVEDONE = Math.Max(APPDATA.app_data.HAVEDONE, localLevel.ID);
-                await lsd.ShowAsync();
-                lsd.PrimaryButtonClick += (_s, _e) => { };
-                var res = await lsd.ShowAsync();
-                if (res.ToString() == "Primary")
+                MainPage.MainFrame.Navigate(typeof(Game), localLevel);
+                APPDATA.app_data.MoveTo(AppPage.GamePage);
+            }
+            else
+            {
+                if (localLevel.ID % 9 == 0)
                 {
-                    MainPage.MainFrame.Navigate(typeof(Game),localLevel);
-                    APPDATA.app_data.MoveTo(AppPage.GamePage);
+                    MainPage.MainFrame.Navigate(typeof(SelectChapter));
+                    APPDATA.app_data.MoveTo(AppPage.SelectChapterPage);
+                    return;
                 }
-                else
+                foreach (var l in APPDATA.app_data.cp1)
                 {
-                    if (localLevel.ID % 9 == 0)
+                    if (l.ID == localLevel.ID + 1)
                     {
-                        MainPage.MainFrame.Navigate(typeof(SelectChapter));
-                        APPDATA.app_data.MoveTo(AppPage.SelectChapterPage);
-                        return;
-                    } 
-                    foreach (var l in APPDATA.app_data.cp1)
-                    {
-                        if(l.ID == localLevel.ID+1)
-                        {
-                            MainPage.MainFrame.Navigate(typeof(Game), l);
-                            APPDATA.app_data.MoveTo(AppPage.GamePage);
-                        }
+                        MainPage.MainFrame.Navigate(typeof(Game), l);
+                        APPDATA.app_data.MoveTo(AppPage.GamePage);
                     }
                 }
             }
