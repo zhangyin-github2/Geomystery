@@ -88,7 +88,7 @@ namespace Geomystery.Views.Geometry
         }
 
         /// <summary>
-        /// 逻辑坐标系到屏幕显示坐标系的转换
+        /// 逻辑坐标系到屏幕显示坐标系的转换（左上角模式）
         /// </summary>
         /// <param name="p2"></param>
         /// <returns>v2</returns>
@@ -102,7 +102,7 @@ namespace Geomystery.Views.Geometry
             return v2;
         }
         /// <summary>
-        /// 屏幕显示坐标系到逻辑坐标的转换
+        /// 屏幕显示坐标系到逻辑坐标的转换（左上角模式）
         /// </summary>
         /// <param name="v2"></param>
         /// <returns>Point2 p2</returns>
@@ -114,10 +114,10 @@ namespace Geomystery.Views.Geometry
 
 
         /// <summary>
-        /// 逻辑坐标系到屏幕显示坐标系的转换
+        /// 逻辑坐标系到屏幕显示坐标系的转换（中心模式）
         /// </summary>
         /// <param name="p2"></param>
-        /// <returns>v2</returns>
+        /// <returns>屏幕上的点</returns>
         public Vector2 ToVector2(Point2 p2)
         {
             Vector2 vop = new Vector2() { X = p2.X - vector.X, Y = vector.Y - p2.Y };
@@ -127,10 +127,10 @@ namespace Geomystery.Views.Geometry
             return result;
         }
         /// <summary>
-        /// 屏幕显示坐标系到逻辑坐标的转换
+        /// 屏幕显示坐标系到逻辑坐标的转换（中心模式）
         /// </summary>
         /// <param name="v2"></param>
-        /// <returns>Point2 p2</returns>
+        /// <returns>逻辑坐标系中的点</returns>
         public Point2 ToPoint2(Vector2 v2)
         {
             if (WindowHeight <= 0 || WindowWidth <= 0) throw new Exception("中心构造方式需要了解canvas画布的actual宽和高");

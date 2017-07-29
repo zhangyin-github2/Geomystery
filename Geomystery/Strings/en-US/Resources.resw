@@ -124,7 +124,7 @@
     <value>Learning is necessary before starting trail and challenge. You need to learn how to use rulers and compasses ,because they will help you to solve almost all of the problems .You also need to learn some kind of composite tools in this chapter.</value>
   </data>
   <data name="CD2" xml:space="preserve">
-    <value />
+    <value>Dojo can teach you only the most basic knowledge. If you want to be a master, you have to cintinue your learning in the course of trail and challenge.You can only rely on yourself.</value>
   </data>
   <data name="CD3" xml:space="preserve">
     <value />
@@ -182,5 +182,59 @@
   </data>
   <data name="SFX Volume.Text" xml:space="preserve">
     <value>SFX Volume</value>
+  </data>
+  <data name="L1D.Text" xml:space="preserve">
+    <value>Today you need to take the first step in geometric learning,why not get started from the most simple content.Try to draw three lines to connect these three points .Line is one of the most useful tools you will use to solve problems ,you must comprehend it.</value>
+  </data>
+  <data name="L1N.Text" xml:space="preserve">
+    <value>Draw Line</value>
+  </data>
+  <data name="L2D.Text" xml:space="preserve">
+    <value>Lines can't help you with solving all of the question when you learn geometry,so why not try to use circles ? Try to draw two concentric circles through the other two points with a given point which is above the others as the center.This question is not too difficult ,is it?</value>
+  </data>
+  <data name="L2N.Text" xml:space="preserve">
+    <value>Draw Circle</value>
+  </data>
+  <data name="L3D.Text" xml:space="preserve">
+    <value>It seems that you have learned to use straight lines and rounds, which is really gratifying.But sometimes you need some points to help you.Try to mark the intersection of the given three lines,and this step will be used repeatedly.</value>
+  </data>
+  <data name="L3N.Text" xml:space="preserve">
+    <value>Draw Point</value>
+  </data>
+  <data name="L4D.Text" xml:space="preserve">
+    <value>Have you already learnt the three basic tools?It seems that you are ready to accept the first test. Try to draw a 60°angle based on the given ray, I think it's not hard for you.</value>
+  </data>
+  <data name="L4N.Text" xml:space="preserve">
+    <value>Angle of 60°</value>
+  </data>
+  <data name="L5D.Text" xml:space="preserve">
+    <value>It is a long way to lern geometry ,don't be complacent. You need to learn how to use more tools which is more complex.Try to draw the perpendicular bisector of this line. What's more ,mastered perpendicular bisectors is obligatory course if you want to learn to solve problems.</value>
+  </data>
+  <data name="L5N.Text" xml:space="preserve">
+    <value>Perpendicular Bisector</value>
+  </data>
+  <data name="L6D.Text" xml:space="preserve">
+    <value>Do you remember the 60 degree angle you have drawn? The line isn't the only object we have to operate, we need to learn to operate angle.Try to draw the bisector of the given angle. You will learn more about the relationship between the lines and the angles.</value>
+  </data>
+  <data name="L6N.Text" xml:space="preserve">
+    <value>Angle Bisector</value>
+  </data>
+  <data name="L7D.Text" xml:space="preserve">
+    <value>Have you already mastered perpendicular bisectors and angle bisectors ?I think you are ready to continue your learning in using composite tools. Try to draw the perpendicular line of the given line through the given point. Can you see the nature of this problem?</value>
+  </data>
+  <data name="L7N.Text" xml:space="preserve">
+    <value>Perpendicular Line</value>
+  </data>
+  <data name="L8D.Text" xml:space="preserve">
+    <value>Finished learning to use composite tool , maybe you are eager to do a quiz. Are you ready to do it?  Try to draw the inscribed circle of the given diamond. Don't forget to use the new tools you have lerant to help you.</value>
+  </data>
+  <data name="L8N.Text" xml:space="preserve">
+    <value>Circle in Diamond</value>
+  </data>
+  <data name="L9D.Text" xml:space="preserve">
+    <value>I think these simple problems can not stumped you, you need a final quiz before starting your test. Try to draw the center of the given circle. This question is not as simple as it looks.</value>
+  </data>
+  <data name="L9N.Text" xml:space="preserve">
+    <value>Circle Center</value>
   </data>
 </root>
