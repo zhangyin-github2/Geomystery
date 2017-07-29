@@ -99,7 +99,7 @@
                        Foreground="Gray"
                        Margin="24,24,24,24"
                        HorizontalAlignment="Center"
-                       Text="Version Release Candidate"/>
+                       Text="Release Version 1.0 (Build170730)"/>
         </StackPanel>
     </Grid>
 </Page>
