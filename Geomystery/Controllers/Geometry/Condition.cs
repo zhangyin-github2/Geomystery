@@ -20,9 +20,37 @@ namespace Geomystery.Controllers.Geometry
         /// <summary>
         /// 复制
         /// </summary>
-        public void copy()
+        public List<Condition> Copy()
         {
-
+            List<Condition> result = null;
+            if(conditions != null)
+            {
+                result = new List<Geometry.Condition>();
+                for(int i = 0; i < conditions.Count; i++)
+                {
+                    if(conditions[i] is FreeCondition)
+                    {
+                        FreeCondition fc = conditions[i] as FreeCondition;
+                        result.Add(new FreeCondition() { isMeetTheConditions = fc.isMeetTheConditions, pid = fc.pid, point = fc.point });
+                    }
+                    else if(conditions[i] is PenDrawCondition)
+                    {
+                        PenDrawCondition pc = conditions[i] as PenDrawCondition;
+                        result.Add(new PenDrawCondition() { isMeetTheConditions = pc.isMeetTheConditions, iid = pc.iid, p1 = pc.p1, p1id = pc.p1id, p2 = pc.p2, p2id = pc.p2id, pointSet = pc.pointSet });
+                    }
+                    else if (conditions[i] is OnTheTreeCondition)
+                    {
+                        OnTheTreeCondition oc = conditions[i] as OnTheTreeCondition;
+                        result.Add(new FreeCondition() { isMeetTheConditions = oc.isMeetTheConditions, pid = oc.pid, point = oc.point});
+                    }
+                    else if(conditions[i] is IntersectCondition)
+                    {
+                        IntersectCondition ic = conditions[i] as IntersectCondition;
+                        result.Add(new IntersectCondition() { isMeetTheConditions = ic.isMeetTheConditions, i1id = ic.i1id, i2id = ic.i2id, pid = ic.pid, point = ic.point, pointSet1 = ic.pointSet1, pointSet2 = ic.pointSet2 });
+                    }
+                }
+            }
+            return result;
         }
     }
 
