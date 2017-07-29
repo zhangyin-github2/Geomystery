@@ -238,16 +238,16 @@
     <value>Circle Center</value>
   </data>
   <data name="L10N" xml:space="preserve">
-    <value> </value>
+    <value>Parallel Lines</value>
   </data>
   <data name="L11N" xml:space="preserve">
-    <value> </value>
+    <value>Tangent</value>
   </data>
   <data name="L12N" xml:space="preserve">
-    <value> </value>
+    <value>Angle of 60°Again</value>
   </data>
   <data name="L13N" xml:space="preserve">
-    <value> </value>
+    <value>Circumscribed Equilateral Triangle</value>
   </data>
   <data name="L14N" xml:space="preserve">
     <value> </value>
@@ -263,5 +263,32 @@
   </data>
   <data name="L18N" xml:space="preserve">
     <value> </value>
+  </data>
+  <data name="L10D" xml:space="preserve">
+    <value>It seems that you are ready for your trail . As you can see ,there is a line .Draw a parallel line through the given point of the given line.</value>
+  </data>
+  <data name="L11D" xml:space="preserve">
+    <value>As you can see ,you operation object is a circle .Draw the tangent through the given point of the given circle .</value>
+  </data>
+  <data name="L12D" xml:space="preserve">
+    <value>As you can see ,this problem seems to have met before , but they are completely different in fact .Draw a 60° angle at a given point in the counterclockwise direction of a given line .</value>
+  </data>
+  <data name="L13D" xml:space="preserve">
+    <value>As you can see, you need to finish one more problem about circle. Draw a circumscribed equilateral triangle through the given point of the given circle.</value>
+  </data>
+  <data name="L14D" xml:space="preserve">
+    <value />
+  </data>
+  <data name="L15D" xml:space="preserve">
+    <value />
+  </data>
+  <data name="L16D" xml:space="preserve">
+    <value />
+  </data>
+  <data name="L17D" xml:space="preserve">
+    <value />
+  </data>
+  <data name="L18D" xml:space="preserve">
+    <value />
   </data>
 </root>
