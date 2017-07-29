@@ -73,13 +73,15 @@ namespace Geomystery
             GameName.Text = x.name;
             GameImage.Source = new BitmapImage(new Uri(x.cover, UriKind.Absolute));
             GameDiscribe.Text = x.intro;
+
+            controller = LevelLoader.GetLevel(x.ID);
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             //controller = new Controllers.Geometry.Controllers();
             //controller.PreInitialized(LevelLoader.GetLevel(1));                 //第一关的控制器
-            controller = LevelLoader.GetLevel(1);
+            //controller = LevelLoader.GetLevel(1);
 
             controller.outputCoordinates[0].WindowHeight = (float)canvas1.ActualHeight;
             controller.outputCoordinates[0].WindowWidth = (float)canvas1.ActualWidth;
@@ -103,13 +105,6 @@ namespace Geomystery
         {
             if (controller == null || !controller.isIniialized) return;
             var draw = args.DrawingSession;
-            /*
-            args.DrawingSession.DrawText("click me", center, Colors.Red);
-            for (int i = 0; i < plist.Count; i++)
-            {
-                args.DrawingSession.DrawCircle(plist[i], 5, Color.FromArgb(255, 0, 0, 0));
-            }
-            */
             //Rect rect = new Rect(0, 0, maxHeightWidth.X, maxHeightWidth.Y);
             //args.DrawingSession.DrawRectangle(rect, Colors.Black);
             List<OutputGeometry> pointSetList = controller.outputCoordinates[0].outputPointSetList;
@@ -170,7 +165,7 @@ namespace Geomystery
 
         }
 
-        private async void canvas1_PointerPressed(object sender, PointerRoutedEventArgs e)
+        private void canvas1_PointerPressed(object sender, PointerRoutedEventArgs e)
         {
             Point pxy = e.GetCurrentPoint((CanvasAnimatedControl)sender).Position;
             Vector2 p = pxy.ToVector2();
@@ -181,26 +176,6 @@ namespace Geomystery
             redo.IsEnabled = controller.CanRedo();
             undo.IsEnabled = controller.CanUndo();
 
-            int flag = 0;
-            for (int i = 0; i < controller.coordinate.pointSetList.Count; i++)
-            {
-                if (controller.coordinate.pointSetList[i] is Line)
-                {
-                    Line line = controller.coordinate.pointSetList[i] as Line;
-                    if ((line.p1.id == 1 && line.p2.id == 2) || (line.p2.id == 1 && line.p1.id == 2))
-                    {
-                        flag++;
-                    }
-                    if ((line.p1.id == 1 && line.p2.id == 3) || (line.p2.id == 1 && line.p1.id == 3))
-                    {
-                        flag++;
-                    }
-                    if ((line.p1.id == 2 && line.p2.id == 3) || (line.p2.id == 2 && line.p1.id == 3))
-                    {
-                        flag++;
-                    }
-                }
-            }
         }
 
         public async void success()
@@ -237,12 +212,14 @@ namespace Geomystery
         {
             //controller.outputCoordinates[0].geometryList.Clear();
             controller = null;
-            controller = LevelLoader.GetLevel(1);
+            controller = LevelLoader.GetLevel(localLevel.ID);
 
             controller.historyDfaList.Clear();
             controller.outputCoordinates[0].refreshCanvas(canvas1);
             redo.IsEnabled = controller.CanRedo();
             undo.IsEnabled = controller.CanUndo();
+
+            controller.missionSuccess += success;
         }
 
         private void undo_Click(object sender, RoutedEventArgs e)

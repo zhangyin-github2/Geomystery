@@ -769,7 +769,7 @@ namespace Geomystery.Controllers.Geometry
         {
             if (isWin())
             {
-                missionSuccess();                   //通知函数
+                if(missionSuccess != null) missionSuccess();                   //通知函数
             }
         }
 
