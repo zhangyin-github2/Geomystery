@@ -250,19 +250,19 @@
     <value>Circumscribed Equilateral Triangle</value>
   </data>
   <data name="L14N" xml:space="preserve">
-    <value> </value>
+    <value>Trapezoidal Median Line</value>
   </data>
   <data name="L15N" xml:space="preserve">
-    <value> </value>
+    <value>Cut Rectangle</value>
   </data>
   <data name="L16N" xml:space="preserve">
-    <value> </value>
+    <value>Triangle in Circle</value>
   </data>
   <data name="L17N" xml:space="preserve">
-    <value> </value>
+    <value>Circle in Triangle</value>
   </data>
   <data name="L18N" xml:space="preserve">
-    <value> </value>
+    <value>Regular Hexagon</value>
   </data>
   <data name="L10D" xml:space="preserve">
     <value>It seems that you are ready for your trail . As you can see ,there is a line .Draw a parallel line through the given point of the given line.</value>
@@ -277,19 +277,19 @@
     <value>As you can see, you need to finish one more problem about circle. Draw a circumscribed equilateral triangle through the given point of the given circle.</value>
   </data>
   <data name="L14D" xml:space="preserve">
-    <value />
+    <value>As you can see ,this is a trapezoidal ,you will meet it in the future.Draw the median line of the given trapezoidal.</value>
   </data>
   <data name="L15D" xml:space="preserve">
-    <value />
+    <value>As you can see ,your operation object is a rectangle .Draw a line through the given point that cuts the rectangle into two parts of equal area.</value>
   </data>
   <data name="L16D" xml:space="preserve">
-    <value />
+    <value>As you can see ,your operation object is a triangle .Draw the Circumcircle of the given triangle.</value>
   </data>
   <data name="L17D" xml:space="preserve">
-    <value />
+    <value>As you can see ,this problem is similar as previous one ,but they are totally opposite .Draw the inscribed circle of the given triangle.</value>
   </data>
   <data name="L18D" xml:space="preserve">
-    <value />
+    <value>It seems that you have already passed the trial before .Now ,you can try to construct a new gragh,why not draw a regular hexagon ?Draw a regular hexagon above the given line with using the given line as one of it's side.</value>
   </data>
   <data name="AC1D" xml:space="preserve">
     <value>Solve your first problem.</value>
