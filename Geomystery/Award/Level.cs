@@ -138,7 +138,7 @@ public class LevelLoader
                     {
                         controller.AddConditionFromString(conList[i]);
                     }
-                    //controller.conditionLists.Add(controller.conditionLists.);
+                    controller.conditionLists.Add(new ConditionsList() { conditions = controller.conditionLists[0].Copy() });
                     /*
                     Point2 p1 = new Point2() { X = 66560, Y = -35198 };
                     Point2 p2 = new Point2() { X = 44797, Y = -52078 };
