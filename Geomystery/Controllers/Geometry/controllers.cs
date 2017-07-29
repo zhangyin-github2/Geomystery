@@ -64,6 +64,11 @@ namespace Geomystery.Controllers.Geometry
         public List<ConditionsList> conditionLists { get; set; }
 
         /// <summary>
+        /// 正在达成的条件序列
+        /// </summary>
+        public List<ConditionsList> meetingconditionLists { get; set; }
+
+        /// <summary>
         /// 过关通知委托
         /// </summary>
         public delegate void MissionSuccess();
@@ -227,12 +232,15 @@ namespace Geomystery.Controllers.Geometry
                     for (int i = 0; i < plist.Count; i++)
                     {
                         runningDFA.result.Add(plist[i]);
+                        TextGeometry(plist[i]);
                         coordinate.AddPoint(plist[i]);
                         coordinate.ToSelectGeometry(plist[i]);
                     }
                     historyDfaList.Add(runningDFA);
                     redoDfaList.Clear();
                     runningDFA = null;
+
+                    passNotify();
                 }
             }
             else if (userTool.toolName == "点工具")
@@ -247,8 +255,11 @@ namespace Geomystery.Controllers.Geometry
                     Point2 newPoint = outputCoordinates[0].ToPoint2(vector2);
                     runningDFA.UserSelectGeomerty(newPoint, true);
                     //runningDFA.result.Add()
+                    TextGeometry(newPoint);
                     coordinate.AddPoint(newPoint);
                     coordinate.ToSelectGeometry(newPoint);
+
+                    passNotify();
                 }
                 if (runningDFA.state == 2)
                 {
@@ -280,14 +291,18 @@ namespace Geomystery.Controllers.Geometry
                     line.p2 = runningDFA.needList[0].selectStack[1].selectedGeometry as Point2;
                     line.type = LineType.Line;
                     line.lineRely = LineRely.Normal;
-
+                    TextGeometry(line);                         //测试条件
                     coordinate.AddLine(line);
                     coordinate.ToSelectGeometry(line);
                     runningDFA.result.Add(line);
                     historyDfaList.Add(runningDFA);
                     redoDfaList.Clear();
                     runningDFA = null;
+
+                    passNotify();
                 }
+
+                                                   //过关通知
             }
             else if (userTool.toolName == "圆工具")
             {
@@ -310,13 +325,15 @@ namespace Geomystery.Controllers.Geometry
 
                     circle.center = runningDFA.needList[0].selectStack[0].selectedGeometry as Point2;
                     circle.radius = runningDFA.needList[0].selectStack[1].selectedGeometry as Point2;
-
+                    TextGeometry(circle);
                     coordinate.AddCircle(circle);
                     coordinate.ToSelectGeometry(circle);
                     runningDFA.result.Add(circle);
                     historyDfaList.Add(runningDFA);
                     redoDfaList.Clear();
                     runningDFA = null;
+
+                    passNotify();                       //过关通知
                 }
 
             }
@@ -600,7 +617,8 @@ namespace Geomystery.Controllers.Geometry
             string[] infomations = args.Split(splitter);                        //参数列表
             if (infomations.Count() < 2) return -2;
 
-            if (conditionLists[0].conditions == null) conditionLists[0].conditions = new List<Condition>();
+            if (conditionLists[0].reachedConditions == null) conditionLists[0].reachedConditions = new List<Condition>();
+            if (conditionLists[0].unmetCnditions == null) conditionLists[0].unmetCnditions = new List<Condition>();
 
             bool meet;
             if (!bool.TryParse(infomations[1], out meet)) return -4;                //是否满足满足的标志不正常
@@ -613,8 +631,12 @@ namespace Geomystery.Controllers.Geometry
                 {
                     point = coordinate.GetGeometryById(pid) as Point2;
                     if (point == null) throw new Exception();
+                    conditionLists[0].reachedConditions.Add(new FreeCondition() { isMeetTheConditions = meet, pid = pid, point = point });
                 }
-                conditionLists[0].conditions.Add(new FreeCondition() { isMeetTheConditions = meet, pid = pid, point = point });
+                else
+                {
+                    conditionLists[0].unmetCnditions.Add(new FreeCondition() { isMeetTheConditions = meet, pid = pid, point = point });
+                }
             }
             else if (infomations[0] == "1" || infomations[0].ToLower() == "dl" || infomations[0].ToLower() == "drawline")
             {
@@ -634,8 +656,12 @@ namespace Geomystery.Controllers.Geometry
                     if (pointSet == null) throw new Exception();
                     if (p1 == null) throw new Exception();
                     if (p2 == null) throw new Exception();
+                    conditionLists[0].reachedConditions.Add(new PenDrawCondition() { isMeetTheConditions = meet, iid = iid, pointSet = pointSet, p1id = p1id, p1 = p1, p2id = p2id, p2 = p2, type = 1 });
                 }
-                conditionLists[0].conditions.Add(new PenDrawCondition() { isMeetTheConditions = meet, iid = iid, pointSet = pointSet, p1id = p1id, p1 = p1, p2id = p2id, p2 = p2, type = 1 });
+                else
+                {
+                    conditionLists[0].unmetCnditions.Add(new PenDrawCondition() { isMeetTheConditions = meet, iid = iid, pointSet = pointSet, p1id = p1id, p1 = p1, p2id = p2id, p2 = p2, type = 1 });
+                }
             }
             else if (infomations[0] == "2" || infomations[0].ToLower() == "dc" || infomations[0].ToLower() == "drawcircle")
             {
@@ -655,8 +681,13 @@ namespace Geomystery.Controllers.Geometry
                     if (pointSet == null) throw new Exception();
                     if (p1 == null) throw new Exception();
                     if (p2 == null) throw new Exception();
+                    conditionLists[0].reachedConditions.Add(new PenDrawCondition() { isMeetTheConditions = meet, iid = iid, pointSet = pointSet, p1id = p1id, p1 = p1, p2id = p2id, p2 = p2, type = 2 });
                 }
-                conditionLists[0].conditions.Add(new PenDrawCondition() { isMeetTheConditions = meet, iid = iid, pointSet = pointSet, p1id = p1id, p1 = p1, p2id = p2id, p2 = p2, type = 2 });
+                else
+                {
+                    conditionLists[0].unmetCnditions.Add(new PenDrawCondition() { isMeetTheConditions = meet, iid = iid, pointSet = pointSet, p1id = p1id, p1 = p1, p2id = p2id, p2 = p2, type = 2 });
+                }
+                
             }
             else if (infomations[0] == "3" || infomations[0].ToLower() == "o" || infomations[0].ToLower() == "on" || infomations[0].ToLower() == "onpointset")
             {
@@ -672,8 +703,13 @@ namespace Geomystery.Controllers.Geometry
                     pointSet = coordinate.GetGeometryById(iid) as IPointSet;
                     if (point == null) throw new Exception();
                     if (pointSet == null) throw new Exception();
+                    conditionLists[0].reachedConditions.Add(new OnTheTreeCondition() { isMeetTheConditions = meet, pid = pid, point = point, iid = iid, pointSet = pointSet });
                 }
-                conditionLists[0].conditions.Add(new OnTheTreeCondition() { isMeetTheConditions = meet, pid = pid, point = point, iid = iid, pointSet = pointSet });
+                else
+                {
+                    conditionLists[0].unmetCnditions.Add(new OnTheTreeCondition() { isMeetTheConditions = meet, pid = pid, point = point, iid = iid, pointSet = pointSet });
+                }
+                
             }
             else if (infomations[0] == "4" || infomations[0].ToLower() == "i" || infomations[0].ToLower() == "intersect" || infomations[0].ToLower() == "intersection")
             {
@@ -695,8 +731,12 @@ namespace Geomystery.Controllers.Geometry
                     if (point == null) throw new Exception();
                     if (pointSet1 == null) throw new Exception();
                     if (pointSet2 == null) throw new Exception();
+                    conditionLists[0].reachedConditions.Add(new IntersectCondition() { isMeetTheConditions = meet, pid = pid, point = point, i1id = i1id, pointSet1 = pointSet1, i2id = i2id, pointSet2 = pointSet2, clock = clock });
                 }
-                conditionLists[0].conditions.Add(new IntersectCondition() { isMeetTheConditions = meet, pid = pid, point = point, i1id = i1id, pointSet1 = pointSet1, i2id = i2id, pointSet2 = pointSet2, clock = clock });
+                else
+                {
+                    conditionLists[0].unmetCnditions.Add(new IntersectCondition() { isMeetTheConditions = meet, pid = pid, point = point, i1id = i1id, pointSet1 = pointSet1, i2id = i2id, pointSet2 = pointSet2, clock = clock });
+                }
             }
             return 0;
         }
@@ -708,21 +748,14 @@ namespace Geomystery.Controllers.Geometry
         public bool isWin()
         {
             int meetNumber = 0;                     //可以通关条件满足个数
-            bool flag1;                         //条件满足
-            if(conditionLists != null && conditionLists.Count > 1)              //是游戏模式且存在过关条件
+            if(conditionLists != null && conditionLists.Count > 0)              //是游戏模式且存在过关条件
             {
-                for(int i = 1; i < conditionLists.Count; i++)
+                for(int i = 0; i < conditionLists.Count; i++)
                 {
-                    flag1 = true;
-                    for(int j = 0; j < conditionLists[i].conditions.Count; j++)
+                    if(meetingconditionLists[i].reachedConditions.Count == conditionLists[i].reachedConditions.Count + conditionLists[i].unmetCnditions.Count)
                     {
-                        if(!conditionLists[i].conditions[j].isMeetTheConditions)
-                        {
-                            flag1 = false;
-                            break;
-                        }
+                        meetNumber++;
                     }
-                    if(flag1) meetNumber++;
                 }
             }
             if (meetNumber > 0) return true;                //过关
@@ -738,6 +771,171 @@ namespace Geomystery.Controllers.Geometry
             {
                 missionSuccess();                   //通知函数
             }
+        }
+
+        /// <summary>
+        /// 测试当前元素是否符合某个过关条件的某一项
+        /// </summary>
+        /// <param name="newGeometry">新增元素</param>
+        /// <returns></returns>
+        public bool TextGeometry(Models.Geometry.Geometry newGeometry)
+        {
+            if (this.conditionLists == null) return true;
+            for(int i = 0; i < meetingconditionLists.Count; i++)
+            {
+                Condition condition = null;
+                if (newGeometry is Point2)
+                {
+                    Point2 point = newGeometry as Point2;
+
+                    for (int j = 0; j < meetingconditionLists[i].unmetCnditions.Count; j++)
+                    {
+                        condition = meetingconditionLists[i].unmetCnditions[j];
+                        if (condition.isMeetTheConditions) throw new Exception("移动条件时出错");
+                        if (condition is FreeCondition)                                     //自由的点
+                        {
+                            FreeCondition fc = condition as FreeCondition;
+                            fc.pid = coordinate.GeometryCount;
+                            fc.point = point;
+                            fc.isMeetTheConditions = true;
+                        }
+                        else if (condition is OnTheTreeCondition)                           //附着点
+                        {
+                            OnTheTreeCondition oc = condition as OnTheTreeCondition;
+                            if(point.rely.Count == 1)
+                            {
+                                if(oc.iid == point.rely[0].id)
+                                {
+                                    oc.pid = coordinate.GeometryCount;
+                                    oc.point = point;
+                                    oc.isMeetTheConditions = true;
+                                    break;
+                                }
+                            }
+                        }
+                        else if (condition is IntersectCondition)                           //交点
+                        {
+                            IntersectCondition ic = condition as IntersectCondition;
+                            if(point.rely.Count == 2)
+                            {
+                                if(point.rely[0] is Circle)
+                                {
+                                    if (point.rely[1] is Circle)
+                                    {
+                                        if (ic.i1id == point.rely[0].id && ic.i2id == point.rely[1].id && ((ic.clock == 1 && point.markOfTwoIntersectPointOnCircle) || (ic.clock == 2 && !point.markOfTwoIntersectPointOnCircle)))
+                                        {
+                                            ic.pid = coordinate.GeometryCount;
+                                            ic.point = point;
+                                            ic.isMeetTheConditions = true;
+                                            break;
+                                        }
+                                        else if (ic.i1id == point.rely[1].id && ic.i2id == point.rely[0].id && ((ic.clock == 1 && !point.markOfTwoIntersectPointOnCircle) || (ic.clock == 2 && point.markOfTwoIntersectPointOnCircle)))
+                                        {
+                                            ic.pid = coordinate.GeometryCount;
+                                            ic.point = point;
+                                            ic.isMeetTheConditions = true;
+                                            break;
+                                        }
+                                    }
+                                    else if (point.rely[1] is Line)
+                                    {
+                                        if ((ic.i1id == point.rely[0].id && ic.i2id == point.rely[1].id || ic.i1id == point.rely[1].id && ic.i2id == point.rely[0].id) && ((ic.clock == 1 && point.markOfTwoIntersectPointOnCircle) || (ic.clock == 2 && !point.markOfTwoIntersectPointOnCircle)))
+                                        {
+                                            ic.pid = coordinate.GeometryCount;
+                                            ic.point = point;
+                                            ic.isMeetTheConditions = true;
+                                            break;
+                                        }
+                                    }
+                                }
+                                else if(point.rely[0] is Line)
+                                {
+                                    if(point.rely[1] is Circle)
+                                    {
+                                        if ( (ic.i1id == point.rely[0].id && ic.i2id == point.rely[1].id || ic.i1id == point.rely[1].id && ic.i2id == point.rely[0].id) && ((ic.clock == 1 && point.markOfTwoIntersectPointOnCircle) || (ic.clock == 2 && !point.markOfTwoIntersectPointOnCircle)))
+                                        {
+                                            ic.pid = coordinate.GeometryCount;
+                                            ic.point = point;
+                                            ic.isMeetTheConditions = true;
+                                            break;
+                                        }
+                                    }
+                                    else if (point.rely[1] is Line)
+                                    {
+                                        if (ic.i1id == point.rely[0].id && ic.i2id == point.rely[1].id || ic.i1id == point.rely[1].id && ic.i2id == point.rely[0].id)
+                                        {
+                                            ic.pid = coordinate.GeometryCount;
+                                            ic.point = point;
+                                            ic.isMeetTheConditions = true;
+                                            break;
+                                        }
+                                    }
+                                }
+                                
+                            }
+                        }
+                        condition = null;
+                    }
+
+                }
+                else if(newGeometry is Line)
+                {
+                    Line line = newGeometry as Line;
+
+                    for (int j = 0; j < meetingconditionLists[i].unmetCnditions.Count; j++)
+                    {
+                        condition = meetingconditionLists[i].unmetCnditions[j];
+                        if (condition.isMeetTheConditions) throw new Exception("移动条件时出错");
+                        if (condition is PenDrawCondition)
+                        {
+                            PenDrawCondition pc = condition as PenDrawCondition;
+                            if (pc.type == 1 && ((pc.p1id == line.p1.id && pc.p2id == line.p2.id) || (pc.p1id == line.p2.id && pc.p2id == line.p1.id) ))                 //此直线属于某个条件
+                            {
+                                if (meetingconditionLists[i].isReached(pc.p1id) && meetingconditionLists[i].isReached(pc.p2id))       //此直线满足此条件
+                                {
+                                    pc.iid = coordinate.GeometryCount;
+                                    pc.pointSet = line;
+                                    pc.isMeetTheConditions = true;
+                                    break;
+                                }
+                            }
+                        }
+                        condition = null;
+                    }
+                }
+                else if(newGeometry is Circle)
+                {
+                    Circle circle = newGeometry as Circle;
+                    for (int j = 0; j < meetingconditionLists[i].unmetCnditions.Count; j++)
+                    {
+                        condition = meetingconditionLists[i].unmetCnditions[j];
+                        if (condition.isMeetTheConditions) throw new Exception("移动条件时出错");
+                        if (condition is PenDrawCondition)
+                        {
+                            PenDrawCondition pc = condition as PenDrawCondition;
+                            if(pc.type == 2 && pc.p1id == circle.center.id && pc.p2id == circle.radius.id )                 //此圆属于某个条件
+                            {
+                                if (meetingconditionLists[i].isReached(circle.center.id) && meetingconditionLists[i].isReached(circle.radius.id))       //此圆满足此条件
+                                {
+                                    pc.iid = coordinate.GeometryCount;
+                                    pc.pointSet = circle;
+                                    pc.isMeetTheConditions = true;
+                                    break;
+                                }
+                            }
+                        }
+                        condition = null;
+                    }
+                }
+                if (condition != null)
+                {
+                    if (!condition.isMeetTheConditions) throw new Exception("不可能的异常");
+                    meetingconditionLists[i].reachedConditions.Add(condition);
+                    meetingconditionLists[i].unmetCnditions.Remove(condition);
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

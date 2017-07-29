@@ -150,13 +150,9 @@
                         <Setter Target="undo.Height" Value="22"/>
                         <Setter Target="redo.Height" Value="22"/>
                         <Setter Target="refresh.Height" Value="22"/>
-                        <Setter Target="blank1.Height" Value="22"/>
-                        <Setter Target="blank2.Height" Value="22"/>
                         <Setter Target="undo.Width" Value="30"/>
                         <Setter Target="redo.Width" Value="30"/>
                         <Setter Target="refresh.Width" Value="30"/>
-                        <Setter Target="blank1.Width" Value="60"/>
-                        <Setter Target="blank2.Width" Value="90"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="miniView">
@@ -172,13 +168,9 @@
                         <Setter Target="undo.Height" Value="34"/>
                         <Setter Target="redo.Height" Value="34"/>
                         <Setter Target="refresh.Height" Value="34"/>
-                        <Setter Target="blank1.Height" Value="34"/>
-                        <Setter Target="blank2.Height" Value="34"/>
                         <Setter Target="undo.Width" Value="46"/>
                         <Setter Target="redo.Width" Value="46"/>
                         <Setter Target="refresh.Width" Value="46"/>
-                        <Setter Target="blank1.Width" Value="92"/>
-                        <Setter Target="blank2.Width" Value="138"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="normalView">
@@ -194,13 +186,9 @@
                         <Setter Target="undo.Height" Value="48"/>
                         <Setter Target="redo.Height" Value="48"/>
                         <Setter Target="refresh.Height" Value="48"/>
-                        <Setter Target="blank1.Height" Value="48"/>
-                        <Setter Target="blank2.Height" Value="48"/>
                         <Setter Target="undo.Width" Value="65"/>
                         <Setter Target="redo.Width" Value="65"/>
                         <Setter Target="refresh.Width" Value="65"/>
-                        <Setter Target="blank1.Width" Value="130"/>
-                        <Setter Target="blank2.Width" Value="195"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="fullView">
@@ -216,13 +204,9 @@
                         <Setter Target="undo.Height" Value="60"/>
                         <Setter Target="redo.Height" Value="60"/>
                         <Setter Target="refresh.Height" Value="60"/>
-                        <Setter Target="blank1.Height" Value="60"/>
-                        <Setter Target="blank2.Height" Value="60"/>
                         <Setter Target="undo.Width" Value="82"/>
                         <Setter Target="redo.Width" Value="82"/>
                         <Setter Target="refresh.Width" Value="82"/>
-                        <Setter Target="blank1.Width" Value="164"/>
-                        <Setter Target="blank2.Width" Value="246"/>
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
@@ -256,9 +240,6 @@
                       IsTabStop="False" HorizontalAlignment="Center" VerticalAlignment="Bottom" Style="{StaticResource myListViewStyle}">
             </ListView>
         </Grid>
-
-        <Rectangle Name="blank1" Height="60" Width="164" Fill="{ThemeResource SystemBackgroundAltHighBrush}" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" IsTapEnabled="False" />
-        <Rectangle Name="blank2" Height="60" Width="246" Fill="{ThemeResource SystemBackgroundAltHighBrush}" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Top" IsTapEnabled="False" />
 
         <StackPanel Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Top" Orientation="Horizontal">
             <Button x:Name="undo" Style="{StaticResource undoredostyle}" Content="&#xE248;" FontSize="36" FontWeight="Bold" Background="Transparent" Foreground="{ThemeResource TextColorPurple}" FontFamily="Segoe MDl2 Assets" Height="64" Width="82" Click="undo_Click" IsTabStop="False"/>
