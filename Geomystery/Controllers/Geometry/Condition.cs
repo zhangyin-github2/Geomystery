@@ -88,6 +88,11 @@ namespace Geomystery.Controllers.Geometry
     public class PenDrawCondition : Condition
     {
         /// <summary>
+        /// 画的是线 1 画的是圆 2
+        /// </summary>
+        public int type { get; set; }
+
+        /// <summary>
         /// 直线或者圆，依赖于两个不同的点，这两个点的顺序不分先后
         /// </summary>
         public IPointSet pointSet { get; set; }
@@ -178,5 +183,10 @@ namespace Geomystery.Controllers.Geometry
         /// 点集的id
         /// </summary>
         public int i2id { get; set; }
+
+        /// <summary>
+        /// 0 随机点 1 逆时针第一个 2 逆时针第二个（当相交点集有一个是圆的时候）
+        /// </summary>
+        public int clock { get; set; }
     }
 }
