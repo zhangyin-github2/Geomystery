@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     xmlns:data="using:Geomystery.Award"
-    RequestedTheme="{x:Bind View.Theme,Mode=OneWay}">
+    RequestedTheme="{x:Bind View.Theme,Mode=OneWay}" SizeChanged="Page_SizeChanged">
 
     <Page.Resources>
         <ResourceDictionary >
@@ -21,7 +21,7 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*"/>
                         <ColumnDefinition Width="8*"/>
-                        <ColumnDefinition Width="10*"/>
+                        <ColumnDefinition Width="25*"/>
                         <ColumnDefinition Width="1*"/>
                     </Grid.ColumnDefinitions>
                     <Grid Grid.Column="1" Grid.Row="0" Grid.RowSpan="3">
@@ -36,10 +36,10 @@
                             <RowDefinition Height="1*"/>
                         </Grid.RowDefinitions>
                         <Grid Grid.Row="1" Grid.Column="1">
-                            <Image Source="{x:Bind picture}" Height="80" Width="80"/>
+                            <Image Source="{x:Bind picture}" Height="80" Width="80" Loaded="Image_Loaded"/>
                         </Grid>
                     </Grid>
-                    <Grid Grid.Column="2" Grid.Row="1" Background="#9f080c11" Width="600" HorizontalAlignment="Center">
+                    <Grid Grid.Column="2" Grid.Row="1" Background="#9f080c11" Width="700" HorizontalAlignment="Center" Loaded="Grid_Loaded">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*"/>
                             <ColumnDefinition Width="10*"/>
@@ -52,9 +52,9 @@
                             <RowDefinition Height="4*"/>
                             <RowDefinition Height="1*"/>
                         </Grid.RowDefinitions>
-                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{x:Bind name}" FontSize="{x:Bind fontsize1,Mode=TwoWay}" TextAlignment="Left" FontFamily="Microsoft YaHei UI"  Foreground="White"/>
-                        <TextBlock Grid.Row="2" Grid.Column="1" Text="{x:Bind discribe}" FontSize="{x:Bind fontsize3,Mode=TwoWay}" TextAlignment="Left" FontFamily="Microsoft YaHei UI"  Foreground="LightGray" />
-                        <TextBlock Grid.Row="1" Grid.Column="2" Text="{x:Bind islock}" FontSize="{x:Bind fontsize2,Mode=TwoWay}" TextAlignment="Right" FontFamily="Microsoft YaHei UI"  Foreground="{x:Bind col}"/>
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{x:Bind name}" FontSize="28" TextAlignment="Left" FontFamily="Microsoft YaHei UI"  Foreground="White" Loaded="nameTloaded"/>
+                        <TextBlock Grid.Row="2" Grid.Column="1" Text="{x:Bind discribe}" FontSize="16" TextAlignment="Left" FontFamily="Microsoft YaHei UI"  Foreground="LightGray" Loaded="disTloaded"/>
+                        <TextBlock Grid.Row="1" Grid.Column="2" Text="{x:Bind islock}" FontSize="12" TextAlignment="Right" FontFamily="Microsoft YaHei UI"  Foreground="{x:Bind col}" Loaded="lockTloaded"/>
                     </Grid>
                 </Grid>
             </DataTemplate>
@@ -75,9 +75,9 @@
         <Grid x:Name="im" Grid.Column="1" >
             <Grid Grid.Column="1" Background="#bf111923">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="4*"/>
-                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="19*"/>
+                    <RowDefinition Height="78*"/>
+                    <RowDefinition Height="11*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>

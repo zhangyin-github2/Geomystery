@@ -250,12 +250,12 @@
     <Content Include="Pictures\Tool\tool3.png" />
     <Content Include="Pictures\Tool\tool4.png" />
     <Content Include="Pictures\Tool\tool5.png" />
-    <Content Include="Pictures\几何大师.png" />
-    <Content Include="Pictures\土豪.png" />
-    <Content Include="Pictures\小试牛刀.png" />
-    <Content Include="Pictures\数学家.png" />
-    <Content Include="Pictures\旗开得胜.png" />
-    <Content Include="Pictures\解题狂人.png" />
+    <Content Include="Pictures\Achievement\1.png" />
+    <Content Include="Pictures\Achievement\5.png" />
+    <Content Include="Pictures\Achievement\6.png" />
+    <Content Include="Pictures\Achievement\4.png" />
+    <Content Include="Pictures\Achievement\3.png" />
+    <Content Include="Pictures\Achievement\2.png" />
     <Content Include="Properties\Default.rd.xml" />
   </ItemGroup>
   <ItemGroup>
