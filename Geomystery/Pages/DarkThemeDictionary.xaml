@@ -7,6 +7,8 @@
     <SolidColorBrush x:Key="SystemBackgroundAltHighBrush" Color="#FF352D3A"/>
     <!--暗紫色/浅橙色-->
     <SolidColorBrush x:Key="SystemBackgroundBaseHighBrush" Color="#FFFEF2DA"/>
+    <!--浅灰/深灰-->
+    <SolidColorBrush x:Key="LDGray" Color="#FF404040"/>
     <!--黑/白-->
     <SolidColorBrush x:Key="BlackWhite" Color="#FFFFFFFF"/>
     <!--紫色/浅紫色-->
