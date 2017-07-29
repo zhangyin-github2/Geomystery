@@ -14,4 +14,5 @@ namespace Geomystery.Award
         public string discribe { get; set; }
 
         public ObservableCollection<Level> Levels { get; set; }
+    }
 }
