@@ -123,7 +123,7 @@ namespace Geomystery.Views.Geometry
             Vector2 vop = new Vector2() { X = p2.X - vector.X, Y = vector.Y - p2.Y };
             //if (WindowHeight <= 0 || WindowWidth <= 0) throw new Exception("中心构造方式需要了解canvas画布的actual宽和高");
             Vector2 half = new Vector2() { X = WindowWidth / 2, Y = WindowHeight / 2 };
-            Vector2 result = half + vop / unitLength;
+            Vector2 result = half + vop * unitLength;
             return result;
         }
         /// <summary>
@@ -135,7 +135,7 @@ namespace Geomystery.Views.Geometry
         {
             if (WindowHeight <= 0 || WindowWidth <= 0) throw new Exception("中心构造方式需要了解canvas画布的actual宽和高");
             Vector2 half = new Vector2() { X = WindowWidth / 2, Y = WindowHeight / 2 };
-            Vector2 vop = (v2 - half) * unitLength;
+            Vector2 vop = (v2 - half) / unitLength;
             Point2 p2 = new Point2() { X = (vop.X + vector.X), Y = -vop.Y + vector.Y };
             return p2;
         }

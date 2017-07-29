@@ -143,9 +143,9 @@ public class LevelLoader
             case 1:
                 {
                     //List<string> geoList = new List<string>();
-                    geoList.Add("p,1,n,true,66560,-35198");
-                    geoList.Add("p,2,n,true,44797,-52078");
-                    geoList.Add("p,3,n,true,81920,-54799");
+                    geoList.Add("p,1,n,true,-40,34");
+                    geoList.Add("p,2,n,true,-40,-40");
+                    geoList.Add("p,3,n,true,40,--40");
 
                     //List<string> conList = new List<string>();
                     conList.Add("f,true,1");
