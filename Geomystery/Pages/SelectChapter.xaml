@@ -15,7 +15,7 @@
                 <ResourceDictionary x:Key="Light" Source="LightThemeDictionary.xaml"></ResourceDictionary>
                 <ResourceDictionary x:Key="Dark" Source="DarkThemeDictionary.xaml"></ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>
-            
+
             <!--flipview1-->
             <Style x:Key="FlipViewStyle1" TargetType="FlipView">
                 <Setter Property="ItemsPanel">
@@ -313,14 +313,15 @@
             <local:intToVisibilityConverter x:Key="Converter1"/>
             <DataTemplate x:DataType="toolData:Chapter"
                           x:Key="chapterTempelate">
-                <Button 
-                    Background="{ThemeResource SystemBackgroundBaseHighBrush}"
-                    Foreground="{ThemeResource SystemBackgroundAltHighBrush}"
+                <Button
                     BorderBrush="{ThemeResource TextColorPurple}" BorderThickness="10"
                     Height="675" Width="1200"
                     IsTabStop="False" 
                     HorizontalAlignment="Center" VerticalAlignment="Center"
                     Click="Chapter_Click"  Loaded="ChapterB_Loaded">
+                    <Button.Background>
+                        <ImageBrush Stretch="Fill"/>
+                    </Button.Background>
                     <Grid >
                         <Grid Height="619" Width="1100" Loaded="Grid_Loaded">
                             <Grid.ColumnDefinitions>
@@ -328,9 +329,9 @@
                                 <ColumnDefinition Width="1*"/>
                                 <ColumnDefinition Width="1*"/>
                             </Grid.ColumnDefinitions>
-                            <Image Source="{x:Bind cover}" Grid.ColumnSpan="3"/>
-                            <TextBlock Grid.ColumnSpan="2" Text="{x:Bind name}" VerticalAlignment="Center" FontSize="48" FontFamily="Arial Black"  Loaded="ChpNameTextBlock_Loaded" FontWeight="Bold" />
-                            <TextBlock Text="{x:Bind discribe}" VerticalAlignment="Bottom" FontSize="24" Loaded="ChpDiscibeTextBlock_Loaded" TextWrapping="WrapWholeWords" TextAlignment="Justify"/>
+                            <!--Image Source="{x:Bind cover}" Grid.ColumnSpan="3"/-->
+                            <TextBlock Grid.ColumnSpan="2" Text="{x:Bind name}" Foreground="White" VerticalAlignment="Center" FontSize="48" FontFamily="Arial Black"  Loaded="ChpNameTextBlock_Loaded" FontWeight="Bold" />
+                            <TextBlock Text="{x:Bind discribe}" Foreground="White" VerticalAlignment="Bottom" FontSize="24" Loaded="ChpDiscibeTextBlock_Loaded" TextWrapping="WrapWholeWords" TextAlignment="Justify"/>
                         </Grid>
                         <Grid Visibility="{Binding unlocked, Converter={StaticResource Converter1}}" >
                             <Image Source="ms-appx:///Pictures/lockx.png"></Image>
@@ -341,7 +342,7 @@
         </ResourceDictionary>
     </Page.Resources>
 
-    
+
     <Grid Background="{ThemeResource SystemBackgroundAltHighBrush}">
 
         <FlipView Name="myFlip"

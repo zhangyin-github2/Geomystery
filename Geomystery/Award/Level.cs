@@ -41,9 +41,9 @@ namespace Geomystery.Award
         /// <summary>
         /// 构造函数
         /// </summary>
-        public Level()
+        public Level(int id=0)
         {
-            ID = 0;
+            ID = id;
             name = "";
             cover = "Picture/lock.png";
             unlocked = 0;
@@ -62,64 +62,19 @@ namespace Geomystery.Award
             }
                  
         }  
-        public static ObservableCollection<Level> getLevels()
+        public static ObservableCollection<Level> getLevels(int start =1)
         {
-            ObservableCollection<Level> cp1 = new ObservableCollection<Level>();
-            cp1.Add(new Level()
+            ObservableCollection<Level> levels = new ObservableCollection<Level>();
+            for(int i=start;i<start+9;i++)
             {
-                ID = 1,
-                name = "Draw Line",
-                unlocked = 1,
-                Discribe = "Today you need to take the first step in geometric learning,why not get started from the most simple content.Try to draw three lines to connect these three points .Line is one of the most useful tools you will use to solve problems ,you must comprehend it.",
-            });
-
-            cp1.Add(new Level()
-            {
-                ID = 2,
-                name = "Draw Circle",
-                Discribe = "Lines can't help you with solving all of the question when you learn geometry,so why not try to use circles ? Try to draw two concentric circles through the other two points with a given point as the center.This question is not too difficult ,is it?"
-            });
-
-            cp1.Add(new Level()
-            {
-                ID = 3,
-                name = "Draw Point",
-                Discribe= "It seems that you have learned to use straight lines and rounds, which is really gratifying.But sometimes you need some points to help you.Try to mark the intersection of the given three lines,and this step will be used repeatedly."
-            });
-
-            cp1.Add(new Level()
-            {
-                ID = 4,
-                name = "Angle of 60°",
-                Discribe= "Have you already learnt the three basic tools?It seems that you are ready to accept the first test. Try to draw a 60°angle on the counterclockwise based on the given ray, I think it's not hard for you."
-
-            });
-
-            cp1.Add(new Level() { ID = 5, name = "Perpendicular Bisector",
-                Discribe = "It is a long way to lern geometry ,don't be complacent. You need to learn how to use more tools which is more complex.Try to draw the perpendicular bisector of this line. What's more ,mastered perpendicular bisectors is obligatory course if you want to learn to solve problems."
-            });
-
-            cp1.Add(new Level() { ID = 6, name = "Angle Bisector",
-                Discribe = "Do you remember the 60 degree angle you have drawn? The line isn't the only object we have to operate, we need to learn to operate angle.Try to draw the bisector of the given angle. You will learn more about the relationship between the lines and the angles."
-            });
-
-            cp1.Add(new Level() { ID = 7, name = "Perpendicular Line",
-                Discribe = "Have you already mastered perpendicular bisectors and angle bisectors ?I think you are ready to continue your learning in using composite tools. Try to draw the perpendicular line of the given line through the given point. Can you see the nature of this problem?"
-            });
-
-            cp1.Add(new Level() { ID = 8, name = "Circle in Diamond",
-                Discribe = "Finished learning to use composite tool , maybe you are eager to do a quiz. Are you ready to do it?  Try to draw the inscribed circle of the given diamond. Don't forget to use the new tools you have lerant to help you."
-            });
-
-            cp1.Add(new Level() { ID = 9, name = "Circle Center",
-                Discribe = "I think these simple problems can not stumped you, you need a final quiz before starting your test. Try to draw the center of the given circle. This question is not as simple as it looks."
-            });
-
-            foreach(var x in cp1)
-            {
+                Level x = new Level(i);
+                x.name = AppResources.GetString("L" + x.ID.ToString() + "N") ;
+                x.Discribe = AppResources.GetString("L" + x.ID.ToString() + "D") ;
                 x.cover = "ms-appx:///Pictures/Levels/" + x.ID.ToString()+".png";
+                if (APPDATA.app_data.HAVEDONE >= x.ID - 1) x.unlocked = 1;
+                levels.Add(x);
             }
-            return cp1;
+            return levels;
         }
     }
 }

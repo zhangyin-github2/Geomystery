@@ -25,9 +25,10 @@ namespace Geomystery
     public sealed partial class SelectGame : Page
     {
         private ViewModel.ViewModel View { set; get; } = new ViewModel.ViewModel();
-        public ObservableCollection<Level> levels;
+        public ObservableCollection<Level> levels = new ObservableCollection<Level>();
         public List<Grid> GridInListView = new List<Grid>();
         public List<TextBlock> TextInListView = new List<TextBlock>();
+        public static Chapter localChapter = new Chapter() ;
         public SelectGame()
         {
             this.InitializeComponent();
@@ -40,7 +41,7 @@ namespace Geomystery
         }
         public void init()
         {
-            levels = Level.getLevels();
+            
             foreach(var x in levels)
             {
                 if (x.ID - 1 <= APPDATA.app_data.HAVEDONE) x.unlocked = 1;
@@ -62,6 +63,12 @@ namespace Geomystery
                 else x.FontSize = 36 * k;
             }
         }
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            var x = localChapter = e.Parameter as Chapter;
+            levels = x.Levels;
+        }
+
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
             GridInListView.Add((Grid)sender);
@@ -108,9 +115,15 @@ namespace Geomystery
             w = Window.Current.Bounds.Width;
             k = Math.Min(w / 1920.0, h / 1080.0);
             string ss = x.Text;
-            if (!char.IsDigit(ss[0]))
-                x.FontSize = 32 * k;
-            else x.FontSize = 36 * k;
+            try
+            {
+                Convert.ToInt32(ss);
+                x.FontSize = 36 * k;
+            }
+            catch
+            {
+                x.FontSize = 28 * k;
+            }
             TextInListView.Add(x);
         }
 

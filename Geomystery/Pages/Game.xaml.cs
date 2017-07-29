@@ -202,14 +202,14 @@ namespace Geomystery
                     APPDATA.app_data.MoveTo(AppPage.SelectChapterPage);
                     return;
                 }
-                //foreach (var l in APPDATA.app_data.cp1)
-                //{
-                //    if (l.ID == localLevel.ID + 1)
-                //    {
-                //        MainPage.MainFrame.Navigate(typeof(Game), l);
-                //        APPDATA.app_data.MoveTo(AppPage.GamePage);
-                //    }
-                //}
+                var levels = Level.getLevels(SelectGame.localChapter.ID);
+                foreach (var l in levels)
+                {
+                    if (l.ID == localLevel.ID + 1)
+                    {
+                        APPDATA.app_data.MoveTo(AppPage.GamePage,l);
+                    }
+                }
             }
         }
 

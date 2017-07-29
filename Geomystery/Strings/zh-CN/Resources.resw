@@ -183,58 +183,58 @@
   <data name="SFX Volume.Text" xml:space="preserve">
     <value>音效音量</value>
   </data>
-  <data name="L1D.Text" xml:space="preserve">
+  <data name="L1D" xml:space="preserve">
     <value>今天你需要迈出几何学习的第一步，我们不妨从最简单的学起。试着用三条直线连接这三个点，直线是你以后最常用的工具，你必须掌握它……</value>
   </data>
-  <data name="L1N.Text" xml:space="preserve">
+  <data name="L1N" xml:space="preserve">
     <value>以线连点</value>
   </data>
-  <data name="L2D.Text" xml:space="preserve">
+  <data name="L2D" xml:space="preserve">
     <value>在几何学习的路上，直线不能帮助你解决所有问题，那我们何不试试圆？试着以给定三点中最上方的点为圆心画出经过其他两点的两个同心圆，这没有那么困难,是吧？</value>
   </data>
-  <data name="L2N.Text" xml:space="preserve">
+  <data name="L2N" xml:space="preserve">
     <value>同心圆</value>
   </data>
-  <data name="L3D.Text" xml:space="preserve">
+  <data name="L3D" xml:space="preserve">
     <value>看起来你已经学会使用直线和圆了，这实在可喜可贺。不过有些时候，你需要一些点来辅助你。试着标出给定的三条直线的交点，这个步骤你以后需要经常用到……</value>
   </data>
-  <data name="L3N.Text" xml:space="preserve">
+  <data name="L3N" xml:space="preserve">
     <value>求交点</value>
   </data>
-  <data name="L4D.Text" xml:space="preserve">
+  <data name="L4D" xml:space="preserve">
     <value>你已经学会使用三种基本工具了？看来你已经准备好接受第一个测试了。尝试着基于给定的射线画出一个60°的角，我想这难不倒你吧？</value>
   </data>
-  <data name="L4N.Text" xml:space="preserve">
+  <data name="L4N" xml:space="preserve">
     <value>画60°角</value>
   </data>
-  <data name="L5D.Text" xml:space="preserve">
+  <data name="L5D" xml:space="preserve">
     <value>几何学习的路还很长，先别沾沾自喜。你需要学会更多更复杂的工具，试着画出这个线段的垂直平分线。补充一句，熟练地掌握垂直平分线是你学会解决难题的必修课……</value>
   </data>
-  <data name="L5N.Text" xml:space="preserve">
+  <data name="L5N" xml:space="preserve">
     <value>垂直平分线</value>
   </data>
-  <data name="L6D.Text" xml:space="preserve">
+  <data name="L6D" xml:space="preserve">
     <value>还记得你画的60°角么？几何学习的过程中，线不是我们唯一要操作的对象，我们还要面对“角”。试着画出给定角的角平分线，你可能会更进一步理解线与角的关系……</value>
   </data>
-  <data name="L6N.Text" xml:space="preserve">
+  <data name="L6N" xml:space="preserve">
     <value>角平分线</value>
   </data>
-  <data name="L7D.Text" xml:space="preserve">
+  <data name="L7D" xml:space="preserve">
     <value>垂直平分线和角平分线已经掌握了？我想你已经准备好下一步复合工具的学习了。试着过给定点画出这条直线的垂线，不知道你是否能看出这个问题的本质……</value>
   </data>
-  <data name="L7N.Text" xml:space="preserve">
+  <data name="L7N" xml:space="preserve">
     <value>垂线</value>
   </data>
-  <data name="L8D.Text" xml:space="preserve">
+  <data name="L8D" xml:space="preserve">
     <value>结束了复合工具的学习，我想你已经跃跃欲试了，不知道你是否准备好迎接新测试了。试着画出给定菱形的内切圆，不要忘了你学到的新工具……</value>
   </data>
-  <data name="L8N.Text" xml:space="preserve">
+  <data name="L8N" xml:space="preserve">
     <value>菱形内切圆</value>
   </data>
-  <data name="L9D.Text" xml:space="preserve">
+  <data name="L9D" xml:space="preserve">
     <value>相信这些简单的谜题已经难不住你了，在你开始你的试炼之路前，你还需要进行一次测试来证明自己.试着标出已知圆的圆心，这个问题可不像它看起来的一样简单……</value>
   </data>
-  <data name="L9N.Text" xml:space="preserve">
+  <data name="L9N" xml:space="preserve">
     <value>求圆心</value>
   </data>
 </root>

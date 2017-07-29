@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上有介绍
@@ -42,6 +43,12 @@ namespace Geomystery
         void init()
         {
             changeSize();
+            for(int i =0;i<Buttons.Count;i++)
+            {
+                ImageBrush imbrush = new ImageBrush();
+                imbrush.ImageSource = new BitmapImage(new Uri(Chapters[i].cover, UriKind.Absolute));
+                Buttons[i].Background = imbrush;
+            }
         }
         private void ChpNameTextBlock_Loaded(object sender, RoutedEventArgs e)
         {
@@ -59,8 +66,15 @@ namespace Geomystery
 
         private void ChapterB_Loaded(object sender, RoutedEventArgs e)
         {
-            Buttons.Add(sender as Button);
+            var k = sender as Button;
+            Buttons.Add(k);
             changeSize();
+            for (int i = 0; i < Buttons.Count; i++)
+            {
+                ImageBrush imbrush = new ImageBrush();
+                imbrush.ImageSource = new BitmapImage(new Uri(Chapters[i].cover, UriKind.Absolute));
+                Buttons[i].Background = imbrush;
+            }
         }
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)

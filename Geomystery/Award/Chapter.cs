@@ -35,6 +35,7 @@ namespace Geomystery.Award
                 x.cover = "ms-appx:///Pictures/Chapters/" + x.ID.ToString() + ".png";
                 int hvdone = (APPDATA.app_data.HAVEDONE-1)/ 9;
                 if (x.ID - 1 <= hvdone) x.unlocked = 1;
+                x.Levels = Level.getLevels(x.ID);
             }
             return k;
         }
