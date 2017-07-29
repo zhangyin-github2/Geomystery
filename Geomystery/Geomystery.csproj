@@ -231,6 +231,9 @@
     <Content Include="Audio\button8.wav" />
     <Content Include="Audio\button9.wav" />
     <Content Include="Pictures\AchievementBord.png" />
+    <Content Include="Pictures\Chapters\1.png" />
+    <Content Include="Pictures\Chapters\2.png" />
+    <Content Include="Pictures\Chapters\3.png" />
     <Content Include="Pictures\coin.png" />
     <Content Include="Pictures\homepic\circle1.png" />
     <Content Include="Pictures\homepic\circle2.png" />
@@ -239,6 +242,7 @@
     <Content Include="Pictures\homepic\triangle.png" />
     <Content Include="Pictures\Levels\1.png" />
     <Content Include="Pictures\lock.png" />
+    <Content Include="Pictures\lockx.png" />
     <Content Include="Pictures\logox.png" />
     <Content Include="Pictures\record.png" />
     <Content Include="Pictures\SplashScreen.png" />
