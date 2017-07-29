@@ -1,9 +1,11 @@
-﻿using Geomystery.Models;
+﻿using Geomystery.Award;
+using Geomystery.Models;
 using Geomystery.Pages;
 using SQLite.Net;
 using SQLite.Net.Platform.WinRT;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -30,6 +32,7 @@ namespace Geomystery
         public double MUSICVOLUME { get; set; }
 
         //系统内部配置
+        public ObservableCollection<Level> cp1 = Level.getLevels();
         public int GAMEMODE { get; set; }
         public List<ViewModel.ViewModel> Views;
         public AppPage CURRENT_PAGE { get; set; }

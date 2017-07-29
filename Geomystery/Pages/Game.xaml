@@ -266,9 +266,12 @@
             </Button>
             <Button x:Name="refresh" Style="{StaticResource undoredostyle}" Content="&#xE777;" FontSize="36" FontWeight="Bold" Background="Transparent" Foreground="{ThemeResource TextColorPurple}" FontFamily="Segoe MDl2 Assets" Height="64" Width="82" Click="refresh_Click" IsTabStop="False"/>
         </StackPanel>
-         
+        <Grid x:Name="coverG" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2" Background="#7f808080" />
         <Grid Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2" >
-            <Grid x:Name="GameIm" HorizontalAlignment="Center" VerticalAlignment="Top" Width="800" Height="480">
+            <Grid x:Name="GameIm" HorizontalAlignment="Center" VerticalAlignment="Top" Width="800" Height="480" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
+                <Grid.RenderTransform>
+                    <CompositeTransform TranslateY="-480"/>
+                </Grid.RenderTransform>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="3*"/>
@@ -290,7 +293,15 @@
                     </Grid.ColumnDefinitions>
                     <Image x:Name="GameImage" Grid.Column="1" Stretch="Fill"/>
                 </Grid>
-                <TextBlock x:Name="GameDiscribe" Grid.Column="0" Grid.Row="2" Text="discribe" FontSize="24" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Center"  />
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="20*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock x:Name="GameDiscribe" Grid.Column="1"  Text="discribe" FontSize="24" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Center"  TextWrapping="WrapWholeWords"/>
+                </Grid>
+
             </Grid>
         </Grid>
         <Grid x:Name="titleG" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Width="500"
@@ -302,7 +313,7 @@
             </Grid.ColumnDefinitions>
             <TextBlock x:Name="GameId" Grid.Column="0" FontFamily="Bradley Hand ITC" FontSize="36" Text="ID" VerticalAlignment="Center" TextAlignment="Center" />
             <TextBlock x:Name="GameName" Grid.Column="1"  FontFamily="Microsoft YaHei UI" FontSize="36" Text="Name" VerticalAlignment="Center"  TextAlignment="Center" />
-            <Button x:Name="openIm" Background="{x:Null}" Grid.Column="2"  BorderThickness="0" FontFamily="Segoe MDL2 Assets" FontSize="36" Content="&#xF167;" HorizontalAlignment="Center"/>
+            <Button x:Name="openIm" Background="{x:Null}" Grid.Column="2"  BorderThickness="0" FontFamily="Segoe MDL2 Assets" FontSize="36" Content="&#xF167;" HorizontalAlignment="Center" Click="openIm_Click" />
         </Grid>
     </Grid>
 </Page>

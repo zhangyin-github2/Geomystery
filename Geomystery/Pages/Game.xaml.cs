@@ -10,6 +10,8 @@ using System.IO;
 using System.Linq;
 using System.Numerics;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI;
@@ -19,6 +21,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
@@ -35,6 +38,7 @@ namespace Geomystery
 
         List<UserTool> userTools;
         Level localLevel = new Level();
+        bool Imopen = false;
         Geomystery.Controllers.Geometry.Controllers controller;
 
         public Game()
@@ -51,13 +55,15 @@ namespace Geomystery
         }
         void init()
         {
-            GameDiscribe.Visibility = Visibility.Collapsed;
             double kw, kh;
             kh = Window.Current.Bounds.Height / 1080;
             kw = Window.Current.Bounds.Width / 1920;
             double k = Math.Min(kw, kh);
-            GameId.FontSize = Math.Max(32 * k, 12);
+            GameId.FontSize = Math.Max(36 * k, 12);
             GameName.FontSize = Math.Max(28 * k, 12);
+            openIm.FontSize = Math.Max(28 * k, 12);
+            GameDiscribe.FontSize = Math.Max(24 * k, 8);
+            openIm_Click(openIm , new RoutedEventArgs());
         }
         private ViewModel.ViewModel View { set; get; } = new ViewModel.ViewModel();
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -196,8 +202,32 @@ namespace Geomystery
             if (flag == 3)
             {
                 LevelSucceedDialog lsd = new LevelSucceedDialog();
+                APPDATA.app_data.HAVEDONE = Math.Max(APPDATA.app_data.HAVEDONE, localLevel.ID);
                 await lsd.ShowAsync();
-                MainPage.MainFrame.Navigate(typeof(SelectChapter));
+                lsd.PrimaryButtonClick += (_s, _e) => { };
+                var res = await lsd.ShowAsync();
+                if (res.ToString() == "Primary")
+                {
+                    MainPage.MainFrame.Navigate(typeof(Game),localLevel);
+                    APPDATA.app_data.MoveTo(AppPage.GamePage);
+                }
+                else
+                {
+                    if (localLevel.ID % 9 == 0)
+                    {
+                        MainPage.MainFrame.Navigate(typeof(SelectChapter));
+                        APPDATA.app_data.MoveTo(AppPage.SelectChapterPage);
+                        return;
+                    } 
+                    foreach (var l in APPDATA.app_data.cp1)
+                    {
+                        if(l.ID == localLevel.ID+1)
+                        {
+                            MainPage.MainFrame.Navigate(typeof(Game), l);
+                            APPDATA.app_data.MoveTo(AppPage.GamePage);
+                        }
+                    }
+                }
             }
         }
 
@@ -272,6 +302,47 @@ namespace Geomystery
                 controller.outputCoordinates[0].refreshGeometrys();         //刷新
             }
             
+        }
+
+        private async void openIm_Click(object sender, RoutedEventArgs e)
+        {
+            var back = GameIm;
+            back.RenderTransform = new CompositeTransform();
+
+            var storyBoard = new Storyboard();
+            var extendAnimation1 = new DoubleAnimation();
+
+            double from = -back.Width, to = 0;
+
+            var extendAnimation2 = new DoubleAnimation();
+            if (Imopen)
+            {
+                from = 0;
+                to = -back.Width;
+                extendAnimation2 = new DoubleAnimation { Duration = new Duration(TimeSpan.FromSeconds(1)), From = 1, To = 0, EnableDependentAnimation = true };
+
+            }
+            else
+            {
+                coverG.Visibility = Visibility.Visible;
+                extendAnimation2 = new DoubleAnimation { Duration = new Duration(TimeSpan.FromSeconds(0.5)), From = 0, To = 1, EnableDependentAnimation = true };
+            }
+
+            extendAnimation1 = new DoubleAnimation { Duration = new Duration(TimeSpan.FromSeconds(1)), From = from, To = to, EnableDependentAnimation = true };
+
+            Storyboard.SetTarget(extendAnimation1, back);
+            Storyboard.SetTarget(extendAnimation2, coverG);
+            Storyboard.SetTargetProperty(extendAnimation1, "(UIElement.RenderTransform).(CompositeTransform .TranslateY)");
+            Storyboard.SetTargetProperty(extendAnimation2, "Opacity");
+
+            storyBoard.Children.Add(extendAnimation1);
+            storyBoard.Children.Add(extendAnimation2);
+            storyBoard.Begin();
+
+            Imopen = !Imopen;
+
+            await Task.Delay(500);
+            coverG.Visibility = Imopen ? Visibility.Visible : Visibility.Collapsed;
         }
     }
 }

@@ -41,6 +41,10 @@ namespace Geomystery
         public void init()
         {
             levels = Level.getLevels();
+            foreach(var x in levels)
+            {
+                if (x.ID - 1 <= APPDATA.app_data.HAVEDONE) x.unlocked = 1;
+            }
             double w, h;
             h = Window.Current.Bounds.Height;
             w = Window.Current.Bounds.Width;

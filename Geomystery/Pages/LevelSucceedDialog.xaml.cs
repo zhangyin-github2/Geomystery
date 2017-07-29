@@ -22,14 +22,18 @@ namespace Geomystery.Pages
         public LevelSucceedDialog()
         {
             this.InitializeComponent();
+            PrimaryButtonText = AppResources.GetString("PLAYAGAIN");
+            SecondaryButtonText = AppResources.GetString("NEXTLEVEL");
         }
 
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
+
         }
 
         private void ContentDialog_SecondaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
+
         }
     }
 }

@@ -7,8 +7,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Title="Congratulations!"
-    PrimaryButtonText="确定"
-    SecondaryButtonText="还是确定"
+    PrimaryButtonText="重玩本关"
+    SecondaryButtonText="下一关"
     PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
     SecondaryButtonClick="ContentDialog_SecondaryButtonClick">
 

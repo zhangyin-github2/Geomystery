@@ -147,11 +147,17 @@
   <data name="Music Volume.Text" xml:space="preserve">
     <value>音乐音量</value>
   </data>
+  <data name="NEXTLEVEL" xml:space="preserve">
+    <value>下一关</value>
+  </data>
   <data name="Night Mode.Text" xml:space="preserve">
     <value>夜间模式</value>
   </data>
   <data name="Option.Content" xml:space="preserve">
     <value>设置</value>
+  </data>
+  <data name="PLAYAGAIN" xml:space="preserve">
+    <value>再试一次</value>
   </data>
   <data name="Reset Progress.Text" xml:space="preserve">
     <value>重制游戏进度</value>

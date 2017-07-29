@@ -147,11 +147,17 @@
   <data name="Music Volume.Text" xml:space="preserve">
     <value>Music Volume</value>
   </data>
+  <data name="NEXTLEVEL" xml:space="preserve">
+    <value>Next Problem!</value>
+  </data>
   <data name="Night Mode.Text" xml:space="preserve">
     <value>Night Mode</value>
   </data>
   <data name="Option.Content" xml:space="preserve">
     <value>Option</value>
+  </data>
+  <data name="PLAYAGAIN" xml:space="preserve">
+    <value>Play Again!</value>
   </data>
   <data name="Reset Progress.Text" xml:space="preserve">
     <value>Reset Progress</value>
