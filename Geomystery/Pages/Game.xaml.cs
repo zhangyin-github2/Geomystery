@@ -83,6 +83,8 @@ namespace Geomystery
             controller.historyDfaList.Clear();
             redo.IsEnabled = controller.CanRedo();
             undo.IsEnabled = controller.CanUndo();
+
+            controller.missionSuccess += success;
         }
 
         private void Page_Unloaded(object sender, RoutedEventArgs e)
@@ -162,7 +164,7 @@ namespace Geomystery
 
         }
 
-        private async void canvas1_PointerPressed(object sender, PointerRoutedEventArgs e)
+        private void canvas1_PointerPressed(object sender, PointerRoutedEventArgs e)
         {
             Point pxy = e.GetCurrentPoint((CanvasAnimatedControl)sender).Position;
             Vector2 p = pxy.ToVector2();
@@ -172,33 +174,6 @@ namespace Geomystery
 
             redo.IsEnabled = controller.CanRedo();
             undo.IsEnabled = controller.CanUndo();
-
-            int flag = 0;
-            for (int i = 0; i < controller.coordinate.pointSetList.Count; i++)
-            {
-                if (controller.coordinate.pointSetList[i] is Line)
-                {
-                    Line line = controller.coordinate.pointSetList[i] as Line;
-                    if ((line.p1.id == 1 && line.p2.id == 2) || (line.p2.id == 1 && line.p1.id == 2))
-                    {
-                        flag++;
-                    }
-                    if ((line.p1.id == 1 && line.p2.id == 3) || (line.p2.id == 1 && line.p1.id == 3))
-                    {
-                        flag++;
-                    }
-                    if ((line.p1.id == 2 && line.p2.id == 3) || (line.p2.id == 2 && line.p1.id == 3))
-                    {
-                        flag++;
-                    }
-                }
-            }
-            if (flag == 3)
-            {
-                LevelSucceedDialog lsd = new LevelSucceedDialog();
-                await lsd.ShowAsync();
-                MainPage.MainFrame.Navigate(typeof(SelectChapter));
-            }
         }
 
         private void refresh_Click(object sender, RoutedEventArgs e)
@@ -272,6 +247,13 @@ namespace Geomystery
                 controller.outputCoordinates[0].refreshGeometrys();         //刷新
             }
             
+        }
+
+        public async void success()
+        {
+            LevelSucceedDialog lsd = new LevelSucceedDialog();
+            await lsd.ShowAsync();
+            MainPage.MainFrame.Navigate(typeof(SelectChapter));
         }
     }
 }

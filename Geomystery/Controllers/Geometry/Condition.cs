@@ -41,7 +41,7 @@ namespace Geomystery.Controllers.Geometry
                     else if(reachedConditions[i] is PenDrawCondition)
                     {
                         PenDrawCondition pc = reachedConditions[i] as PenDrawCondition;
-                        result.reachedConditions.Add(new PenDrawCondition() { isMeetTheConditions = pc.isMeetTheConditions, iid = pc.iid, p1 = pc.p1, p1id = pc.p1id, p2 = pc.p2, p2id = pc.p2id, pointSet = pc.pointSet });
+                        result.reachedConditions.Add(new PenDrawCondition() { isMeetTheConditions = pc.isMeetTheConditions, iid = pc.iid, p1 = pc.p1, p1id = pc.p1id, p2 = pc.p2, p2id = pc.p2id, pointSet = pc.pointSet, type = pc.type });
                     }
                     else if (reachedConditions[i] is OnTheTreeCondition)
                     {
@@ -51,7 +51,7 @@ namespace Geomystery.Controllers.Geometry
                     else if(reachedConditions[i] is IntersectCondition)
                     {
                         IntersectCondition ic = reachedConditions[i] as IntersectCondition;
-                        result.reachedConditions.Add(new IntersectCondition() { isMeetTheConditions = ic.isMeetTheConditions, i1id = ic.i1id, i2id = ic.i2id, pid = ic.pid, point = ic.point, pointSet1 = ic.pointSet1, pointSet2 = ic.pointSet2 });
+                        result.reachedConditions.Add(new IntersectCondition() { isMeetTheConditions = ic.isMeetTheConditions, i1id = ic.i1id, i2id = ic.i2id, pid = ic.pid, point = ic.point, pointSet1 = ic.pointSet1, pointSet2 = ic.pointSet2, clock = ic.clock });
                     }
                 }
             }
@@ -68,7 +68,7 @@ namespace Geomystery.Controllers.Geometry
                     else if (unmetCnditions[i] is PenDrawCondition)
                     {
                         PenDrawCondition pc = unmetCnditions[i] as PenDrawCondition;
-                        result.unmetCnditions.Add(new PenDrawCondition() { isMeetTheConditions = pc.isMeetTheConditions, iid = pc.iid, p1 = pc.p1, p1id = pc.p1id, p2 = pc.p2, p2id = pc.p2id, pointSet = pc.pointSet });
+                        result.unmetCnditions.Add(new PenDrawCondition() { isMeetTheConditions = pc.isMeetTheConditions, iid = pc.iid, p1 = pc.p1, p1id = pc.p1id, p2 = pc.p2, p2id = pc.p2id, pointSet = pc.pointSet, type = pc.type });
                     }
                     else if (unmetCnditions[i] is OnTheTreeCondition)
                     {
@@ -78,7 +78,7 @@ namespace Geomystery.Controllers.Geometry
                     else if (unmetCnditions[i] is IntersectCondition)
                     {
                         IntersectCondition ic = unmetCnditions[i] as IntersectCondition;
-                        result.unmetCnditions.Add(new IntersectCondition() { isMeetTheConditions = ic.isMeetTheConditions, i1id = ic.i1id, i2id = ic.i2id, pid = ic.pid, point = ic.point, pointSet1 = ic.pointSet1, pointSet2 = ic.pointSet2 });
+                        result.unmetCnditions.Add(new IntersectCondition() { isMeetTheConditions = ic.isMeetTheConditions, i1id = ic.i1id, i2id = ic.i2id, pid = ic.pid, point = ic.point, pointSet1 = ic.pointSet1, pointSet2 = ic.pointSet2, clock = ic.clock });
                     }
                 }
             }

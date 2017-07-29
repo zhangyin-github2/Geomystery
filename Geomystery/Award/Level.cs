@@ -147,9 +147,9 @@ public class LevelLoader
                     conList.Add("f,true,1");
                     conList.Add("f,true,2");
                     conList.Add("f,true,3");
-                    conList.Add("d,false,4,1,2");
-                    conList.Add("d,false,5,2,3");
-                    conList.Add("d,false,6,1,3");
+                    conList.Add("drawline,false,4,1,2");
+                    conList.Add("dl,false,5,2,3");
+                    conList.Add("dl,false,6,1,3");
 
                     for(int i = 0; i < geoList.Count; i++)
                     {
@@ -158,7 +158,7 @@ public class LevelLoader
                     controller.conditionLists = new List<ConditionsList>();
                     controller.meetingconditionLists = new List<ConditionsList>();
                     controller.conditionLists.Add(new ConditionsList());
-                    for (int i = 0; i < geoList.Count; i++)
+                    for (int i = 0; i < conList.Count; i++)
                     {
                         controller.AddConditionFromString(conList[i]);
                     }
