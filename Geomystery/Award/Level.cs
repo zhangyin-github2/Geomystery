@@ -187,9 +187,9 @@ public class LevelLoader
                     conList.Add("f,true,1");
                     conList.Add("f,true,2");
                     conList.Add("f,true,3");
-                    conList.Add("f,true,4");
-                    conList.Add("f,true,5");
-                    conList.Add("f,true,6");
+                    conList.Add("pl,true,4");
+                    conList.Add("pl,true,5");
+                    conList.Add("pl,true,6");
                     conList.Add("i,false,7,4,5");
                     conList.Add("i,false,8,5,6");
                     conList.Add("i,false,9,4,6");
