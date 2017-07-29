@@ -134,16 +134,18 @@ public class LevelLoader
         controller.redoDfaList = new List<DFA>();
         //controller.isIniialized = true;
 
+        List<string> geoList = new List<string>();
+        List<string> conList = new List<string>();
         switch (index)
         {
             case 1:
                 {
-                    List<string> geoList = new List<string>();
+                    //List<string> geoList = new List<string>();
                     geoList.Add("p,1,n,true,66560,-35198");
                     geoList.Add("p,2,n,true,44797,-52078");
                     geoList.Add("p,3,n,true,81920,-54799");
 
-                    List<string> conList = new List<string>();
+                    //List<string> conList = new List<string>();
                     conList.Add("f,true,1");
                     conList.Add("f,true,2");
                     conList.Add("f,true,3");
@@ -151,19 +153,7 @@ public class LevelLoader
                     conList.Add("dl,false,5,2,3");
                     conList.Add("dl,false,6,1,3");
 
-                    for(int i = 0; i < geoList.Count; i++)
-                    {
-                        controller.AddGeometryFromString(geoList[i]);
-                    }
-                    //复制一下代表条件列表缓存，也可以不需要模板与副本，每次关卡都要从头加载条件列表
-                    controller.conditionLists = new List<ConditionsList>();                             //需要达成条件
-                    controller.meetingconditionLists = new List<ConditionsList>();                      //复制自“需要达成条件”的正在达成条件
-                    controller.conditionLists.Add(new ConditionsList());
-                    for (int i = 0; i < conList.Count; i++)
-                    {
-                        controller.AddConditionFromString(conList[i]);
-                    }
-                    controller.meetingconditionLists.Add(controller.conditionLists[0].Copy());
+                    
                     /*
                     Point2 p1 = new Point2() { X = 66560, Y = -35198 };
                     Point2 p2 = new Point2() { X = 44797, Y = -52078 };
@@ -176,39 +166,64 @@ public class LevelLoader
                 }
             case 2:
                 {
-                    Point2 p1 = new Point2() { X = 66560, Y = -35198 };
-                    Point2 p2 = new Point2() { X = 44797, Y = -52078 };
-                    Point2 p3 = new Point2() { X = 81920, Y = -54799 };
-                    controller.coordinate.AddPoint(p1);
-                    controller.coordinate.AddPoint(p2);
-                    controller.coordinate.AddPoint(p3);
+                    geoList.Add("p,1,n,true,66560,-35198");
+                    geoList.Add("p,2,n,true,44797,-52078");
+
+                    conList.Add("f,true,1");
+                    conList.Add("f,true,2");
+                    conList.Add("dc,false,3,1,2");
+
                     break;
                 }
             case 3:
                 {
-                    Point2 p1 = new Point2() { X = 66560, Y = -35198 };
-                    Point2 p2 = new Point2() { X = 44797, Y = -52078 };
-                    Point2 p3 = new Point2() { X = 81920, Y = -54799 };
-                    controller.coordinate.AddPoint(p1);
-                    controller.coordinate.AddPoint(p2);
-                    controller.coordinate.AddPoint(p3);
-                    p1.resultPoint.isVisible = false;
-                    p2.resultPoint.isVisible = false;
-                    p3.resultPoint.isVisible = false;
-                    Line l1 = new Line() { p1 = p1, p2 = p2 };
-                    Line l2 = new Line() { p1 = p2, p2 = p3 };
-                    Line l3 = new Line() { p1 = p3, p2 = p1 };
-                    controller.coordinate.AddLine(l1);
-                    controller.coordinate.AddLine(l2);
-                    controller.coordinate.AddLine(l3);
+                    /*
+                    geoList.Add("p,1,n,true,66560,-35198");
+                    geoList.Add("p,2,n,true,44797,-52078");
+                    geoList.Add("p,3,n,true,81920,-54799");
+
+                    conList.Add("f,true,1");
+                    conList.Add("f,true,2");
+                    conList.Add("f,true,3");
+                    conList.Add("drawline,false,4,1,2");
+                    conList.Add("dl,false,5,2,3");
+                    conList.Add("dl,false,6,1,3");
+                    */
+
                     break;
                 }
             case 4:
                 {
+                    geoList.Add("p,1,n,true,66560,-35198");
+                    geoList.Add("p,2,n,true,44797,-52078");
+                    geoList.Add("l,3,n,true,1,2");
 
+                    conList.Add("f,true,1");
+                    conList.Add("f,true,2");
+                    conList.Add("dl,true,3,1,2");
+                    conList.Add("o,false,4,3");
+                    conList.Add("dc,false,5,1,3");
+                    conList.Add("dc,false,6,3,1");
+                    conList.Add("i,false,7,5,6,1");
+                    conList.Add("dl,false,8,7,1");
                     break;
                 }
         }
+        for (int i = 0; i < geoList.Count; i++)
+        {
+            controller.AddGeometryFromString(geoList[i]);
+        }
+        //复制一下代表条件列表缓存，也可以不需要模板与副本，每次关卡都要从头加载条件列表
+        controller.conditionLists = new List<ConditionsList>();                             //需要达成条件
+        controller.meetingconditionLists = new List<ConditionsList>();                      //复制自“需要达成条件”的正在达成条件
+        controller.conditionLists.Add(new ConditionsList());
+        for (int i = 0; i < conList.Count; i++)
+        {
+            controller.AddConditionFromString(conList[i]);
+        }
+        controller.meetingconditionLists.Add(controller.conditionLists[0].Copy());
+        controller.coordinate.GeometryCount = 1000;
+
         return controller;
     }
  }
