@@ -345,4 +345,10 @@
   <data name="Warnning" xml:space="preserve">
     <value>警告！</value>
   </data>
+  <data name="Lock" xml:space="preserve">
+    <value>未完成</value>
+  </data>
+  <data name="Unlock" xml:space="preserve">
+    <value>已解锁</value>
+  </data>
 </root>
