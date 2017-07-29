@@ -31,6 +31,8 @@ namespace Geomystery
         public double SFXVOLUME { get; set; }
         public double MUSICVOLUME { get; set; }
 
+        public string ACHIEVEMENT { get; set; }
+
         //系统内部配置
         public ObservableCollection<Chapter> Chapters = new ObservableCollection<Chapter>();
         public int GAMEMODE { get; set; }
@@ -57,7 +59,7 @@ namespace Geomystery
             MUSICVOLUME = 1;
             SFXVOLUME = 1;
             GAMEMODE = -1;
-            MAINGRID = new Grid();
+            ACHIEVEMENT = "000000";
         }
         public static void SAVE()
         {
@@ -90,6 +92,7 @@ namespace Geomystery
                 app_data.LANGGUAGE = k.LANGGUAGE;
                 app_data.SFXVOLUME = k.SFXVOLUME;
                 app_data.MUSICVOLUME = k.MUSICVOLUME;
+                app_data.ACHIEVEMENT = k.ACHIEVEMENT;
             }
         }
         public async void change_language()
@@ -104,10 +107,7 @@ namespace Geomystery
             update_grid();
             AppResources.refresh();
             app_data.Chapters = Chapter.getChapters();
-            app_data.ACHIEVEMENTS.Clear();
-            var k =  Achievements.GetAch(10);
-            foreach (var x in k)
-                app_data.ACHIEVEMENTS.Add(x);
+            setAchievement();
         }
         public void setFullScreen()
         {
@@ -187,7 +187,11 @@ namespace Geomystery
             app_data.ISFULLSCREEN = true;
             app_data.HAVEDONE = 0;
             app_data.MUSICVOLUME = app_data.SFXVOLUME = 1;
+            app_data.ACHIEVEMENTS = new ObservableCollection<Achievements>();
+            app_data.ACHIEVEMENT = "000000";
             update_views();
+            setAchievement();
+            update_grid();
             return 0;
         }
         public void MoveTo(AppPage to,object o = null)
@@ -241,6 +245,25 @@ namespace Geomystery
             CONST.GridMove(MAINGRID, direction,from,to);
         }
 
+        public void setAchievement()
+        {
+            string ss = "";
+            ss += HAVEDONE >= 1 ? "1" : "0";
+            ss += HAVEDONE >= 9 ? "1" : "0";
+            ss += HAVEDONE >= 18 ? "1" : "0";
+            ss += HAVEDONE >= 26 ? "1" : "0";
+            ss += HAVEDONE >= 27 ? "1" : "0";
+            ss += "0";
+            app_data.ACHIEVEMENT = ss;
+            if(app_data.ACHIEVEMENTS!=null)
+            {
+                app_data.ACHIEVEMENTS.Clear();
+                var k = Achievements.GetAch(10);
+                foreach (var x in k)
+                    app_data.ACHIEVEMENTS.Add(x);
+            }
+        }
+
         public string show()
         {
             var ss = "";
@@ -257,6 +280,7 @@ namespace Geomystery
         public string LANGGUAGE { get; set; }
         public double SFXVOLUME { get; set; }
         public double MUSICVOLUME { get; set; }
+        public string ACHIEVEMENT { get; set; }
         public option_data()
         {
             ISMUTE = APPDATA.app_data.ISMUTE;
@@ -266,6 +290,7 @@ namespace Geomystery
             LANGGUAGE = APPDATA.app_data.LANGGUAGE;
             SFXVOLUME = APPDATA.app_data.SFXVOLUME;
             MUSICVOLUME = APPDATA.app_data.MUSICVOLUME;
+            ACHIEVEMENT = APPDATA.app_data.ACHIEVEMENT;
         }
     }
 }

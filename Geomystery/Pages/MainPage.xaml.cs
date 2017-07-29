@@ -112,6 +112,7 @@ namespace Geomystery
             APPDATA.app_data.BACKBUTTON = this.BackButton;
             APPDATA.app_data.MAINGRID = backG;
             APPDATA.app_data.Chapters = Chapter.getChapters();
+            APPDATA.app_data.setAchievement();
         }
         public void init_music()
         {
