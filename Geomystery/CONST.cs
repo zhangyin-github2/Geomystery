@@ -70,13 +70,18 @@ namespace Geomystery
     }
     public static class AppResources
     {
+        private static ResourceLoader _loader;
+        public static readonly Dictionary<string, string> ResourceCache = new Dictionary<string, string>();
         private static ResourceLoader CurrentResourceLoader
         {
             get { return _loader ?? (_loader = ResourceLoader.GetForCurrentView("Resources")); }
         }
-
-        private static ResourceLoader _loader;
-        private static readonly Dictionary<string, string> ResourceCache = new Dictionary<string, string>();
+        public static void refresh()
+        {
+            _loader = ResourceLoader.GetForCurrentView("Resources");
+            ResourceCache.Clear();
+        }
+        
 
         public static string GetString(string key)
         {

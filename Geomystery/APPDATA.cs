@@ -100,6 +100,7 @@ namespace Geomystery
             Windows.ApplicationModel.Resources.Core.ResourceContext.GetForViewIndependentUse().Reset();
             await Task.Delay(50);
             update_grid();
+            AppResources.refresh();
         }
         public void setFullScreen()
         {
