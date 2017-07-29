@@ -100,6 +100,7 @@
     <Compile Include="Award\Level.cs" />
     <Compile Include="Award\Geo_Coin.cs" />
     <Compile Include="CONST.cs" />
+    <Compile Include="Controllers\Geometry\AnotherCondition.cs" />
     <Compile Include="Controllers\Geometry\Condition.cs" />
     <Compile Include="Controllers\Geometry\Controllers.cs" />
     <Compile Include="Controllers\Geometry\DFA.cs" />
