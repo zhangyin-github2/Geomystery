@@ -63,7 +63,12 @@ namespace Geomystery
             GameName.FontSize = Math.Max(28 * k, 12);
             openIm.FontSize = Math.Max(28 * k, 12);
             GameDiscribe.FontSize = Math.Max(24 * k, 8);
-            openIm_Click(openIm , new RoutedEventArgs());
+            if (APPDATA.app_data.HAVEDONE < localLevel.ID) 
+                openIm_Click(openIm , new RoutedEventArgs());
+            else
+            {
+                coverG.Visibility = Visibility.Collapsed;
+            }
         }
         private ViewModel.ViewModel View { set; get; } = new ViewModel.ViewModel();
         protected override void OnNavigatedTo(NavigationEventArgs e)
