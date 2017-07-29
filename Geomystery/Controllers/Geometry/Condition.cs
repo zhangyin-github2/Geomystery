@@ -13,44 +13,110 @@ namespace Geomystery.Controllers.Geometry
     public class ConditionsList
     {
         /// <summary>
-        /// 条件列表
+        /// 达成条件列表
         /// </summary>
-        public List<Condition> conditions { get; set; }
+        public List<Condition> reachedConditions { get; set; }
+
+        /// <summary>
+        /// 未达成条件列表
+        /// </summary>
+        public List<Condition> unmetCnditions { get; set; }
 
         /// <summary>
         /// 复制
         /// </summary>
-        public List<Condition> Copy()
+        public ConditionsList Copy()
         {
-            List<Condition> result = null;
-            if(conditions != null)
+            ConditionsList result = new ConditionsList();
+            if(reachedConditions != null)
             {
-                result = new List<Geometry.Condition>();
-                for(int i = 0; i < conditions.Count; i++)
+                result.reachedConditions = new List<Condition>();
+                for(int i = 0; i < reachedConditions.Count; i++)
                 {
-                    if(conditions[i] is FreeCondition)
+                    if(reachedConditions[i] is FreeCondition)
                     {
-                        FreeCondition fc = conditions[i] as FreeCondition;
-                        result.Add(new FreeCondition() { isMeetTheConditions = fc.isMeetTheConditions, pid = fc.pid, point = fc.point });
+                        FreeCondition fc = reachedConditions[i] as FreeCondition;
+                        result.reachedConditions.Add(new FreeCondition() { isMeetTheConditions = fc.isMeetTheConditions, pid = fc.pid, point = fc.point });
                     }
-                    else if(conditions[i] is PenDrawCondition)
+                    else if(reachedConditions[i] is PenDrawCondition)
                     {
-                        PenDrawCondition pc = conditions[i] as PenDrawCondition;
-                        result.Add(new PenDrawCondition() { isMeetTheConditions = pc.isMeetTheConditions, iid = pc.iid, p1 = pc.p1, p1id = pc.p1id, p2 = pc.p2, p2id = pc.p2id, pointSet = pc.pointSet });
+                        PenDrawCondition pc = reachedConditions[i] as PenDrawCondition;
+                        result.reachedConditions.Add(new PenDrawCondition() { isMeetTheConditions = pc.isMeetTheConditions, iid = pc.iid, p1 = pc.p1, p1id = pc.p1id, p2 = pc.p2, p2id = pc.p2id, pointSet = pc.pointSet });
                     }
-                    else if (conditions[i] is OnTheTreeCondition)
+                    else if (reachedConditions[i] is OnTheTreeCondition)
                     {
-                        OnTheTreeCondition oc = conditions[i] as OnTheTreeCondition;
-                        result.Add(new FreeCondition() { isMeetTheConditions = oc.isMeetTheConditions, pid = oc.pid, point = oc.point});
+                        OnTheTreeCondition oc = reachedConditions[i] as OnTheTreeCondition;
+                        result.reachedConditions.Add(new OnTheTreeCondition() { isMeetTheConditions = oc.isMeetTheConditions, pid = oc.pid, point = oc.point});
                     }
-                    else if(conditions[i] is IntersectCondition)
+                    else if(reachedConditions[i] is IntersectCondition)
                     {
-                        IntersectCondition ic = conditions[i] as IntersectCondition;
-                        result.Add(new IntersectCondition() { isMeetTheConditions = ic.isMeetTheConditions, i1id = ic.i1id, i2id = ic.i2id, pid = ic.pid, point = ic.point, pointSet1 = ic.pointSet1, pointSet2 = ic.pointSet2 });
+                        IntersectCondition ic = reachedConditions[i] as IntersectCondition;
+                        result.reachedConditions.Add(new IntersectCondition() { isMeetTheConditions = ic.isMeetTheConditions, i1id = ic.i1id, i2id = ic.i2id, pid = ic.pid, point = ic.point, pointSet1 = ic.pointSet1, pointSet2 = ic.pointSet2 });
+                    }
+                }
+            }
+            if (unmetCnditions != null)
+            {
+                result.unmetCnditions = new List<Condition>();
+                for (int i = 0; i < unmetCnditions.Count; i++)
+                {
+                    if (unmetCnditions[i] is FreeCondition)
+                    {
+                        FreeCondition fc = unmetCnditions[i] as FreeCondition;
+                        result.unmetCnditions.Add(new FreeCondition() { isMeetTheConditions = fc.isMeetTheConditions, pid = fc.pid, point = fc.point });
+                    }
+                    else if (unmetCnditions[i] is PenDrawCondition)
+                    {
+                        PenDrawCondition pc = unmetCnditions[i] as PenDrawCondition;
+                        result.unmetCnditions.Add(new PenDrawCondition() { isMeetTheConditions = pc.isMeetTheConditions, iid = pc.iid, p1 = pc.p1, p1id = pc.p1id, p2 = pc.p2, p2id = pc.p2id, pointSet = pc.pointSet });
+                    }
+                    else if (unmetCnditions[i] is OnTheTreeCondition)
+                    {
+                        OnTheTreeCondition oc = unmetCnditions[i] as OnTheTreeCondition;
+                        result.unmetCnditions.Add(new OnTheTreeCondition() { isMeetTheConditions = oc.isMeetTheConditions, pid = oc.pid, point = oc.point, iid = oc.iid, pointSet = oc.pointSet });
+                    }
+                    else if (unmetCnditions[i] is IntersectCondition)
+                    {
+                        IntersectCondition ic = unmetCnditions[i] as IntersectCondition;
+                        result.unmetCnditions.Add(new IntersectCondition() { isMeetTheConditions = ic.isMeetTheConditions, i1id = ic.i1id, i2id = ic.i2id, pid = ic.pid, point = ic.point, pointSet1 = ic.pointSet1, pointSet2 = ic.pointSet2 });
                     }
                 }
             }
             return result;
+        }
+
+        /// <summary>
+        /// 这个id是否已经完成
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public bool isReached(int id)
+        {
+            for(int i = 0; i < reachedConditions.Count; i++)
+            {
+                if (!reachedConditions[i].isMeetTheConditions) throw new Exception("曾经的已达成与未达成操作错误");
+                if (reachedConditions[i] is FreeCondition)
+                {
+                    FreeCondition fc = reachedConditions[i] as FreeCondition;
+                    if (fc.pid == id) return true;
+                }
+                else if (reachedConditions[i] is PenDrawCondition)
+                {
+                    PenDrawCondition pc = reachedConditions[i] as PenDrawCondition;
+                    if (pc.iid == id) return true;
+                }
+                else if (reachedConditions[i] is OnTheTreeCondition)
+                {
+                    OnTheTreeCondition oc = reachedConditions[i] as OnTheTreeCondition;
+                    if (oc.pid == id) return true;
+                }
+                else if (reachedConditions[i] is IntersectCondition)
+                {
+                    IntersectCondition ic = reachedConditions[i] as IntersectCondition;
+                    if (ic.pid == id) return true;
+                }
+            }
+            return false;
         }
     }
 
