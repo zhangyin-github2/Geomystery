@@ -57,6 +57,7 @@ namespace Geomystery.Award
             {
                 ach[i].name = AppResources.GetString("AC" + (i + 1).ToString() + "N");
                 ach[i].discribe = AppResources.GetString("AC" +(i+1).ToString()+"D");
+                ach[i].islock = AppResources.GetString("Lock");
             }
             return ach;
         }

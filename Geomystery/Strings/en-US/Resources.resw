@@ -345,4 +345,10 @@
   <data name="Warnning" xml:space="preserve">
     <value>Warnning</value>
   </data>
+  <data name="Lock" xml:space="preserve">
+    <value>Lock</value>
+  </data>
+  <data name="Unlock" xml:space="preserve">
+    <value>Unlocked</value>
+  </data>
 </root>
