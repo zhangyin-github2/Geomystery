@@ -187,6 +187,7 @@ namespace Geomystery
         {
             LevelSucceedDialog lsd = new LevelSucceedDialog();
             APPDATA.app_data.HAVEDONE = Math.Max(APPDATA.app_data.HAVEDONE, localLevel.ID);
+            APPDATA.app_data.setAchievement();
             //lsd.PrimaryButtonClick += (_s, _e) => { };
             var res = await lsd.ShowAsync();
             if (res.ToString() == "Primary")
@@ -198,6 +199,9 @@ namespace Geomystery
                 if (localLevel.ID % 9 == 0)
                 {
                     APPDATA.app_data.MoveTo(AppPage.SelectChapterPage);
+                    var c = SelectGame.localChapter;
+                    if (c.ID >= APPDATA.app_data.Chapters.Count) return;
+                    APPDATA.app_data.Chapters[c.ID].unlocked = 1;
                     return;
                 }
                 var levels = Level.getLevels(SelectGame.localChapter.ID);

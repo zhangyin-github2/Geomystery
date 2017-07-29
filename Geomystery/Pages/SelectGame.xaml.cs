@@ -45,6 +45,7 @@ namespace Geomystery
             foreach(var x in levels)
             {
                 if (x.ID - 1 <= APPDATA.app_data.HAVEDONE) x.unlocked = 1;
+                else x.unlocked = 0;
             }
             double w, h;
             h = Window.Current.Bounds.Height;
@@ -67,6 +68,7 @@ namespace Geomystery
         {
             var x = localChapter = e.Parameter as Chapter;
             levels = x.Levels;
+            init();
         }
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)
