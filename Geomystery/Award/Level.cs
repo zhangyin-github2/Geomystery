@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 
 namespace Geomystery.Award
 {
-    enum Stars { NoStars=0, OneStar = 1, TwoStar = 2, ThreeStar = 3 };
     /// <summary>
     /// 设置一些章节相关信息与函数
     /// </summary>
@@ -40,10 +39,6 @@ namespace Geomystery.Award
         /// </summary>
         private bool Passed;
         /// <summary>
-        /// 获得星星数
-        /// </summary>
-        private Stars stars;
-        /// <summary>
         /// 构造函数
         /// </summary>
         public Level()
@@ -53,45 +48,73 @@ namespace Geomystery.Award
             cover = "Picture/lock.png";
             unlocked = 0;
             Passed = false;
-            stars = Stars.NoStars;
         }
-        /// <summary>
-        /// 关卡初始化载入
-        /// </summary>
-        public void LevelStart()
-        { }
-        /// <summary>
+        public LevelLoader LL;
         /// 关卡通过后，修改关卡状态，修改星星数
         /// </summary>
         /// <param name="NewStars"></param>
-        private void LevelPass(Stars NewStars)
+        private void LevelPass( )
         {
             if (Passed == false)
             {
                 Passed = true;
                 Geo_Coin.Geo.GetGeo_Coins(1);
             }
-            if (NewStars > stars)
-            {
-                for (int i = 0; i < (NewStars - stars); i++)
-                {
-                    Geo_Coin.Geo.GetGeo_Coins(2);
-                }
-                stars = NewStars;
-            }     
+                 
         }  
         public static ObservableCollection<Level> getLevels()
         {
             ObservableCollection<Level> cp1 = new ObservableCollection<Level>();
-            cp1.Add(new Level() { ID = 1, name = "Draw Line", unlocked = 1 });
-            cp1.Add(new Level() { ID = 2, name = "Draw Circle" });
-            cp1.Add(new Level() { ID = 3, name = "Draw Point" });
-            cp1.Add(new Level() { ID = 4, name = "Angle of 60°" });
-            cp1.Add(new Level() { ID = 5, name = "Perpendicular Bisector" });
-            cp1.Add(new Level() { ID = 6, name = "Angle Bisector" });
-            cp1.Add(new Level() { ID = 7, name = "Perpendicular Line" });
-            cp1.Add(new Level() { ID = 8, name = "Circle in Diamond" });
-            cp1.Add(new Level() { ID = 9, name = "Circle Center" });
+            cp1.Add(new Level()
+            {
+                ID = 1,
+                name = "Draw Line",
+                unlocked = 1,
+                intro = "Today you need to take the first step in geometric learning,why not get started from the most simple content.Try to draw three lines to connect these three points .Line is one of the most useful tools you will use to solve problems ,you must comprehend it.",
+            });
+
+            cp1.Add(new Level()
+            {
+                ID = 2,
+                name = "Draw Circle",
+                intro = "Lines can't help you with solving all of the question when you learn geometry,so why not try to use circles ? Try to draw two concentric circles through the other two points with a given point as the center.This question is not too difficult ,is it?"
+            });
+
+            cp1.Add(new Level()
+            {
+                ID = 3,
+                name = "Draw Point",
+                intro= "It seems that you have learned to use straight lines and rounds, which is really gratifying.But sometimes you need some points to help you.Try to mark the intersection of the given three lines,and this step will be used repeatedly."
+            });
+
+            cp1.Add(new Level()
+            {
+                ID = 4,
+                name = "Angle of 60°",
+                intro= "Have you already learnt the three basic tools?It seems that you are ready to accept the first test. Try to draw a 60°angle on the counterclockwise based on the given ray, I think it's not hard for you."
+
+            });
+
+            cp1.Add(new Level() { ID = 5, name = "Perpendicular Bisector",
+                intro = "It is a long way to lern geometry ,don't be complacent. You need to learn how to use more tools which is more complex.Try to draw the perpendicular bisector of this line. What's more ,mastered perpendicular bisectors is obligatory course if you want to learn to solve problems."
+            });
+
+            cp1.Add(new Level() { ID = 6, name = "Angle Bisector",
+                intro = "Do you remember the 60 degree angle you have drawn? The line isn't the only object we have to operate, we need to learn to operate angle.Try to draw the bisector of the given angle. You will learn more about the relationship between the lines and the angles."
+            });
+
+            cp1.Add(new Level() { ID = 7, name = "Perpendicular Line",
+                intro = "Have you already mastered perpendicular bisectors and angle bisectors ?I think you are ready to continue your learning in using composite tools. Try to draw the perpendicular line of the given line through the given point. Can you see the nature of this problem?"
+            });
+
+            cp1.Add(new Level() { ID = 8, name = "Circle in Diamond",
+                intro = "Finished learning to use composite tool , maybe you are eager to do a quiz. Are you ready to do it?  Try to draw the inscribed circle of the given diamond. Don't forget to use the new tools you have lerant to help you."
+            });
+
+            cp1.Add(new Level() { ID = 9, name = "Circle Center",
+                intro = "I think these simple problems can not stumped you, you need a final quiz before starting your test. Try to draw the center of the given circle. This question is not as simple as it looks."
+            });
+
             foreach(var x in cp1)
             {
                 x.cover = "ms-appx:///Pictures/Levels/" + x.ID.ToString()+".png";
