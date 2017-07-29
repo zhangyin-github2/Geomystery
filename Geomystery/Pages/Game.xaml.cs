@@ -80,6 +80,7 @@ namespace Geomystery
             GameDiscribe.Text = x.Discribe;
 
             controller = LevelLoader.GetLevel(x.ID);
+            init();
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
