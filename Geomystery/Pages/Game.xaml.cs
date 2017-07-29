@@ -72,7 +72,7 @@ namespace Geomystery
             GameId.Text = x.ID.ToString();
             GameName.Text = x.name;
             GameImage.Source = new BitmapImage(new Uri(x.cover, UriKind.Absolute));
-            GameDiscribe.Text = x.intro;
+            GameDiscribe.Text = x.Discribe;
 
             controller = LevelLoader.GetLevel(x.ID);
         }
