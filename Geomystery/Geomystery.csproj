@@ -231,11 +231,9 @@
     <Content Include="Audio\button7.wav" />
     <Content Include="Audio\button8.wav" />
     <Content Include="Audio\button9.wav" />
-    <Content Include="Pictures\AchievementBord.png" />
     <Content Include="Pictures\Chapters\1.png" />
     <Content Include="Pictures\Chapters\2.png" />
     <Content Include="Pictures\Chapters\3.png" />
-    <Content Include="Pictures\coin.png" />
     <Content Include="Pictures\homepic\circle1.png" />
     <Content Include="Pictures\homepic\circle2.png" />
     <Content Include="Pictures\homepic\hexagon.png" />
@@ -252,6 +250,12 @@
     <Content Include="Pictures\Tool\tool3.png" />
     <Content Include="Pictures\Tool\tool4.png" />
     <Content Include="Pictures\Tool\tool5.png" />
+    <Content Include="Pictures\几何大师.png" />
+    <Content Include="Pictures\土豪.png" />
+    <Content Include="Pictures\小试牛刀.png" />
+    <Content Include="Pictures\数学家.png" />
+    <Content Include="Pictures\旗开得胜.png" />
+    <Content Include="Pictures\解题狂人.png" />
     <Content Include="Properties\Default.rd.xml" />
   </ItemGroup>
   <ItemGroup>
