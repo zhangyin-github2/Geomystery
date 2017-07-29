@@ -53,15 +53,11 @@ namespace Geomystery.Award
                 "完美通过所有关卡。",
             };
 
-            for(int i=0;i< Discirbe.Length;i++)
+            for(int i=0;i< ach.Count;i++)
             {
-                ach[i].discribe = Discirbe[i];
+                ach[i].name = AppResources.GetString("AC" + (i + 1).ToString() + "N");
+                ach[i].discribe = AppResources.GetString("AC" +(i+1).ToString()+"D");
             }
-
-            
-            
-
-
             return ach;
         }
     }

@@ -26,7 +26,7 @@ namespace Geomystery
     {
         private ViewModel.ViewModel View { set; get; } = new ViewModel.ViewModel();
         
-        public ObservableCollection<Achievements> ach;
+        public  ObservableCollection<Achievements> ach;
         public Achievement()
         {
             this.InitializeComponent();
@@ -36,6 +36,7 @@ namespace Geomystery
                 APPDATA.app_data.Views.Add(View);
             }
             ach = Achievements.GetAch(10);
+            APPDATA.app_data.ACHIEVEMENTS = ach;
         }
     }
 }

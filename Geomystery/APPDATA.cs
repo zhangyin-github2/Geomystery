@@ -39,6 +39,8 @@ namespace Geomystery
         public Grid MAINGRID { get; set; }
         public Button BACKBUTTON { get; set; }
 
+        public ObservableCollection<Achievements> ACHIEVEMENTS;
+
         /// <summary>
         /// 单件模式实例体
         /// </summary>
@@ -102,6 +104,10 @@ namespace Geomystery
             update_grid();
             AppResources.refresh();
             app_data.Chapters = Chapter.getChapters();
+            app_data.ACHIEVEMENTS.Clear();
+            var k =  Achievements.GetAch(10);
+            foreach (var x in k)
+                app_data.ACHIEVEMENTS.Add(x);
         }
         public void setFullScreen()
         {
