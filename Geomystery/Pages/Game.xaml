@@ -96,7 +96,7 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-            
+
             <!--listview方向-->
             <Style x:Key="myListViewStyle" TargetType="ListView">
                 <Setter Property="ItemContainerTransitions">
@@ -128,7 +128,7 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-            
+
             <ResourceDictionary.ThemeDictionaries>
                 <ResourceDictionary x:Key="Light" Source="LightThemeDictionary.xaml"></ResourceDictionary>
                 <ResourceDictionary x:Key="Dark" Source="DarkThemeDictionary.xaml"></ResourceDictionary>
@@ -257,7 +257,14 @@
         <Rectangle Name="blank1" Height="60" Width="132" Fill="{ThemeResource SystemBackgroundAltHighBrush}" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" IsTapEnabled="False" />
         <Rectangle Name="blank2" Height="60" Width="132" Fill="{ThemeResource SystemBackgroundAltHighBrush}" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Top" IsTapEnabled="False" />
 
-        <StackPanel Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Top" Orientation="Horizontal">
+        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                    Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <TextBlock x:Name="GameId" FontFamily="Microsoft YaHei UI" FontSize="36" Text="ID" />
+            <TextBlock x:Name="GameName" FontFamily="Microsoft YaHei UI" FontSize="36" Text="Name" />
+            <Button Background="{x:Null}" BorderThickness="0" FontFamily="Segoe MDL2 Assets" FontSize="36" Content="&#xF167;"/>
+        </StackPanel>
+        
+        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Top" Orientation="Horizontal">
             <Button x:Name="undo" Style="{StaticResource undoredostyle}" Content="&#xE248;" FontSize="36" FontWeight="Bold" Background="Transparent" Foreground="{ThemeResource TextColorPurple}" FontFamily="Segoe MDl2 Assets" Height="64" Width="82" Click="undo_Click" IsTabStop="False"/>
             <Button x:Name="redo" Style="{StaticResource undoredostyle}" Content="&#xE248;" FontSize="36" FontWeight="Bold" Background="Transparent" Foreground="{ThemeResource TextColorPurple}" FontFamily="Segoe MDl2 Assets" Height="64" Width="82" RenderTransformOrigin="0.5,0.5" Click="redo_Click" IsTabStop="False">
                 <Button.RenderTransform>
@@ -267,21 +274,22 @@
             <Button x:Name="refresh" Style="{StaticResource undoredostyle}" Content="&#xE777;" FontSize="36" FontWeight="Bold" Background="Transparent" Foreground="{ThemeResource TextColorPurple}" FontFamily="Segoe MDl2 Assets" Height="64" Width="82" Click="refresh_Click" IsTabStop="False"/>
         </StackPanel>
 
-        <Grid Grid.Row="1">
-            <Grid x:Name="GameIm" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,0" Width="300" Height="185">
+        <Grid Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2">
+            <Grid x:Name="GameIm" HorizontalAlignment="Center" VerticalAlignment="Center" Width="800" Height="480">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="3*"/>
-                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="2*"/>
                 </Grid.RowDefinitions>
-                <Rectangle Fill="WhiteSmoke" RadiusX="15" RadiusY="15" Grid.RowSpan="3"/>
-                <Grid>
+                <Rectangle Fill="WhiteSmoke" RadiusX="20" RadiusY="20" Grid.RowSpan="3"/>
+                <Grid Grid.Row="0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="10*"/>
+                        <ColumnDefinition Width="1*"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock x:Name="GameId" Grid.Column="0" Grid.Row="0" Text="ID" FontSize="32" Foreground="Black" FontFamily="Bradley Hand ITC" HorizontalAlignment="Center" VerticalAlignment="Center"   ></TextBlock>
-                    <TextBlock x:Name="GameName" Grid.Column="1" Grid.Row="0" Text="Name" FontSize="28" Foreground="Black"  HorizontalAlignment="Center" VerticalAlignment="Center"   ></TextBlock>
+                    <FontIcon Grid.Row="0" Grid.Column="0" Glyph="&#xF167;" FontFamily="Segoe MDL2 Assets" FontSize="36"/>
+                    <Button Grid.Row="0" Grid.Column="2" Content="&#xEF2C;" FontFamily="Segoe MDL2 Assets" FontSize="36"/>
                 </Grid>
                 <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
