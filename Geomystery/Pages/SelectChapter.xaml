@@ -6,7 +6,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    RequestedTheme="{x:Bind View.Theme,Mode=OneWay}">
+    xmlns:toolData="using:Geomystery.Award"
+    RequestedTheme="{x:Bind View.Theme,Mode=OneWay}" Loaded="Page_Loaded" SizeChanged="Page_SizeChanged" LayoutUpdated="Page_LayoutUpdated">
 
     <Page.Resources>
         <ResourceDictionary>
@@ -308,136 +309,40 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-            
+
+            <DataTemplate x:DataType="toolData:Chapter"
+                          x:Key="chapterTempelate">
+                <Button 
+                    Background="{ThemeResource SystemBackgroundBaseHighBrush}"
+                    Foreground="{ThemeResource SystemBackgroundAltHighBrush}"
+                    BorderBrush="{ThemeResource TextColorPurple}" BorderThickness="10"
+                    Height="675" Width="1200"
+                    IsTabStop="False" 
+                    HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Click="Chapter_Click"  Loaded="ChapterB_Loaded">
+                    <Grid Height="619" Width="1100" Loaded="Grid_Loaded">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1.5*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.ColumnSpan="2" Text="{x:Bind name}" VerticalAlignment="Center" FontSize="48" FontFamily="Arial Black"  Loaded="ChpNameTextBlock_Loaded" FontWeight="Bold" />
+                        <TextBlock Text="{x:Bind discribe}" VerticalAlignment="Bottom" FontSize="24" Loaded="ChpDiscibeTextBlock_Loaded" TextWrapping="WrapWholeWords" TextAlignment="Justify"/>
+                    </Grid>
+                </Button>
+            </DataTemplate>
         </ResourceDictionary>
     </Page.Resources>
 
     
     <Grid Background="{ThemeResource SystemBackgroundAltHighBrush}">
 
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup >
-                <VisualState x:Name="microView" >
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="0"
-                                         MinWindowHeight="0"/>
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <!--最小大小 0.338倍-->
-                        <Setter Target="myFlip.Style" Value="{StaticResource FlipViewStyle0.338}"/>
-                        <Setter Target="Chapter1.Height" Value="200" />
-                        <Setter Target="Chapter1.Width" Value="400"/>
-                        <Setter Target="Chapter2.Height" Value="200" />
-                        <Setter Target="Chapter2.Width" Value="400"/>
-                        <Setter Target="Chapter3.Height" Value="200" />
-                        <Setter Target="Chapter3.Width" Value="400"/>
-                        <Setter Target="Chapter1.BorderThickness" Value="3.4" />
-                        <Setter Target="Chapter2.BorderThickness" Value="3.4" />
-                        <Setter Target="Chapter3.BorderThickness" Value="3.4" />
-                        <Setter Target="Chapter1.FontSize" Value="24" />
-                        <Setter Target="Chapter2.FontSize" Value="24" />
-                        <Setter Target="Chapter3.FontSize" Value="24" />
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="miniView">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="800"
-                                         MinWindowHeight="500"/>
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <!--中等大小 0.55倍-->
-                        <Setter Target="myFlip.Style" Value="{StaticResource FlipViewStyle0.55}"/>
-                        <Setter Target="Chapter1.Height" Value="330" />
-                        <Setter Target="Chapter1.Width" Value="660"/>
-                        <Setter Target="Chapter2.Height" Value="330" />
-                        <Setter Target="Chapter2.Width" Value="660"/>
-                        <Setter Target="Chapter3.Height" Value="330" />
-                        <Setter Target="Chapter3.Width" Value="660"/>
-                        <Setter Target="Chapter1.BorderThickness" Value="5.5" />
-                        <Setter Target="Chapter2.BorderThickness" Value="5.5" />
-                        <Setter Target="Chapter3.BorderThickness" Value="5.5" />
-                        <Setter Target="Chapter1.FontSize" Value="38" />
-                        <Setter Target="Chapter2.FontSize" Value="38" />
-                        <Setter Target="Chapter3.FontSize" Value="38" />
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="normalView">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="1168"
-                                         MinWindowHeight="657"/>
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <!--标准大小 0.8倍-->
-                        <Setter Target="myFlip.Style" Value="{StaticResource FlipViewStyle0.8}"/>
-                        <Setter Target="Chapter1.Height" Value="480" />
-                        <Setter Target="Chapter1.Width" Value="960"/>
-                        <Setter Target="Chapter2.Height" Value="480" />
-                        <Setter Target="Chapter2.Width" Value="960"/>
-                        <Setter Target="Chapter3.Height" Value="480" />
-                        <Setter Target="Chapter3.Width" Value="960"/>
-                        <Setter Target="Chapter1.BorderThickness" Value="8" />
-                        <Setter Target="Chapter2.BorderThickness" Value="8" />
-                        <Setter Target="Chapter3.BorderThickness" Value="8" />
-                        <Setter Target="Chapter1.FontSize" Value="54" />
-                        <Setter Target="Chapter2.FontSize" Value="54" />
-                        <Setter Target="Chapter3.FontSize" Value="54" />
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="fullView">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="1920"
-                                         MinWindowHeight="1080"/>
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <!--1080P 1倍-->
-                        <Setter Target="Chapter1.Height" Value="600" />
-                        <Setter Target="Chapter1.Width" Value="1200"/>
-                        <Setter Target="Chapter2.Height" Value="600" />
-                        <Setter Target="Chapter2.Width" Value="1200"/>
-                        <Setter Target="Chapter3.Height" Value="600" />
-                        <Setter Target="Chapter3.Width" Value="1200"/>
-                        <Setter Target="Chapter1.BorderThickness" Value="10" />
-                        <Setter Target="Chapter2.BorderThickness" Value="10" />
-                        <Setter Target="Chapter3.BorderThickness" Value="10" />
-                        <Setter Target="Chapter1.FontSize" Value="68" />
-                        <Setter Target="Chapter2.FontSize" Value="68" />
-                        <Setter Target="Chapter3.FontSize" Value="68" />
-                    </VisualState.Setters>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
-        
         <FlipView Name="myFlip"
                   Background="{x:Null}" Margin="24,24,24,24"
                   HorizontalAlignment="Center" VerticalAlignment="Center"
-                  Style="{StaticResource FlipViewStyle1}">
-            <Button Name="Chapter1"
-                    FontFamily="Microsoft YaHei UI" FontSize="48"
-                    Background="{ThemeResource SystemBackgroundBaseHighBrush}"
-                    Foreground="{ThemeResource SystemBackgroundAltHighBrush}"
-                    BorderBrush="{ThemeResource TextColorPurple}" BorderThickness="10"
-                    Height="600" Width="1200"
-                    HorizontalAlignment="Center" VerticalAlignment="Center"
-                    Content="Chapter1" x:Uid="Chapter1"
-                    Click="Chapter1_Click" IsTabStop="False"/>
-            <Button Name="Chapter2"
-                    FontFamily="Microsoft YaHei UI" FontSize="48"
-                    Background="{ThemeResource SystemBackgroundBaseHighBrush}"
-                    Foreground="{ThemeResource SystemBackgroundAltHighBrush}"
-                    BorderBrush="{ThemeResource TextColorPurple}" BorderThickness="10"
-                    Height="600" Width="1200"
-                    HorizontalAlignment="Center" VerticalAlignment="Center"
-                    Content="Chapter2" x:Uid="Chapter2"
-                    Click="Chapter2_Click" IsTabStop="False"/>
-            <Button Name="Chapter3"
-                    FontFamily="Microsoft YaHei UI" FontSize="48"
-                    Background="{ThemeResource SystemBackgroundBaseHighBrush}"
-                    Foreground="{ThemeResource SystemBackgroundAltHighBrush}"
-                    BorderBrush="{ThemeResource TextColorPurple}" BorderThickness="10"
-                    Height="600" Width="1200"
-                    HorizontalAlignment="Center" VerticalAlignment="Center"
-                    Content="Chapter3" x:Uid="Chapter3"
-                    Click="Chapter3_Click" IsTabStop="False"/>
+                  ItemsSource="{x:Bind Chapters}" 
+                  ItemTemplate="{StaticResource chapterTempelate}" 
+                  Style="{StaticResource FlipViewStyle1}" >
         </FlipView>
     </Grid>
 </Page>

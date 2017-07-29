@@ -32,7 +32,7 @@ namespace Geomystery
         public double MUSICVOLUME { get; set; }
 
         //系统内部配置
-        public ObservableCollection<Level> cp1 = Level.getLevels();
+        public ObservableCollection<Chapter> Chapters = new ObservableCollection<Chapter>();
         public int GAMEMODE { get; set; }
         public List<ViewModel.ViewModel> Views;
         public AppPage CURRENT_PAGE { get; set; }
@@ -101,6 +101,7 @@ namespace Geomystery
             await Task.Delay(50);
             update_grid();
             AppResources.refresh();
+            app_data.Chapters = Chapter.getChapters();
         }
         public void setFullScreen()
         {

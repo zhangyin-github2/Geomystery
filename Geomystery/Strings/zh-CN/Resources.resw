@@ -120,6 +120,15 @@
   <data name="About Us.Text" xml:space="preserve">
     <value>关于我们</value>
   </data>
+  <data name="CD1" xml:space="preserve">
+    <value>在进行试炼与挑战之前，学习是必要的。你需要学会使用直尺和圆规，几乎所有问题都要用到这两种工具，你也需要在本章节中学会使用一些复合工具……</value>
+  </data>
+  <data name="CD2" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CD3" xml:space="preserve">
+    <value />
+  </data>
   <data name="Chapter1.Content" xml:space="preserve">
     <value>第一章节</value>
   </data>
@@ -128,6 +137,15 @@
   </data>
   <data name="Chapter3.Content" xml:space="preserve">
     <value>第三章节</value>
+  </data>
+  <data name="CN1" xml:space="preserve">
+    <value>几何学习道场</value>
+  </data>
+  <data name="CN2" xml:space="preserve">
+    <value>几何试炼之地</value>
+  </data>
+  <data name="CN3" xml:space="preserve">
+    <value>几何挑战</value>
   </data>
   <data name="Freestyle.Content" xml:space="preserve">
     <value>自由模式</value>
