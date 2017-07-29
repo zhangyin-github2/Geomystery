@@ -274,7 +274,11 @@ namespace Geomystery.Controllers.Geometry
                 if (surroundings.surroundingPoint.Count > 0)
                 {
                     coordinate.ToSelectGeometry(surroundings.surroundingPoint[0].geometry);
-                    runningDFA.UserSelectGeomerty(surroundings.surroundingPoint[0].geometry, false);
+                    int result = runningDFA.UserSelectGeomerty(surroundings.surroundingPoint[0].geometry, false);
+                    if(result == -2)
+                    {
+                        runningDFA.Undo();
+                    }
                 }
                 else
                 {
@@ -310,7 +314,11 @@ namespace Geomystery.Controllers.Geometry
                 if (surroundings.surroundingPoint.Count > 0)
                 {
                     coordinate.ToSelectGeometry(surroundings.surroundingPoint[0].geometry);
-                    runningDFA.UserSelectGeomerty(surroundings.surroundingPoint[0].geometry, false);
+                    int result = runningDFA.UserSelectGeomerty(surroundings.surroundingPoint[0].geometry, false);
+                    if (result == -2)
+                    {
+                        runningDFA.Undo();
+                    }
                 }
                 else
                 {
