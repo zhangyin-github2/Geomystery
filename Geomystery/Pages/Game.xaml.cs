@@ -66,6 +66,7 @@ namespace Geomystery
             GameId.Text = x.ID.ToString();
             GameName.Text = x.name;
             GameImage.Source = new BitmapImage(new Uri(x.cover, UriKind.Absolute));
+            GameDiscribe.Text = x.intro;
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -248,7 +249,7 @@ namespace Geomystery
             double kw, kh;
             kh = Window.Current.Bounds.Height/1080;
             kw = Window.Current.Bounds.Width/1920;
-            GameIm.Width = 300 * Math.Min( kw,kh);
+            GameIm.Width = 800 * Math.Min( kw,kh);
             GameIm.Height = GameIm.Width * 0.618;
         }
 
@@ -258,10 +259,13 @@ namespace Geomystery
             kh = Window.Current.Bounds.Height / 1080;
             kw = Window.Current.Bounds.Width / 1920;
             double k = Math.Min(kw, kh);
-            GameId.FontSize = Math.Max(32 * k,12);
+            GameId.FontSize = Math.Max(36 * k,12);
             GameName.FontSize = Math.Max(28 * k, 12);
+            openIm.FontSize = Math.Max(28 * k, 12);
+            GameDiscribe.FontSize = Math.Max(24 * k, 8);
+            titleG.Width = 500 * kw;
 
-            if(controller != null)
+            if (controller != null)
             {
                 controller.outputCoordinates[0].WindowHeight = (float)canvas1.ActualHeight;
                 controller.outputCoordinates[0].WindowWidth = (float)canvas1.ActualWidth;
