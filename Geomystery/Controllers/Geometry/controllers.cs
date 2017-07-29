@@ -232,8 +232,9 @@ namespace Geomystery.Controllers.Geometry
                     for (int i = 0; i < plist.Count; i++)
                     {
                         runningDFA.result.Add(plist[i]);
-                        TextGeometry(plist[i]);
+                        
                         coordinate.AddPoint(plist[i]);
+                        TestGeometry(plist[i]);
                         coordinate.ToSelectGeometry(plist[i]);
                     }
                     historyDfaList.Add(runningDFA);
@@ -255,10 +256,10 @@ namespace Geomystery.Controllers.Geometry
                     Point2 newPoint = outputCoordinates[0].ToPoint2(vector2);
                     runningDFA.UserSelectGeomerty(newPoint, true);
                     //runningDFA.result.Add()
-                    TextGeometry(newPoint);
+                    
                     coordinate.AddPoint(newPoint);
                     coordinate.ToSelectGeometry(newPoint);
-
+                    TestGeometry(newPoint);
                     passNotify();
                 }
                 if (runningDFA.state == 2)
@@ -291,14 +292,14 @@ namespace Geomystery.Controllers.Geometry
                     line.p2 = runningDFA.needList[0].selectStack[1].selectedGeometry as Point2;
                     line.type = LineType.Line;
                     line.lineRely = LineRely.Normal;
-                    TextGeometry(line);                         //测试条件
+                    
                     coordinate.AddLine(line);
                     coordinate.ToSelectGeometry(line);
                     runningDFA.result.Add(line);
                     historyDfaList.Add(runningDFA);
                     redoDfaList.Clear();
                     runningDFA = null;
-
+                    TestGeometry(line);                         //测试条件
                     passNotify();
                 }
 
@@ -325,14 +326,14 @@ namespace Geomystery.Controllers.Geometry
 
                     circle.center = runningDFA.needList[0].selectStack[0].selectedGeometry as Point2;
                     circle.radius = runningDFA.needList[0].selectStack[1].selectedGeometry as Point2;
-                    TextGeometry(circle);
+                    TestGeometry(circle);
                     coordinate.AddCircle(circle);
                     coordinate.ToSelectGeometry(circle);
                     runningDFA.result.Add(circle);
                     historyDfaList.Add(runningDFA);
                     redoDfaList.Clear();
                     runningDFA = null;
-
+                    TestGeometry(circle);
                     passNotify();                       //过关通知
                 }
 
@@ -569,6 +570,8 @@ namespace Geomystery.Controllers.Geometry
                             p1 = p1 as Point2,
                             p2 = p2 as Point2,
                             id = id,
+                            lineRely = LineRely.Normal,
+                            type = LineType.Line,
                         };
                         coordinate.AddLine(line);
                         line.id = id;
@@ -618,7 +621,7 @@ namespace Geomystery.Controllers.Geometry
             if (infomations.Count() < 2) return -2;
 
             if (conditionLists[0].reachedConditions == null) conditionLists[0].reachedConditions = new List<Condition>();
-            if (conditionLists[0].unmetCnditions == null) conditionLists[0].unmetCnditions = new List<Condition>();
+            if (conditionLists[0].unmetConditions == null) conditionLists[0].unmetConditions = new List<Condition>();
 
             bool meet;
             if (!bool.TryParse(infomations[1], out meet)) return -4;                //是否满足满足的标志不正常
@@ -635,7 +638,7 @@ namespace Geomystery.Controllers.Geometry
                 }
                 else
                 {
-                    conditionLists[0].unmetCnditions.Add(new FreeCondition() { isMeetTheConditions = meet, pid = pid, point = point });
+                    conditionLists[0].unmetConditions.Add(new FreeCondition() { isMeetTheConditions = meet, pid = pid, point = point });
                 }
             }
             else if (infomations[0] == "1" || infomations[0].ToLower() == "dl" || infomations[0].ToLower() == "drawline")
@@ -660,7 +663,7 @@ namespace Geomystery.Controllers.Geometry
                 }
                 else
                 {
-                    conditionLists[0].unmetCnditions.Add(new PenDrawCondition() { isMeetTheConditions = meet, iid = iid, pointSet = pointSet, p1id = p1id, p1 = p1, p2id = p2id, p2 = p2, type = 1 });
+                    conditionLists[0].unmetConditions.Add(new PenDrawCondition() { isMeetTheConditions = meet, iid = iid, pointSet = pointSet, p1id = p1id, p1 = p1, p2id = p2id, p2 = p2, type = 1 });
                 }
             }
             else if (infomations[0] == "2" || infomations[0].ToLower() == "dc" || infomations[0].ToLower() == "drawcircle")
@@ -685,7 +688,7 @@ namespace Geomystery.Controllers.Geometry
                 }
                 else
                 {
-                    conditionLists[0].unmetCnditions.Add(new PenDrawCondition() { isMeetTheConditions = meet, iid = iid, pointSet = pointSet, p1id = p1id, p1 = p1, p2id = p2id, p2 = p2, type = 2 });
+                    conditionLists[0].unmetConditions.Add(new PenDrawCondition() { isMeetTheConditions = meet, iid = iid, pointSet = pointSet, p1id = p1id, p1 = p1, p2id = p2id, p2 = p2, type = 2 });
                 }
                 
             }
@@ -707,7 +710,7 @@ namespace Geomystery.Controllers.Geometry
                 }
                 else
                 {
-                    conditionLists[0].unmetCnditions.Add(new OnTheTreeCondition() { isMeetTheConditions = meet, pid = pid, point = point, iid = iid, pointSet = pointSet });
+                    conditionLists[0].unmetConditions.Add(new OnTheTreeCondition() { isMeetTheConditions = meet, pid = pid, point = point, iid = iid, pointSet = pointSet });
                 }
                 
             }
@@ -735,7 +738,7 @@ namespace Geomystery.Controllers.Geometry
                 }
                 else
                 {
-                    conditionLists[0].unmetCnditions.Add(new IntersectCondition() { isMeetTheConditions = meet, pid = pid, point = point, i1id = i1id, pointSet1 = pointSet1, i2id = i2id, pointSet2 = pointSet2, clock = clock });
+                    conditionLists[0].unmetConditions.Add(new IntersectCondition() { isMeetTheConditions = meet, pid = pid, point = point, i1id = i1id, pointSet1 = pointSet1, i2id = i2id, pointSet2 = pointSet2, clock = clock });
                 }
             }
             return 0;
@@ -752,7 +755,7 @@ namespace Geomystery.Controllers.Geometry
             {
                 for(int i = 0; i < conditionLists.Count; i++)
                 {
-                    if(meetingconditionLists[i].reachedConditions.Count == conditionLists[i].reachedConditions.Count + conditionLists[i].unmetCnditions.Count)
+                    if(meetingconditionLists[i].reachedConditions.Count == conditionLists[i].reachedConditions.Count + conditionLists[i].unmetConditions.Count)
                     {
                         meetNumber++;
                     }
@@ -778,7 +781,7 @@ namespace Geomystery.Controllers.Geometry
         /// </summary>
         /// <param name="newGeometry">新增元素</param>
         /// <returns></returns>
-        public bool TextGeometry(Models.Geometry.Geometry newGeometry)
+        public bool TestGeometry(Models.Geometry.Geometry newGeometry)
         {
             if (this.conditionLists == null) return true;
             for(int i = 0; i < meetingconditionLists.Count; i++)
@@ -788,9 +791,9 @@ namespace Geomystery.Controllers.Geometry
                 {
                     Point2 point = newGeometry as Point2;
 
-                    for (int j = 0; j < meetingconditionLists[i].unmetCnditions.Count; j++)
+                    for (int j = 0; j < meetingconditionLists[i].unmetConditions.Count; j++)
                     {
-                        condition = meetingconditionLists[i].unmetCnditions[j];
+                        condition = meetingconditionLists[i].unmetConditions[j];
                         if (condition.isMeetTheConditions) throw new Exception("移动条件时出错");
                         if (condition is FreeCondition)                                     //自由的点
                         {
@@ -882,9 +885,9 @@ namespace Geomystery.Controllers.Geometry
                 {
                     Line line = newGeometry as Line;
 
-                    for (int j = 0; j < meetingconditionLists[i].unmetCnditions.Count; j++)
+                    for (int j = 0; j < meetingconditionLists[i].unmetConditions.Count; j++)
                     {
-                        condition = meetingconditionLists[i].unmetCnditions[j];
+                        condition = meetingconditionLists[i].unmetConditions[j];
                         if (condition.isMeetTheConditions) throw new Exception("移动条件时出错");
                         if (condition is PenDrawCondition)
                         {
@@ -906,9 +909,9 @@ namespace Geomystery.Controllers.Geometry
                 else if(newGeometry is Circle)
                 {
                     Circle circle = newGeometry as Circle;
-                    for (int j = 0; j < meetingconditionLists[i].unmetCnditions.Count; j++)
+                    for (int j = 0; j < meetingconditionLists[i].unmetConditions.Count; j++)
                     {
-                        condition = meetingconditionLists[i].unmetCnditions[j];
+                        condition = meetingconditionLists[i].unmetConditions[j];
                         if (condition.isMeetTheConditions) throw new Exception("移动条件时出错");
                         if (condition is PenDrawCondition)
                         {
@@ -931,7 +934,7 @@ namespace Geomystery.Controllers.Geometry
                 {
                     if (!condition.isMeetTheConditions) throw new Exception("不可能的异常");
                     meetingconditionLists[i].reachedConditions.Add(condition);
-                    meetingconditionLists[i].unmetCnditions.Remove(condition);
+                    meetingconditionLists[i].unmetConditions.Remove(condition);
                     return true;
                 }
             }
