@@ -464,7 +464,7 @@ namespace Geomystery.Views.Geometry
             Surroundings result = new Surroundings() { screenPoint = surroundings.screenPoint };
             if (surroundings.surroundingLine.Count == 0 && surroundings.surroundingCircle.Count == 0) return result;
             float currentLength;
-            if (surroundings.surroundingLine.Count > 1 &&surroundings.surroundingCircle.Count ==0 )
+            if (surroundings.surroundingLine.Count > 0 || surroundings.surroundingCircle.Count > 0 )
             {
                 for(int i = 0; i < surroundings.surroundingLine.Count; i++)                     //遍历直线集合
                 {
@@ -475,8 +475,8 @@ namespace Geomystery.Views.Geometry
                         if (i == j)                                  //自己和自己，单依赖
                         {
                             currentLength = DistanceOfPointAndLine(this.ToVector2(lCurrent.p1), this.ToVector2(lCurrent.p2) - this.ToVector2(lCurrent.p1), surroundings.screenPoint, ref perpendicularFoot);
-                            Point2 pf = new Point2() { X = perpendicularFoot.X, Y = perpendicularFoot.Y };
-                            //pf.rely.Add(lCurrent);                      //依赖于一条直线
+                            Point2 pf = ToPoint2(perpendicularFoot);
+                            pf.rely.Add(lCurrent);                      //依赖于一条直线
                             result.surroundingPoint.Add(new GeometryAndTheDistance() { geometry = pf, distance = currentLength });
                         }
                         else                                        //相交依赖
@@ -493,11 +493,11 @@ namespace Geomystery.Views.Geometry
                     }
                     for(int j = 0; j < surroundings.surroundingCircle.Count; j++)               //直线与每个圆相交
                     {
-                        List<Point2> plist = ((IPointSet)lCurrent).Intersection(surroundings.surroundingLine[j].geometry as Circle);
+                        List<Point2> plist = ((IPointSet)lCurrent).Intersection(surroundings.surroundingCircle[j].geometry as Circle);
                         for (int k = 0; k < plist.Count; k++)
                         {
                             //plist[k].rely.Add(lCurrent);                                                  //添加依赖于1条直线和1个圆
-                            //plist[k].rely.Add(surroundings.surroundingLine[j].geometry as Circle);
+                            //plist[k].rely.Add(surroundings.surroundingCircle[j].geometry as Circle);
                             result.surroundingPoint.Add(new GeometryAndTheDistance() { geometry = plist[k], distance = Vector2.Distance(this.ToVector2(plist[k]), surroundings.screenPoint) });
                         }
                     }
@@ -511,17 +511,17 @@ namespace Geomystery.Views.Geometry
                         if (i == j)                                  //自己和自己，单依赖
                         {
                             currentLength = OutputCoordinate.DistanceOfPointAndCircle(this.ToVector2(cCurrent.center), (this.ToVector2(cCurrent.radius) - this.ToVector2(cCurrent.center)).Length(), surroundings.screenPoint, ref nearestFoot);
-                            Point2 nf = new Point2() { X = nearestFoot.X, Y = nearestFoot.Y };
-                            //nf.rely.Add(cCurrent);                                                      //依赖于圆
+                            Point2 nf = ToPoint2(nearestFoot);
+                            nf.rely.Add(cCurrent);                                                      //依赖于圆
                             result.surroundingPoint.Add(new GeometryAndTheDistance() { geometry = nf, distance = currentLength });
                         }
                         else                                        //相交依赖
                         {
-                            List<Point2> plist = ((IPointSet)cCurrent).Intersection(surroundings.surroundingLine[j].geometry as Circle);
+                            List<Point2> plist = ((IPointSet)cCurrent).Intersection(surroundings.surroundingCircle[j].geometry as Circle);
                             for (int k = 0; k < plist.Count; k++)
                             {
                                 //plist[k].rely.Add(cCurrent);                                                  //添加依赖于两条直线
-                                //plist[k].rely.Add(surroundings.surroundingLine[j].geometry as Circle);
+                                //plist[k].rely.Add(surroundings.surroundingCircle[j].geometry as Circle);
                                 result.surroundingPoint.Add(new GeometryAndTheDistance() { geometry = plist[k], distance = Vector2.Distance(this.ToVector2(plist[k]), surroundings.screenPoint) });
                             }
                         }

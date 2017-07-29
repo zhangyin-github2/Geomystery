@@ -30,6 +30,10 @@ namespace Geomystery.Views.Geometry
         /// <returns></returns>
         int IComparable<GeometryAndTheDistance>.CompareTo(GeometryAndTheDistance other)
         {
+            if(geometry.rely.Count != other.geometry.rely.Count)
+            {
+                return other.geometry.rely.Count.CompareTo(geometry.rely.Count);
+            }
             return distance.CompareTo(other.distance);
         }
     }
