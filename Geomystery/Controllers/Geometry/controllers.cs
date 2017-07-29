@@ -263,15 +263,22 @@ namespace Geomystery.Controllers.Geometry
                     runningDFA.UserSelectGeomerty(surroundings.surroundingPoint[0].geometry, false);
                     coordinate.ToSelectGeometry(surroundings.surroundingPoint[0].geometry);
                 }
-                else
+                else //周边没有点
                 {
-                    Point2 newPoint = outputCoordinates[0].ToPoint2(vector2);
-                    runningDFA.UserSelectGeomerty(newPoint, true);
-                    //runningDFA.result.Add()
+                    Point2 point;
+                    if (scross.surroundingPoint.Count > 0)
+                    {
+                        point = scross.surroundingPoint[0].geometry as Point2;
+                    }
+                    else
+                    {
+                        point = outputCoordinates[0].ToPoint2(vector2);
+                    }
+                    runningDFA.UserSelectGeomerty(point, true);
                     
-                    coordinate.AddPoint(newPoint);
-                    coordinate.ToSelectGeometry(newPoint);
-                    TestGeometry(newPoint);
+                    coordinate.AddPoint(point);
+                    coordinate.ToSelectGeometry(point);
+                    TestGeometry(point);
                     passNotify();
                 }
                 if (runningDFA.state == 2)
@@ -487,6 +494,11 @@ namespace Geomystery.Controllers.Geometry
             return false;
         }
 
+        /// <summary>
+        /// 通过（一定格式的）字符串新建元素
+        /// </summary>
+        /// <param name="args"></param>
+        /// <returns></returns>
         public int AddGeometryFromString(string args)
         {
             if (args == null || args == "") return -1;                           //无参数
