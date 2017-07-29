@@ -39,6 +39,8 @@ namespace Geomystery
         public Grid MAINGRID { get; set; }
         public Button BACKBUTTON { get; set; }
 
+        public ObservableCollection<Achievements> ACHIEVEMENTS;
+
         /// <summary>
         /// 单件模式实例体
         /// </summary>
@@ -102,6 +104,10 @@ namespace Geomystery
             update_grid();
             AppResources.refresh();
             app_data.Chapters = Chapter.getChapters();
+            app_data.ACHIEVEMENTS.Clear();
+            var k =  Achievements.GetAch(10);
+            foreach (var x in k)
+                app_data.ACHIEVEMENTS.Add(x);
         }
         public void setFullScreen()
         {
@@ -166,10 +172,10 @@ namespace Geomystery
         {
             var dialog = new ContentDialog()
             {
-                Title = "警告",
-                Content = "请确认您是否要重置游戏的所有进程？",
-                PrimaryButtonText = "确定",
-                SecondaryButtonText = "取消",
+                Title = AppResources.GetString("Warnning"),
+                Content = AppResources.GetString("AreYouSure"),
+                PrimaryButtonText = AppResources.GetString("Confirm"),
+                SecondaryButtonText = AppResources.GetString("Cancel"),
                 FullSizeDesired = false,
             };
             dialog.PrimaryButtonClick += (_s, _e) => { };

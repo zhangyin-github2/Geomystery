@@ -238,30 +238,111 @@
     <value>Circle Center</value>
   </data>
   <data name="L10N" xml:space="preserve">
-    <value> </value>
+    <value>Parallel Lines</value>
   </data>
   <data name="L11N" xml:space="preserve">
-    <value> </value>
+    <value>Tangent</value>
   </data>
   <data name="L12N" xml:space="preserve">
-    <value> </value>
+    <value>Angle of 60°Again</value>
   </data>
   <data name="L13N" xml:space="preserve">
-    <value> </value>
+    <value>Circumscribed Equilateral Triangle</value>
   </data>
   <data name="L14N" xml:space="preserve">
-    <value> </value>
+    <value>Trapezoidal Median Line</value>
   </data>
   <data name="L15N" xml:space="preserve">
-    <value> </value>
+    <value>Cut Rectangle</value>
   </data>
   <data name="L16N" xml:space="preserve">
-    <value> </value>
+    <value>Triangle in Circle</value>
   </data>
   <data name="L17N" xml:space="preserve">
-    <value> </value>
+    <value>Circle in Triangle</value>
   </data>
   <data name="L18N" xml:space="preserve">
-    <value> </value>
+    <value>Regular Hexagon</value>
+  </data>
+  <data name="L10D" xml:space="preserve">
+    <value>It seems that you are ready for your trail . As you can see ,there is a line .Draw a parallel line through the given point of the given line.</value>
+  </data>
+  <data name="L11D" xml:space="preserve">
+    <value>As you can see ,you operation object is a circle .Draw the tangent through the given point of the given circle .</value>
+  </data>
+  <data name="L12D" xml:space="preserve">
+    <value>As you can see ,this problem seems to have met before , but they are completely different in fact .Draw a 60° angle at a given point in the counterclockwise direction of a given line .</value>
+  </data>
+  <data name="L13D" xml:space="preserve">
+    <value>As you can see, you need to finish one more problem about circle. Draw a circumscribed equilateral triangle through the given point of the given circle.</value>
+  </data>
+  <data name="L14D" xml:space="preserve">
+    <value>As you can see ,this is a trapezoidal ,you will meet it in the future.Draw the median line of the given trapezoidal.</value>
+  </data>
+  <data name="L15D" xml:space="preserve">
+    <value>As you can see ,your operation object is a rectangle .Draw a line through the given point that cuts the rectangle into two parts of equal area.</value>
+  </data>
+  <data name="L16D" xml:space="preserve">
+    <value>As you can see ,your operation object is a triangle .Draw the Circumcircle of the given triangle.</value>
+  </data>
+  <data name="L17D" xml:space="preserve">
+    <value>As you can see ,this problem is similar as previous one ,but they are totally opposite .Draw the inscribed circle of the given triangle.</value>
+  </data>
+  <data name="L18D" xml:space="preserve">
+    <value>It seems that you have already passed the trial before .Now ,you can try to construct a new gragh,why not draw a regular hexagon ?Draw a regular hexagon above the given line with using the given line as one of it's side.</value>
+  </data>
+  <data name="AC1D" xml:space="preserve">
+    <value>Solve your first problem.</value>
+  </data>
+  <data name="AC1N" xml:space="preserve">
+    <value>First Try</value>
+  </data>
+  <data name="AC2D" xml:space="preserve">
+    <value>Finish the 1st chapter.</value>
+  </data>
+  <data name="AC2N" xml:space="preserve">
+    <value>Graduation</value>
+  </data>
+  <data name="AC3D" xml:space="preserve">
+    <value>Finish the 2nd chapter.</value>
+  </data>
+  <data name="AC3N" xml:space="preserve">
+    <value>Finish Trail</value>
+  </data>
+  <data name="AC4D" xml:space="preserve">
+    <value>Unlock all problems.</value>
+  </data>
+  <data name="AC4N" xml:space="preserve">
+    <value>Elite Player</value>
+  </data>
+  <data name="AC5D" xml:space="preserve">
+    <value>Solve all problems.</value>
+  </data>
+  <data name="AC5N" xml:space="preserve">
+    <value>Geometricist</value>
+  </data>
+  <data name="AC6D" xml:space="preserve">
+    <value>Solve all problems perfectly.</value>
+  </data>
+  <data name="AC6N" xml:space="preserve">
+    <value>Lengend of Geometry</value>
+  </data>
+  <data name="AreYouSure" xml:space="preserve">
+    <value>Please confirm whether you want to reset all your game progress?</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="Congratulations" xml:space="preserve">
+    <value>Congratulations!</value>
+  </data>
+  <data name="Problemsolved" xml:space="preserve">
+    <value>Problem solved!</value>
+  </data>
+  <data name="Warnning" xml:space="preserve">
+    <value>Warnning</value>
   </data>
 </root>

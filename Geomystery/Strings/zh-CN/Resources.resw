@@ -238,57 +238,111 @@
     <value>求圆心</value>
   </data>
   <data name="L10N" xml:space="preserve">
-    <value> </value>
+    <value>平行线</value>
   </data>
   <data name="L11N" xml:space="preserve">
-    <value> </value>
+    <value>切线</value>
   </data>
   <data name="L12N" xml:space="preserve">
-    <value> </value>
+    <value>再次完成60°角</value>
   </data>
   <data name="L13N" xml:space="preserve">
-    <value> </value>
+    <value>外切正三角形</value>
   </data>
   <data name="L14N" xml:space="preserve">
-    <value> </value>
+    <value>梯形中位线</value>
   </data>
   <data name="L15N" xml:space="preserve">
-    <value> </value>
+    <value>平分矩形</value>
   </data>
   <data name="L16N" xml:space="preserve">
-    <value> </value>
+    <value>三角形的外接圆</value>
   </data>
   <data name="L17N" xml:space="preserve">
-    <value> </value>
+    <value>三角形的内切圆</value>
   </data>
   <data name="L18N" xml:space="preserve">
-    <value> </value>
+    <value>正六边形</value>
   </data>
   <data name="L10D" xml:space="preserve">
-    <value> </value>
+    <value>看来你已经准备好开始试炼了。如你所见，现在有一条直线。你的任务是过给定点画出给定直线的平行直线。</value>
   </data>
   <data name="L11D" xml:space="preserve">
-    <value> </value>
+    <value>如你所见，你的操作对象是一个圆。你的任务是画出给定圆在给定点位置的切线。</value>
   </data>
   <data name="L12D" xml:space="preserve">
-    <value> </value>
+    <value>如你所见，这道题似曾相识，但实际上二者完全不同。你的任务是在给定直线的逆时针方向上过给定点画出一个60°角。</value>
   </data>
   <data name="L13D" xml:space="preserve">
-    <value> </value>
+    <value>如你所见，你需要继续完成一个关于圆的问题。你的任务是过给定点画出给定圆的外切正三角形。</value>
   </data>
   <data name="L14D" xml:space="preserve">
-    <value> </value>
+    <value>如你所见，这是一个梯形，你以后还会再见到它。你的任务是画出给定梯形的中位线。</value>
   </data>
   <data name="L15D" xml:space="preserve">
-    <value> </value>
+    <value>如你所见，这次你的操作对象变成了一个矩形。你的任务是过矩形外的给定点画出一条线将给定切割成面积相等的两部分。</value>
   </data>
   <data name="L16D" xml:space="preserve">
-    <value> </value>
+    <value>如你所见，这次你的操作对象是一个三角形。你的任务是画出给定三角形的外接圆。</value>
   </data>
   <data name="L17D" xml:space="preserve">
-    <value> </value>
+    <value>如你所见，这个问题与上个问题很像，不过它们完全相反。你的任务是画出给定三角形的内切圆。</value>
   </data>
   <data name="L18D" xml:space="preserve">
-    <value> </value>
+    <value>看来你已经通过了前面的试炼。现在你可以尝试着构建一个新图形，何不试试一个正六边形？你的任务是以给定线段为正六边形的一边，在给定线段上方画一个正六边形。</value>
+  </data>
+  <data name="AC1D" xml:space="preserve">
+    <value>完成了你的第一关，开启了你的解题之旅。</value>
+  </data>
+  <data name="AC1N" xml:space="preserve">
+    <value>牛刀小试</value>
+  </data>
+  <data name="AC2D" xml:space="preserve">
+    <value>通关第一章。</value>
+  </data>
+  <data name="AC2N" xml:space="preserve">
+    <value>初出茅庐</value>
+  </data>
+  <data name="AC3D" xml:space="preserve">
+    <value>通关第二章。</value>
+  </data>
+  <data name="AC3N" xml:space="preserve">
+    <value>进阶之路</value>
+  </data>
+  <data name="AC4D" xml:space="preserve">
+    <value>解锁全部关卡。</value>
+  </data>
+  <data name="AC4N" xml:space="preserve">
+    <value>解题狂人</value>
+  </data>
+  <data name="AC5D" xml:space="preserve">
+    <value>通关所有章节。</value>
+  </data>
+  <data name="AC5N" xml:space="preserve">
+    <value>几何学家</value>
+  </data>
+  <data name="AC6D" xml:space="preserve">
+    <value>完美通过所有关卡。</value>
+  </data>
+  <data name="AC6N" xml:space="preserve">
+    <value>一代宗师</value>
+  </data>
+  <data name="AreYouSure" xml:space="preserve">
+    <value>请确认您是否要重置游戏的所有进程？</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>确认</value>
+  </data>
+  <data name="Congratulations" xml:space="preserve">
+    <value>恭喜过关！</value>
+  </data>
+  <data name="Problemsolved" xml:space="preserve">
+    <value>完美通过</value>
+  </data>
+  <data name="Warnning" xml:space="preserve">
+    <value>警告！</value>
   </data>
 </root>

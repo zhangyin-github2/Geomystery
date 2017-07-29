@@ -191,14 +191,12 @@ namespace Geomystery
             var res = await lsd.ShowAsync();
             if (res.ToString() == "Primary")
             {
-                MainPage.MainFrame.Navigate(typeof(Game), localLevel);
-                APPDATA.app_data.MoveTo(AppPage.GamePage);
+                APPDATA.app_data.MoveTo(AppPage.GamePage,localLevel);
             }
             else
             {
                 if (localLevel.ID % 9 == 0)
                 {
-                    MainPage.MainFrame.Navigate(typeof(SelectChapter));
                     APPDATA.app_data.MoveTo(AppPage.SelectChapterPage);
                     return;
                 }
