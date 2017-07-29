@@ -20,7 +20,13 @@ namespace Geomystery.Controllers.Geometry
         /// <summary>
         /// 未达成条件列表
         /// </summary>
-        public List<Condition> unmetCnditions { get; set; }
+        public List<Condition> unmetConditions { get; set; }
+
+        public ConditionsList()
+        {
+            reachedConditions = new List<Condition>();
+            unmetConditions = new List<Condition>();
+        }
 
         /// <summary>
         /// 复制
@@ -55,30 +61,30 @@ namespace Geomystery.Controllers.Geometry
                     }
                 }
             }
-            if (unmetCnditions != null)
+            if (unmetConditions != null)
             {
-                result.unmetCnditions = new List<Condition>();
-                for (int i = 0; i < unmetCnditions.Count; i++)
+                result.unmetConditions = new List<Condition>();
+                for (int i = 0; i < unmetConditions.Count; i++)
                 {
-                    if (unmetCnditions[i] is FreeCondition)
+                    if (unmetConditions[i] is FreeCondition)
                     {
-                        FreeCondition fc = unmetCnditions[i] as FreeCondition;
-                        result.unmetCnditions.Add(new FreeCondition() { isMeetTheConditions = fc.isMeetTheConditions, pid = fc.pid, point = fc.point });
+                        FreeCondition fc = unmetConditions[i] as FreeCondition;
+                        result.unmetConditions.Add(new FreeCondition() { isMeetTheConditions = fc.isMeetTheConditions, pid = fc.pid, point = fc.point });
                     }
-                    else if (unmetCnditions[i] is PenDrawCondition)
+                    else if (unmetConditions[i] is PenDrawCondition)
                     {
-                        PenDrawCondition pc = unmetCnditions[i] as PenDrawCondition;
-                        result.unmetCnditions.Add(new PenDrawCondition() { isMeetTheConditions = pc.isMeetTheConditions, iid = pc.iid, p1 = pc.p1, p1id = pc.p1id, p2 = pc.p2, p2id = pc.p2id, pointSet = pc.pointSet, type = pc.type });
+                        PenDrawCondition pc = unmetConditions[i] as PenDrawCondition;
+                        result.unmetConditions.Add(new PenDrawCondition() { isMeetTheConditions = pc.isMeetTheConditions, iid = pc.iid, p1 = pc.p1, p1id = pc.p1id, p2 = pc.p2, p2id = pc.p2id, pointSet = pc.pointSet, type = pc.type });
                     }
-                    else if (unmetCnditions[i] is OnTheTreeCondition)
+                    else if (unmetConditions[i] is OnTheTreeCondition)
                     {
-                        OnTheTreeCondition oc = unmetCnditions[i] as OnTheTreeCondition;
-                        result.unmetCnditions.Add(new OnTheTreeCondition() { isMeetTheConditions = oc.isMeetTheConditions, pid = oc.pid, point = oc.point, iid = oc.iid, pointSet = oc.pointSet });
+                        OnTheTreeCondition oc = unmetConditions[i] as OnTheTreeCondition;
+                        result.unmetConditions.Add(new OnTheTreeCondition() { isMeetTheConditions = oc.isMeetTheConditions, pid = oc.pid, point = oc.point, iid = oc.iid, pointSet = oc.pointSet });
                     }
-                    else if (unmetCnditions[i] is IntersectCondition)
+                    else if (unmetConditions[i] is IntersectCondition)
                     {
-                        IntersectCondition ic = unmetCnditions[i] as IntersectCondition;
-                        result.unmetCnditions.Add(new IntersectCondition() { isMeetTheConditions = ic.isMeetTheConditions, i1id = ic.i1id, i2id = ic.i2id, pid = ic.pid, point = ic.point, pointSet1 = ic.pointSet1, pointSet2 = ic.pointSet2, clock = ic.clock });
+                        IntersectCondition ic = unmetConditions[i] as IntersectCondition;
+                        result.unmetConditions.Add(new IntersectCondition() { isMeetTheConditions = ic.isMeetTheConditions, i1id = ic.i1id, i2id = ic.i2id, pid = ic.pid, point = ic.point, pointSet1 = ic.pointSet1, pointSet2 = ic.pointSet2, clock = ic.clock });
                     }
                 }
             }

@@ -96,6 +96,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Award\Achievement.cs" />
+    <Compile Include="Award\Chapter.cs" />
     <Compile Include="Award\Level.cs" />
     <Compile Include="Award\Geo_Coin.cs" />
     <Compile Include="CONST.cs" />
