@@ -163,9 +163,9 @@ public class LevelLoader
                 //求交点
             case 3:
                 {
-                    geoList.Add("p,1,n,false,66560,-35198");
-                    geoList.Add("p,2,n,false,44797,-52078");
-                    geoList.Add("p,3,n,false,81920,-54799");
+                    geoList.Add("p,1,n,false,-5,5");
+                    geoList.Add("p,2,n,false,-10,-10");
+                    geoList.Add("p,3,n,false,10,-10");
                     geoList.Add("l,4,n,true,1,2");
                     geoList.Add("l,5,n,true,2,3");
                     geoList.Add("l,6,n,true,1,3");
@@ -202,8 +202,8 @@ public class LevelLoader
                 //60度角
             case 4:
                 {
-                    geoList.Add("p,1,n,true,66560,-35198");
-                    geoList.Add("p,2,n,true,44797,-52078");
+                    geoList.Add("p,1,n,true,-10,-10");
+                    geoList.Add("p,2,n,true,10,-10");
                     geoList.Add("l,3,n,true,1,2");
 
                     conList.Add("f,true,1");
@@ -236,8 +236,8 @@ public class LevelLoader
                 //垂直平分线
             case 5:
                 {
-                    geoList.Add("p,1,n,true,66560,-35198");
-                    geoList.Add("p,2,n,true,44797,-35198");
+                    geoList.Add("p,1,n,true,-10,-10");
+                    geoList.Add("p,2,n,true,10,-10");
                     geoList.Add("l,3,n,true,1,2");
 
                     conList.Add("f,true,1");
