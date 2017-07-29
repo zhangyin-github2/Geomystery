@@ -115,12 +115,38 @@ public class LevelLoader
         {
             case 1:
                 {
+                    List<string> geoList = new List<string>();
+                    geoList.Add("p,1,n,true,66560,-35198");
+                    geoList.Add("p,2,n,true,44797,-52078");
+                    geoList.Add("p,3,n,true,81920,-54799");
+
+                    List<string> conList = new List<string>();
+                    conList.Add("f,true,1");
+                    conList.Add("f,true,2");
+                    conList.Add("f,true,3");
+                    conList.Add("d,false,4,1,2");
+                    conList.Add("d,false,5,2,3");
+                    conList.Add("d,false,6,1,3");
+
+                    for(int i = 0; i < geoList.Count; i++)
+                    {
+                        controller.AddGeometryFromString(geoList[i]);
+                    }
+                    controller.conditionLists = new List<ConditionsList>();
+                    controller.conditionLists.Add(new ConditionsList());
+                    for (int i = 0; i < geoList.Count; i++)
+                    {
+                        controller.AddConditionFromString(conList[i]);
+                    }
+                    //controller.conditionLists.Add(controller.conditionLists.);
+                    /*
                     Point2 p1 = new Point2() { X = 66560, Y = -35198 };
                     Point2 p2 = new Point2() { X = 44797, Y = -52078 };
                     Point2 p3 = new Point2() { X = 81920, Y = -54799 };
                     controller.coordinate.AddPoint(p1);
                     controller.coordinate.AddPoint(p2);
                     controller.coordinate.AddPoint(p3);
+                    */
                     break;
                 }
             case 2:

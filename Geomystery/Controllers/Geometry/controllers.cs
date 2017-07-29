@@ -608,7 +608,13 @@ namespace Geomystery.Controllers.Geometry
             {
                 int pid;
                 if (!int.TryParse(infomations[2], out pid)) return -4;                //id不正常
-                conditionLists[0].conditions.Add(new FreeCondition() { isMeetTheConditions = meet, pid = pid, point = null });
+                Point2 point = null;
+                if (meet)
+                {
+                    point = coordinate.GetGeometryById(pid) as Point2;
+                    if (point == null) throw new Exception();
+                }
+                conditionLists[0].conditions.Add(new FreeCondition() { isMeetTheConditions = meet, pid = pid, point = point });
             }
             else if (infomations[0] == "1" || infomations[0].ToLower() == "d" || infomations[0].ToLower() == "draw" || infomations[0].ToLower() == "drawpointset")
             {
@@ -617,7 +623,19 @@ namespace Geomystery.Controllers.Geometry
                 int p1id, p2id;
                 if (!int.TryParse(infomations[3], out p1id)) return -4;                //id不正常
                 if (!int.TryParse(infomations[4], out p2id)) return -4;                //id不正常
-                conditionLists[0].conditions.Add(new PenDrawCondition() { isMeetTheConditions = meet, iid = iid, p1id = p1id, p2id = p2id });
+                IPointSet pointSet = null;
+                Point2 p1 = null;
+                Point2 p2 = null;
+                if (meet)
+                {
+                    pointSet = coordinate.GetGeometryById(iid) as IPointSet;
+                    p1 = coordinate.GetGeometryById(p1id) as Point2;
+                    p2 = coordinate.GetGeometryById(p2id) as Point2;
+                    if (pointSet == null) throw new Exception();
+                    if (p1 == null) throw new Exception();
+                    if (p2 == null) throw new Exception();
+                }
+                conditionLists[0].conditions.Add(new PenDrawCondition() { isMeetTheConditions = meet, iid = iid, pointSet = pointSet, p1id = p1id, p1 = p1, p2id = p2id, p2 = p2 });
             }
             else if (infomations[0] == "2" || infomations[0].ToLower() == "o" || infomations[0].ToLower() == "on" || infomations[0].ToLower() == "onpointset")
             {
@@ -625,7 +643,16 @@ namespace Geomystery.Controllers.Geometry
                 if (!int.TryParse(infomations[2], out pid)) return -4;                //id不正常
                 int iid;
                 if (!int.TryParse(infomations[3], out iid)) return -4;                //id不正常
-                conditionLists[0].conditions.Add(new OnTheTreeCondition() { isMeetTheConditions = meet, pid = pid, iid = iid });
+                Point2 point = null;
+                IPointSet pointSet = null;
+                if(meet)
+                {
+                    point = coordinate.GetGeometryById(pid) as Point2;
+                    pointSet = coordinate.GetGeometryById(iid) as IPointSet;
+                    if (point == null) throw new Exception();
+                    if (pointSet == null) throw new Exception();
+                }
+                conditionLists[0].conditions.Add(new OnTheTreeCondition() { isMeetTheConditions = meet, pid = pid, point = point, iid = iid, pointSet = pointSet });
             }
             else if (infomations[0] == "3" || infomations[0].ToLower() == "i" || infomations[0].ToLower() == "intersect" || infomations[0].ToLower() == "intersection")
             {
@@ -634,7 +661,19 @@ namespace Geomystery.Controllers.Geometry
                 int i1id, i2id;
                 if (!int.TryParse(infomations[3], out i1id)) return -4;                //id不正常
                 if (!int.TryParse(infomations[4], out i2id)) return -4;                //id不正常
-                conditionLists[0].conditions.Add(new IntersectCondition() { isMeetTheConditions = meet, pid = pid, i1id = i1id, i2id = i2id });
+                Point2 point = null;
+                IPointSet pointSet1 = null;
+                IPointSet pointSet2 = null;
+                if(meet)
+                {
+                    point = coordinate.GetGeometryById(pid) as Point2;
+                    pointSet1 = coordinate.GetGeometryById(i1id) as IPointSet;
+                    pointSet2 = coordinate.GetGeometryById(i2id) as IPointSet;
+                    if (point == null) throw new Exception();
+                    if (pointSet1 == null) throw new Exception();
+                    if (pointSet2 == null) throw new Exception();
+                }
+                conditionLists[0].conditions.Add(new IntersectCondition() { isMeetTheConditions = meet, pid = pid, point = point, i1id = i1id, pointSet1 = pointSet1, i2id = i2id, pointSet2 = pointSet2 });
             }
             return 0;
         }
