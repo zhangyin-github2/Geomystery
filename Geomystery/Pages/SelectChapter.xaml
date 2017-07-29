@@ -314,6 +314,7 @@
             <DataTemplate x:DataType="toolData:Chapter"
                           x:Key="chapterTempelate">
                 <Button
+                    Style="{StaticResource chapterbutton}"
                     BorderBrush="{ThemeResource TextColorPurple}" BorderThickness="10"
                     Height="675" Width="1200"
                     IsTabStop="False" 
@@ -329,12 +330,16 @@
                                 <ColumnDefinition Width="1*"/>
                                 <ColumnDefinition Width="1*"/>
                             </Grid.ColumnDefinitions>
-                            <!--Image Source="{x:Bind cover}" Grid.ColumnSpan="3"/-->
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30*"/>
+                                <RowDefinition Height="1*"/>
+                            </Grid.RowDefinitions>
                             <TextBlock Grid.ColumnSpan="2" Text="{x:Bind name}" Foreground="White" VerticalAlignment="Center" FontSize="48" FontFamily="Arial Black"  Loaded="ChpNameTextBlock_Loaded" FontWeight="Bold" />
-                            <TextBlock Text="{x:Bind discribe}" Foreground="White" VerticalAlignment="Bottom" FontSize="24" Loaded="ChpDiscibeTextBlock_Loaded" TextWrapping="WrapWholeWords" TextAlignment="Justify"/>
+                            <TextBlock Grid.Row="0" Text="{x:Bind discribe}" Foreground="White" VerticalAlignment="Bottom" FontSize="24" Loaded="ChpDiscibeTextBlock_Loaded" TextWrapping="WrapWholeWords" TextAlignment="Justify"/>
                         </Grid>
                         <Grid Visibility="{Binding unlocked, Converter={StaticResource Converter1}}" >
-                            <Image Source="ms-appx:///Pictures/lockx.png"></Image>
+                            <Image Source="ms-appx:///Pictures/lockx.png"
+                                   Width="40" Height="40" VerticalAlignment="Top" HorizontalAlignment="Right"/>
                         </Grid>
                     </Grid>
                 </Button>
