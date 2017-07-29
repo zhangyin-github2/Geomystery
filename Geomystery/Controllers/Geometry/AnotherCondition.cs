@@ -6,6 +6,29 @@ using System.Threading.Tasks;
 
 namespace Geomystery.Controllers.Geometry
 {
+
+    public class AnotherConditionsList
+    {
+        /// <summary>
+        /// 达成条件列表
+        /// </summary>
+        public List<AnotherCondition> reachedConditions { get; set; }
+
+        /// <summary>
+        /// 未达成条件列表
+        /// </summary>
+        public List<AnotherCondition> unmetConditions { get; set; }
+
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        public AnotherConditionsList()
+        {
+            reachedConditions = new List<AnotherCondition>();
+            unmetConditions = new List<AnotherCondition>();
+        }
+    }
+
     /// <summary>
     /// 后门条件抽象父类
     /// </summary>

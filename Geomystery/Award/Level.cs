@@ -110,6 +110,22 @@ public class LevelLoader
                     conList.Add("dl,false,5,2,3");
                     conList.Add("dl,false,6,1,3");
 
+                    for (int i = 0; i < geoList.Count; i++)
+                    {
+                        controller.AddGeometryFromString(geoList[i]);
+                    }
+                    //复制一下代表条件列表缓存，也可以不需要模板与副本，每次关卡都要从头加载条件列表
+                    controller.useAnotherCondition = false;
+                    controller.conditionLists = new List<ConditionsList>();                             //需要达成条件
+                    controller.meetingconditionLists = new List<ConditionsList>();                      //复制自“需要达成条件”的正在达成条件
+                    controller.conditionLists.Add(new ConditionsList());
+                    for (int i = 0; i < conList.Count; i++)
+                    {
+                        controller.AddConditionFromString(conList[i], 0);
+                    }
+                    controller.meetingconditionLists.Add(controller.conditionLists[0].Copy());
+                    controller.coordinate.GeometryCount = 1000;
+
                     break;
                 }
                 //画同心圆
@@ -125,6 +141,22 @@ public class LevelLoader
                     conList.Add("f,true,3");
                     conList.Add("dc,false,4,1,2");
                     conList.Add("dc,false,5,1,3");
+
+                    for (int i = 0; i < geoList.Count; i++)
+                    {
+                        controller.AddGeometryFromString(geoList[i]);
+                    }
+                    //复制一下代表条件列表缓存，也可以不需要模板与副本，每次关卡都要从头加载条件列表
+                    controller.useAnotherCondition = false;
+                    controller.conditionLists = new List<ConditionsList>();                             //需要达成条件
+                    controller.meetingconditionLists = new List<ConditionsList>();                      //复制自“需要达成条件”的正在达成条件
+                    controller.conditionLists.Add(new ConditionsList());
+                    for (int i = 0; i < conList.Count; i++)
+                    {
+                        controller.AddConditionFromString(conList[i], 0);
+                    }
+                    controller.meetingconditionLists.Add(controller.conditionLists[0].Copy());
+                    controller.coordinate.GeometryCount = 1000;
 
                     break;
                 }
@@ -149,6 +181,22 @@ public class LevelLoader
                     conList.Add("i,false,8,5,6");
                     conList.Add("i,false,9,4,6");
 
+                    controller.useAnotherCondition = false;
+                    for (int i = 0; i < geoList.Count; i++)
+                    {
+                        controller.AddGeometryFromString(geoList[i]);
+                    }
+                    //复制一下代表条件列表缓存，也可以不需要模板与副本，每次关卡都要从头加载条件列表
+                    controller.conditionLists = new List<ConditionsList>();                             //需要达成条件
+                    controller.meetingconditionLists = new List<ConditionsList>();                      //复制自“需要达成条件”的正在达成条件
+                    controller.conditionLists.Add(new ConditionsList());
+                    for (int i = 0; i < conList.Count; i++)
+                    {
+                        controller.AddConditionFromString(conList[i], 0);
+                    }
+                    controller.meetingconditionLists.Add(controller.conditionLists[0].Copy());
+                    controller.coordinate.GeometryCount = 1000;
+
                     break;
                 }
                 //60度角
@@ -166,6 +214,23 @@ public class LevelLoader
                     conList.Add("dc,false,6,4,1");
                     conList.Add("i,false,7,5,6,1");
                     conList.Add("dl,false,8,7,1");
+
+                    controller.useAnotherCondition = false;
+                    for (int i = 0; i < geoList.Count; i++)
+                    {
+                        controller.AddGeometryFromString(geoList[i]);
+                    }
+                    //复制一下代表条件列表缓存，也可以不需要模板与副本，每次关卡都要从头加载条件列表
+                    controller.conditionLists = new List<ConditionsList>();                             //需要达成条件
+                    controller.meetingconditionLists = new List<ConditionsList>();                      //复制自“需要达成条件”的正在达成条件
+                    controller.conditionLists.Add(new ConditionsList());
+                    for (int i = 0; i < conList.Count; i++)
+                    {
+                        controller.AddConditionFromString(conList[i], 0);
+                    }
+                    controller.meetingconditionLists.Add(controller.conditionLists[0].Copy());
+                    controller.coordinate.GeometryCount = 1000;
+
                     break;
                 }
                 //垂直平分线
@@ -183,11 +248,35 @@ public class LevelLoader
                     conList.Add("i,false,7,5,6,1");
                     conList.Add("i,false,8,5,6,2");
                     conList.Add("dl,false,9,8,7");
+
+                    controller.useAnotherCondition = false;
+                    for (int i = 0; i < geoList.Count; i++)
+                    {
+                        controller.AddGeometryFromString(geoList[i]);
+                    }
+                    //复制一下代表条件列表缓存，也可以不需要模板与副本，每次关卡都要从头加载条件列表
+                    controller.conditionLists = new List<ConditionsList>();                             //需要达成条件
+                    controller.meetingconditionLists = new List<ConditionsList>();                      //复制自“需要达成条件”的正在达成条件
+                    controller.conditionLists.Add(new ConditionsList());
+                    for (int i = 0; i < conList.Count; i++)
+                    {
+                        controller.AddConditionFromString(conList[i], 0);
+                    }
+                    controller.meetingconditionLists.Add(controller.conditionLists[0].Copy());
+                    controller.coordinate.GeometryCount = 1000;
+
                     break;
                 }
                 //角平分线
              case 6:
                 {
+                    controller.useAnotherCondition = true;
+                    controller.anotherConditionsList = new AnotherConditionsList();
+                    controller.anotherConditionsList.reachedConditions = new List<AnotherCondition>();
+                    controller.anotherConditionsList.unmetConditions = new List<AnotherCondition>();
+
+                    //TODO 
+                    //controller.anotherConditionsList.unmetConditions.Add(new PointCondition() { wantX = 1, wantY = 2, id = -1, isReached = false, });
 
                     break;
                 }
@@ -210,20 +299,6 @@ public class LevelLoader
                     break;
                 }
         }
-        for (int i = 0; i < geoList.Count; i++)
-        {
-            controller.AddGeometryFromString(geoList[i]);
-        }
-        //复制一下代表条件列表缓存，也可以不需要模板与副本，每次关卡都要从头加载条件列表
-        controller.conditionLists = new List<ConditionsList>();                             //需要达成条件
-        controller.meetingconditionLists = new List<ConditionsList>();                      //复制自“需要达成条件”的正在达成条件
-        controller.conditionLists.Add(new ConditionsList());
-        for (int i = 0; i < conList.Count; i++)
-        {
-            controller.AddConditionFromString(conList[i]);
-        }
-        controller.meetingconditionLists.Add(controller.conditionLists[0].Copy());
-        controller.coordinate.GeometryCount = 1000;
 
         return controller;
     }

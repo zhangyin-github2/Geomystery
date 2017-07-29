@@ -84,7 +84,7 @@ namespace Geomystery.Views.Geometry
             outputPointList = new List<OutputPoint>();
             outputPointSetList = new List<OutputGeometry>();
             //geometryList = new List<OutputGeometry>();
-            unitLength = 100;
+            unitLength = 10;
         }
 
         /// <summary>
