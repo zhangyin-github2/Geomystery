@@ -184,7 +184,7 @@ namespace Geomystery
             update_views();
             return 0;
         }
-        public void MoveTo(AppPage to)
+        public void MoveTo(AppPage to,object o = null)
         {
             switch (to)
             {
@@ -204,8 +204,8 @@ namespace Geomystery
                 case AppPage.AboutPage:;break;
                 case AppPage.FreeStylePage: MainPage.MainFrame.Navigate(typeof(Freestyle)); BGMPlayer.BgmPlayer.MediaPlayer.Pause();  break;
                 case AppPage.SelectChapterPage: MainPage.MainFrame.Navigate(typeof(SelectChapter)); break;
-                case AppPage.SelectGamePage: MainPage.MainFrame.Navigate(typeof(SelectGame)); break;
-                case AppPage.GamePage: BGMPlayer.BgmPlayer.MediaPlayer.Pause(); break;
+                case AppPage.SelectGamePage: MainPage.MainFrame.Navigate(typeof(SelectGame),o); break;
+                case AppPage.GamePage: MainPage.MainFrame.Navigate(typeof(Game), o); BGMPlayer.BgmPlayer.MediaPlayer.Pause(); break;
                 default: return;
             }
             if (to != AppPage.HomePage) BACKBUTTON.Visibility = Visibility.Visible;

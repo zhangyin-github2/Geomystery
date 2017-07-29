@@ -123,7 +123,8 @@ namespace Geomystery
         private void Chapter_Click(object sender, RoutedEventArgs e)
         {
             Chapter k = myFlip.SelectedItem as Chapter;
-            APPDATA.app_data.MoveTo(AppPage.SelectGamePage);
+            if (k.unlocked==0) return;
+            APPDATA.app_data.MoveTo(AppPage.SelectGamePage,k);
         }
     }
 }
