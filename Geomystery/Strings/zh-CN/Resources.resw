@@ -291,4 +291,58 @@
   <data name="L18D" xml:space="preserve">
     <value> </value>
   </data>
+  <data name="AC1D" xml:space="preserve">
+    <value>完成了你的第一关，开启了你的解题之旅。</value>
+  </data>
+  <data name="AC1N" xml:space="preserve">
+    <value>牛刀小试</value>
+  </data>
+  <data name="AC2D" xml:space="preserve">
+    <value>通关第一章。</value>
+  </data>
+  <data name="AC2N" xml:space="preserve">
+    <value>初出茅庐</value>
+  </data>
+  <data name="AC3D" xml:space="preserve">
+    <value>通关第二章。</value>
+  </data>
+  <data name="AC3N" xml:space="preserve">
+    <value>进阶之路</value>
+  </data>
+  <data name="AC4D" xml:space="preserve">
+    <value>解锁全部关卡。</value>
+  </data>
+  <data name="AC4N" xml:space="preserve">
+    <value>解题狂人</value>
+  </data>
+  <data name="AC5D" xml:space="preserve">
+    <value>通关所有章节。</value>
+  </data>
+  <data name="AC5N" xml:space="preserve">
+    <value>几何学家</value>
+  </data>
+  <data name="AC6D" xml:space="preserve">
+    <value>完美通过所有关卡。</value>
+  </data>
+  <data name="AC6N" xml:space="preserve">
+    <value>一代宗师</value>
+  </data>
+  <data name="AreYouSure" xml:space="preserve">
+    <value>请确认您是否要重置游戏的所有进程？</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>确认</value>
+  </data>
+  <data name="Congratulations" xml:space="preserve">
+    <value>恭喜过关！</value>
+  </data>
+  <data name="Problemsolved" xml:space="preserve">
+    <value>完美通过</value>
+  </data>
+  <data name="Warnning" xml:space="preserve">
+    <value>警告！</value>
+  </data>
 </root>

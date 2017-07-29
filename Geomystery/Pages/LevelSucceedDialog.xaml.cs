@@ -22,6 +22,8 @@ namespace Geomystery.Pages
         public LevelSucceedDialog()
         {
             this.InitializeComponent();
+            Title = AppResources.GetString("Congratulations");
+            passT.Text = AppResources.GetString("Problemsolved");
             PrimaryButtonText = AppResources.GetString("PLAYAGAIN");
             SecondaryButtonText = AppResources.GetString("NEXTLEVEL");
         }

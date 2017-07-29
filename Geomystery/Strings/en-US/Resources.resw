@@ -291,4 +291,58 @@
   <data name="L18D" xml:space="preserve">
     <value />
   </data>
+  <data name="AC1D" xml:space="preserve">
+    <value>Solve your first problem.</value>
+  </data>
+  <data name="AC1N" xml:space="preserve">
+    <value>First Try</value>
+  </data>
+  <data name="AC2D" xml:space="preserve">
+    <value>Finish the 1st chapter.</value>
+  </data>
+  <data name="AC2N" xml:space="preserve">
+    <value>Graduation</value>
+  </data>
+  <data name="AC3D" xml:space="preserve">
+    <value>Finish the 2nd chapter.</value>
+  </data>
+  <data name="AC3N" xml:space="preserve">
+    <value>Finish Trail</value>
+  </data>
+  <data name="AC4D" xml:space="preserve">
+    <value>Unlock all problems.</value>
+  </data>
+  <data name="AC4N" xml:space="preserve">
+    <value>Elite Player</value>
+  </data>
+  <data name="AC5D" xml:space="preserve">
+    <value>Solve all problems.</value>
+  </data>
+  <data name="AC5N" xml:space="preserve">
+    <value>Geometricist</value>
+  </data>
+  <data name="AC6D" xml:space="preserve">
+    <value>Solve all problems perfectly.</value>
+  </data>
+  <data name="AC6N" xml:space="preserve">
+    <value>Lengend of Geometry</value>
+  </data>
+  <data name="AreYouSure" xml:space="preserve">
+    <value>Please confirm whether you want to reset all your game progress?</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="Congratulations" xml:space="preserve">
+    <value>Congratulations!</value>
+  </data>
+  <data name="Problemsolved" xml:space="preserve">
+    <value>Problem solved!</value>
+  </data>
+  <data name="Warnning" xml:space="preserve">
+    <value>Warnning</value>
+  </data>
 </root>

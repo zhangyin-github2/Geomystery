@@ -15,7 +15,7 @@
     <Grid>
         <StackPanel>
             <TextBlock  Text="&#xE00A;&#xE00A;&#xE00A;" FontFamily="Segoe MDl2 Assets" Foreground="Yellow" FontSize="22"></TextBlock>
-            <TextBlock>Problem solved!</TextBlock>
+            <TextBlock x:Name="passT"> Problem solved!</TextBlock>
         </StackPanel>
     </Grid>
 </ContentDialog>
