@@ -237,4 +237,31 @@
   <data name="L9N" xml:space="preserve">
     <value>Circle Center</value>
   </data>
+  <data name="L10N" xml:space="preserve">
+    <value> </value>
+  </data>
+  <data name="L11N" xml:space="preserve">
+    <value> </value>
+  </data>
+  <data name="L12N" xml:space="preserve">
+    <value> </value>
+  </data>
+  <data name="L13N" xml:space="preserve">
+    <value> </value>
+  </data>
+  <data name="L14N" xml:space="preserve">
+    <value> </value>
+  </data>
+  <data name="L15N" xml:space="preserve">
+    <value> </value>
+  </data>
+  <data name="L16N" xml:space="preserve">
+    <value> </value>
+  </data>
+  <data name="L17N" xml:space="preserve">
+    <value> </value>
+  </data>
+  <data name="L18N" xml:space="preserve">
+    <value> </value>
+  </data>
 </root>
