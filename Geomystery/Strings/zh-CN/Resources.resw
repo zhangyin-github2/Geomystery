@@ -202,7 +202,7 @@
     <value>求交点</value>
   </data>
   <data name="L4D" xml:space="preserve">
-    <value>你已经学会使用三种基本工具了？看来你已经准备好接受第一个测试了。尝试着基于给定的射线画出一个60°的角，我想这难不倒你吧？</value>
+    <value>你已经学会使用三种基本工具了？看来你已经准备好接受第一个测试了。尝试着基于给定点在给定直线的逆时针方向画出一个60°的角，我想这难不倒你吧？</value>
   </data>
   <data name="L4N" xml:space="preserve">
     <value>画60°角</value>

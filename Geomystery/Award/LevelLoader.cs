@@ -132,69 +132,43 @@ namespace Geomystery.Award
                 case 4:
                     {
                         geoList.Add("p,1,n,true,-10,-10");
-                        geoList.Add("p,2,n,true,10,-10");
+                        geoList.Add("p,2,n,false,10,-10");
                         geoList.Add("l,3,n,true,1,2");
 
-                        conList.Add("f,true,1");
-                        conList.Add("f,true,2");
-                        conList.Add("dl,true,3,1,2");
-                        conList.Add("dc,false,5,1,2");
-                        conList.Add("dc,false,6,2,1");
-                        conList.Add("i,false,7,5,6,1");
-                        conList.Add("dl,false,8,7,1");
-
-                        controller.useAnotherCondition = false;
+                        controller.useAnotherCondition = true;
                         for (int i = 0; i < geoList.Count; i++)
                         {
                             controller.AddGeometryFromString(geoList[i]);
                         }
-                        //复制一下代表条件列表缓存，也可以不需要模板与副本，每次关卡都要从头加载条件列表
-                        controller.conditionLists = new List<ConditionsList>();                             //需要达成条件
-                        controller.meetingconditionLists = new List<ConditionsList>();                      //复制自“需要达成条件”的正在达成条件
-                        controller.conditionLists.Add(new ConditionsList());
-                        for (int i = 0; i < conList.Count; i++)
-                        {
-                            controller.AddConditionFromString(conList[i], 0);
-                        }
-                        controller.meetingconditionLists.Add(controller.conditionLists[0].Copy());
-                        controller.coordinate.GeometryCount = 1000;
+                        controller.anotherConditionsList = new AnotherConditionsList();
+                        controller.anotherConditionsList.reachedConditions = new List<AnotherCondition>();
+                        controller.anotherConditionsList.unmetConditions = new List<AnotherCondition>();
 
+                        //TODO 
+                        controller.anotherConditionsList.unmetConditions.Add(new LineCondition() { wantX = -10, wantY = -10, slope = 1.7320508f });
                         break;
                     }
                 //垂直平分线
                 case 5:
                     {
-                        geoList.Add("p,1,n,true,-10,-10");
-                        geoList.Add("p,2,n,true,10,-10");
+                        geoList.Add("p,1,n,true,-10,10");
+                        geoList.Add("p,2,n,true,-10,-10");
                         geoList.Add("l,3,n,true,1,2");
 
-                        conList.Add("f,true,1");
-                        conList.Add("f,true,2");
-                        conList.Add("dl,true,3,1,2");
-                        conList.Add("dc,false,5,1,2");
-                        conList.Add("dc,false,6,2,1");
-                        conList.Add("i,false,7,5,6,1");
-                        conList.Add("i,false,8,5,6,2");
-                        conList.Add("dl,false,9,8,7");
-
-                        controller.useAnotherCondition = false;
+                        controller.useAnotherCondition = true;
                         for (int i = 0; i < geoList.Count; i++)
                         {
                             controller.AddGeometryFromString(geoList[i]);
                         }
-                        //复制一下代表条件列表缓存，也可以不需要模板与副本，每次关卡都要从头加载条件列表
-                        controller.conditionLists = new List<ConditionsList>();                             //需要达成条件
-                        controller.meetingconditionLists = new List<ConditionsList>();                      //复制自“需要达成条件”的正在达成条件
-                        controller.conditionLists.Add(new ConditionsList());
-                        for (int i = 0; i < conList.Count; i++)
-                        {
-                            controller.AddConditionFromString(conList[i], 0);
-                        }
-                        controller.meetingconditionLists.Add(controller.conditionLists[0].Copy());
-                        controller.coordinate.GeometryCount = 1000;
+                        controller.anotherConditionsList = new AnotherConditionsList();
+                        controller.anotherConditionsList.reachedConditions = new List<AnotherCondition>();
+                        controller.anotherConditionsList.unmetConditions = new List<AnotherCondition>();
 
+                        //TODO 
+                        controller.anotherConditionsList.unmetConditions.Add(new LineCondition() { wantX = -10, wantY = 0, slope=0 });
                         break;
                     }
+            
                 //角平分线
                 case 6:
                     {
@@ -205,6 +179,10 @@ namespace Geomystery.Award
                         geoList.Add("l,5,n,true,1,3");
 
                         controller.useAnotherCondition = true;
+                        for (int i = 0; i < geoList.Count; i++)
+                        {
+                            controller.AddGeometryFromString(geoList[i]);
+                        }
                         controller.anotherConditionsList = new AnotherConditionsList();
                         controller.anotherConditionsList.reachedConditions = new List<AnotherCondition>();
                         controller.anotherConditionsList.unmetConditions = new List<AnotherCondition>();
@@ -222,7 +200,12 @@ namespace Geomystery.Award
                         geoList.Add("p,3,n,true,0,-6");
                         geoList.Add("l,4,n,true,1,3");
 
+
                         controller.useAnotherCondition = true;
+                        for (int i = 0; i < geoList.Count; i++)
+                        {
+                            controller.AddGeometryFromString(geoList[i]);
+                        }
                         controller.anotherConditionsList = new AnotherConditionsList();
                         controller.anotherConditionsList.reachedConditions = new List<AnotherCondition>();
                         controller.anotherConditionsList.unmetConditions = new List<AnotherCondition>();
@@ -245,6 +228,10 @@ namespace Geomystery.Award
                         geoList.Add("l,8,n,true,1,3");
 
                         controller.useAnotherCondition = true;
+                        for (int i = 0; i < geoList.Count; i++)
+                        {
+                            controller.AddGeometryFromString(geoList[i]);
+                        }
                         controller.anotherConditionsList = new AnotherConditionsList();
                         controller.anotherConditionsList.reachedConditions = new List<AnotherCondition>();
                         controller.anotherConditionsList.unmetConditions = new List<AnotherCondition>();
@@ -263,6 +250,10 @@ namespace Geomystery.Award
 
 
                         controller.useAnotherCondition = true;
+                        for (int i = 0; i < geoList.Count; i++)
+                        {
+                            controller.AddGeometryFromString(geoList[i]);
+                        }
                         controller.anotherConditionsList = new AnotherConditionsList();
                         controller.anotherConditionsList.reachedConditions = new List<AnotherCondition>();
                         controller.anotherConditionsList.unmetConditions = new List<AnotherCondition>();

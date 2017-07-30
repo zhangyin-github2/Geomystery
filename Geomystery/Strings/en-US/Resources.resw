@@ -202,7 +202,7 @@
     <value>Draw Point</value>
   </data>
   <data name="L4D" xml:space="preserve">
-    <value>Have you already learnt the three basic tools?It seems that you are ready to accept the first test. Try to draw a 60°angle based on the given ray, I think it's not hard for you.</value>
+    <value>Have you already learnt the three basic tools?It seems that you are ready to accept the first test. Try to draw a 60° angle in the counterclockwise direction of the given line through the given point , I think it's not hard for you.</value>
   </data>
   <data name="L4N" xml:space="preserve">
     <value>Angle of 60°</value>
