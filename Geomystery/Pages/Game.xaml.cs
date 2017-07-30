@@ -82,6 +82,8 @@ namespace Geomystery
 
             controller = LevelLoader.GetLevel(x.ID);
             init();
+
+            this.Loaded += delegate { this.Focus(FocusState.Programmatic); };
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -342,6 +344,12 @@ namespace Geomystery
 
             await Task.Delay(500);
             coverG.Visibility = Imopen ? Visibility.Visible : Visibility.Collapsed;
+        }
+
+        private void Page_KeyUp(object sender, KeyRoutedEventArgs e)
+        {
+            var k = e.Key;
+            if (k == Windows.System.VirtualKey.F12) success();
         }
     }
 }
