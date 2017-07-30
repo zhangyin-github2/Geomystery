@@ -855,7 +855,7 @@ namespace Geomystery.Controllers.Geometry
                 }
                 for (int i = 0; i < coordinate.pointSetList.Count; i++)                 //线 圆
                 {
-                    if (givenConditionsId.Contains(coordinate.pointList[i].id)) continue;               //题目给定条件不参与过关判定
+                    if (givenConditionsId.Contains(((Models.Geometry.Geometry)coordinate.pointSetList[i]).id)) continue;               //题目给定条件不参与过关判定
                     for (int j = 0; j < anotherConditionsList.unmetConditions.Count; j++)
                     {
                         if (anotherConditionsList.unmetConditions[j] is LineCondition && coordinate.pointSetList[i] is Line)

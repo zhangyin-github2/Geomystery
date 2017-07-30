@@ -16,6 +16,7 @@ namespace Geomystery.Award
 
             controller.historyDfaList = new List<DFA>();
             controller.redoDfaList = new List<DFA>();
+            controller.givenConditionsId = new List<int>();
             //controller.isIniialized = true;
 
             List<string> geoList = new List<string>();
@@ -26,9 +27,9 @@ namespace Geomystery.Award
                 case 1:
                     {
                         //List<string> geoList = new List<string>();
-                        geoList.Add("p,1,n,true,-2,2");
-                        geoList.Add("p,2,n,true,-10,-10");
-                        geoList.Add("p,3,n,true,10,-10");
+                        geoList.Add("p,1,n,true,-3,3");
+                        geoList.Add("p,2,n,true,-15,-15");
+                        geoList.Add("p,3,n,true,15,-15");
 
                         //List<string> conList = new List<string>();
                         conList.Add("f,true,1");
@@ -59,9 +60,9 @@ namespace Geomystery.Award
                 //画同心圆
                 case 2:
                     {
-                        geoList.Add("p,1,n,true,-5,5");
-                        geoList.Add("p,2,n,true,-14,-4");
-                        geoList.Add("p,3,n,true,10,-10");
+                        geoList.Add("p,1,n,true,-7.5,7.5");
+                        geoList.Add("p,2,n,true,-21,-6");
+                        geoList.Add("p,3,n,true,15,-15");
 
                         //List<string> conList = new List<string>();
                         conList.Add("f,true,1");
@@ -91,9 +92,9 @@ namespace Geomystery.Award
                 //求交点
                 case 3:
                     {
-                        geoList.Add("p,1,n,false,-2,2");
-                        geoList.Add("p,2,n,false,-10,-10");
-                        geoList.Add("p,3,n,false,10,-10");
+                        geoList.Add("p,1,n,false,-3,3");
+                        geoList.Add("p,2,n,false,-15,-15");
+                        geoList.Add("p,3,n,false,15,-15");
 
                         geoList.Add("l,4,n,true,1,2");
                         geoList.Add("l,5,n,true,2,3");
@@ -132,7 +133,7 @@ namespace Geomystery.Award
                 case 4:
                     {
                         geoList.Add("p,1,n,true,-10,-10");
-                        geoList.Add("p,2,n,false,10,-10");
+                        geoList.Add("p,2,n,false,10000,-10");
                         geoList.Add("l,3,n,true,1,2");
 
                         controller.useAnotherCondition = true;
@@ -151,8 +152,8 @@ namespace Geomystery.Award
                 //垂直平分线
                 case 5:
                     {
-                        geoList.Add("p,1,n,true,-10,10");
-                        geoList.Add("p,2,n,true,-10,-10");
+                        geoList.Add("p,1,n,true,-10,20");
+                        geoList.Add("p,2,n,true,-10,-20");
                         geoList.Add("l,3,n,true,1,2");
 
                         controller.useAnotherCondition = true;
@@ -165,7 +166,7 @@ namespace Geomystery.Award
                         controller.anotherConditionsList.unmetConditions = new List<AnotherCondition>();
 
                         //TODO 
-                        controller.anotherConditionsList.unmetConditions.Add(new LineCondition() { wantX = -10, wantY = 0, slope=0 });
+                        controller.anotherConditionsList.unmetConditions.Add(new LineCondition() { wantX = -44.641016f, wantY = 0, slope=0 });
                         break;
                     }
             
@@ -173,8 +174,8 @@ namespace Geomystery.Award
                 case 6:
                     {
                         geoList.Add("p,1,n,true,0,0");
-                        geoList.Add("p,2,n,true,10,6");
-                        geoList.Add("p,3,n,true,10,-6");
+                        geoList.Add("p,2,n,true,10000,6000");
+                        geoList.Add("p,3,n,true,10000,-6000");
                         geoList.Add("l,4,n,true,1,2");
                         geoList.Add("l,5,n,true,1,3");
 
@@ -196,9 +197,9 @@ namespace Geomystery.Award
                 case 7:
                     {
                         geoList.Add("p,1,n,true,0,0");
-                        geoList.Add("p,2,n,true,0,6");
-                        geoList.Add("p,3,n,true,0,-6");
-                        geoList.Add("l,4,n,true,1,3");
+                        geoList.Add("p,2,n,true,0,6000");
+                        geoList.Add("p,3,n,true,0,-6000");
+                        geoList.Add("l,4,n,true,2,3");
 
 
                         controller.useAnotherCondition = true;
@@ -218,10 +219,10 @@ namespace Geomystery.Award
                 //菱形内切圆
                 case 8:
                     {
-                        geoList.Add("p,1,n,true,8,0");
-                        geoList.Add("p,2,n,true,0,6");
-                        geoList.Add("p,3,n,true,0,-6");
-                        geoList.Add("p,4,n,true,-8,0");
+                        geoList.Add("p,1,n,true,16,0");
+                        geoList.Add("p,2,n,true,0,12");
+                        geoList.Add("p,3,n,true,0,-12");
+                        geoList.Add("p,4,n,true,-16,0");
                         geoList.Add("l,5,n,true,1,2");
                         geoList.Add("l,6,n,true,2,4");
                         geoList.Add("l,7,n,true,4,3");
@@ -237,7 +238,7 @@ namespace Geomystery.Award
                         controller.anotherConditionsList.unmetConditions = new List<AnotherCondition>();
 
                         //TODO 
-                        controller.anotherConditionsList.unmetConditions.Add(new CircleCondition() { wantX = 0, wantY = 0, radius = 5 });
+                        controller.anotherConditionsList.unmetConditions.Add(new CircleCondition() { wantX = 0, wantY = 0, radius = 4.8f });
 
                         break;
                     }
@@ -245,7 +246,7 @@ namespace Geomystery.Award
                 case 9:
                     {
                         geoList.Add("p,1,n,false,0,0");
-                        geoList.Add("p,2,n,false,0,6");
+                        geoList.Add("p,2,n,false,0,9");
                         geoList.Add("c,3,n,true,1,2");
 
 
@@ -260,18 +261,51 @@ namespace Geomystery.Award
 
                         //TODO 
                         controller.anotherConditionsList.unmetConditions.Add(new PointCondition() { wantX = 0, wantY = 0 });
-
+                        controller.givenConditionsId.Add(1);
                         break;
                     }
                 //过给定点画出给定直线的平行直线
                 case 10:
                     {
+                        geoList.Add("p,1,n,true,0,5");
+                        geoList.Add("p,2,n,true,6000,-10");
+                        geoList.Add("p,3,n,true,-6000,-10");
+                        geoList.Add("l,4,n,true,2,3");
+
+
+                        controller.useAnotherCondition = true;
+                        for (int i = 0; i < geoList.Count; i++)
+                        {
+                            controller.AddGeometryFromString(geoList[i]);
+                        }
+                        controller.anotherConditionsList = new AnotherConditionsList();
+                        controller.anotherConditionsList.reachedConditions = new List<AnotherCondition>();
+                        controller.anotherConditionsList.unmetConditions = new List<AnotherCondition>();
+
+                        //TODO 
+                        controller.anotherConditionsList.unmetConditions.Add(new LineCondition() { wantX = 0, wantY = 5, slope = 0 });
 
                         break;
                     }
                 //画出给定圆在给定点位置的切线
                 case 11:
                     {
+                        geoList.Add("p,1,n,true,0,5");
+                        geoList.Add("p,2,n,true,0,-8");
+                        geoList.Add("c,3,n,true,1,2");
+
+
+                        controller.useAnotherCondition = true;
+                        for (int i = 0; i < geoList.Count; i++)
+                        {
+                            controller.AddGeometryFromString(geoList[i]);
+                        }
+                        controller.anotherConditionsList = new AnotherConditionsList();
+                        controller.anotherConditionsList.reachedConditions = new List<AnotherCondition>();
+                        controller.anotherConditionsList.unmetConditions = new List<AnotherCondition>();
+
+                        //TODO 
+                        controller.anotherConditionsList.unmetConditions.Add(new LineCondition() { wantX = 0, wantY = -8,slope=0 });
 
                         break;
                     }
@@ -279,35 +313,148 @@ namespace Geomystery.Award
                 case 12:
                     {
 
+                        geoList.Add("p,1,n,true,0,-10");
+                        geoList.Add("p,2,n,false,10000,-10");
+                        geoList.Add("l,3,n,true,1,2");
+                        geoList.Add("p,4,n,true,0,15");
+
+                        controller.useAnotherCondition = true;
+                        for (int i = 0; i < geoList.Count; i++)
+                        {
+                            controller.AddGeometryFromString(geoList[i]);
+                        }
+                        controller.anotherConditionsList = new AnotherConditionsList();
+                        controller.anotherConditionsList.reachedConditions = new List<AnotherCondition>();
+                        controller.anotherConditionsList.unmetConditions = new List<AnotherCondition>();
+
+                        //TODO 
+                        controller.anotherConditionsList.unmetConditions.Add(new LineCondition() { wantX = 0, wantY = 15, slope = 1.7320508f });
                         break;
                     }
                 //过给定点画出给定圆的外切正三角形
                 case 13:
                     {
 
+                        geoList.Add("p,1,n,true,0,0");
+                        geoList.Add("p,2,n,true,0,-6");
+                        geoList.Add("c,3,n,true,1,2");
+
+
+                        controller.useAnotherCondition = true;
+                        for (int i = 0; i < geoList.Count; i++)
+                        {
+                            controller.AddGeometryFromString(geoList[i]);
+                        }
+                        controller.anotherConditionsList = new AnotherConditionsList();
+                        controller.anotherConditionsList.reachedConditions = new List<AnotherCondition>();
+                        controller.anotherConditionsList.unmetConditions = new List<AnotherCondition>();
+
+                        //TODO 
+                        controller.anotherConditionsList.unmetConditions.Add(new LineCondition() { wantX = 0, wantY = -6, slope = 0 });
+                        controller.anotherConditionsList.unmetConditions.Add(new LineCondition() { wantX = 0, wantY = 12, slope = 1.7320508f });
+                        controller.anotherConditionsList.unmetConditions.Add(new LineCondition() { wantX = 0, wantY = 12, slope = -1.7320508f });
                         break;
                     }
                 //画出给定梯形的中位线
                 case 14:
                     {
+                        geoList.Add("p,1,n,true,-4.5,4.2424");
+                        geoList.Add("p,2,n,true,4.5,4.2424");
+                        geoList.Add("p,3,n,true,-7.5,-4.2424");
+                        geoList.Add("p,4,n,true,7.5,-4.2424");
+                        geoList.Add("l,5,n,true,1,2");
+                        geoList.Add("l,6,n,true,2,4");
+                        geoList.Add("l,7,n,true,4,3");
+                        geoList.Add("l,8,n,true,1,3");
+
+                        controller.useAnotherCondition = true;
+                        for (int i = 0; i < geoList.Count; i++)
+                        {
+                            controller.AddGeometryFromString(geoList[i]);
+                        }
+                        controller.anotherConditionsList = new AnotherConditionsList();
+                        controller.anotherConditionsList.reachedConditions = new List<AnotherCondition>();
+                        controller.anotherConditionsList.unmetConditions = new List<AnotherCondition>();
+
+                        //TODO 
+                        controller.anotherConditionsList.unmetConditions.Add(new LineCondition() { wantX = -6, wantY = 0, slope = 0 });
 
                         break;
                     }
                 //平分矩形
                 case 15:
                     {
+                        geoList.Add("p,1,n,true,-4,3");
+                        geoList.Add("p,2,n,true,4,3");
+                        geoList.Add("p,3,n,true,-4,-3");
+                        geoList.Add("p,4,n,true,4,-3");
+                        geoList.Add("l,5,n,true,1,2");
+                        geoList.Add("l,6,n,true,2,4");
+                        geoList.Add("l,7,n,true,4,3");
+                        geoList.Add("l,8,n,true,1,3");
+                        geoList.Add("p,8,n,true,7,7");
+
+                        controller.useAnotherCondition = true;
+                        for (int i = 0; i < geoList.Count; i++)
+                        {
+                            controller.AddGeometryFromString(geoList[i]);
+                        }
+                        controller.anotherConditionsList = new AnotherConditionsList();
+                        controller.anotherConditionsList.reachedConditions = new List<AnotherCondition>();
+                        controller.anotherConditionsList.unmetConditions = new List<AnotherCondition>();
+
+                        //TODO 
+                        controller.anotherConditionsList.unmetConditions.Add(new LineCondition() { wantX = 7, wantY = 7, slope = 1 });
 
                         break;
                     }
                 //三角形的外接圆
                 case 16:
                     {
+                        geoList.Add("p,1,n,true,15,10");
+                        geoList.Add("p,2,n,true,-8,5");
+                        geoList.Add("p,3,n,true,7,-9");
+                        geoList.Add("l,4,n,true,1,3");
+                        geoList.Add("l,5,n,true,1,2");
+                        geoList.Add("l,6,n,true,2,3");
+
+
+
+                        controller.useAnotherCondition = true;
+                        for (int i = 0; i < geoList.Count; i++)
+                        {
+                            controller.AddGeometryFromString(geoList[i]);
+                        }
+                        controller.anotherConditionsList = new AnotherConditionsList();
+                        controller.anotherConditionsList.reachedConditions = new List<AnotherCondition>();
+                        controller.anotherConditionsList.unmetConditions = new List<AnotherCondition>();
+
+                        //TODO 
+                        controller.anotherConditionsList.unmetConditions.Add(new CircleCondition() { wantX = 4.41940f, wantY = 3.27078f, radius = 6.23564f });
 
                         break;
                     }
                 //三角形的内切圆
                 case 17:
                     {
+                        geoList.Add("p,1,n,true,15,10");
+                        geoList.Add("p,2,n,true,-8,5");
+                        geoList.Add("p,3,n,true,7,-9");
+                        geoList.Add("l,4,n,true,1,3");
+                        geoList.Add("l,5,n,true,1,2");
+                        geoList.Add("l,6,n,true,2,3");
+
+                        controller.useAnotherCondition = true;
+                        for (int i = 0; i < geoList.Count; i++)
+                        {
+                            controller.AddGeometryFromString(geoList[i]);
+                        }
+                        controller.anotherConditionsList = new AnotherConditionsList();
+                        controller.anotherConditionsList.reachedConditions = new List<AnotherCondition>();
+                        controller.anotherConditionsList.unmetConditions = new List<AnotherCondition>();
+
+                        //TODO 
+                        controller.anotherConditionsList.unmetConditions.Add(new CircleCondition() { wantX = 4.41940f, wantY = 3.27078f, radius = 6.23564f });
 
                         break;
                     }
