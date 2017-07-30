@@ -240,6 +240,7 @@
     <Content Include="Pictures\homepic\hexagon.png" />
     <Content Include="Pictures\homepic\square.png" />
     <Content Include="Pictures\homepic\triangle.png" />
+    <Content Include="Pictures\info.png" />
     <Content Include="Pictures\Levels\1.png" />
     <Content Include="Pictures\Levels\10.png" />
     <Content Include="Pictures\Levels\11.png" />
