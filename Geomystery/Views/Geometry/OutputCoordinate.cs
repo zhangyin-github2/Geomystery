@@ -203,12 +203,12 @@ namespace Geomystery.Views.Geometry
             {
                 borderType = ViewType.Solid,
                 isVisible = true,
-                fillColor = Color.FromArgb(255, 201, 84, 191),
-                lineColor = Color.FromArgb(255, 0, 0, 0),
+                fillColor = Color.FromArgb(255, 200, 200, 200),
+                lineColor = Color.FromArgb(255, 130, 91, 230),
                 point = point,
-                selectedFillColor = Color.FromArgb(255, 255, 99, 71),
-                selectedLineColor = Color.FromArgb(255, 0, 0, 0),
-                thickness = 2,
+                selectedFillColor = Color.FromArgb(255, 200, 200, 200),
+                selectedLineColor = Color.FromArgb(255, 255, 99, 71),
+                thickness = 4,
                 viewPoint = ToVector2(point),
             };
             point.resultPoint = outputPoint;
