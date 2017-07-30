@@ -430,7 +430,7 @@ namespace Geomystery.Award
                         controller.anotherConditionsList.unmetConditions = new List<AnotherCondition>();
 
                         //TODO 
-                        controller.anotherConditionsList.unmetConditions.Add(new CircleCondition() { wantX = 4.41940f, wantY = 3.27078f, radius = 6.23564f });
+                        controller.anotherConditionsList.unmetConditions.Add(new CircleCondition() { wantX = 4.41940f, wantY = 3.27078f, radius = 12.53920f });
 
                         break;
                     }
@@ -454,15 +454,15 @@ namespace Geomystery.Award
                         controller.anotherConditionsList.unmetConditions = new List<AnotherCondition>();
 
                         //TODO 
-                        controller.anotherConditionsList.unmetConditions.Add(new CircleCondition() { wantX = 4.41940f, wantY = 3.27078f, radius = 6.23564f });
+                        controller.anotherConditionsList.unmetConditions.Add(new CircleCondition() { wantX = 4.75654f, wantY = 1.49102f, radius = 6.13876f });
 
                         break;
                     }
                 //正六边形
                 case 18:
                     {
-                        geoList.Add("p,1,n,true,10,-17.3205080f");
-                        geoList.Add("p,2,n,true,-10,-17.3205080f");
+                        geoList.Add("p,1,n,true,10,-17.320508f");
+                        geoList.Add("p,2,n,true,-10,-17.320508f");
                         geoList.Add("l,3,n,true,1,2");
 
                         controller.useAnotherCondition = true;
