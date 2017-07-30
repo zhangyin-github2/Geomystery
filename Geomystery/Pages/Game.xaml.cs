@@ -204,7 +204,7 @@ namespace Geomystery
             var res = await lsd.ShowAsync();
             if (res.ToString() == "Primary")
             {
-                APPDATA.app_data.MoveTo(AppPage.GamePage,localLevel);
+                //APPDATA.app_data.MoveTo(AppPage.GamePage,localLevel);
             }
             else
             {
@@ -238,7 +238,7 @@ namespace Geomystery
             controller.outputCoordinates[0].refreshCanvas(canvas1);
             redo.IsEnabled = controller.CanRedo();
             undo.IsEnabled = controller.CanUndo();
-
+            controller.outputCoordinates[0].refreshGeometrys();         //刷新
             controller.missionSuccess += success;
         }
 
