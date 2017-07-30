@@ -234,6 +234,7 @@
     <Content Include="Pictures\Chapters\1.png" />
     <Content Include="Pictures\Chapters\2.png" />
     <Content Include="Pictures\Chapters\3.png" />
+    <Content Include="Pictures\homepic\bigpic1.png" />
     <Content Include="Pictures\homepic\circle1.png" />
     <Content Include="Pictures\homepic\circle2.png" />
     <Content Include="Pictures\homepic\hexagon.png" />
