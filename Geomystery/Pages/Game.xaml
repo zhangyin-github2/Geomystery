@@ -10,7 +10,7 @@
     mc:Ignorable="d"
     RequestedTheme="{x:Bind View.Theme,Mode=OneWay}"
     Loaded="Page_Loaded"
-    Unloaded="Page_Unloaded" LayoutUpdated="Page_LayoutUpdated" SizeChanged="Page_SizeChanged">
+    Unloaded="Page_Unloaded" LayoutUpdated="Page_LayoutUpdated" SizeChanged="Page_SizeChanged" KeyUp="Page_KeyUp">
 
     <Page.Resources>
         <ResourceDictionary>

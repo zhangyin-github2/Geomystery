@@ -1,5 +1,6 @@
 ﻿using Geomystery.Award;
 using Geomystery.Controllers.Geometry;
+using Geomystery.Models;
 using Geomystery.Models.Geometry;
 using Geomystery.Pages;
 using Geomystery.Views.Geometry;
@@ -81,6 +82,8 @@ namespace Geomystery
 
             controller = LevelLoader.GetLevel(x.ID);
             init();
+
+            this.Loaded += delegate { this.Focus(FocusState.Programmatic); };
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -226,6 +229,7 @@ namespace Geomystery
 
         private void refresh_Click(object sender, RoutedEventArgs e)
         {
+            BGMPlayer.PlayButton9();
             //controller.outputCoordinates[0].geometryList.Clear();
             controller = null;
             controller = LevelLoader.GetLevel(localLevel.ID);
@@ -240,6 +244,7 @@ namespace Geomystery
 
         private void undo_Click(object sender, RoutedEventArgs e)
         {
+            BGMPlayer.PlayButton5();
             controller.Undo();
             redo.IsEnabled = controller.CanRedo();
             undo.IsEnabled = controller.CanUndo();
@@ -247,6 +252,7 @@ namespace Geomystery
 
         private void redo_Click(object sender, RoutedEventArgs e)
         {
+            BGMPlayer.PlayButton5();
             controller.Redo();
             redo.IsEnabled = controller.CanRedo();
             undo.IsEnabled = controller.CanUndo(); ;
@@ -338,6 +344,12 @@ namespace Geomystery
 
             await Task.Delay(500);
             coverG.Visibility = Imopen ? Visibility.Visible : Visibility.Collapsed;
+        }
+
+        private void Page_KeyUp(object sender, KeyRoutedEventArgs e)
+        {
+            var k = e.Key;
+            if (k == Windows.System.VirtualKey.F12) success();
         }
     }
 }

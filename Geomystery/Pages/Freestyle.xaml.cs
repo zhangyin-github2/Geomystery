@@ -1,5 +1,6 @@
 ﻿using Geomystery.Controllers.Geometry;
 using Geomystery.Views.Geometry;
+using Geomystery.Models;
 using Microsoft.Graphics.Canvas;
 using Microsoft.Graphics.Canvas.Text;
 using Microsoft.Graphics.Canvas.UI.Xaml;
@@ -205,13 +206,23 @@ namespace Geomystery
 
         private void refresh_Click(object sender, RoutedEventArgs e)
         {
+            BGMPlayer.PlayButton9();
             controller = new Controllers.Geometry.Controllers(1);
             controller.outputCoordinates[0].WindowHeight = (float)canvas1.ActualHeight;
             controller.outputCoordinates[0].WindowWidth = (float)canvas1.ActualWidth;
         }
 
+        private void undo_Click(object sender, RoutedEventArgs e)
+        {
+            BGMPlayer.PlayButton5();
+            controller.Undo();
+            redo.IsEnabled = controller.CanRedo();
+            undo.IsEnabled = controller.CanUndo();
+        }
+
         private void redo_Click(object sender, RoutedEventArgs e)
         {
+            BGMPlayer.PlayButton5();
             controller.Redo();
             redo.IsEnabled = controller.CanRedo();
             undo.IsEnabled = controller.CanUndo();
@@ -241,11 +252,5 @@ namespace Geomystery
             controller.outputCoordinates[0].refreshGeometrys();         //刷新
         }
 
-        private void undo_Click(object sender, RoutedEventArgs e)
-        {
-            controller.Undo();
-            redo.IsEnabled = controller.CanRedo();
-            undo.IsEnabled = controller.CanUndo();
-        }
     }
 }

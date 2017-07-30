@@ -527,6 +527,7 @@ namespace Geomystery.Controllers.Geometry
                     };
                     coordinate.AddPoint(point);
                     point.id = id;
+                    point.resultPoint.isVisible = isVisible;
                     return 1;
                 }
                 else if (nowstr == "1" || nowstr.ToLower() == "r" || nowstr.ToLower() == "rely")
@@ -565,6 +566,7 @@ namespace Geomystery.Controllers.Geometry
                     point.rely.Add(relyGeometry);
                     Point2 pointActual = new Point2() { X = vresult.X, Y = vresult.Y, id = id, };
                     coordinate.AddPoint(pointActual);
+                    pointActual.resultPoint.isVisible = isVisible;
                     pointActual.id = id;
                     return 1;
                 }
@@ -593,6 +595,7 @@ namespace Geomystery.Controllers.Geometry
                             {
                                 
                                 coordinate.AddPoint(plist[i]);
+                                plist[i].resultPoint.isVisible = isVisible;
                                 plist[i].id = id;
                                 return 1;
                                 //break;
@@ -630,6 +633,11 @@ namespace Geomystery.Controllers.Geometry
                             type = LineType.Line,
                         };
                         coordinate.AddLine(line);
+                        //line.resultLine.isVisible = isVisible;
+                        for(int i = 0; i < line.resultLine.Count; i++)
+                        {
+                            line.resultLine[i].isVisible = isVisible;
+                        }
                         line.id = id;
                     }
                 }
@@ -656,6 +664,7 @@ namespace Geomystery.Controllers.Geometry
                             id = id,
                         };
                         coordinate.AddCircle(circle);
+                        circle.resultCircle.isVisible = isVisible;
                         circle.id = id;
                     }
                 }
@@ -778,7 +787,7 @@ namespace Geomystery.Controllers.Geometry
                 if (!int.TryParse(infomations[3], out i1id)) return -4;                //id不正常
                 if (!int.TryParse(infomations[4], out i2id)) return -4;                //id不正常
                 int clock;
-                if (!int.TryParse(infomations[4], out clock)) return -4;                //点集其中一个是圆，选择逆时针，顺时针，还是默认
+                if (!int.TryParse(infomations[5], out clock)) return -4;                //点集其中一个是圆，选择逆时针，顺时针，还是默认
                 Point2 point = null;
                 IPointSet pointSet1 = null;
                 IPointSet pointSet2 = null;
@@ -809,7 +818,7 @@ namespace Geomystery.Controllers.Geometry
             if(!useAnotherCondition)
             {
                 int meetNumber = 0;                     //可以通关条件满足个数
-                if (conditionLists != null && conditionLists.Count > 0)              //是游戏模式且存在过关条件
+                if (meetingconditionLists != null && meetingconditionLists.Count > 0)              //是游戏模式且存在过关条件
                 {
                     for (int i = 0; i < conditionLists.Count; i++)
                     {
@@ -823,14 +832,15 @@ namespace Geomystery.Controllers.Geometry
             }
             else
             {
+                float delta = 1e-5f;
                 for(int i = 0; i < coordinate.pointList.Count; i++)                     //点
                 {
                     for(int j = 0; j < anotherConditionsList.unmetConditions.Count; j++)
                     {
-                        if(anotherConditionsList.unmetConditions[i] is PointCondition)
+                        if(anotherConditionsList.unmetConditions[j] is PointCondition)
                         {
-                            PointCondition pc = anotherConditionsList.unmetConditions[i] as PointCondition;
-                            if(pc.wantX == coordinate.pointList[i].X && pc.wantY == coordinate.pointList[i].Y)
+                            PointCondition pc = anotherConditionsList.unmetConditions[j] as PointCondition;
+                            if(floatEqual(pc.wantX, coordinate.pointList[i].X, delta) == 0 && floatEqual(pc.wantY, coordinate.pointList[i].Y, delta) == 0)
                             {
                                 pc.isReached = true;
                                 anotherConditionsList.reachedConditions.Add(pc);
@@ -843,23 +853,23 @@ namespace Geomystery.Controllers.Geometry
                 {
                     for (int j = 0; j < anotherConditionsList.unmetConditions.Count; j++)
                     {
-                        if (anotherConditionsList.unmetConditions[i] is LineCondition && coordinate.pointSetList[i] is Line)
+                        if (anotherConditionsList.unmetConditions[j] is LineCondition && coordinate.pointSetList[i] is Line)
                         {
-                            LineCondition lc = anotherConditionsList.unmetConditions[i] as LineCondition;
+                            LineCondition lc = anotherConditionsList.unmetConditions[j] as LineCondition;
                             Line line = coordinate.pointSetList[i] as Line;
                             float slope = (line.p2.Y - line.p1.Y) / (line.p2.X - line.p1.X);
-                            if (lc.wantX == (coordinate.pointSetList[i] as Line).p1.X && lc.wantY == (coordinate.pointSetList[i] as Line).p2.Y && lc.slope == slope)
+                            if (floatEqual(lc.wantX, (coordinate.pointSetList[i] as Line).p1.X, delta) == 0 && floatEqual(lc.wantY, (coordinate.pointSetList[i] as Line).p2.Y, delta)==0 && floatEqual(lc.slope, slope, delta) == 0)
                             {
                                 lc.isReached = true;
                                 anotherConditionsList.reachedConditions.Add(lc);
                                 anotherConditionsList.unmetConditions.Remove(lc);
                             }
                         }
-                        else if(anotherConditionsList.unmetConditions[i] is CircleCondition)
+                        else if(anotherConditionsList.unmetConditions[j] is CircleCondition)
                         {
-                            CircleCondition cc = anotherConditionsList.unmetConditions[i] as CircleCondition;
+                            CircleCondition cc = anotherConditionsList.unmetConditions[j] as CircleCondition;
                             Circle circle = coordinate.pointSetList[i] as Circle;
-                            if (cc.wantX == circle.center.X && cc.wantY == circle.center.Y && cc.radius == circle.GetRadius())
+                            if (floatEqual(cc.wantX, circle.center.X, delta) == 0 && floatEqual(cc.wantY,  circle.center.Y, delta) == 0 && floatEqual(cc.radius, circle.GetRadius(), delta) == 0)
                             {
                                 cc.isReached = true;
                                 anotherConditionsList.reachedConditions.Add(cc);
@@ -1050,6 +1060,23 @@ namespace Geomystery.Controllers.Geometry
                 }
             }
             return false;
+        }
+
+        private int floatEqual(float f1, float f2, float delta)
+        {
+            if(Math.Abs(f1-f2) < Math.Abs(delta))
+            {
+                return 0;
+            }
+            else if(f1 > f2)
+            {
+                return 1;
+            }
+            else if(f1 < f2)
+            {
+                return -1;
+            }
+            return 0;
         }
     }
 }
