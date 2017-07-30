@@ -313,7 +313,7 @@ namespace Geomystery.Award
                 case 12:
                     {
 
-                        geoList.Add("p,1,n,true,0,-10");
+                        geoList.Add("p,1,n,true,1,-10");
                         geoList.Add("p,2,n,false,10000,-10");
                         geoList.Add("l,3,n,true,1,2");
                         geoList.Add("p,4,n,true,0,15");
@@ -475,11 +475,11 @@ namespace Geomystery.Award
                         controller.anotherConditionsList.unmetConditions = new List<AnotherCondition>();
 
                         //TODO 
-                        controller.anotherConditionsList.unmetConditions.Add(new LineCondition() { wantX = -44.641016f, wantY = 0, slope = 0 });
-                        controller.anotherConditionsList.unmetConditions.Add(new LineCondition() { wantX = -44.641016f, wantY = 0, slope = 0 });
-                        controller.anotherConditionsList.unmetConditions.Add(new LineCondition() { wantX = -44.641016f, wantY = 0, slope = 0 });
-                        controller.anotherConditionsList.unmetConditions.Add(new LineCondition() { wantX = -44.641016f, wantY = 0, slope = 0 });
-                        controller.anotherConditionsList.unmetConditions.Add(new LineCondition() { wantX = -44.641016f, wantY = 0, slope = 0 });
+                        controller.anotherConditionsList.unmetConditions.Add(new LineCondition() { wantX = -20, wantY = 0, slope = -17.3205080f });
+                        controller.anotherConditionsList.unmetConditions.Add(new LineCondition() { wantX = -20, wantY = 0, slope = 17.3205080f });
+                        controller.anotherConditionsList.unmetConditions.Add(new LineCondition() { wantX = 20, wantY = 0, slope = -17.3205080f });
+                        controller.anotherConditionsList.unmetConditions.Add(new LineCondition() { wantX = 20, wantY = 0, slope = 17.3205080f });
+                        controller.anotherConditionsList.unmetConditions.Add(new LineCondition() { wantX = -10, wantY = -17.3205080f, slope = 0 });
                         break;
                     }
             }
