@@ -26,7 +26,7 @@ namespace Geomystery.Award
                 case 1:
                     {
                         //List<string> geoList = new List<string>();
-                        geoList.Add("p,1,n,true,-5,5");
+                        geoList.Add("p,1,n,true,-2,2");
                         geoList.Add("p,2,n,true,-10,-10");
                         geoList.Add("p,3,n,true,10,-10");
 
@@ -60,7 +60,7 @@ namespace Geomystery.Award
                 case 2:
                     {
                         geoList.Add("p,1,n,true,-5,5");
-                        geoList.Add("p,2,n,true,-10,-10");
+                        geoList.Add("p,2,n,true,-14,-4");
                         geoList.Add("p,3,n,true,10,-10");
 
                         //List<string> conList = new List<string>();
@@ -91,7 +91,7 @@ namespace Geomystery.Award
                 //求交点
                 case 3:
                     {
-                        geoList.Add("p,1,n,false,-5,5");
+                        geoList.Add("p,1,n,false,-2,2");
                         geoList.Add("p,2,n,false,-10,-10");
                         geoList.Add("p,3,n,false,10,-10");
                         geoList.Add("l,4,n,true,1,2");
@@ -137,9 +137,8 @@ namespace Geomystery.Award
                         conList.Add("f,true,1");
                         conList.Add("f,true,2");
                         conList.Add("dl,true,3,1,2");
-                        conList.Add("o,false,4,3");
-                        conList.Add("dc,false,5,1,4");
-                        conList.Add("dc,false,6,4,1");
+                        conList.Add("dc,false,5,1,2");
+                        conList.Add("dc,false,6,2,1");
                         conList.Add("i,false,7,5,6,1");
                         conList.Add("dl,false,8,7,1");
 
@@ -217,7 +216,26 @@ namespace Geomystery.Award
                 //菱形内切圆
                 case 8:
                     {
+                        /*
+                        geoList.Add("p,1,n,true,-10,0");
+                        geoList.Add("p,2,n,true,10,0");
+                        geoList.Add("p,3,n,true,0,6");
+                        geoList.Add("p,4,n,true,0,-6");
+                        geoList.Add("l,5,n,true,1,3");
+                        geoList.Add("l,6,n,true,3,2");
+                        geoList.Add("l,7,n,true,2,4");
+                        geoList.Add("l,8,n,true,4,1");
 
+                        conList.Add("f,true,1");
+                        conList.Add("f,true,2");
+                        conList.Add("f,true,3");
+                        conList.Add("f,true,4");
+                        conList.Add("dl,true,3,1,2");
+                        conList.Add("dc,false,5,1,2");
+                        conList.Add("dc,false,6,2,1");
+                        conList.Add("i,false,7,5,6,1");
+                        conList.Add("i,false,8,5,6,2");
+                        conList.Add("dl,false,9,8,7");*/
                         break;
                     }
                 //求圆心
