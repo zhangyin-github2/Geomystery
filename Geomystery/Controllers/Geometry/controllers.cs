@@ -837,9 +837,9 @@ namespace Geomystery.Controllers.Geometry
                 {
                     for(int j = 0; j < anotherConditionsList.unmetConditions.Count; j++)
                     {
-                        if(anotherConditionsList.unmetConditions[i] is PointCondition)
+                        if(anotherConditionsList.unmetConditions[j] is PointCondition)
                         {
-                            PointCondition pc = anotherConditionsList.unmetConditions[i] as PointCondition;
+                            PointCondition pc = anotherConditionsList.unmetConditions[j] as PointCondition;
                             if(floatEqual(pc.wantX, coordinate.pointList[i].X, delta) == 0 && floatEqual(pc.wantY, coordinate.pointList[i].Y, delta) == 0)
                             {
                                 pc.isReached = true;
@@ -853,9 +853,9 @@ namespace Geomystery.Controllers.Geometry
                 {
                     for (int j = 0; j < anotherConditionsList.unmetConditions.Count; j++)
                     {
-                        if (anotherConditionsList.unmetConditions[i] is LineCondition && coordinate.pointSetList[i] is Line)
+                        if (anotherConditionsList.unmetConditions[j] is LineCondition && coordinate.pointSetList[i] is Line)
                         {
-                            LineCondition lc = anotherConditionsList.unmetConditions[i] as LineCondition;
+                            LineCondition lc = anotherConditionsList.unmetConditions[j] as LineCondition;
                             Line line = coordinate.pointSetList[i] as Line;
                             float slope = (line.p2.Y - line.p1.Y) / (line.p2.X - line.p1.X);
                             if (floatEqual(lc.wantX, (coordinate.pointSetList[i] as Line).p1.X, delta) == 0 && floatEqual(lc.wantY, (coordinate.pointSetList[i] as Line).p2.Y, delta)==0 && floatEqual(lc.slope, slope, delta) == 0)
@@ -865,9 +865,9 @@ namespace Geomystery.Controllers.Geometry
                                 anotherConditionsList.unmetConditions.Remove(lc);
                             }
                         }
-                        else if(anotherConditionsList.unmetConditions[i] is CircleCondition)
+                        else if(anotherConditionsList.unmetConditions[j] is CircleCondition)
                         {
-                            CircleCondition cc = anotherConditionsList.unmetConditions[i] as CircleCondition;
+                            CircleCondition cc = anotherConditionsList.unmetConditions[j] as CircleCondition;
                             Circle circle = coordinate.pointSetList[i] as Circle;
                             if (floatEqual(cc.wantX, circle.center.X, delta) == 0 && floatEqual(cc.wantY,  circle.center.Y, delta) == 0 && floatEqual(cc.radius, circle.GetRadius(), delta) == 0)
                             {
