@@ -81,6 +81,15 @@ namespace Geomystery
             GameDiscribe.Text = x.Discribe;
 
             controller = LevelLoader.GetLevel(x.ID);
+            for(int i = 0; i < controller.givenConditionsId.Count; i++)
+            {
+                Models.Geometry.Geometry geometry = controller.coordinate.GetGeometryById(controller.givenConditionsId[i]);
+                if(geometry is Point2)
+                {
+                    Point2 p2 = geometry as Point2;
+                    p2.resultPoint.lineColor = Color.FromArgb(255, 201, 84, 191);
+                }
+            }
             init();
 
             this.Loaded += delegate { this.Focus(FocusState.Programmatic); };
@@ -161,12 +170,12 @@ namespace Geomystery
                         if (pointList[i].point.isSelected)
                         {
                             args.DrawingSession.FillCircle(pointList[i].viewPoint, OutputPoint.scopeLength, pointList[i].selectedFillColor);
-                            args.DrawingSession.DrawCircle(pointList[i].viewPoint, OutputPoint.scopeLength, pointList[i].selectedLineColor);
+                            args.DrawingSession.DrawCircle(pointList[i].viewPoint, OutputPoint.scopeLength, pointList[i].selectedLineColor, pointList[i].thickness);
                         }
                         else
                         {
                             args.DrawingSession.FillCircle(pointList[i].viewPoint, OutputPoint.scopeLength, pointList[i].fillColor);
-                            args.DrawingSession.DrawCircle(pointList[i].viewPoint, OutputPoint.scopeLength, pointList[i].lineColor);
+                            args.DrawingSession.DrawCircle(pointList[i].viewPoint, OutputPoint.scopeLength, pointList[i].lineColor, pointList[i].thickness);
                         }
                     }
                 }
@@ -238,6 +247,17 @@ namespace Geomystery
             controller.outputCoordinates[0].refreshCanvas(canvas1);
             redo.IsEnabled = controller.CanRedo();
             undo.IsEnabled = controller.CanUndo();
+
+            for (int i = 0; i < controller.givenConditionsId.Count; i++)
+            {
+                Models.Geometry.Geometry geometry = controller.coordinate.GetGeometryById(controller.givenConditionsId[i]);
+                if (geometry is Point2)
+                {
+                    Point2 p2 = geometry as Point2;
+                    p2.resultPoint.lineColor = Color.FromArgb(255, 201, 84, 191);
+                }
+            }
+
             controller.outputCoordinates[0].refreshGeometrys();         //刷新
             controller.missionSuccess += success;
         }
