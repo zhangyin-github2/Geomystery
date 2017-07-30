@@ -83,6 +83,8 @@ namespace Geomystery.Controllers.Geometry
         /// </summary>
         public event MissionSuccess missionSuccess;             //游戏通关事件
 
+        public List<int> givenConditionsId;
+
         public bool useAnotherCondition { get; set; }
 
         bool isPointPressing;                               //指针处于按下状态
@@ -97,6 +99,7 @@ namespace Geomystery.Controllers.Geometry
         {
             isIniialized = false;
             OutputPoint.scopeLength = 6;               //10 dip
+            givenConditionsId = new List<int>();
         }
 
         /// <summary>
