@@ -100,7 +100,7 @@ namespace Geomystery
             }
             foreach(var x in ims)
             {
-                x.Height = x.Width = 80 * k;
+                x.Height = x.Width = 110 * k;
             }
         }
     }

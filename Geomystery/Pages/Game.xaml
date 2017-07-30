@@ -627,17 +627,17 @@
                 </Grid>
             </Grid>
         </Grid>
-        
+
         <Grid x:Name="titleG" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Width="500"
                     HorizontalAlignment="Center" VerticalAlignment="Stretch">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="3*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <TextBlock x:Name="GameId" Grid.Column="0" FontFamily="Bradley Hand ITC" FontSize="36" Text="ID" VerticalAlignment="Center" TextAlignment="Center" />
+            <TextBlock x:Name="GameId" Grid.Column="0" FontFamily="Microsoft YaHei UI" FontSize="36" Text="ID" VerticalAlignment="Center" TextAlignment="Center" />
             <TextBlock x:Name="GameName" Grid.Column="1"  FontFamily="Microsoft YaHei UI" FontSize="36" Text="Name" VerticalAlignment="Center"  TextAlignment="Center" />
-            <Button x:Name="openIm" Background="{x:Null}" Grid.Column="2"  BorderThickness="0" FontFamily="Segoe MDL2 Assets" FontSize="36" Content="&#xF167;" HorizontalAlignment="Center" Click="openIm_Click" />
+            <Button x:Name="openIm" Background="Transparent" Grid.Column="2"  BorderThickness="0" FontFamily="Segoe UI Symbol" FontSize="36" Content="&#x1F6C8;" HorizontalAlignment="Center" Click="openIm_Click" />
         </Grid>
     </Grid>
 </Page>
