@@ -254,7 +254,7 @@
         </ResourceDictionary>
     </Page.Resources>
 
-    <Grid Background="{ThemeResource SystemBackgroundAltHighBrush}">
+    <Grid>
         <!--四种UI尺寸-->
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup >

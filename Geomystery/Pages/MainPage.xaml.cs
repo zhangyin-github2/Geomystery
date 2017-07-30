@@ -18,6 +18,7 @@ using Geomystery.Models;
 using Geomystery.ViewModel;
 using Windows.Media.Core;
 using Geomystery.Award;
+using Windows.UI.Xaml.Media.Animation;
 
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上有介绍
@@ -103,6 +104,8 @@ namespace Geomystery
             startFrame.Visibility = Visibility.Collapsed;
             if (!APPDATA.app_data.ISFULLSCREEN)
                 ApplicationView.GetForCurrentView().ExitFullScreenMode();       //退出全屏
+
+            rotate();
         }
         public void init_gamesetting()
         {
@@ -193,6 +196,28 @@ namespace Geomystery
             ScreenWidth = Window.Current.Bounds.Width;
             backG.Width = ScreenWidth * 2;
             backG.Height = ScreenHeight * 2;
+        }
+
+        private void rotate()
+        {
+            backI.RenderTransform = new CompositeTransform();
+
+            var turnSB = new Storyboard();
+
+            double t = 120;
+
+            var doubleAnim = new DoubleAnimationUsingKeyFrames();
+            doubleAnim.KeyFrames.Add(new EasingDoubleKeyFrame() { KeyTime = TimeSpan.FromMilliseconds(0), Value = 0 });
+            doubleAnim.KeyFrames.Add(new EasingDoubleKeyFrame() { KeyTime = TimeSpan.FromSeconds(t), Value = 360 });
+
+            turnSB.Children.Add(doubleAnim);
+
+            Storyboard.SetTarget(doubleAnim, backI.RenderTransform);
+
+            Storyboard.SetTargetProperty(doubleAnim, "(CompositeTransform.Rotation)");
+
+            turnSB.RepeatBehavior = RepeatBehavior.Forever;
+            turnSB.Begin();
         }
 
     }
