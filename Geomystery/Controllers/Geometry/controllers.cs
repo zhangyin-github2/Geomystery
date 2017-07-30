@@ -527,6 +527,7 @@ namespace Geomystery.Controllers.Geometry
                     };
                     coordinate.AddPoint(point);
                     point.id = id;
+                    point.resultPoint.isVisible = isVisible;
                     return 1;
                 }
                 else if (nowstr == "1" || nowstr.ToLower() == "r" || nowstr.ToLower() == "rely")
@@ -565,6 +566,7 @@ namespace Geomystery.Controllers.Geometry
                     point.rely.Add(relyGeometry);
                     Point2 pointActual = new Point2() { X = vresult.X, Y = vresult.Y, id = id, };
                     coordinate.AddPoint(pointActual);
+                    pointActual.resultPoint.isVisible = isVisible;
                     pointActual.id = id;
                     return 1;
                 }
@@ -593,6 +595,7 @@ namespace Geomystery.Controllers.Geometry
                             {
                                 
                                 coordinate.AddPoint(plist[i]);
+                                plist[i].resultPoint.isVisible = isVisible;
                                 plist[i].id = id;
                                 return 1;
                                 //break;
@@ -630,6 +633,11 @@ namespace Geomystery.Controllers.Geometry
                             type = LineType.Line,
                         };
                         coordinate.AddLine(line);
+                        //line.resultLine.isVisible = isVisible;
+                        for(int i = 0; i < line.resultLine.Count; i++)
+                        {
+                            line.resultLine[i].isVisible = isVisible;
+                        }
                         line.id = id;
                     }
                 }
@@ -656,6 +664,7 @@ namespace Geomystery.Controllers.Geometry
                             id = id,
                         };
                         coordinate.AddCircle(circle);
+                        circle.resultCircle.isVisible = isVisible;
                         circle.id = id;
                     }
                 }
@@ -778,7 +787,7 @@ namespace Geomystery.Controllers.Geometry
                 if (!int.TryParse(infomations[3], out i1id)) return -4;                //id不正常
                 if (!int.TryParse(infomations[4], out i2id)) return -4;                //id不正常
                 int clock;
-                if (!int.TryParse(infomations[4], out clock)) return -4;                //点集其中一个是圆，选择逆时针，顺时针，还是默认
+                if (!int.TryParse(infomations[5], out clock)) return -4;                //点集其中一个是圆，选择逆时针，顺时针，还是默认
                 Point2 point = null;
                 IPointSet pointSet1 = null;
                 IPointSet pointSet2 = null;
@@ -809,7 +818,7 @@ namespace Geomystery.Controllers.Geometry
             if(!useAnotherCondition)
             {
                 int meetNumber = 0;                     //可以通关条件满足个数
-                if (conditionLists != null && conditionLists.Count > 0)              //是游戏模式且存在过关条件
+                if (meetingconditionLists != null && meetingconditionLists.Count > 0)              //是游戏模式且存在过关条件
                 {
                     for (int i = 0; i < conditionLists.Count; i++)
                     {
