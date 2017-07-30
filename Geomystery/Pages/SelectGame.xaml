@@ -91,6 +91,7 @@
             <RowDefinition Height="5*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
+        <Image x:Name="back" Grid.ColumnSpan="3" Grid.RowSpan="3" Opacity="0.5" Stretch="Fill" />
         <GridView x:Name="levelbord" Grid.Column="1" Grid.Row="1"  
                   HorizontalAlignment="Center" VerticalAlignment="Center"
                   ItemsSource="{x:Bind levels}" 

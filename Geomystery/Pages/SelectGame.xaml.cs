@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上有介绍
@@ -68,6 +69,7 @@ namespace Geomystery
         {
             var x = localChapter = e.Parameter as Chapter;
             levels = x.Levels;
+            back.Source = new BitmapImage(new Uri(x.cover, UriKind.Absolute));
             init();
         }
 

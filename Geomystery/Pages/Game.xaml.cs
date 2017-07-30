@@ -188,8 +188,16 @@ namespace Geomystery
         {
             LevelSucceedDialog lsd = new LevelSucceedDialog();
             APPDATA.app_data.HAVEDONE = Math.Max(APPDATA.app_data.HAVEDONE, localLevel.ID);
+            var ach = APPDATA.app_data.ACHIEVEMENT;
             APPDATA.app_data.setAchievement();
-            //lsd.PrimaryButtonClick += (_s, _e) => { };
+            for(int i=0;i<6;i++)
+            {
+                if(ach[i]=='0'&& APPDATA.app_data.ACHIEVEMENT[i]=='1')
+                {
+                    CONST.ShowToastNotification("Square150x150Logo.scale-200.png", AppResources.GetString("isunlock") , NotificationAudioNames.Default);
+                }
+            }
+
             var res = await lsd.ShowAsync();
             if (res.ToString() == "Primary")
             {

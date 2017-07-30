@@ -351,4 +351,7 @@
   <data name="Unlock" xml:space="preserve">
     <value>已解锁</value>
   </data>
+  <data name="isunlock" xml:space="preserve">
+    <value>新的成就已被解锁！</value>
+  </data>
 </root>

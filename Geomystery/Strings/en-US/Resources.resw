@@ -351,4 +351,7 @@
   <data name="Unlock" xml:space="preserve">
     <value>Unlocked</value>
   </data>
+  <data name="isunlock" xml:space="preserve">
+    <value>A new achievement has been unlocked!</value>
+  </data>
 </root>
