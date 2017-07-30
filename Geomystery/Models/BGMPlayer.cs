@@ -34,36 +34,55 @@ namespace Geomystery.Models
             }
             //return MusicPlayer;
         }
+
         public static void PlayButton()
         {
             MusicPlayer.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Audio/button4.wav", UriKind.Absolute));
             MusicPlayer.MediaPlayer.Play();
         }
+
         public static void PlayButton7()
         {
             MusicPlayer.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Audio/button7.wav", UriKind.Absolute));
             MusicPlayer.MediaPlayer.Play();
         }
+
         public static void PlayButton8()
         {
             MusicPlayer.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Audio/button8.wav", UriKind.Absolute));
             MusicPlayer.MediaPlayer.Play();
         }
+
         public static void PlayButton5()
         {
             MusicPlayer.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Audio/button5.wav", UriKind.Absolute));
             MusicPlayer.MediaPlayer.Play();
         }
+
         public static void PlayButton9()
         {
             MusicPlayer.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Audio/button9.wav", UriKind.Absolute));
             MusicPlayer.MediaPlayer.Play();
         }
+
+        public static void PlayButton1()
+        {
+            MusicPlayer.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Audio/button1.wav", UriKind.Absolute));
+            MusicPlayer.MediaPlayer.Play();
+        }
+
+        public static void PlayButton2()
+        {
+            MusicPlayer.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Audio/button2.wav", UriKind.Absolute));
+            MusicPlayer.MediaPlayer.Play();
+        }
+
         public static void PlayBgm()
         {
             BgmPlayer.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Audio/bgm1.mp3", UriKind.Absolute));
             BgmPlayer.MediaPlayer.Play();
         }
+
         public static void setMute()
         {
             MusicPlayer.MediaPlayer.IsMuted = !BGMPlayer.MusicPlayer.MediaPlayer.IsMuted;

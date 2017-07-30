@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Geomystery.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -51,24 +52,28 @@ namespace Geomystery
 
         private void NightMode_Click(object sender, RoutedEventArgs e)
         {
+            BGMPlayer.PlayButton9();
             APPDATA.app_data.setNight();
             NightMode.Content = APPDATA.app_data.ISNIGHT ? CONST.yes : CONST.no;
         }
 
         private void Fullscreen_Click(object sender, RoutedEventArgs e)
         {
+            BGMPlayer.PlayButton9();
             APPDATA.app_data.setFullScreen();
             Fullscreen.Content = APPDATA.app_data.ISFULLSCREEN ? CONST.yes : CONST.no;
         }
 
         private void AboutUs_Click(object sender, RoutedEventArgs e)
         {
+            BGMPlayer.PlayButton1();
             APPDATA.app_data.MoveTo(AppPage.AboutPage);
             Frame.Navigate(typeof(About));
         }
 
         private async void ResetProgress_Click(object sender, RoutedEventArgs e)
         {
+            BGMPlayer.PlayButton2();
             await APPDATA.app_data.Reset();
             init();
         }
@@ -82,14 +87,14 @@ namespace Geomystery
 
         private void LanRight_Click(object sender, RoutedEventArgs e)
         {
+            BGMPlayer.PlayButton9();
             APPDATA.app_data.change_language();
-            
         }
 
         private void LanLeft_Click(object sender, RoutedEventArgs e)
         {
+            BGMPlayer.PlayButton9();
             APPDATA.app_data.change_language();
-            
         }
 
         private void SFXVolSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
