@@ -17,7 +17,7 @@ namespace Geomystery.Models
             if (MusicPlayer == null)
             {
                 MusicPlayer = new MediaPlayerElement();
-                MusicPlayer.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Assets/Audio/button1.wav", UriKind.Absolute));
+                MusicPlayer.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Assets/Audio/button4.wav", UriKind.Absolute));
                 MusicPlayer.MediaPlayer.IsLoopingEnabled = false;
                 MusicPlayer.MediaPlayer.AutoPlay = false;
                 MusicPlayer.MediaPlayer.Volume = APPDATA.app_data.SFXVOLUME;
@@ -37,6 +37,16 @@ namespace Geomystery.Models
         public static void PlayButton()
         {
             MusicPlayer.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Audio/button4.wav", UriKind.Absolute));
+            MusicPlayer.MediaPlayer.Play();
+        }
+        public static void PlayButton7()
+        {
+            MusicPlayer.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Audio/button7.wav", UriKind.Absolute));
+            MusicPlayer.MediaPlayer.Play();
+        }
+        public static void PlayButton8()
+        {
+            MusicPlayer.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Audio/button8.wav", UriKind.Absolute));
             MusicPlayer.MediaPlayer.Play();
         }
         public static void PlayBgm()

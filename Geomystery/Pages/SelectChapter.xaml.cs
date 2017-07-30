@@ -1,4 +1,5 @@
 ﻿using Geomystery.Award;
+using Geomystery.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -136,6 +137,7 @@ namespace Geomystery
 
         private void Chapter_Click(object sender, RoutedEventArgs e)
         {
+            BGMPlayer.PlayButton7();
             Chapter k = myFlip.SelectedItem as Chapter;
             if (k.unlocked==0) return;
             APPDATA.app_data.MoveTo(AppPage.SelectGamePage,k);

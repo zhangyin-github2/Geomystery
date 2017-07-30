@@ -1,4 +1,5 @@
 ﻿using Geomystery.Award;
+using Geomystery.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -105,6 +106,7 @@ namespace Geomystery
         }
         private void levelbord_ItemClick(object sender, ItemClickEventArgs e)
         {
+            BGMPlayer.PlayButton8();
             var x = e.ClickedItem as Level;
             MainPage.debugTxt.Text = x.cover.ToString();
             if (x.unlocked == 0) return;
