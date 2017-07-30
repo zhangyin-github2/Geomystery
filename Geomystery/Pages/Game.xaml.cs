@@ -238,7 +238,7 @@ namespace Geomystery
             controller.outputCoordinates[0].refreshCanvas(canvas1);
             redo.IsEnabled = controller.CanRedo();
             undo.IsEnabled = controller.CanUndo();
-
+            controller.outputCoordinates[0].refreshGeometrys();         //刷新
             controller.missionSuccess += success;
         }
 
