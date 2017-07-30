@@ -176,7 +176,7 @@ namespace Geomystery.Models.Geometry
                 //if(Vector2.Zero)                              //理论上来说两个直线方向向量都不会为0
                 Vector3 v31 = new Vector3() { X = v1.X, Y = v1.Y, Z = 0 };
                 Vector3 v32 = new Vector3() { X = v2.X, Y = v2.Y, Z = 0 };
-                Vector3 multiVector = v31 * v32;                      //向量积、叉积
+                Vector3 multiVector = Vector3.Cross(v31, v32);                      //向量积、叉积
                 if(multiVector.Length() > 1e-7)                     //几乎平行
                 {
                     
