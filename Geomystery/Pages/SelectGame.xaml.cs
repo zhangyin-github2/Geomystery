@@ -130,9 +130,5 @@ namespace Geomystery
             }
             TextInListView.Add(x);
         }
-
-       
     }
-
-    
 }
