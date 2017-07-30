@@ -637,7 +637,11 @@
             </Grid.ColumnDefinitions>
             <TextBlock x:Name="GameId" Grid.Column="0" Foreground="#4c7bcf" FontFamily="Microsoft YaHei UI" FontSize="36" Text="ID" VerticalAlignment="Center" TextAlignment="Center" />
             <TextBlock x:Name="GameName" Grid.Column="1" Foreground="#4c7bcf" FontFamily="Microsoft YaHei UI" FontSize="36" Text="Name" VerticalAlignment="Center"  TextAlignment="Center" />
-            <Button x:Name="openIm" Background="Transparent" Foreground="#4c7bcf" Grid.Column="2"  BorderThickness="0" FontFamily="Segoe MDL2 Assets" FontSize="36" Content="&#xF167;" VerticalAlignment="Center" HorizontalAlignment="Center" Click="openIm_Click" />
+            <Button x:Name="openIm" Background="Transparent" Grid.Column="2"  BorderThickness="0" VerticalAlignment="Center" HorizontalAlignment="Center" Click="openIm_Click" >
+                <Button.Content>
+                    <Image x:Name="openImpic" Source="ms-appx:///Pictures/info.png" Height="40" Stretch="Uniform"/>
+                </Button.Content>
+            </Button>
         </Grid>
     </Grid>
 </Page>

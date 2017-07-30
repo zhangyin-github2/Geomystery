@@ -62,7 +62,7 @@ namespace Geomystery
             double k = Math.Min(kw, kh);
             GameId.FontSize = Math.Max(36 * k, 12);
             GameName.FontSize = Math.Max(28 * k, 12);
-            openIm.FontSize = Math.Max(28 * k, 12);
+            openImpic.Height = Math.Max(32 * k, 12);
             GameDiscribe.FontSize = Math.Max(24 * k, 8);
             if (APPDATA.app_data.HAVEDONE < localLevel.ID) 
                 openIm_Click(openIm , new RoutedEventArgs());
