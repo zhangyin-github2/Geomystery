@@ -101,5 +101,11 @@
                        HorizontalAlignment="Center"
                        Text="Release Version 1.0 (Build170730)"/>
         </StackPanel>
+        <TextBlock FontFamily="Microsoft YaHei UI"
+                   FontSize="24"
+                   Foreground="Gray"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Bottom"
+                   Text="The Gatehouse(Theme) - Ed GAPS/Luke Whittaker"/>
     </Grid>
 </Page>

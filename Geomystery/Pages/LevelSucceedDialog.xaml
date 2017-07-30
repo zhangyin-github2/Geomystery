@@ -13,9 +13,6 @@
     SecondaryButtonClick="ContentDialog_SecondaryButtonClick">
 
     <Grid>
-        <StackPanel>
-            <TextBlock  Text="&#xE00A;&#xE00A;&#xE00A;" FontFamily="Segoe MDl2 Assets" Foreground="Yellow" FontSize="22"></TextBlock>
-            <TextBlock x:Name="passT"> Problem solved!</TextBlock>
-        </StackPanel>
+        <TextBlock x:Name="passT" > Problem solved!</TextBlock>
     </Grid>
 </ContentDialog>

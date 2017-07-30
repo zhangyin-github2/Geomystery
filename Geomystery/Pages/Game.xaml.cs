@@ -1,5 +1,6 @@
 ﻿using Geomystery.Award;
 using Geomystery.Controllers.Geometry;
+using Geomystery.Models;
 using Geomystery.Models.Geometry;
 using Geomystery.Pages;
 using Geomystery.Views.Geometry;
@@ -226,6 +227,7 @@ namespace Geomystery
 
         private void refresh_Click(object sender, RoutedEventArgs e)
         {
+            BGMPlayer.PlayButton9();
             //controller.outputCoordinates[0].geometryList.Clear();
             controller = null;
             controller = LevelLoader.GetLevel(localLevel.ID);
@@ -240,6 +242,7 @@ namespace Geomystery
 
         private void undo_Click(object sender, RoutedEventArgs e)
         {
+            BGMPlayer.PlayButton5();
             controller.Undo();
             redo.IsEnabled = controller.CanRedo();
             undo.IsEnabled = controller.CanUndo();
@@ -247,6 +250,7 @@ namespace Geomystery
 
         private void redo_Click(object sender, RoutedEventArgs e)
         {
+            BGMPlayer.PlayButton5();
             controller.Redo();
             redo.IsEnabled = controller.CanRedo();
             undo.IsEnabled = controller.CanUndo(); ;

@@ -49,6 +49,16 @@ namespace Geomystery.Models
             MusicPlayer.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Audio/button8.wav", UriKind.Absolute));
             MusicPlayer.MediaPlayer.Play();
         }
+        public static void PlayButton5()
+        {
+            MusicPlayer.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Audio/button5.wav", UriKind.Absolute));
+            MusicPlayer.MediaPlayer.Play();
+        }
+        public static void PlayButton9()
+        {
+            MusicPlayer.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Audio/button9.wav", UriKind.Absolute));
+            MusicPlayer.MediaPlayer.Play();
+        }
         public static void PlayBgm()
         {
             BgmPlayer.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Audio/bgm1.mp3", UriKind.Absolute));
