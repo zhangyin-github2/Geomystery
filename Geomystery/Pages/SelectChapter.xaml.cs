@@ -51,6 +51,15 @@ namespace Geomystery
                 Buttons[i].Background = imbrush;
             }
         }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            foreach(var x in Chapters)
+            {
+                if (APPDATA.app_data.HAVEDONE / 9 >= x.ID-1) x.unlocked = 1;
+            }
+        }
+
         private void ChpNameTextBlock_Loaded(object sender, RoutedEventArgs e)
         {
             var k = sender as TextBlock;

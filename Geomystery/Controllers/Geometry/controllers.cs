@@ -858,14 +858,17 @@ namespace Geomystery.Controllers.Geometry
                             LineCondition lc = anotherConditionsList.unmetConditions[j] as LineCondition;
                             Line line = coordinate.pointSetList[i] as Line;
                             float slope = (line.p2.Y - line.p1.Y) / (line.p2.X - line.p1.X);
-                            if (floatEqual(lc.wantX, (coordinate.pointSetList[i] as Line).p1.X, delta) == 0 && floatEqual(lc.wantY, (coordinate.pointSetList[i] as Line).p2.Y, delta)==0 && floatEqual(lc.slope, slope, delta) == 0)
+                            if((floatEqual(lc.wantX, (coordinate.pointSetList[i] as Line).p1.X, delta) == 0 && floatEqual(lc.wantY, (coordinate.pointSetList[i] as Line).p1.Y, delta)==0) || (floatEqual(lc.wantX, (coordinate.pointSetList[i] as Line).p2.X, delta) == 0 && floatEqual(lc.wantY, (coordinate.pointSetList[i] as Line).p2.Y, delta)== 0))
                             {
-                                lc.isReached = true;
-                                anotherConditionsList.reachedConditions.Add(lc);
-                                anotherConditionsList.unmetConditions.Remove(lc);
+                                if(floatEqual(lc.slope, slope, delta) == 0 || floatEqual(lc.slope, -slope, delta)==0)
+                                {
+                                    lc.isReached = true;
+                                    anotherConditionsList.reachedConditions.Add(lc);
+                                    anotherConditionsList.unmetConditions.Remove(lc);
+                                }
                             }
                         }
-                        else if(anotherConditionsList.unmetConditions[j] is CircleCondition)
+                        else if(anotherConditionsList.unmetConditions[j] is CircleCondition && coordinate.pointSetList[i] is Circle)
                         {
                             CircleCondition cc = anotherConditionsList.unmetConditions[j] as CircleCondition;
                             Circle circle = coordinate.pointSetList[i] as Circle;

@@ -64,6 +64,7 @@ namespace Geomystery.Award
         }  
         public static ObservableCollection<Level> getLevels(int start =1)
         {
+            start = 1 + start * 9 - 9;
             ObservableCollection<Level> levels = new ObservableCollection<Level>();
             for(int i=start;i<start+9;i++)
             {
