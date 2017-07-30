@@ -198,6 +198,7 @@ namespace Geomystery
 
         public async void success()
         {
+            BGMPlayer.PlayButton8();
             LevelSucceedDialog lsd = new LevelSucceedDialog();
             APPDATA.app_data.HAVEDONE = Math.Max(APPDATA.app_data.HAVEDONE, localLevel.ID);
             var ach = APPDATA.app_data.ACHIEVEMENT;

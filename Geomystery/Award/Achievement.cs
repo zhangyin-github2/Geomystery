@@ -24,7 +24,7 @@ namespace Geomystery.Award
         {
             aim = 1;
             have_done = 0;
-            col = new SolidColorBrush(Color.FromArgb(200, 255, 0, 0));
+            col = new SolidColorBrush(Color.FromArgb(255, 128, 128, 128));
             islock = "未达成";
         }
         public static ObservableCollection<Achievements> GetAch(double ff = 44)
@@ -37,7 +37,7 @@ namespace Geomystery.Award
                 ach[i].name = AppResources.GetString("AC" + (i + 1).ToString() + "N");
                 ach[i].discribe = AppResources.GetString("AC" +(i+1).ToString()+"D");
                 string locked = APPDATA.app_data.ACHIEVEMENT[i] == '0' ? "Lock" : "Unlock";
-                if(APPDATA.app_data.ACHIEVEMENT[i] == '1') ach[i].col = new SolidColorBrush(Color.FromArgb(200, 0, 220, 0));
+                if(APPDATA.app_data.ACHIEVEMENT[i] == '1') ach[i].col = new SolidColorBrush(Color.FromArgb(255, 1, 139, 61));
                 ach[i].islock = AppResources.GetString(locked);
                 ach[i].picture = "ms-appx:///Pictures/Achievement/" + (i + 1).ToString() + ".png";
             }

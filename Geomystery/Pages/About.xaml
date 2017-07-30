@@ -82,8 +82,8 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-        
-        
+
+
         <StackPanel Orientation="Vertical"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center">
@@ -104,13 +104,23 @@
                        Margin="24,24,24,24"
                        HorizontalAlignment="Center"
                        Text="Release Version 1.0 (Build170730)"/>
+            <TextBlock Text="东北大学2017生产实习uvp第3组"
+                       FontFamily="Microsoft YaHei UI"
+                       FontSize="32" Foreground="Gray"
+                       HorizontalAlignment="Center"/>
+            <TextBlock Text="蔡镇泽 程立智 郑昊 李明伦"
+                       FontFamily="Microsoft YaHei UI"
+                       FontSize="32" Foreground="Gray"
+                       HorizontalAlignment="Center"/>
+            <TextBlock Text="温志成 王涵"
+                       FontFamily="Microsoft YaHei UI"
+                       FontSize="28" Foreground="Gray"
+                       HorizontalAlignment="Center"/>
+            <TextBlock Name="BGM"
+                       FontFamily="Microsoft YaHei UI"
+                       FontSize="24" Foreground="Gray"
+                       HorizontalAlignment="Center" Margin="0,64,0,0"
+                       Text="BGM: The Gatehouse(Theme) - Ed GAPS/Luke Whittaker"/>
         </StackPanel>
-        <TextBlock Name="BGM"
-                   FontFamily="Microsoft YaHei UI"
-                   FontSize="24"
-                   Foreground="Gray"
-                   HorizontalAlignment="Right"
-                   VerticalAlignment="Bottom"
-                   Text="BGM: The Gatehouse(Theme) - Ed GAPS/Luke Whittaker"/>
     </Grid>
 </Page>

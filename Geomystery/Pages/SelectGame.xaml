@@ -25,7 +25,7 @@
                         <RowDefinition Height="8*"/>
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
-                    <Rectangle Fill="White" RadiusX="12" RadiusY="12" Grid.Column="1" Grid.Row="1"/>
+                    <Rectangle Fill="{ThemeResource WhiteGradient}" RadiusX="12" RadiusY="12" Grid.Column="1" Grid.Row="1"/>
                     <Grid Grid.Column="1" Grid.Row="1">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="1*"/>

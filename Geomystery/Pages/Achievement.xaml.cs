@@ -92,7 +92,7 @@ namespace Geomystery
             }
             foreach (var x in lockT)
             {
-                x.FontSize = 18 * k;
+                x.FontSize = 24 * k;
             }
             foreach(var x in grids)
             {

@@ -262,7 +262,6 @@
     <Content Include="Pictures\lock.png" />
     <Content Include="Pictures\lockx.png" />
     <Content Include="Pictures\logox.png" />
-    <Content Include="Pictures\record.png" />
     <Content Include="Pictures\SplashScreen.png" />
     <Content Include="Pictures\Tool\tool1.png" />
     <Content Include="Pictures\Tool\tool2.png" />

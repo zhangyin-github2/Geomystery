@@ -123,7 +123,7 @@
                     FontFamily="Segoe MDl2 Assets" FontSize="36" 
                     Height="60" Width="82"
                     Click="MuteButton_Click" IsTabStop="False"/>
-            <TextBlock x:Name="debugT" Visibility="Visible"
+            <TextBlock x:Name="debugT" Visibility="Collapsed"
                        FontSize="10" Foreground="{ThemeResource SystemBackgroundBaseHighBrush}"
                        RelativePanel.RightOf="MuteButton"/>
         </RelativePanel>

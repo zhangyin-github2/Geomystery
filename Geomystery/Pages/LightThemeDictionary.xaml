@@ -13,6 +13,13 @@
     <SolidColorBrush x:Key="BlackWhite" Color="#FF000000"/>
     <!--紫色/浅紫色-->
     <SolidColorBrush x:Key="TextColorPurple" Color="#FF644385"/>
+    <!--黑白渐变-->
+    <LinearGradientBrush x:Key="WhiteGradient" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#cfcfcf" Offset="0.0"/>
+        <GradientStop Color="#ffffff" Offset="0.2"/>
+        <GradientStop Color="#ffffff" Offset="0.8"/>
+        <GradientStop Color="#cfcfcf" Offset="1.0"/>
+    </LinearGradientBrush>
     <!--粉紫色渐变-->
     <LinearGradientBrush x:Key="ColorGradient1" StartPoint="0,0" EndPoint="1,1">
         <GradientStop Color="#ffc954bf" Offset="0.0" />

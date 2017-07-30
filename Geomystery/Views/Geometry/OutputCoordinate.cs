@@ -360,8 +360,8 @@ namespace Geomystery.Views.Geometry
             {
                 borderType = ViewType.Solid,
                 isVisible = true,
-                fillColor = Color.FromArgb(255, 130, 91, 230),
-                lineColor = Color.FromArgb(255, 130, 91, 230),
+                fillColor = Color.FromArgb(255, 76, 123, 207),
+                lineColor = Color.FromArgb(255, 76, 123, 207),
                 circle = circle,
                 selectedFillColor = Color.FromArgb(255, 128, 128, 128),
                 selectedLineColor = Color.FromArgb(255, 255, 99, 71),
