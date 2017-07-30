@@ -396,7 +396,7 @@
         </ResourceDictionary>
     </Page.Resources>
 
-    <Grid x:Name="back" Background="{ThemeResource SystemBackgroundAltHighBrush}">
+    <Grid x:Name="back" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="2.35*"/>

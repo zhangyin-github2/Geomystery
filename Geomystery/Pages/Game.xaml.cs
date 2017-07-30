@@ -204,7 +204,7 @@ namespace Geomystery
             var res = await lsd.ShowAsync();
             if (res.ToString() == "Primary")
             {
-                APPDATA.app_data.MoveTo(AppPage.GamePage,localLevel);
+                //APPDATA.app_data.MoveTo(AppPage.GamePage,localLevel);
             }
             else
             {

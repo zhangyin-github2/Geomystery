@@ -948,7 +948,7 @@
         </ResourceDictionary>
     </Page.Resources>
 
-    <Grid Background="{ThemeResource SystemBackgroundAltHighBrush}">
+    <Grid >
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup >
                 <VisualState x:Name="microView" >

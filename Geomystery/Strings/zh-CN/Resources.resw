@@ -175,7 +175,7 @@
     <value>设置</value>
   </data>
   <data name="PLAYAGAIN" xml:space="preserve">
-    <value>再试一次</value>
+    <value>留在本关</value>
   </data>
   <data name="Reset Progress.Text" xml:space="preserve">
     <value>重制游戏进度</value>

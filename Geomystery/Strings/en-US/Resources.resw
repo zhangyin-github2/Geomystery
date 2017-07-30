@@ -175,7 +175,7 @@
     <value>Option</value>
   </data>
   <data name="PLAYAGAIN" xml:space="preserve">
-    <value>Play Again!</value>
+    <value>Stay Here！</value>
   </data>
   <data name="Reset Progress.Text" xml:space="preserve">
     <value>Reset Progress</value>
